@@ -315,20 +315,20 @@ private subroutine add_fail_unit_(unitName, message)
 <path fill="none" stroke="#000000" d="M171.2639,-54C178.992,-54 187.6961,-54 196.5654,-54"/>
 <polygon fill="#000000" stroke="#000000" points="196.6061,-57.5001 206.6061,-54 196.6061,-50.5001 196.6061,-57.5001"/>
 </g>
-<!-- proc~increase_message_stack_ -->
+<!-- proc~failed_mark_ -->
 <g id="proc~~add_fail_unit_~~CallsGraph_node4" class="node">
-<title>proc~increase_message_stack_</title>
-<g id="a_proc~~add_fail_unit_~~CallsGraph_node4"><a xlink:href=".././proc/increase_message_stack_.html" xlink:title="increase_message_stack_">
-<polygon fill="#d9534f" stroke="#d9534f" points="490,-108 351,-108 351,-84 490,-84 490,-108"/>
-<text text-anchor="middle" x="420.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">increase_message_stack_</text>
+<title>proc~failed_mark_</title>
+<g id="a_proc~~add_fail_unit_~~CallsGraph_node4"><a xlink:href=".././proc/failed_mark_.html" xlink:title="failed_mark_">
+<polygon fill="#d9534f" stroke="#d9534f" points="457.5,-108 383.5,-108 383.5,-84 457.5,-84 457.5,-108"/>
+<text text-anchor="middle" x="420.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">failed_mark_</text>
 </a>
 </g>
 </g>
-<!-- proc~failed_assert_action&#45;&gt;proc~increase_message_stack_ -->
+<!-- proc~failed_assert_action&#45;&gt;proc~failed_mark_ -->
 <g id="proc~~add_fail_unit_~~CallsGraph_edge3" class="edge">
-<title>proc~failed_assert_action&#45;&gt;proc~increase_message_stack_</title>
-<path fill="none" stroke="#000000" d="M306.7063,-66.0355C324.8928,-70.8244 345.9872,-76.3791 365.0375,-81.3955"/>
-<polygon fill="#000000" stroke="#000000" points="364.2254,-84.8009 374.787,-83.9627 366.0079,-78.0316 364.2254,-84.8009"/>
+<title>proc~failed_assert_action&#45;&gt;proc~failed_mark_</title>
+<path fill="none" stroke="#000000" d="M306.7063,-66.0355C327.6861,-71.56 352.5356,-78.1034 373.6527,-83.664"/>
+<polygon fill="#000000" stroke="#000000" points="372.8131,-87.0622 383.3748,-86.2241 374.5957,-80.2929 372.8131,-87.0622"/>
 </g>
 <!-- proc~make_error_msg_ -->
 <g id="proc~~add_fail_unit_~~CallsGraph_node5" class="node">
@@ -345,20 +345,35 @@ private subroutine add_fail_unit_(unitName, message)
 <path fill="none" stroke="#000000" d="M315.4447,-54C329.8897,-54 345.5704,-54 360.3024,-54"/>
 <polygon fill="#000000" stroke="#000000" points="360.3231,-57.5001 370.3231,-54 360.323,-50.5001 360.3231,-57.5001"/>
 </g>
-<!-- proc~failed_mark_ -->
+<!-- proc~increase_message_stack_ -->
 <g id="proc~~add_fail_unit_~~CallsGraph_node6" class="node">
-<title>proc~failed_mark_</title>
-<g id="a_proc~~add_fail_unit_~~CallsGraph_node6"><a xlink:href=".././proc/failed_mark_.html" xlink:title="failed_mark_">
-<polygon fill="#d9534f" stroke="#d9534f" points="457.5,-24 383.5,-24 383.5,0 457.5,0 457.5,-24"/>
-<text text-anchor="middle" x="420.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">failed_mark_</text>
+<title>proc~increase_message_stack_</title>
+<g id="a_proc~~add_fail_unit_~~CallsGraph_node6"><a xlink:href=".././proc/increase_message_stack_.html" xlink:title="increase_message_stack_">
+<polygon fill="#d9534f" stroke="#d9534f" points="490,-24 351,-24 351,0 490,0 490,-24"/>
+<text text-anchor="middle" x="420.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">increase_message_stack_</text>
 </a>
 </g>
 </g>
-<!-- proc~failed_assert_action&#45;&gt;proc~failed_mark_ -->
+<!-- proc~failed_assert_action&#45;&gt;proc~increase_message_stack_ -->
 <g id="proc~~add_fail_unit_~~CallsGraph_edge5" class="edge">
-<title>proc~failed_assert_action&#45;&gt;proc~failed_mark_</title>
-<path fill="none" stroke="#000000" d="M306.7063,-41.9645C327.6861,-36.44 352.5356,-29.8966 373.6527,-24.336"/>
-<polygon fill="#000000" stroke="#000000" points="374.5957,-27.7071 383.3748,-21.7759 372.8131,-20.9378 374.5957,-27.7071"/>
+<title>proc~failed_assert_action&#45;&gt;proc~increase_message_stack_</title>
+<path fill="none" stroke="#000000" d="M306.7063,-41.9645C324.8928,-37.1756 345.9872,-31.6209 365.0375,-26.6045"/>
+<polygon fill="#000000" stroke="#000000" points="366.0079,-29.9684 374.787,-24.0373 364.2254,-23.1991 366.0079,-29.9684"/>
+</g>
+<!-- proc~output_mark_ -->
+<g id="proc~~add_fail_unit_~~CallsGraph_node8" class="node">
+<title>proc~output_mark_</title>
+<g id="a_proc~~add_fail_unit_~~CallsGraph_node8"><a xlink:href=".././proc/output_mark_.html" xlink:title="output_mark_">
+<polygon fill="#d9534f" stroke="#d9534f" points="605,-108 526,-108 526,-84 605,-84 605,-108"/>
+<text text-anchor="middle" x="565.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">output_mark_</text>
+</a>
+</g>
+</g>
+<!-- proc~failed_mark_&#45;&gt;proc~output_mark_ -->
+<g id="proc~~add_fail_unit_~~CallsGraph_edge6" class="edge">
+<title>proc~failed_mark_&#45;&gt;proc~output_mark_</title>
+<path fill="none" stroke="#000000" d="M457.8411,-96C475.3995,-96 496.5881,-96 515.5068,-96"/>
+<polygon fill="#000000" stroke="#000000" points="515.7463,-99.5001 525.7463,-96 515.7463,-92.5001 515.7463,-99.5001"/>
 </g>
 <!-- interface~strip -->
 <g id="proc~~add_fail_unit_~~CallsGraph_node7" class="node">
@@ -370,25 +385,10 @@ private subroutine add_fail_unit_(unitName, message)
 </g>
 </g>
 <!-- proc~make_error_msg_&#45;&gt;interface~strip -->
-<g id="proc~~add_fail_unit_~~CallsGraph_edge6" class="edge">
+<g id="proc~~add_fail_unit_~~CallsGraph_edge7" class="edge">
 <title>proc~make_error_msg_&#45;&gt;interface~strip</title>
 <path fill="none" stroke="#000000" d="M470.807,-54C489.638,-54 510.6796,-54 528.1365,-54"/>
 <polygon fill="#000000" stroke="#000000" points="528.4909,-57.5001 538.4909,-54 528.4909,-50.5001 528.4909,-57.5001"/>
-</g>
-<!-- proc~output_mark_ -->
-<g id="proc~~add_fail_unit_~~CallsGraph_node8" class="node">
-<title>proc~output_mark_</title>
-<g id="a_proc~~add_fail_unit_~~CallsGraph_node8"><a xlink:href=".././proc/output_mark_.html" xlink:title="output_mark_">
-<polygon fill="#d9534f" stroke="#d9534f" points="605,-24 526,-24 526,0 605,0 605,-24"/>
-<text text-anchor="middle" x="565.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">output_mark_</text>
-</a>
-</g>
-</g>
-<!-- proc~failed_mark_&#45;&gt;proc~output_mark_ -->
-<g id="proc~~add_fail_unit_~~CallsGraph_edge7" class="edge">
-<title>proc~failed_mark_&#45;&gt;proc~output_mark_</title>
-<path fill="none" stroke="#000000" d="M457.8411,-12C475.3995,-12 496.5881,-12 515.5068,-12"/>
-<polygon fill="#000000" stroke="#000000" points="515.7463,-15.5001 525.7463,-12 515.7463,-8.5001 515.7463,-15.5001"/>
 </g>
 <!-- proc~strip_ -->
 <g id="proc~~add_fail_unit_~~CallsGraph_node9" class="node">
@@ -687,7 +687,7 @@ private subroutine add_fail_unit_(unitName, message)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-03-21T17:28:51.486081 
+             on 2020-03-21T17:36:10.075761 
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> naturalFRUIT was developed by Cibin Joseph</p></div>

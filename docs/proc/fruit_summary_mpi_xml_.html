@@ -285,20 +285,17 @@ private subroutine fruit_summary_mpi_xml_(size, rank)
 <polygon fill="none" stroke="#000000" points="133,-108 0,-108 0,-84 133,-84 133,-108"/>
 <text text-anchor="middle" x="66.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">fruit_summary_mpi_xml_</text>
 </g>
-<!-- proc~int_to_str -->
+<!-- mpi_reduce -->
 <g id="proc~~fruit_summary_mpi_xml_~~CallsGraph_node2" class="node">
-<title>proc~int_to_str</title>
-<g id="a_proc~~fruit_summary_mpi_xml_~~CallsGraph_node2"><a xlink:href=".././proc/int_to_str.html" xlink:title="int_to_str">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="271.5,-192 214.5,-192 214.5,-168 271.5,-168 271.5,-192"/>
-<text text-anchor="middle" x="243" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">int_to_str</text>
-</a>
+<title>mpi_reduce</title>
+<polygon fill="#777777" stroke="#777777" points="277.5,-192 208.5,-192 208.5,-168 277.5,-168 277.5,-192"/>
+<text text-anchor="middle" x="243" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">mpi_reduce</text>
 </g>
-</g>
-<!-- proc~fruit_summary_mpi_xml_&#45;&gt;proc~int_to_str -->
+<!-- proc~fruit_summary_mpi_xml_&#45;&gt;mpi_reduce -->
 <g id="proc~~fruit_summary_mpi_xml_~~CallsGraph_edge1" class="edge">
-<title>proc~fruit_summary_mpi_xml_&#45;&gt;proc~int_to_str</title>
-<path fill="none" stroke="#000000" d="M83.1189,-108.213C102.7679,-122.1673 136.8706,-144.8897 169,-159 180.1593,-163.9009 192.7671,-167.9764 204.3722,-171.1922"/>
-<polygon fill="#000000" stroke="#000000" points="203.6891,-174.6316 214.2509,-173.7959 205.4733,-167.8627 203.6891,-174.6316"/>
+<title>proc~fruit_summary_mpi_xml_&#45;&gt;mpi_reduce</title>
+<path fill="none" stroke="#000000" d="M83.1189,-108.213C102.7679,-122.1673 136.8706,-144.8897 169,-159 178.3539,-163.108 188.7255,-166.636 198.6712,-169.564"/>
+<polygon fill="#000000" stroke="#000000" points="197.8483,-172.9681 208.4215,-172.2911 199.7339,-166.2268 197.8483,-172.9681"/>
 </g>
 <!-- interface~get_assert_and_case_count -->
 <g id="proc~~fruit_summary_mpi_xml_~~CallsGraph_node3" class="node">
@@ -315,17 +312,17 @@ private subroutine fruit_summary_mpi_xml_(size, rank)
 <path fill="none" stroke="#000000" d="M117.0778,-108.0355C137.4797,-112.8903 161.1884,-118.5321 182.4951,-123.6022"/>
 <polygon fill="#000000" stroke="#000000" points="181.8762,-127.0526 192.4148,-125.9627 183.4967,-120.2428 181.8762,-127.0526"/>
 </g>
-<!-- mpi_reduce -->
+<!-- mpi_send -->
 <g id="proc~~fruit_summary_mpi_xml_~~CallsGraph_node4" class="node">
-<title>mpi_reduce</title>
-<polygon fill="#777777" stroke="#777777" points="277.5,-108 208.5,-108 208.5,-84 277.5,-84 277.5,-108"/>
-<text text-anchor="middle" x="243" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">mpi_reduce</text>
+<title>mpi_send</title>
+<polygon fill="#777777" stroke="#777777" points="272.5,-108 213.5,-108 213.5,-84 272.5,-84 272.5,-108"/>
+<text text-anchor="middle" x="243" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">mpi_send</text>
 </g>
-<!-- proc~fruit_summary_mpi_xml_&#45;&gt;mpi_reduce -->
+<!-- proc~fruit_summary_mpi_xml_&#45;&gt;mpi_send -->
 <g id="proc~~fruit_summary_mpi_xml_~~CallsGraph_edge3" class="edge">
-<title>proc~fruit_summary_mpi_xml_&#45;&gt;mpi_reduce</title>
-<path fill="none" stroke="#000000" d="M133.2271,-96C154.9072,-96 178.433,-96 198.1242,-96"/>
-<polygon fill="#000000" stroke="#000000" points="198.3366,-99.5001 208.3366,-96 198.3366,-92.5001 198.3366,-99.5001"/>
+<title>proc~fruit_summary_mpi_xml_&#45;&gt;mpi_send</title>
+<path fill="none" stroke="#000000" d="M133.2271,-96C156.6697,-96 182.2703,-96 202.8476,-96"/>
+<polygon fill="#000000" stroke="#000000" points="203.1123,-99.5001 213.1122,-96 203.1122,-92.5001 203.1123,-99.5001"/>
 </g>
 <!-- interface~get_xml_filename_work -->
 <g id="proc~~fruit_summary_mpi_xml_~~CallsGraph_node5" class="node">
@@ -342,17 +339,20 @@ private subroutine fruit_summary_mpi_xml_(size, rank)
 <path fill="none" stroke="#000000" d="M117.0778,-83.9645C137.4797,-79.1097 161.1884,-73.4679 182.4951,-68.3978"/>
 <polygon fill="#000000" stroke="#000000" points="183.4967,-71.7572 192.4148,-66.0373 181.8762,-64.9474 183.4967,-71.7572"/>
 </g>
-<!-- mpi_send -->
+<!-- proc~int_to_str -->
 <g id="proc~~fruit_summary_mpi_xml_~~CallsGraph_node6" class="node">
-<title>mpi_send</title>
-<polygon fill="#777777" stroke="#777777" points="272.5,-24 213.5,-24 213.5,0 272.5,0 272.5,-24"/>
-<text text-anchor="middle" x="243" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">mpi_send</text>
+<title>proc~int_to_str</title>
+<g id="a_proc~~fruit_summary_mpi_xml_~~CallsGraph_node6"><a xlink:href=".././proc/int_to_str.html" xlink:title="int_to_str">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="271.5,-24 214.5,-24 214.5,0 271.5,0 271.5,-24"/>
+<text text-anchor="middle" x="243" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">int_to_str</text>
+</a>
 </g>
-<!-- proc~fruit_summary_mpi_xml_&#45;&gt;mpi_send -->
+</g>
+<!-- proc~fruit_summary_mpi_xml_&#45;&gt;proc~int_to_str -->
 <g id="proc~~fruit_summary_mpi_xml_~~CallsGraph_edge5" class="edge">
-<title>proc~fruit_summary_mpi_xml_&#45;&gt;mpi_send</title>
-<path fill="none" stroke="#000000" d="M83.1189,-83.787C102.7679,-69.8327 136.8706,-47.1103 169,-33 179.8756,-28.2237 192.127,-24.2314 203.4852,-21.0548"/>
-<polygon fill="#000000" stroke="#000000" points="204.4166,-24.4288 213.1797,-18.474 202.6158,-17.6644 204.4166,-24.4288"/>
+<title>proc~fruit_summary_mpi_xml_&#45;&gt;proc~int_to_str</title>
+<path fill="none" stroke="#000000" d="M83.1189,-83.787C102.7679,-69.8327 136.8706,-47.1103 169,-33 180.1593,-28.0991 192.7671,-24.0236 204.3722,-20.8078"/>
+<polygon fill="#000000" stroke="#000000" points="205.4733,-24.1373 214.2509,-18.2041 203.6891,-17.3684 205.4733,-24.1373"/>
 </g>
 <!-- proc~get_assert_and_case_count_ -->
 <g id="proc~~fruit_summary_mpi_xml_~~CallsGraph_node7" class="node">
@@ -714,7 +714,7 @@ private subroutine fruit_summary_mpi_xml_(size, rank)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-03-21T17:28:51.486081 
+             on 2020-03-21T17:36:10.075761 
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> naturalFRUIT was developed by Cibin Joseph</p></div>

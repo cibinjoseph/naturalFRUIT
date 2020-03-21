@@ -285,17 +285,17 @@ private subroutine fruit_summary_mpi_(size, rank)
 <polygon fill="none" stroke="#000000" points="110,-150 0,-150 0,-126 110,-126 110,-150"/>
 <text text-anchor="middle" x="55" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">fruit_summary_mpi_</text>
 </g>
-<!-- mpi_allgather -->
+<!-- mpi_reduce -->
 <g id="proc~~fruit_summary_mpi_~~CallsGraph_node2" class="node">
-<title>mpi_allgather</title>
-<polygon fill="#777777" stroke="#777777" points="258.5,-276 181.5,-276 181.5,-252 258.5,-252 258.5,-276"/>
-<text text-anchor="middle" x="220" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">mpi_allgather</text>
+<title>mpi_reduce</title>
+<polygon fill="#777777" stroke="#777777" points="254.5,-276 185.5,-276 185.5,-252 254.5,-252 254.5,-276"/>
+<text text-anchor="middle" x="220" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">mpi_reduce</text>
 </g>
-<!-- proc~fruit_summary_mpi_&#45;&gt;mpi_allgather -->
+<!-- proc~fruit_summary_mpi_&#45;&gt;mpi_reduce -->
 <g id="proc~~fruit_summary_mpi_~~CallsGraph_edge1" class="edge">
-<title>proc~fruit_summary_mpi_&#45;&gt;mpi_allgather</title>
-<path fill="none" stroke="#000000" d="M62.1023,-150.0869C75.6037,-171.9922 107.1261,-218.2686 146,-243 153.7781,-247.9484 162.7422,-251.7551 171.6871,-254.676"/>
-<polygon fill="#000000" stroke="#000000" points="170.7475,-258.0478 181.3287,-257.5099 172.7215,-251.3319 170.7475,-258.0478"/>
+<title>proc~fruit_summary_mpi_&#45;&gt;mpi_reduce</title>
+<path fill="none" stroke="#000000" d="M62.1023,-150.0869C75.6037,-171.9922 107.1261,-218.2686 146,-243 154.9656,-248.7039 165.507,-252.8908 175.7783,-255.9527"/>
+<polygon fill="#000000" stroke="#000000" points="174.9178,-259.3455 185.4832,-258.5564 176.7317,-252.5846 174.9178,-259.3455"/>
 </g>
 <!-- interface~get_assert_and_case_count -->
 <g id="proc~~fruit_summary_mpi_~~CallsGraph_node3" class="node">
@@ -327,32 +327,29 @@ private subroutine fruit_summary_mpi_(size, rank)
 <path fill="none" stroke="#000000" d="M102.2824,-150.0355C121.1823,-154.8464 143.118,-160.43 162.8961,-165.4645"/>
 <polygon fill="#000000" stroke="#000000" points="162.1563,-168.8877 172.7107,-167.9627 163.8831,-162.104 162.1563,-168.8877"/>
 </g>
-<!-- interface~get_message_index -->
+<!-- mpi_allgather -->
 <g id="proc~~fruit_summary_mpi_~~CallsGraph_node5" class="node">
-<title>interface~get_message_index</title>
-<g id="a_proc~~fruit_summary_mpi_~~CallsGraph_node5"><a xlink:href=".././interface/get_message_index.html" xlink:title="get_message_index">
-<polygon fill="#a7506f" stroke="#a7506f" points="274.5,-150 165.5,-150 165.5,-126 274.5,-126 274.5,-150"/>
-<text text-anchor="middle" x="220" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_message_index</text>
-</a>
+<title>mpi_allgather</title>
+<polygon fill="#777777" stroke="#777777" points="258.5,-150 181.5,-150 181.5,-126 258.5,-126 258.5,-150"/>
+<text text-anchor="middle" x="220" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">mpi_allgather</text>
 </g>
-</g>
-<!-- proc~fruit_summary_mpi_&#45;&gt;interface~get_message_index -->
+<!-- proc~fruit_summary_mpi_&#45;&gt;mpi_allgather -->
 <g id="proc~~fruit_summary_mpi_~~CallsGraph_edge4" class="edge">
-<title>proc~fruit_summary_mpi_&#45;&gt;interface~get_message_index</title>
-<path fill="none" stroke="#000000" d="M110.4016,-138C124.7784,-138 140.3902,-138 155.203,-138"/>
-<polygon fill="#000000" stroke="#000000" points="155.3054,-141.5001 165.3054,-138 155.3053,-134.5001 155.3054,-141.5001"/>
+<title>proc~fruit_summary_mpi_&#45;&gt;mpi_allgather</title>
+<path fill="none" stroke="#000000" d="M110.4016,-138C130.162,-138 152.2556,-138 171.4007,-138"/>
+<polygon fill="#000000" stroke="#000000" points="171.4068,-141.5001 181.4068,-138 171.4068,-134.5001 171.4068,-141.5001"/>
 </g>
-<!-- mpi_reduce -->
+<!-- mpi_send -->
 <g id="proc~~fruit_summary_mpi_~~CallsGraph_node6" class="node">
-<title>mpi_reduce</title>
-<polygon fill="#777777" stroke="#777777" points="254.5,-108 185.5,-108 185.5,-84 254.5,-84 254.5,-108"/>
-<text text-anchor="middle" x="220" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">mpi_reduce</text>
+<title>mpi_send</title>
+<polygon fill="#777777" stroke="#777777" points="249.5,-108 190.5,-108 190.5,-84 249.5,-84 249.5,-108"/>
+<text text-anchor="middle" x="220" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">mpi_send</text>
 </g>
-<!-- proc~fruit_summary_mpi_&#45;&gt;mpi_reduce -->
+<!-- proc~fruit_summary_mpi_&#45;&gt;mpi_send -->
 <g id="proc~~fruit_summary_mpi_~~CallsGraph_edge5" class="edge">
-<title>proc~fruit_summary_mpi_&#45;&gt;mpi_reduce</title>
-<path fill="none" stroke="#000000" d="M102.2824,-125.9645C125.3434,-120.0944 152.924,-113.0739 175.59,-107.3044"/>
-<polygon fill="#000000" stroke="#000000" points="176.4714,-110.6917 185.299,-104.833 174.7446,-103.908 176.4714,-110.6917"/>
+<title>proc~fruit_summary_mpi_&#45;&gt;mpi_send</title>
+<path fill="none" stroke="#000000" d="M102.2824,-125.9645C127.0025,-119.6721 156.9158,-112.0578 180.4021,-106.0795"/>
+<polygon fill="#000000" stroke="#000000" points="181.5413,-109.4012 190.3689,-103.5425 179.8145,-102.6175 181.5413,-109.4012"/>
 </g>
 <!-- interface~fruit_summary_table -->
 <g id="proc~~fruit_summary_mpi_~~CallsGraph_node7" class="node">
@@ -369,22 +366,25 @@ private subroutine fruit_summary_mpi_(size, rank)
 <path fill="none" stroke="#000000" d="M69.2114,-125.9201C86.3816,-111.8777 116.6336,-88.8621 146,-75 150.3023,-72.9691 154.8403,-71.0968 159.4649,-69.3783"/>
 <polygon fill="#000000" stroke="#000000" points="160.7278,-72.645 169.0318,-66.0651 158.437,-66.0304 160.7278,-72.645"/>
 </g>
-<!-- mpi_send -->
+<!-- interface~get_message_index -->
 <g id="proc~~fruit_summary_mpi_~~CallsGraph_node8" class="node">
-<title>mpi_send</title>
-<polygon fill="#777777" stroke="#777777" points="249.5,-24 190.5,-24 190.5,0 249.5,0 249.5,-24"/>
-<text text-anchor="middle" x="220" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">mpi_send</text>
+<title>interface~get_message_index</title>
+<g id="a_proc~~fruit_summary_mpi_~~CallsGraph_node8"><a xlink:href=".././interface/get_message_index.html" xlink:title="get_message_index">
+<polygon fill="#a7506f" stroke="#a7506f" points="274.5,-24 165.5,-24 165.5,0 274.5,0 274.5,-24"/>
+<text text-anchor="middle" x="220" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_message_index</text>
+</a>
 </g>
-<!-- proc~fruit_summary_mpi_&#45;&gt;mpi_send -->
+</g>
+<!-- proc~fruit_summary_mpi_&#45;&gt;interface~get_message_index -->
 <g id="proc~~fruit_summary_mpi_~~CallsGraph_edge7" class="edge">
-<title>proc~fruit_summary_mpi_&#45;&gt;mpi_send</title>
-<path fill="none" stroke="#000000" d="M62.1023,-125.9131C75.6037,-104.0078 107.1261,-57.7314 146,-33 156.2834,-26.4577 168.6398,-21.9112 180.2841,-18.7688"/>
-<polygon fill="#000000" stroke="#000000" points="181.3673,-22.1078 190.2636,-16.354 179.7209,-15.3041 181.3673,-22.1078"/>
+<title>proc~fruit_summary_mpi_&#45;&gt;interface~get_message_index</title>
+<path fill="none" stroke="#000000" d="M62.1023,-125.9131C75.6037,-104.0078 107.1261,-57.7314 146,-33 149.1725,-30.9817 152.5423,-29.1533 156.0277,-27.4974"/>
+<polygon fill="#000000" stroke="#000000" points="157.6202,-30.6241 165.4672,-23.5055 154.8937,-24.1769 157.6202,-30.6241"/>
 </g>
 <!-- proc~get_assert_and_case_count_ -->
-<g id="proc~~fruit_summary_mpi_~~CallsGraph_node9" class="node">
+<g id="proc~~fruit_summary_mpi_~~CallsGraph_node10" class="node">
 <title>proc~get_assert_and_case_count_</title>
-<g id="a_proc~~fruit_summary_mpi_~~CallsGraph_node9"><a xlink:href=".././proc/get_assert_and_case_count_.html" xlink:title="get_assert_and_case_count_">
+<g id="a_proc~~fruit_summary_mpi_~~CallsGraph_node10"><a xlink:href=".././proc/get_assert_and_case_count_.html" xlink:title="get_assert_and_case_count_">
 <polygon fill="#d9534f" stroke="#d9534f" points="484,-234 330,-234 330,-210 484,-210 484,-234"/>
 <text text-anchor="middle" x="407" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_assert_and_case_count_</text>
 </a>
@@ -397,9 +397,9 @@ private subroutine fruit_summary_mpi_(size, rank)
 <polygon fill="#000000" stroke="#000000" points="319.8461,-225.5001 329.8461,-222 319.846,-218.5001 319.8461,-225.5001"/>
 </g>
 <!-- proc~get_message_array_ -->
-<g id="proc~~fruit_summary_mpi_~~CallsGraph_node12" class="node">
+<g id="proc~~fruit_summary_mpi_~~CallsGraph_node11" class="node">
 <title>proc~get_message_array_</title>
-<g id="a_proc~~fruit_summary_mpi_~~CallsGraph_node12"><a xlink:href=".././proc/get_message_array_.html" xlink:title="get_message_array_">
+<g id="a_proc~~fruit_summary_mpi_~~CallsGraph_node11"><a xlink:href=".././proc/get_message_array_.html" xlink:title="get_message_array_">
 <polygon fill="#d9534f" stroke="#d9534f" points="464,-192 350,-192 350,-168 464,-168 464,-192"/>
 <text text-anchor="middle" x="407" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_message_array_</text>
 </a>
@@ -411,35 +411,35 @@ private subroutine fruit_summary_mpi_(size, rank)
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M274.0881,-180C294.5746,-180 318.1508,-180 339.7057,-180"/>
 <polygon fill="#000000" stroke="#000000" points="339.7743,-183.5001 349.7743,-180 339.7742,-176.5001 339.7743,-183.5001"/>
 </g>
-<!-- proc~get_message_index_ -->
-<g id="proc~~fruit_summary_mpi_~~CallsGraph_node11" class="node">
-<title>proc~get_message_index_</title>
-<g id="a_proc~~fruit_summary_mpi_~~CallsGraph_node11"><a xlink:href=".././proc/get_message_index_.html" xlink:title="get_message_index_">
-<polygon fill="#d9534f" stroke="#d9534f" points="464.5,-150 349.5,-150 349.5,-126 464.5,-126 464.5,-150"/>
-<text text-anchor="middle" x="407" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_message_index_</text>
-</a>
-</g>
-</g>
-<!-- interface~get_message_index&#45;&gt;proc~get_message_index_ -->
-<g id="proc~~fruit_summary_mpi_~~CallsGraph_edge10" class="edge">
-<title>interface~get_message_index&#45;&gt;proc~get_message_index_</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M274.5908,-138C294.7872,-138 317.9315,-138 339.1624,-138"/>
-<polygon fill="#000000" stroke="#000000" points="339.4099,-141.5001 349.4098,-138 339.4098,-134.5001 339.4099,-141.5001"/>
-</g>
 <!-- proc~fruit_summary_table_ -->
-<g id="proc~~fruit_summary_mpi_~~CallsGraph_node10" class="node">
+<g id="proc~~fruit_summary_mpi_~~CallsGraph_node9" class="node">
 <title>proc~fruit_summary_table_</title>
-<g id="a_proc~~fruit_summary_mpi_~~CallsGraph_node10"><a xlink:href=".././proc/fruit_summary_table_.html" xlink:title="fruit_summary_table_">
+<g id="a_proc~~fruit_summary_mpi_~~CallsGraph_node9"><a xlink:href=".././proc/fruit_summary_table_.html" xlink:title="fruit_summary_table_">
 <polygon fill="#d9534f" stroke="#d9534f" points="465,-66 349,-66 349,-42 465,-42 465,-66"/>
 <text text-anchor="middle" x="407" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">fruit_summary_table_</text>
 </a>
 </g>
 </g>
 <!-- interface~fruit_summary_table&#45;&gt;proc~fruit_summary_table_ -->
-<g id="proc~~fruit_summary_mpi_~~CallsGraph_edge11" class="edge">
+<g id="proc~~fruit_summary_mpi_~~CallsGraph_edge10" class="edge">
 <title>interface~fruit_summary_table&#45;&gt;proc~fruit_summary_table_</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M275.0947,-54C295.0005,-54 317.7171,-54 338.6237,-54"/>
 <polygon fill="#000000" stroke="#000000" points="338.7212,-57.5001 348.7212,-54 338.7212,-50.5001 338.7212,-57.5001"/>
+</g>
+<!-- proc~get_message_index_ -->
+<g id="proc~~fruit_summary_mpi_~~CallsGraph_node12" class="node">
+<title>proc~get_message_index_</title>
+<g id="a_proc~~fruit_summary_mpi_~~CallsGraph_node12"><a xlink:href=".././proc/get_message_index_.html" xlink:title="get_message_index_">
+<polygon fill="#d9534f" stroke="#d9534f" points="464.5,-24 349.5,-24 349.5,0 464.5,0 464.5,-24"/>
+<text text-anchor="middle" x="407" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_message_index_</text>
+</a>
+</g>
+</g>
+<!-- interface~get_message_index&#45;&gt;proc~get_message_index_ -->
+<g id="proc~~fruit_summary_mpi_~~CallsGraph_edge11" class="edge">
+<title>interface~get_message_index&#45;&gt;proc~get_message_index_</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M274.5908,-12C294.7872,-12 317.9315,-12 339.1624,-12"/>
+<polygon fill="#000000" stroke="#000000" points="339.4099,-15.5001 349.4098,-12 339.4098,-8.5001 339.4099,-15.5001"/>
 </g>
 <!-- interface~strip -->
 <g id="proc~~fruit_summary_mpi_~~CallsGraph_node13" class="node">
@@ -850,7 +850,7 @@ private subroutine fruit_summary_mpi_(size, rank)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-03-21T17:28:51.486081 
+             on 2020-03-21T17:36:10.075761 
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> naturalFRUIT was developed by Cibin Joseph</p></div>
