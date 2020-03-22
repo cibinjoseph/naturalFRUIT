@@ -24,8 +24,7 @@
 
 module fruit_util
   !! display: none
-  !!
-  !! A utility module for fruit to use
+  !! A utility module for [[fruit]] to use.
   private
 
   public :: equals, to_s, strip
@@ -341,26 +340,26 @@ module fruit
   public :: initializeFruit
   interface initializeFruit
     !! deprecated: true 
-    !! Deprecated. Use init_fruit
+    !! Deprecated. Use [[init_fruit]].
     module procedure obsolete_initializeFruit_
   end interface
 
   public :: getTestSummary
   interface getTestSummary
     !! deprecated: true 
-    !! Deprecated. Use fruit_summary
+    !! Deprecated. Use [[fruit_summary]].
     module procedure obsolete_getTestSummary_
   end interface
 
   interface assertTrue
     !! deprecated: true 
-    !! Deprecated. Use assert_true
+    !! Deprecated. Use [[assert_true]].
     module procedure obsolete_assert_true_logical_
   end interface
 
   public ::          assert_false
   interface          assert_false
-    !! Test that *var1* is false
+    !! Test that *var1* is false.
     module procedure assert_false_
   end interface
 
@@ -405,7 +404,8 @@ module fruit
     !! summary: Test that *var1* and *var2* are equal. 
     !! Test that *var1* and *var2* are equal. 
     !! If the values do not compare equal, the test will fail.<br/><br/>
-    !! assertEquals is same as [[assert_equals]].<br/>
+    !! assertEquals is same as [[assert_equals]] 
+    !! and will be removed in later versions.<br/>
     !! assertEquals invokes one of the following subroutines according 
     !! to the number or type of arguments.
     !====== begin of generated interface ======
@@ -481,7 +481,8 @@ module fruit
     !! summary: Test that *var1* and *var2* are not equal. 
     !! Test that *var1* and *var2* are not equal. 
     !! If the values do compare equal, the test will fail.<br/><br/>
-    !! assertNotEquals is same as [[assert_not_equals]].<br/>
+    !! assertNotEquals is same as [[assert_not_equals]]  
+    !! and will be removed in later versions.<br/>
     !! assertNotEquals invokes one of the following subroutines according 
     !! to the number or type of arguments.
     !====== begin of generated interface ======
@@ -518,176 +519,250 @@ module fruit
 
   interface addSuccess
     !! deprecated: true
-    !! Deprecated. Use add_success
+    !! Deprecated. Use [[add_success]].
     module procedure obsolete_addSuccess_
   end interface
 
   public ::           add_fail
   interface           add_fail
+    !! category: driver subroutine
+    !! summary: Print message to screen on assert failure and add to count.
+    !! Print message to screen on assert failure and add to count.<br/><br/>
+    !! add_fail invokes one of the following subroutines according 
+    !! to number of arguments.
     module procedure add_fail_
     module procedure add_fail_unit_
   end interface
 
   public ::           addFail
   interface           addFail
+    ! category: driver subroutine
+    !! summary: Print message to screen on assert failure and add to count.
+    !! Print message to screen on assert failure and add to count.<br/><br/>
+    !! addFail is same as [[add_fail]] 
+    !! and will be removed in later versions.<br/>
+    !! addFail invokes one of the following subroutines according 
+    !! to number of arguments.
     module procedure add_fail_
     module procedure add_fail_unit_
   end interface
 
   interface getTotalCount
     !! deprecated: true
-    !! Deprecated. Use get_total_count
+    !! Deprecated. Use [[get_total_count]].
     module procedure obsolete_getTotalCount_
   end interface
 
   interface getFailedCount
     !! deprecated: true
-    !! Deprecated. Use get_failed_count
+    !! Deprecated. Use [[get_failed_count]].
     module procedure obsolete_getFailedCount_
   end interface
 
   interface isAllSuccessful
     !! deprecated: true
-    !! Deprecated. Use is_all_successful
+    !! Deprecated. Use [[is_all_successful]].
     module procedure obsolete_isAllSuccessful_
   end interface
 
   interface run_test_case
+    !! category: basket subroutine
+    !! summary: Run a specific test case.
+    !! Run a specific test case.<br/><br/>
+    !! run_test_case invokes one of the following subroutines according 
+    !! to number of arguments.
     module procedure run_test_case_
     module procedure run_test_case_named_
   end interface
 
   interface runTestCase
+    !! category: basket subroutine
+    !! summary: Run a specific test case.
+    !! Run a specific test case.<br/><br/>
+    !! runTestCase is same as [[run_test_case]] 
+    !! and will be removed in a later version.<br/>
+    !! runTestCase invokes one of the following subroutines according 
+    !! to number of arguments.
     module procedure run_test_case_
     module procedure run_test_case_named_
   end interface
 
   public ::          init_fruit_xml
   interface          init_fruit_xml
+    !! category: driver subroutine
+    !! Initialize FRUIT driver environment for output to XML file
     module procedure init_fruit_xml_
   end interface
 
   public ::          fruit_summary
   interface          fruit_summary
+    !! category: driver subroutine
+    !! Summarize FRUIT test results to screen.
     module procedure fruit_summary_
   end interface
 
   public ::          fruit_summary_xml
   interface          fruit_summary_xml
+    !! category: driver subroutine
+    !! Summarize FRUIT test results in XML format to result.xml file.
     module procedure fruit_summary_xml_
   end interface
 
   public ::          case_passed_xml
   interface          case_passed_xml
+    !! category: driver subroutine
+    !! Write to XML file a passed case.
     module procedure case_passed_xml_
   end interface
 
   public ::          case_failed_xml
   interface          case_failed_xml
+    !! category: driver subroutine
+    !! Write to XML file a failed case.
     module procedure case_failed_xml_
   end interface
 
   public ::          override_stdout
   interface          override_stdout
+    !! category: driver subroutine
+    !! Override stdout to a user-specified file. Terminal by default.
     module procedure override_stdout_
   end interface
 
   public ::          end_override_stdout
   interface          end_override_stdout
+    !! category: driver subroutine
+    !! Revert override of stdout to default. Terminal by default.
     module procedure end_override_stdout_
   end interface
 
   interface          override_xml_work
+    !! category: driver subroutine
+    !! Override XML file unit number to a user-specified number. 21 by default.
     module procedure override_xml_work_
   end interface
 
   interface          end_override_xml_work
+    !! category: driver subroutine
+    !! Revert override of XML file unit number to default. 21 by default.
     module procedure end_override_xml_work_
   end interface
 
   public ::          get_xml_filename_work
   interface          get_xml_filename_work
+    !! category: driver subroutine
+    !! Get filename of XML file. result.xml by default.
     module procedure get_xml_filename_work_
   end interface
 
   public ::          set_xml_filename_work
   interface          set_xml_filename_work
+    !! category: driver subroutine
+    !! Set filename of XML file. result.xml by default.
     module procedure set_xml_filename_work_
   end interface
 
   public ::          get_message_index
   interface          get_message_index
+    !! category: driver subroutine
+    !! Get number of failed assertion messages.
     module procedure get_message_index_
   end interface
 
   public ::          get_messages
   interface          get_messages
+    !! category: driver subroutine
+    !! Get failed asssertion messages to *msgs*.
     module procedure get_messages_
   end interface
 
   public ::          get_message_array
   interface          get_message_array
+    !! category: driver subroutine
+    !! Get failed asssertion messages to *msgs*.
     module procedure get_message_array_
   end interface
 
   interface          set_unit_name
+    !! category: driver subroutine
+    !! Set name of unit/case to *value*.
     module procedure set_case_name_
   end interface
   interface          set_case_name
+    !! category: driver subroutine
+    !! Set name of unit/case to *value*.
     module procedure set_case_name_
   end interface
 
   interface          get_unit_name
+    !! category: driver subroutine
+    !! Get name of unit/case to *value*.
     module procedure get_case_name_
   end interface
   interface          get_case_name
+    !! category: driver subroutine
+    !! Get name of unit/case to *value*.
     module procedure get_case_name_
   end interface
 
   public ::          fruit_finalize 
   interface          fruit_finalize
     !! category: driver subroutine
-    !! Finalize FRUIT driver environment
+    !! Finalize FRUIT driver environment.
     module procedure fruit_finalize_
   end interface
 
   public ::          set_prefix
   interface          set_prefix
+    !! category: driver subroutine
+    !! Set a common prefix for classname. Null by default.
     module procedure set_prefix_
   end interface
 
   public ::          get_prefix
   interface          get_prefix
+    !! category: driver subroutine
+    !! Get a common prefix for classname. Null by default.
     module procedure get_prefix_
   end interface
 
   interface          get_assert_and_case_count
+    !! category: driver subroutine
+    !! Get statistics of cases and asserts.
     module procedure get_assert_and_case_count_
   end interface
 
   public          :: fruit_summary_table
   interface          fruit_summary_table
+    !! category: driver subroutine
+    !! Print statistics of cases and asserts in default format.
     module procedure fruit_summary_table_
   end interface
 
   public ::           fruit_if_case_failed
   interface           fruit_if_case_failed
+    !! category: driver subroutine
+    !! Return TRUE if any assert in current case has failed.
     module procedure  fruit_if_case_failed_
   end interface
 
   public ::           fruit_hide_dots
   interface           fruit_hide_dots
+    !! category: driver subroutine
+    !! Hide dots signifying test success on screen. Visible by default.
     module procedure  fruit_hide_dots_
   end interface
 
   public ::           fruit_show_dots
   interface           fruit_show_dots
+    !! category: driver subroutine
+    !! Show dots signifying test success on screen. Visible by default.
     module procedure  fruit_show_dots_
   end interface
 contains
   subroutine init_fruit(rank)
     !! category: driver subroutine
-    !! Initialize FRUIT driver environment
+    !! Initialize FRUIT driver environment.
     integer, intent(in), optional :: rank
     logical :: if_write
 
@@ -1048,6 +1123,8 @@ contains
   end subroutine obsolete_isAllSuccessful_
 
   subroutine is_all_successful(result)
+    !! category: driver subroutine
+    !! Return true to *result* if any assert has failed till now.
     logical, intent(out) :: result
     result= (failed_assert_count .eq. 0 )
   end subroutine is_all_successful
@@ -1120,6 +1197,8 @@ contains
 
 
   function get_last_message()
+    !! category: driver subroutine
+    !! Return last message.
     character(len=MSG_LENGTH) :: get_last_message
     if (message_index > 1) then
       get_last_message = strip(message_array(message_index-1), MSG_LENGTH)
@@ -1165,6 +1244,8 @@ contains
   end subroutine obsolete_getTotalCount_
 
   subroutine get_total_count(count)
+    !! category: driver subroutine
+    !! Get total number of asserts.
     integer, intent(out) :: count
 
     count = successful_assert_count + failed_assert_count
@@ -1179,6 +1260,8 @@ contains
   end subroutine obsolete_getFailedCount_
 
   subroutine get_failed_count (count)
+    !! category: driver subroutine
+    !! Get number of assert failures.
     integer, intent(out) :: count
     count = failed_assert_count
   end subroutine get_failed_count
@@ -1198,6 +1281,9 @@ contains
   end subroutine obsolete_
 
   subroutine add_success
+    !! category: driver subroutine
+    !! summary: Print message to screen on assert success and add to count.
+    !! Print message to screen on assert success and add to count.
     !$omp critical     (FRUIT_OMP_ADD_SUCCESS)
     successful_assert_count = successful_assert_count + 1
     last_passed = .true.
@@ -1209,6 +1295,8 @@ contains
   end subroutine add_success
 
   subroutine failed_assert_action (expected, got, message, if_is)
+    !! category: driver subroutine
+    !! Print *message* to screen and take necessary actions for assert failure.
     character(*), intent(in) :: expected, got
     character(*), intent(in), optional :: message
     logical, intent(in), optional :: if_is
@@ -1258,11 +1346,15 @@ contains
   end subroutine make_error_msg_
 
   function is_last_passed()
+    !! category: driver subroutine
+    !! Return true if last assert is successful in case.
     logical:: is_last_passed
     is_last_passed = last_passed
   end function is_last_passed
 
   function is_case_passed()
+    !! category: driver subroutine
+    !! Return true if all asserts are successful in case.
     logical:: is_case_passed
     is_case_passed = case_passed
   end function is_case_passed
@@ -1285,6 +1377,8 @@ contains
   end subroutine override_xml_work_
 
   subroutine stash_test_suite
+    !! category: driver subroutine 
+    !! Stash results of test case for later use.
     stashed_suite%successful_assert_count = successful_assert_count
     successful_assert_count = 0
 
@@ -1326,6 +1420,8 @@ contains
   end subroutine stash_test_suite
 
   subroutine restore_test_suite
+    !! category: driver subroutine 
+    !! Restore results of test case for use.
     successful_assert_count = stashed_suite%successful_assert_count
     failed_assert_count     = stashed_suite%failed_assert_count
 
@@ -1406,6 +1502,7 @@ contains
   end subroutine obsolete_assert_true_logical_
 
   subroutine assert_true (var1, message)
+    !! Test that *var1* is true.
     logical, intent (in) :: var1
     character (*), intent (in), optional :: message
 
