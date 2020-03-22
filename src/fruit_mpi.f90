@@ -1,4 +1,7 @@
 module fruit_mpi
+  !! display: none
+  !! 
+  !! Documentation under construction
   use fruit
   use mpi
   implicit none

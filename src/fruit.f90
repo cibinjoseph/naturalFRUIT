@@ -23,6 +23,9 @@
 
 
 module fruit_util
+  !! display: none
+  !!
+  !! A utility module for fruit to use
   private
   
   public :: equals, to_s, strip
