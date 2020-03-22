@@ -1,6 +1,6 @@
 project: naturalFRUIT
 project_dir: .
-src_dir: .
+src_dir: ./src
 output_dir: ./docs
 media_dir: ./media    
 project_github: https://github.com/cibinjoseph/naturalFRUIT
@@ -13,8 +13,6 @@ email: cibinjoseph92@gmail.com
 fpp_extensions: fpp
 docmark: !
 display: public
-         protected
-         private
 source: true
 graph: true
 search: true
