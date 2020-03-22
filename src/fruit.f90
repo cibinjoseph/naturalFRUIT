@@ -295,6 +295,7 @@ module fruit
   !---------- save ----------
 
   type ty_stack
+    !! display: none
     integer :: successful_assert_count
     integer :: failed_assert_count
 
