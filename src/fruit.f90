@@ -358,6 +358,8 @@ module fruit
   end interface
 
   interface assert_equals
+    !! Test that *var1* and *var2* are equal. 
+    !! If the values do not compare equal, the test will fail.
   !====== begin of generated interface ======
     module procedure assert_eq_logical_
     module procedure assert_eq_1d_logical_
@@ -390,6 +392,8 @@ module fruit
   end interface
 
   interface assertEquals
+    !! Test that *var1* and *var2* are equal. 
+    !! If the values do not compare equal, the test will fail.
   !====== begin of generated interface ======
     module procedure assert_eq_logical_
     module procedure assert_eq_1d_logical_
@@ -607,8 +611,10 @@ module fruit
     module procedure get_case_name_
   end interface
 
-  public ::          fruit_finalize
+  public ::          fruit_finalize 
   interface          fruit_finalize
+    !! category: driver subroutine
+    !! Finalize FRUIT driver environment
     module procedure fruit_finalize_
   end interface
 
@@ -647,6 +653,8 @@ module fruit
   end interface
 contains
   subroutine init_fruit(rank)
+    !! category: driver subroutine
+    !! Initialize FRUIT driver environment
     integer, intent(in), optional :: rank
     logical :: if_write
 
@@ -1390,6 +1398,7 @@ contains
   !====== begin of generated code ======
   !------ 0d_logical ------
   subroutine assert_eq_logical_(var1, var2, message)
+    !! display: none
 
     logical, intent (in) :: var1, var2
     
