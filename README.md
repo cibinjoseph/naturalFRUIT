@@ -14,4 +14,12 @@ A list of subroutines for use while unit testing is available [here](https://cib
 This repo is under very active development and a lot of drastic changes are being made at the moment. These include removal of depreciated and redundant subroutines and functions. Until this disclaimer is removed, users are cautioned against using naturalFRUIT and advised to use the original FRUIT module.
 
 ## Contibution
-All contributions through pull requests are accepted.
+All contributions through pull requests are accepted.  
+
+### Creating documentation
+For adding new documentation,
+1. Fork this repo.
+2. FORD parses comments with the marks *!!* in the source code and the folder *ford_input/* for creating documentation. Make the necessary changes.
+4. Run `make docum` in the topmost directory of the repo to use FORD to autocreate the documentation webpages.
+5. Commit all changes.
+6. Send a pull request.
