@@ -340,26 +340,36 @@ module fruit
 
   public :: initializeFruit
   interface initializeFruit
+    !! deprecated: true 
+    !! Deprecated. Use init_fruit
     module procedure obsolete_initializeFruit_
   end interface
 
   public :: getTestSummary
   interface getTestSummary
+    !! deprecated: true 
+    !! Deprecated. Use fruit_summary
     module procedure obsolete_getTestSummary_
   end interface
 
   interface assertTrue
+    !! deprecated: true 
+    !! Deprecated. Use assert_true
     module procedure obsolete_assert_true_logical_
   end interface
 
   public ::          assert_false
   interface          assert_false
+    !! Test that *var1* is false
     module procedure assert_false_
   end interface
 
   interface assert_equals
+    !! summary: Test that *var1* and *var2* are equal. 
     !! Test that *var1* and *var2* are equal. 
-    !! If the values do not compare equal, the test will fail.
+    !! If the values do not compare equal, the test will fail.<br/><br/>
+    !! assert_equals invokes one of the following subroutines according 
+    !! to the number or type of arguments.
     !====== begin of generated interface ======
     module procedure assert_eq_logical_
     module procedure assert_eq_1d_logical_
@@ -392,8 +402,12 @@ module fruit
   end interface
 
   interface assertEquals
+    !! summary: Test that *var1* and *var2* are equal. 
     !! Test that *var1* and *var2* are equal. 
-    !! If the values do not compare equal, the test will fail.
+    !! If the values do not compare equal, the test will fail.<br/><br/>
+    !! assertEquals is same as [[assert_equals]].<br/>
+    !! assertEquals invokes one of the following subroutines according 
+    !! to the number or type of arguments.
     !====== begin of generated interface ======
     module procedure assert_eq_logical_
     module procedure assert_eq_1d_logical_
@@ -426,6 +440,11 @@ module fruit
   end interface
 
   interface assert_not_equals
+    !! summary: Test that *var1* and *var2* are not equal. 
+    !! Test that *var1* and *var2* are not equal. 
+    !! If the values do compare equal, the test will fail.<br/><br/>
+    !! assert_not_equals invokes one of the following subroutines according 
+    !! to the number or type of arguments.
     !====== begin of generated interface ======
     module procedure assert_not_equals_logical_
     module procedure assert_not_equals_1d_logical_
@@ -459,6 +478,12 @@ module fruit
   end interface
 
   interface assertNotEquals
+    !! summary: Test that *var1* and *var2* are not equal. 
+    !! Test that *var1* and *var2* are not equal. 
+    !! If the values do compare equal, the test will fail.<br/><br/>
+    !! assertNotEquals is same as [[assert_not_equals]].<br/>
+    !! assertNotEquals invokes one of the following subroutines according 
+    !! to the number or type of arguments.
     !====== begin of generated interface ======
     module procedure assert_not_equals_logical_
     module procedure assert_not_equals_1d_logical_
@@ -492,6 +517,8 @@ module fruit
   end interface
 
   interface addSuccess
+    !! deprecated: true
+    !! Deprecated. Use add_success
     module procedure obsolete_addSuccess_
   end interface
 
@@ -508,14 +535,20 @@ module fruit
   end interface
 
   interface getTotalCount
+    !! deprecated: true
+    !! Deprecated. Use get_total_count
     module procedure obsolete_getTotalCount_
   end interface
 
   interface getFailedCount
+    !! deprecated: true
+    !! Deprecated. Use get_failed_count
     module procedure obsolete_getFailedCount_
   end interface
 
   interface isAllSuccessful
+    !! deprecated: true
+    !! Deprecated. Use is_all_successful
     module procedure obsolete_isAllSuccessful_
   end interface
 
