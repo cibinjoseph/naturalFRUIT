@@ -19,5 +19,5 @@ search: true
 print_creation_date: true
 extra_filetypes:
 
-A purely Fortran based project derived from the original [Fortran Unit Test Framework (FRUIT)](https://sourceforge.net/projects/fortranxunit/)<br/><br/>
+A purely Fortran based unit testing framework derived from the original [Fortran Unit Test Framework (FRUIT)](https://sourceforge.net/projects/fortranxunit/)<br/><br/>
 Documentation available [here](https://cibinjoseph.github.io/naturalFRUIT/page/index.html).
