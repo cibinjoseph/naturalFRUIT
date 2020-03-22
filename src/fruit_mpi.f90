@@ -77,8 +77,8 @@ contains
     character(len = MSG_LENGTH_HERE), allocatable :: msgs_all(:)
 
     call get_assert_and_case_count(&
-    & fail_assert,  succ_assert, &
-    & fail_case,    succ_case)
+      & fail_assert,  succ_assert, &
+      & fail_case,    succ_case)
 
     call get_message_index(message_index)
     num_msgs = message_index - 1
@@ -87,8 +87,8 @@ contains
 
     allocate(num_msgs_rank(size))
     call MPI_Allgather(&
-    & num_msgs,      1, MPI_INTEGER, &
-    & num_msgs_rank, 1, MPI_INTEGER, MPI_COMM_WORLD, ierr)
+      & num_msgs,      1, MPI_INTEGER, &
+      & num_msgs_rank, 1, MPI_INTEGER, MPI_COMM_WORLD, ierr)
 
     num_msgs_sum = sum(num_msgs_rank(:))
     allocate(msgs_all(num_msgs_sum))
@@ -110,32 +110,32 @@ contains
       do i = 1, size - 1
         imsg = sum(num_msgs_rank(1:i)) + 1
         call MPI_RECV(&
-        & msgs_all(imsg), &
-        & num_msgs_rank(i + 1) * MSG_LENGTH_HERE, MPI_CHARACTER, &
-        & i, 7, MPI_COMM_WORLD, status, ierr)
+          & msgs_all(imsg), &
+          & num_msgs_rank(i + 1) * MSG_LENGTH_HERE, MPI_CHARACTER, &
+          & i, 7, MPI_COMM_WORLD, status, ierr)
       enddo
     else
       call MPI_Send(&
-      & msgs, &
-      & num_msgs * MSG_LENGTH_HERE               , MPI_CHARACTER, &
-      & 0, 7, MPI_COMM_WORLD, ierr)
+        & msgs, &
+        & num_msgs * MSG_LENGTH_HERE               , MPI_CHARACTER, &
+        & 0, 7, MPI_COMM_WORLD, ierr)
     endif
 
     call MPI_REDUCE(&
-    & fail_assert    , &
-    & fail_assert_sum, 1, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD, ierr)
+      & fail_assert    , &
+      & fail_assert_sum, 1, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD, ierr)
 
     call MPI_REDUCE(&
-    & succ_assert    , &
-    & succ_assert_sum, 1, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD, ierr)
+      & succ_assert    , &
+      & succ_assert_sum, 1, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD, ierr)
 
     call MPI_REDUCE(&
-    & fail_case    , &
-    & fail_case_sum,   1, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD, ierr)
+      & fail_case    , &
+      & fail_case_sum,   1, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD, ierr)
 
     call MPI_REDUCE(&
-    & succ_case    , &
-    & succ_case_sum,   1, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD, ierr)
+      & succ_case    , &
+      & succ_case_sum,   1, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD, ierr)
 
     if (rank == 0) then
       write (*,*)
@@ -144,9 +144,9 @@ contains
       write (*,*)
 
       if (fail_assert_sum > 0) then
-         write (*,*) 'Some tests failed!'
+        write (*,*) 'Some tests failed!'
       else
-         write (*,*) 'SUCCESSFUL!'
+        write (*,*) 'SUCCESSFUL!'
       end if
 
       write (*,*)
@@ -161,9 +161,9 @@ contains
 
       if (succ_assert_sum + fail_assert_sum /= 0) then
         call fruit_summary_table(&
-        & succ_assert_sum, fail_assert_sum, &
-        & succ_case_sum  , fail_case_sum    &
-        &)
+          & succ_assert_sum, fail_assert_sum, &
+          & succ_case_sum  , fail_case_sum    &
+          &)
       endif
       write(*, *) '  -- end of FRUIT summary'
     endif
@@ -189,66 +189,66 @@ contains
     allocate(xml_filename_work_all(size))
 
     if (rank /= 0) then
-    call MPI_Send(    xml_filename_work, &
-    &     FN_LENGTH, MPI_CHARACTER,     0, 8, MPI_COMM_WORLD, ierr)
+      call MPI_Send(    xml_filename_work, &
+        &     FN_LENGTH, MPI_CHARACTER,     0, 8, MPI_COMM_WORLD, ierr)
     endif
     if (rank == 0) then
       xml_filename_work_all(1) = xml_filename_work
 
       do i = 1+1, size
         call MPI_RECV(xml_filename_work_all(i), &
-        & FN_LENGTH, MPI_CHARACTER, i - 1, 8, MPI_COMM_WORLD, status, ierr)
+          & FN_LENGTH, MPI_CHARACTER, i - 1, 8, MPI_COMM_WORLD, status, ierr)
       enddo
     endif
 
     call get_assert_and_case_count(&
-    & fail_assert,  succ_assert, &
-    & fail_case,    succ_case)
+      & fail_assert,  succ_assert, &
+      & fail_case,    succ_case)
 
     call MPI_REDUCE(&
-    & fail_assert    , &
-    & fail_assert_sum, 1, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD, ierr)
+      & fail_assert    , &
+      & fail_assert_sum, 1, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD, ierr)
 
     call MPI_REDUCE(&
-    & succ_assert    , &
-    & succ_assert_sum, 1, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD, ierr)
+      & succ_assert    , &
+      & succ_assert_sum, 1, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD, ierr)
 
     call MPI_REDUCE(&
-    & fail_case    , &
-    & fail_case_sum,   1, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD, ierr)
+      & fail_case    , &
+      & fail_case_sum,   1, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD, ierr)
 
     call MPI_REDUCE(&
-    & succ_case    , &
-    & succ_case_sum,   1, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD, ierr)
+      & succ_case    , &
+      & succ_case_sum,   1, MPI_INTEGER, MPI_SUM, 0, MPI_COMM_WORLD, ierr)
 
     full_count = int_to_str(succ_case_sum + fail_case_sum)
     fail_count = int_to_str(                fail_case_sum)
 
     if (rank == 0) then
       open (XML_OPEN, file = xml_filename, action ="write", status = "replace")
-        write(XML_OPEN, '("<?xml version=""1.0"" encoding=""UTF-8""?>")')
-        write(XML_OPEN, '("<testsuites>")')
-        write(XML_OPEN, '("  <testsuite errors=""0"" ")', advance = "no")
-        write(XML_OPEN, '("tests=""", a, """ ")', advance = "no") &
+      write(XML_OPEN, '("<?xml version=""1.0"" encoding=""UTF-8""?>")')
+      write(XML_OPEN, '("<testsuites>")')
+      write(XML_OPEN, '("  <testsuite errors=""0"" ")', advance = "no")
+      write(XML_OPEN, '("tests=""", a, """ ")', advance = "no") &
         &  trim(full_count)
-        write(XML_OPEN, '("failures=""", a, """ ")', advance = "no") &
+      write(XML_OPEN, '("failures=""", a, """ ")', advance = "no") &
         &  trim(fail_count)
-        write(XML_OPEN, '("name=""", a, """ ")', advance = "no") &
+      write(XML_OPEN, '("name=""", a, """ ")', advance = "no") &
         &  "name of test suite"
-        write(XML_OPEN, '("id=""1"">")')
+      write(XML_OPEN, '("id=""1"">")')
 
-        do i = 1, size
-          open (XML_WORK, FILE = xml_filename_work_all(i))
-            do
-              read(XML_WORK, '(a)', end = 999) whole_line
-              write(XML_OPEN, '(a)') trim(whole_line)
-            enddo
-        999 continue
-          close(XML_WORK)
+      do i = 1, size
+        open (XML_WORK, FILE = xml_filename_work_all(i))
+        do
+          read(XML_WORK, '(a)', end = 999) whole_line
+          write(XML_OPEN, '(a)') trim(whole_line)
         enddo
+        999 continue
+        close(XML_WORK)
+      enddo
 
-        write(XML_OPEN, '("  </testsuite>")')
-        write(XML_OPEN, '("</testsuites>")')
+      write(XML_OPEN, '("  </testsuite>")')
+      write(XML_OPEN, '("</testsuites>")')
       close(XML_OPEN)
     endif
     if (size < 0) print *, "size < 0"
