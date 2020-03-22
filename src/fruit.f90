@@ -256,7 +256,7 @@ module fruit
 
   integer, parameter :: MAX_NUM_FAILURES_IN_XML = 10
   integer, parameter :: XML_LINE_LENGTH = 2670  
-    !! xml_line_length >= max_num_failures_in_xml * (msg_length + 1) + 50
+    ! xml_line_length >= max_num_failures_in_xml * (msg_length + 1) + 50
 
   integer, parameter :: STRLEN_T = 12
 
@@ -887,14 +887,14 @@ contains
 
     last_passed = .true.
     case_passed = .true.
-    linechar_count = 0  !! reset linechar_count for each test case.
+    linechar_count = 0  ! reset linechar_count for each test case.
     message_index_from = message_index
     call system_clock(case_time_from)
 
     !$OMP BARRIER
 
-    !!! "case_passed" is true here.
-    !!! "case_passed" becomes .false. at the first fail of assertion
+    ! "case_passed" is true here.
+    ! "case_passed" becomes .false. at the first fail of assertion
     call tc()
 
     !$OMP BARRIER
@@ -1014,9 +1014,9 @@ contains
   ! Private, helper routine to wrap lines of success/failed marks
   subroutine output_mark_( chr )
     character(1), intent(in) :: chr
-  !!  integer, save :: linechar_count = 0
-  !!  Definition of linechar_count is moved to module,
-  !!  so that it can be stashed and restored.
+  !  integer, save :: linechar_count = 0
+  !  Definition of linechar_count is moved to module,
+  !  so that it can be stashed and restored.
 
     !$omp critical      (FRUIT_OMP_ADD_OUTPUT_MARK)
     linechar_count = linechar_count + 1
