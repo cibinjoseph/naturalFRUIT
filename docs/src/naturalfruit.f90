@@ -323,39 +323,19 @@ module fruit
     get_last_message, &
     is_last_passed, &
     is_case_passed, &
-    add_success, addSuccess, &
+    add_success, &
     set_unit_name, get_unit_name, &
     set_case_name, get_case_name, &
-    failed_assert_action, get_total_count, getTotalCount, &
-    get_failed_count, getFailedCount, is_all_successful, isAllSuccessful, &
-    run_test_case, runTestCase
-  public :: assert_equals,     assertEquals
-  public :: assert_not_equals, assertNotEquals
-  public :: assert_true,       assertTrue
+    failed_assert_action, get_total_count, &
+    get_failed_count, is_all_successful, &
+    run_test_case
+  public :: assert_equals
+  public :: assert_not_equals
+  public :: assert_true
   public :: stash_test_suite, restore_test_suite
   public :: FRUIT_PREFIX_LEN_MAX
   public :: override_xml_work, end_override_xml_work
   public :: get_assert_and_case_count
-
-  public :: initializeFruit
-  interface initializeFruit
-    !! deprecated: true 
-    !! Deprecated. Use [[fruit_initialize]].
-    module procedure obsolete_initializeFruit_
-  end interface
-
-  public :: getTestSummary
-  interface getTestSummary
-    !! deprecated: true 
-    !! Deprecated. Use [[fruit_summary]].
-    module procedure obsolete_getTestSummary_
-  end interface
-
-  interface assertTrue
-    !! deprecated: true 
-    !! Deprecated. Use [[assert_true]].
-    module procedure obsolete_assert_true_logical_
-  end interface
 
   public ::          assert_false
   interface          assert_false
@@ -368,45 +348,6 @@ module fruit
     !! Test that *var1* and *var2* are equal. 
     !! If the values do not compare equal, the test will fail.<br/><br/>
     !! assert_equals invokes one of the following subroutines according 
-    !! to the number or type of arguments.
-    !====== begin of generated interface ======
-    module procedure assert_eq_logical_
-    module procedure assert_eq_1d_logical_
-    module procedure assert_eq_2d_logical_
-    module procedure assert_eq_string_
-    module procedure assert_eq_1d_string_
-    module procedure assert_eq_2d_string_
-    module procedure assert_eq_int_
-    module procedure assert_eq_1d_int_
-    module procedure assert_eq_2d_int_
-    module procedure assert_eq_real_
-    module procedure assert_eq_real_in_range_
-    module procedure assert_eq_1d_real_
-    module procedure assert_eq_1d_real_in_range_
-    module procedure assert_eq_2d_real_
-    module procedure assert_eq_2d_real_in_range_
-    module procedure assert_eq_double_
-    module procedure assert_eq_double_in_range_
-    module procedure assert_eq_1d_double_
-    module procedure assert_eq_1d_double_in_range_
-    module procedure assert_eq_2d_double_
-    module procedure assert_eq_2d_double_in_range_
-    module procedure assert_eq_complex_
-    module procedure assert_eq_complex_in_range_
-    module procedure assert_eq_1d_complex_
-    module procedure assert_eq_1d_complex_in_range_
-    module procedure assert_eq_2d_complex_
-    module procedure assert_eq_2d_complex_in_range_
-    !====== end of generated inteface ======
-  end interface
-
-  interface assertEquals
-    !! summary: Test that *var1* and *var2* are equal. 
-    !! Test that *var1* and *var2* are equal. 
-    !! If the values do not compare equal, the test will fail.<br/><br/>
-    !! assertEquals is same as [[assert_equals]] 
-    !! and will be removed in later versions.<br/>
-    !! assertEquals invokes one of the following subroutines according 
     !! to the number or type of arguments.
     !====== begin of generated interface ======
     module procedure assert_eq_logical_
@@ -477,52 +418,6 @@ module fruit
 
   end interface
 
-  interface assertNotEquals
-    !! summary: Test that *var1* and *var2* are not equal. 
-    !! Test that *var1* and *var2* are not equal. 
-    !! If the values do compare equal, the test will fail.<br/><br/>
-    !! assertNotEquals is same as [[assert_not_equals]]  
-    !! and will be removed in later versions.<br/>
-    !! assertNotEquals invokes one of the following subroutines according 
-    !! to the number or type of arguments.
-    !====== begin of generated interface ======
-    module procedure assert_not_equals_logical_
-    module procedure assert_not_equals_1d_logical_
-    module procedure assert_not_equals_2d_logical_
-    module procedure assert_not_equals_string_
-    module procedure assert_not_equals_1d_string_
-    module procedure assert_not_equals_2d_string_
-    module procedure assert_not_equals_int_
-    module procedure assert_not_equals_1d_int_
-    module procedure assert_not_equals_2d_int_
-    module procedure assert_not_equals_real_
-    module procedure assert_not_equals_real_in_range_
-    module procedure assert_not_equals_1d_real_
-    module procedure assert_not_equals_1d_real_in_range_
-    module procedure assert_not_equals_2d_real_
-    module procedure assert_not_equals_2d_real_in_range_
-    module procedure assert_not_equals_double_
-    module procedure assert_not_equals_double_in_range_
-    module procedure assert_not_equals_1d_double_
-    module procedure assert_not_equals_1d_double_in_range_
-    module procedure assert_not_equals_2d_double_
-    module procedure assert_not_equals_2d_double_in_range_
-    module procedure assert_not_equals_complex_
-    module procedure assert_not_equals_complex_in_range_
-    module procedure assert_not_equals_1d_complex_
-    module procedure assert_not_equals_1d_complex_in_range_
-    module procedure assert_not_equals_2d_complex_
-    module procedure assert_not_equals_2d_complex_in_range_
-    !====== end of generated inteface ======
-
-  end interface
-
-  interface addSuccess
-    !! deprecated: true
-    !! Deprecated. Use [[add_success]].
-    module procedure obsolete_addSuccess_
-  end interface
-
   public ::           add_fail
   interface           add_fail
     !! category: driver subroutine
@@ -534,54 +429,11 @@ module fruit
     module procedure add_fail_unit_
   end interface
 
-  public ::           addFail
-  interface           addFail
-    ! category: driver subroutine
-    !! summary: Print message to screen on assert failure and add to count.
-    !! Print message to screen on assert failure and add to count.<br/><br/>
-    !! addFail is same as [[add_fail]] 
-    !! and will be removed in later versions.<br/>
-    !! addFail invokes one of the following subroutines according 
-    !! to number of arguments.
-    module procedure add_fail_
-    module procedure add_fail_unit_
-  end interface
-
-  interface getTotalCount
-    !! deprecated: true
-    !! Deprecated. Use [[get_total_count]].
-    module procedure obsolete_getTotalCount_
-  end interface
-
-  interface getFailedCount
-    !! deprecated: true
-    !! Deprecated. Use [[get_failed_count]].
-    module procedure obsolete_getFailedCount_
-  end interface
-
-  interface isAllSuccessful
-    !! deprecated: true
-    !! Deprecated. Use [[is_all_successful]].
-    module procedure obsolete_isAllSuccessful_
-  end interface
-
   interface run_test_case
     !! category: basket subroutine
     !! summary: Run a specific test case.
     !! Run a specific test case.<br/><br/>
     !! run_test_case invokes one of the following subroutines according 
-    !! to number of arguments.
-    module procedure run_test_case_
-    module procedure run_test_case_named_
-  end interface
-
-  interface runTestCase
-    !! category: basket subroutine
-    !! summary: Run a specific test case.
-    !! Run a specific test case.<br/><br/>
-    !! runTestCase is same as [[run_test_case]] 
-    !! and will be removed in a later version.<br/>
-    !! runTestCase invokes one of the following subroutines according 
     !! to number of arguments.
     module procedure run_test_case_
     module procedure run_test_case_named_
@@ -951,16 +803,6 @@ contains
     int_to_str = adjustl(int_to_str)
   end function int_to_str
 
-  subroutine obsolete_initializeFruit_
-    call obsolete_ ("initializeFruit is OBSOLETE.  replaced by fruit_initialize")
-    call fruit_initialize
-  end subroutine obsolete_initializeFruit_
-
-  subroutine obsolete_getTestSummary_
-    call obsolete_ ( "getTestSummary is OBSOLETE.  replaced by fruit_summary")
-    call fruit_summary_
-  end subroutine obsolete_getTestSummary_
-
 
   logical function fruit_if_case_failed_()
     if (failed_assert_count == 0) then
@@ -1099,11 +941,6 @@ contains
       succ_case + fail_case, ' ]'
   end subroutine fruit_summary_table_
 
-  subroutine obsolete_addSuccess_
-    call obsolete_ ("addSuccess is OBSOLETE.  replaced by add_success")
-    call add_success
-  end subroutine obsolete_addSuccess_
-
   subroutine add_fail_ (message)
     character (*), intent (in), optional :: message
     call failed_assert_action('none', 'none', message, if_is = .true.)
@@ -1115,12 +952,6 @@ contains
 
     call add_fail_ ("[in " //  unitName // "(fail)]: " //  message)
   end subroutine add_fail_unit_
-
-  subroutine obsolete_isAllSuccessful_(result)
-    logical, intent(out) :: result
-    call obsolete_ ('subroutine isAllSuccessful is changed to function is_all_successful.')
-    result = (failed_assert_count .eq. 0 )
-  end subroutine obsolete_isAllSuccessful_
 
   subroutine is_all_successful(result)
     !! category: driver subroutine
@@ -1237,12 +1068,6 @@ contains
     enddo
   end subroutine get_messages_
 
-  subroutine obsolete_getTotalCount_ (count)
-    integer, intent (out) :: count
-    call obsolete_ (' getTotalCount subroutine is replaced by function get_total_count')
-    call get_total_count(count)
-  end subroutine obsolete_getTotalCount_
-
   subroutine get_total_count(count)
     !! category: driver subroutine
     !! Get total number of asserts.
@@ -1251,34 +1076,12 @@ contains
     count = successful_assert_count + failed_assert_count
   end subroutine get_total_count
 
-  subroutine obsolete_getFailedCount_ (count)
-    integer, intent (out) :: count
-
-    call obsolete_ (' getFailedCount subroutine is replaced by function get_failed_count')
-    call get_failed_count (count)
-
-  end subroutine obsolete_getFailedCount_
-
   subroutine get_failed_count (count)
     !! category: driver subroutine
     !! Get number of assert failures.
     integer, intent(out) :: count
     count = failed_assert_count
   end subroutine get_failed_count
-
-  subroutine obsolete_ (message)
-    character (*), intent (in), optional :: message
-    write (stdout,*)
-    write (stdout,*) "<<<<<<<<<<<<<<<<<<<<<<<<<< WARNING from FRUIT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-    write (stdout,*) message
-    write (stdout,*)
-    write (stdout,*) " old calls will be replaced in the next release in Jan 2009"
-    write (stdout,*) " Naming convention for all the method calls are changed to: first_name from"
-    write (stdout,*) " firstName.  Subroutines that will be deleted: assertEquals, assertNotEquals,"
-    write (stdout,*) " assertTrue, addSuccessful, addFail, etc."
-    write (stdout,*) "<<<<<<<<<<<<<<<<<<<<<<<<<< WARNING from FRUIT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-    write (stdout,*)
-  end subroutine obsolete_
 
   subroutine add_success
     !! category: driver subroutine
@@ -1493,14 +1296,6 @@ contains
   !--------------------------------------------------------------------------------
   ! all assertions
   !--------------------------------------------------------------------------------
-  subroutine obsolete_assert_true_logical_(var1, message)
-    logical, intent (in) :: var1
-    character (*), intent (in), optional :: message
-
-    call obsolete_ ('assertTrue subroutine is replaced by function assert_true')
-    call assert_true(var1, message)
-  end subroutine obsolete_assert_true_logical_
-
   subroutine assert_true (var1, message)
     !! Test that *var1* is true.
     logical, intent (in) :: var1
