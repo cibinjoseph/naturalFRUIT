@@ -353,7 +353,7 @@
 <a name="ln-12"></a><span class="c">!</span>
 <a name="ln-13"></a><span class="c">! This package is to perform unit test for FORTRAN subroutines</span>
 <a name="ln-14"></a><span class="c">!</span>
-<a name="ln-15"></a><span class="c">! The method used most are: assert_true, assert_equals</span>
+<a name="ln-15"></a><span class="c">! The method used most are: assert_true, assert_equal</span>
 <a name="ln-16"></a><span class="c">!</span>
 <a name="ln-17"></a><span class="c">! Coding convention:</span>
 <a name="ln-18"></a><span class="c">!   1) All methods must be exposed by interface.  i.e. interface fruit_initialize</span>
@@ -367,9 +367,9 @@
 <a name="ln-26"></a>  <span class="c">!! A utility module for [[fruit]] to use.</span>
 <a name="ln-27"></a>  <span class="k">private</span>
 <a name="ln-28"></a>
-<a name="ln-29"></a><span class="k">  public</span> <span class="kd">::</span> <span class="n">equals</span><span class="p">,</span> <span class="n">to_s</span><span class="p">,</span> <span class="n">strip</span>
+<a name="ln-29"></a><span class="k">  public</span> <span class="kd">::</span> <span class="n">equal</span><span class="p">,</span> <span class="n">to_s</span><span class="p">,</span> <span class="n">strip</span>
 <a name="ln-30"></a>
-<a name="ln-31"></a>  <span class="k">interface </span><span class="n">equals</span>
+<a name="ln-31"></a>  <span class="k">interface </span><span class="n">equal</span>
 <a name="ln-32"></a>    <span class="k">module procedure </span><span class="n">equalEpsilon</span>
 <a name="ln-33"></a>    <span class="k">module procedure </span><span class="n">floatEqual</span>
 <a name="ln-34"></a>    <span class="k">module procedure </span><span class="n">integerEqual</span>
@@ -473,12 +473,12 @@
 <a name="ln-132"></a>  <span class="c">!------------------------</span>
 <a name="ln-133"></a>  <span class="c">! test if 2 values are close</span>
 <a name="ln-134"></a>  <span class="c">!------------------------</span>
-<a name="ln-135"></a>  <span class="c">!logical function equals (number1, number2) </span>
+<a name="ln-135"></a>  <span class="c">!logical function equal (number1, number2) </span>
 <a name="ln-136"></a>  <span class="c">!  real,  intent (in) :: number1, number2</span>
 <a name="ln-137"></a>  <span class="c">!  </span>
 <a name="ln-138"></a>  <span class="c">!  return equalEpsilon (number1, number2, epsilon(number1))</span>
 <a name="ln-139"></a>  <span class="c">!</span>
-<a name="ln-140"></a>  <span class="c">!end function equals</span>
+<a name="ln-140"></a>  <span class="c">!end function equal</span>
 <a name="ln-141"></a>
 <a name="ln-142"></a>
 <a name="ln-143"></a>  <span class="k">function </span><span class="n">equalEpsilon</span> <span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">number2</span><span class="p">,</span> <span class="nb">epsilon</span> <span class="p">)</span> <span class="k">result</span> <span class="p">(</span><span class="n">resultValue</span><span class="p">)</span>
@@ -670,8 +670,8 @@
 <a name="ln-329"></a>    <span class="n">failed_assert_action</span><span class="p">,</span> <span class="n">get_total_count</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-330"></a>    <span class="n">get_failed_count</span><span class="p">,</span> <span class="n">is_all_successful</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-331"></a>    <span class="n">run_test_case</span>
-<a name="ln-332"></a>  <span class="k">public</span> <span class="kd">::</span> <span class="n">assert_equals</span>
-<a name="ln-333"></a>  <span class="k">public</span> <span class="kd">::</span> <span class="n">assert_not_equals</span>
+<a name="ln-332"></a>  <span class="k">public</span> <span class="kd">::</span> <span class="n">assert_equal</span>
+<a name="ln-333"></a>  <span class="k">public</span> <span class="kd">::</span> <span class="n">assert_not_equal</span>
 <a name="ln-334"></a>  <span class="k">public</span> <span class="kd">::</span> <span class="n">assert_true</span>
 <a name="ln-335"></a>  <span class="k">public</span> <span class="kd">::</span> <span class="n">stash_test_suite</span><span class="p">,</span> <span class="n">restore_test_suite</span>
 <a name="ln-336"></a>  <span class="k">public</span> <span class="kd">::</span> <span class="n">FRUIT_PREFIX_LEN_MAX</span>
@@ -684,11 +684,11 @@
 <a name="ln-343"></a>    <span class="k">module procedure </span><span class="n">assert_false_</span>
 <a name="ln-344"></a>  <span class="k">end interface</span>
 <a name="ln-345"></a>
-<a name="ln-346"></a><span class="k">  interface </span><span class="n">assert_equals</span>
+<a name="ln-346"></a><span class="k">  interface </span><span class="n">assert_equal</span>
 <a name="ln-347"></a>    <span class="c">!! summary: Test that *var1* and *var2* are equal. </span>
 <a name="ln-348"></a>    <span class="c">!! Test that *var1* and *var2* are equal. </span>
 <a name="ln-349"></a>    <span class="c">!! If the values do not compare equal, the test will fail.&lt;br/&gt;&lt;br/&gt;</span>
-<a name="ln-350"></a>    <span class="c">!! assert_equals invokes one of the following subroutines according </span>
+<a name="ln-350"></a>    <span class="c">!! assert_equal invokes one of the following subroutines according </span>
 <a name="ln-351"></a>    <span class="c">!! to the number or type of arguments.</span>
 <a name="ln-352"></a>    <span class="c">!====== begin of generated interface ======</span>
 <a name="ln-353"></a>    <span class="k">module procedure </span><span class="n">assert_eq_logical_</span>
@@ -721,40 +721,40 @@
 <a name="ln-380"></a>    <span class="c">!====== end of generated inteface ======</span>
 <a name="ln-381"></a>  <span class="k">end interface</span>
 <a name="ln-382"></a>
-<a name="ln-383"></a><span class="k">  interface </span><span class="n">assert_not_equals</span>
+<a name="ln-383"></a><span class="k">  interface </span><span class="n">assert_not_equal</span>
 <a name="ln-384"></a>    <span class="c">!! summary: Test that *var1* and *var2* are not equal. </span>
 <a name="ln-385"></a>    <span class="c">!! Test that *var1* and *var2* are not equal. </span>
 <a name="ln-386"></a>    <span class="c">!! If the values do compare equal, the test will fail.&lt;br/&gt;&lt;br/&gt;</span>
-<a name="ln-387"></a>    <span class="c">!! assert_not_equals invokes one of the following subroutines according </span>
+<a name="ln-387"></a>    <span class="c">!! assert_not_equal invokes one of the following subroutines according </span>
 <a name="ln-388"></a>    <span class="c">!! to the number or type of arguments.</span>
 <a name="ln-389"></a>    <span class="c">!====== begin of generated interface ======</span>
-<a name="ln-390"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_logical_</span>
-<a name="ln-391"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_1d_logical_</span>
-<a name="ln-392"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_2d_logical_</span>
-<a name="ln-393"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_string_</span>
-<a name="ln-394"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_1d_string_</span>
-<a name="ln-395"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_2d_string_</span>
-<a name="ln-396"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_int_</span>
-<a name="ln-397"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_1d_int_</span>
-<a name="ln-398"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_2d_int_</span>
-<a name="ln-399"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_real_</span>
-<a name="ln-400"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_real_in_range_</span>
-<a name="ln-401"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_1d_real_</span>
-<a name="ln-402"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_1d_real_in_range_</span>
-<a name="ln-403"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_2d_real_</span>
-<a name="ln-404"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_2d_real_in_range_</span>
-<a name="ln-405"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_double_</span>
-<a name="ln-406"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_double_in_range_</span>
-<a name="ln-407"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_1d_double_</span>
-<a name="ln-408"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_1d_double_in_range_</span>
-<a name="ln-409"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_2d_double_</span>
-<a name="ln-410"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_2d_double_in_range_</span>
-<a name="ln-411"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_complex_</span>
-<a name="ln-412"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_complex_in_range_</span>
-<a name="ln-413"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_1d_complex_</span>
-<a name="ln-414"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_1d_complex_in_range_</span>
-<a name="ln-415"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_2d_complex_</span>
-<a name="ln-416"></a>    <span class="k">module procedure </span><span class="n">assert_not_equals_2d_complex_in_range_</span>
+<a name="ln-390"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_logical_</span>
+<a name="ln-391"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_1d_logical_</span>
+<a name="ln-392"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_2d_logical_</span>
+<a name="ln-393"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_string_</span>
+<a name="ln-394"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_1d_string_</span>
+<a name="ln-395"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_2d_string_</span>
+<a name="ln-396"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_int_</span>
+<a name="ln-397"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_1d_int_</span>
+<a name="ln-398"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_2d_int_</span>
+<a name="ln-399"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_real_</span>
+<a name="ln-400"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_real_in_range_</span>
+<a name="ln-401"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_1d_real_</span>
+<a name="ln-402"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_1d_real_in_range_</span>
+<a name="ln-403"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_2d_real_</span>
+<a name="ln-404"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_2d_real_in_range_</span>
+<a name="ln-405"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_double_</span>
+<a name="ln-406"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_double_in_range_</span>
+<a name="ln-407"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_1d_double_</span>
+<a name="ln-408"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_1d_double_in_range_</span>
+<a name="ln-409"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_2d_double_</span>
+<a name="ln-410"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_2d_double_in_range_</span>
+<a name="ln-411"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_complex_</span>
+<a name="ln-412"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_complex_in_range_</span>
+<a name="ln-413"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_1d_complex_</span>
+<a name="ln-414"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_1d_complex_in_range_</span>
+<a name="ln-415"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_2d_complex_</span>
+<a name="ln-416"></a>    <span class="k">module procedure </span><span class="n">assert_not_equal_2d_complex_in_range_</span>
 <a name="ln-417"></a>    <span class="c">!====== end of generated inteface ======</span>
 <a name="ln-418"></a>
 <a name="ln-419"></a>  <span class="k">end interface</span>
@@ -2168,7 +2168,7 @@
 <a name="ln-1827"></a>  <span class="k">end subroutine </span><span class="n">assert_eq_2d_complex_in_range_</span>
 <a name="ln-1828"></a>
 <a name="ln-1829"></a>  <span class="c">!------ 0d_logical ------</span>
-<a name="ln-1830"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_logical_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-1830"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_logical_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-1831"></a>
 <a name="ln-1832"></a>    <span class="kt">logical</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span>
 <a name="ln-1833"></a>
@@ -2188,10 +2188,10 @@
 <a name="ln-1847"></a>      <span class="k">return</span>
 <a name="ln-1848"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-1849"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-1850"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_logical_</span>
+<a name="ln-1850"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_logical_</span>
 <a name="ln-1851"></a>
 <a name="ln-1852"></a>  <span class="c">!------ 1d_logical ------</span>
-<a name="ln-1853"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_1d_logical_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-1853"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_1d_logical_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-1854"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">n</span>
 <a name="ln-1855"></a>    <span class="kt">integer</span>              <span class="kd">::</span> <span class="n">i</span>
 <a name="ln-1856"></a>    <span class="kt">logical</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">var2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -2212,10 +2212,10 @@
 <a name="ln-1871"></a>      <span class="k">return</span>
 <a name="ln-1872"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-1873"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-1874"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_1d_logical_</span>
+<a name="ln-1874"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_1d_logical_</span>
 <a name="ln-1875"></a>
 <a name="ln-1876"></a>  <span class="c">!------ 2d_logical ------</span>
-<a name="ln-1877"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_2d_logical_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-1877"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_2d_logical_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-1878"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span>
 <a name="ln-1879"></a>    <span class="kt">integer</span>              <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
 <a name="ln-1880"></a>    <span class="kt">logical</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">),</span> <span class="n">var2</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
@@ -2238,10 +2238,10 @@
 <a name="ln-1897"></a>      <span class="k">return</span>
 <a name="ln-1898"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-1899"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-1900"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_2d_logical_</span>
+<a name="ln-1900"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_2d_logical_</span>
 <a name="ln-1901"></a>
 <a name="ln-1902"></a>  <span class="c">!------ 0d_string ------</span>
-<a name="ln-1903"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_string_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-1903"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_string_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-1904"></a>
 <a name="ln-1905"></a>    <span class="kt">character</span> <span class="p">(</span><span class="nb">len</span> <span class="o">=</span> <span class="o">*</span><span class="p">),</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span>
 <a name="ln-1906"></a>
@@ -2261,10 +2261,10 @@
 <a name="ln-1920"></a>      <span class="k">return</span>
 <a name="ln-1921"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-1922"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-1923"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_string_</span>
+<a name="ln-1923"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_string_</span>
 <a name="ln-1924"></a>
 <a name="ln-1925"></a>  <span class="c">!------ 1d_string ------</span>
-<a name="ln-1926"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_1d_string_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-1926"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_1d_string_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-1927"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">n</span>
 <a name="ln-1928"></a>    <span class="kt">integer</span>              <span class="kd">::</span> <span class="n">i</span>
 <a name="ln-1929"></a>    <span class="kt">character</span> <span class="p">(</span><span class="nb">len</span> <span class="o">=</span> <span class="o">*</span><span class="p">),</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">var2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -2285,10 +2285,10 @@
 <a name="ln-1944"></a>      <span class="k">return</span>
 <a name="ln-1945"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-1946"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-1947"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_1d_string_</span>
+<a name="ln-1947"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_1d_string_</span>
 <a name="ln-1948"></a>
 <a name="ln-1949"></a>  <span class="c">!------ 2d_string ------</span>
-<a name="ln-1950"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_2d_string_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-1950"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_2d_string_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-1951"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span>
 <a name="ln-1952"></a>    <span class="kt">integer</span>              <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
 <a name="ln-1953"></a>    <span class="kt">character</span> <span class="p">(</span><span class="nb">len</span> <span class="o">=</span> <span class="o">*</span><span class="p">),</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">),</span> <span class="n">var2</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
@@ -2311,10 +2311,10 @@
 <a name="ln-1970"></a>      <span class="k">return</span>
 <a name="ln-1971"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-1972"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-1973"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_2d_string_</span>
+<a name="ln-1973"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_2d_string_</span>
 <a name="ln-1974"></a>
 <a name="ln-1975"></a>  <span class="c">!------ 0d_int ------</span>
-<a name="ln-1976"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_int_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-1976"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_int_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-1977"></a>
 <a name="ln-1978"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span>
 <a name="ln-1979"></a>
@@ -2334,10 +2334,10 @@
 <a name="ln-1993"></a>      <span class="k">return</span>
 <a name="ln-1994"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-1995"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-1996"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_int_</span>
+<a name="ln-1996"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_int_</span>
 <a name="ln-1997"></a>
 <a name="ln-1998"></a>  <span class="c">!------ 1d_int ------</span>
-<a name="ln-1999"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_1d_int_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-1999"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_1d_int_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-2000"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">n</span>
 <a name="ln-2001"></a>    <span class="kt">integer</span>              <span class="kd">::</span> <span class="n">i</span>
 <a name="ln-2002"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">var2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -2358,10 +2358,10 @@
 <a name="ln-2017"></a>      <span class="k">return</span>
 <a name="ln-2018"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-2019"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-2020"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_1d_int_</span>
+<a name="ln-2020"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_1d_int_</span>
 <a name="ln-2021"></a>
 <a name="ln-2022"></a>  <span class="c">!------ 2d_int ------</span>
-<a name="ln-2023"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_2d_int_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-2023"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_2d_int_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-2024"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span>
 <a name="ln-2025"></a>    <span class="kt">integer</span>              <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
 <a name="ln-2026"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">),</span> <span class="n">var2</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
@@ -2384,10 +2384,10 @@
 <a name="ln-2043"></a>      <span class="k">return</span>
 <a name="ln-2044"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-2045"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-2046"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_2d_int_</span>
+<a name="ln-2046"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_2d_int_</span>
 <a name="ln-2047"></a>
 <a name="ln-2048"></a>  <span class="c">!------ 0d_real ------</span>
-<a name="ln-2049"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_real_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-2049"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_real_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-2050"></a>
 <a name="ln-2051"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span>
 <a name="ln-2052"></a>
@@ -2407,10 +2407,10 @@
 <a name="ln-2066"></a>      <span class="k">return</span>
 <a name="ln-2067"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-2068"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-2069"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_real_</span>
+<a name="ln-2069"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_real_</span>
 <a name="ln-2070"></a>
 <a name="ln-2071"></a>  <span class="c">!------ 0d_real ------</span>
-<a name="ln-2072"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_real_in_range_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-2072"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_real_in_range_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-2073"></a>
 <a name="ln-2074"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span>
 <a name="ln-2075"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">delta</span>
@@ -2430,10 +2430,10 @@
 <a name="ln-2089"></a>      <span class="k">return</span>
 <a name="ln-2090"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-2091"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-2092"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_real_in_range_</span>
+<a name="ln-2092"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_real_in_range_</span>
 <a name="ln-2093"></a>
 <a name="ln-2094"></a>  <span class="c">!------ 1d_real ------</span>
-<a name="ln-2095"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_1d_real_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-2095"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_1d_real_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-2096"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">n</span>
 <a name="ln-2097"></a>    <span class="kt">integer</span>              <span class="kd">::</span> <span class="n">i</span>
 <a name="ln-2098"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">var2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -2454,10 +2454,10 @@
 <a name="ln-2113"></a>      <span class="k">return</span>
 <a name="ln-2114"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-2115"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-2116"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_1d_real_</span>
+<a name="ln-2116"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_1d_real_</span>
 <a name="ln-2117"></a>
 <a name="ln-2118"></a>  <span class="c">!------ 1d_real ------</span>
-<a name="ln-2119"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_1d_real_in_range_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-2119"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_1d_real_in_range_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-2120"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">n</span>
 <a name="ln-2121"></a>    <span class="kt">integer</span>              <span class="kd">::</span> <span class="n">i</span>
 <a name="ln-2122"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">var2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -2478,10 +2478,10 @@
 <a name="ln-2137"></a>      <span class="k">return</span>
 <a name="ln-2138"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-2139"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-2140"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_1d_real_in_range_</span>
+<a name="ln-2140"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_1d_real_in_range_</span>
 <a name="ln-2141"></a>
 <a name="ln-2142"></a>  <span class="c">!------ 2d_real ------</span>
-<a name="ln-2143"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_2d_real_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-2143"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_2d_real_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-2144"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span>
 <a name="ln-2145"></a>    <span class="kt">integer</span>              <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
 <a name="ln-2146"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">),</span> <span class="n">var2</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
@@ -2504,10 +2504,10 @@
 <a name="ln-2163"></a>      <span class="k">return</span>
 <a name="ln-2164"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-2165"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-2166"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_2d_real_</span>
+<a name="ln-2166"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_2d_real_</span>
 <a name="ln-2167"></a>
 <a name="ln-2168"></a>  <span class="c">!------ 2d_real ------</span>
-<a name="ln-2169"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_2d_real_in_range_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-2169"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_2d_real_in_range_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-2170"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span>
 <a name="ln-2171"></a>    <span class="kt">integer</span>              <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
 <a name="ln-2172"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">),</span> <span class="n">var2</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
@@ -2530,10 +2530,10 @@
 <a name="ln-2189"></a>      <span class="k">return</span>
 <a name="ln-2190"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-2191"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-2192"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_2d_real_in_range_</span>
+<a name="ln-2192"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_2d_real_in_range_</span>
 <a name="ln-2193"></a>
 <a name="ln-2194"></a>  <span class="c">!------ 0d_double ------</span>
-<a name="ln-2195"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_double_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-2195"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_double_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-2196"></a>
 <a name="ln-2197"></a>    <span class="kt">double precision</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span>
 <a name="ln-2198"></a>
@@ -2553,10 +2553,10 @@
 <a name="ln-2212"></a>      <span class="k">return</span>
 <a name="ln-2213"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-2214"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-2215"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_double_</span>
+<a name="ln-2215"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_double_</span>
 <a name="ln-2216"></a>
 <a name="ln-2217"></a>  <span class="c">!------ 0d_double ------</span>
-<a name="ln-2218"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_double_in_range_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-2218"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_double_in_range_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-2219"></a>
 <a name="ln-2220"></a>    <span class="kt">double precision</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span>
 <a name="ln-2221"></a>    <span class="kt">double precision</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">delta</span>
@@ -2576,10 +2576,10 @@
 <a name="ln-2235"></a>      <span class="k">return</span>
 <a name="ln-2236"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-2237"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-2238"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_double_in_range_</span>
+<a name="ln-2238"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_double_in_range_</span>
 <a name="ln-2239"></a>
 <a name="ln-2240"></a>  <span class="c">!------ 1d_double ------</span>
-<a name="ln-2241"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_1d_double_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-2241"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_1d_double_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-2242"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">n</span>
 <a name="ln-2243"></a>    <span class="kt">integer</span>              <span class="kd">::</span> <span class="n">i</span>
 <a name="ln-2244"></a>    <span class="kt">double precision</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">var2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -2600,10 +2600,10 @@
 <a name="ln-2259"></a>      <span class="k">return</span>
 <a name="ln-2260"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-2261"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-2262"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_1d_double_</span>
+<a name="ln-2262"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_1d_double_</span>
 <a name="ln-2263"></a>
 <a name="ln-2264"></a>  <span class="c">!------ 1d_double ------</span>
-<a name="ln-2265"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_1d_double_in_range_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-2265"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_1d_double_in_range_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-2266"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">n</span>
 <a name="ln-2267"></a>    <span class="kt">integer</span>              <span class="kd">::</span> <span class="n">i</span>
 <a name="ln-2268"></a>    <span class="kt">double precision</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">var2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -2624,10 +2624,10 @@
 <a name="ln-2283"></a>      <span class="k">return</span>
 <a name="ln-2284"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-2285"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-2286"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_1d_double_in_range_</span>
+<a name="ln-2286"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_1d_double_in_range_</span>
 <a name="ln-2287"></a>
 <a name="ln-2288"></a>  <span class="c">!------ 2d_double ------</span>
-<a name="ln-2289"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_2d_double_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-2289"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_2d_double_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-2290"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span>
 <a name="ln-2291"></a>    <span class="kt">integer</span>              <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
 <a name="ln-2292"></a>    <span class="kt">double precision</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">),</span> <span class="n">var2</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
@@ -2650,10 +2650,10 @@
 <a name="ln-2309"></a>      <span class="k">return</span>
 <a name="ln-2310"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-2311"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-2312"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_2d_double_</span>
+<a name="ln-2312"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_2d_double_</span>
 <a name="ln-2313"></a>
 <a name="ln-2314"></a>  <span class="c">!------ 2d_double ------</span>
-<a name="ln-2315"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_2d_double_in_range_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-2315"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_2d_double_in_range_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-2316"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span>
 <a name="ln-2317"></a>    <span class="kt">integer</span>              <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
 <a name="ln-2318"></a>    <span class="kt">double precision</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">),</span> <span class="n">var2</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
@@ -2676,10 +2676,10 @@
 <a name="ln-2335"></a>      <span class="k">return</span>
 <a name="ln-2336"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-2337"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-2338"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_2d_double_in_range_</span>
+<a name="ln-2338"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_2d_double_in_range_</span>
 <a name="ln-2339"></a>
 <a name="ln-2340"></a>  <span class="c">!------ 0d_complex ------</span>
-<a name="ln-2341"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_complex_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-2341"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_complex_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-2342"></a>
 <a name="ln-2343"></a>    <span class="kt">complex</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">kind</span><span class="p">(</span><span class="mf">1.0D0</span><span class="p">)),</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span>
 <a name="ln-2344"></a>
@@ -2702,10 +2702,10 @@
 <a name="ln-2361"></a>      <span class="k">return</span>
 <a name="ln-2362"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-2363"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-2364"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_complex_</span>
+<a name="ln-2364"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_complex_</span>
 <a name="ln-2365"></a>
 <a name="ln-2366"></a>  <span class="c">!------ 0d_complex ------</span>
-<a name="ln-2367"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_complex_in_range_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-2367"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_complex_in_range_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-2368"></a>
 <a name="ln-2369"></a>    <span class="kt">complex</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">kind</span><span class="p">(</span><span class="mf">1.0D0</span><span class="p">)),</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span>
 <a name="ln-2370"></a>    <span class="kt">double precision</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">delta</span>
@@ -2725,10 +2725,10 @@
 <a name="ln-2384"></a>      <span class="k">return</span>
 <a name="ln-2385"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-2386"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-2387"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_complex_in_range_</span>
+<a name="ln-2387"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_complex_in_range_</span>
 <a name="ln-2388"></a>
 <a name="ln-2389"></a>  <span class="c">!------ 1d_complex ------</span>
-<a name="ln-2390"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_1d_complex_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-2390"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_1d_complex_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-2391"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">n</span>
 <a name="ln-2392"></a>    <span class="kt">integer</span>              <span class="kd">::</span> <span class="n">i</span>
 <a name="ln-2393"></a>    <span class="kt">complex</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">kind</span><span class="p">(</span><span class="mf">1.0D0</span><span class="p">)),</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">var2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -2752,10 +2752,10 @@
 <a name="ln-2411"></a>      <span class="k">return</span>
 <a name="ln-2412"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-2413"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-2414"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_1d_complex_</span>
+<a name="ln-2414"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_1d_complex_</span>
 <a name="ln-2415"></a>
 <a name="ln-2416"></a>  <span class="c">!------ 1d_complex ------</span>
-<a name="ln-2417"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_1d_complex_in_range_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-2417"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_1d_complex_in_range_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-2418"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">n</span>
 <a name="ln-2419"></a>    <span class="kt">integer</span>              <span class="kd">::</span> <span class="n">i</span>
 <a name="ln-2420"></a>    <span class="kt">complex</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">kind</span><span class="p">(</span><span class="mf">1.0D0</span><span class="p">)),</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">var2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -2776,10 +2776,10 @@
 <a name="ln-2435"></a>      <span class="k">return</span>
 <a name="ln-2436"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-2437"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-2438"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_1d_complex_in_range_</span>
+<a name="ln-2438"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_1d_complex_in_range_</span>
 <a name="ln-2439"></a>
 <a name="ln-2440"></a>  <span class="c">!------ 2d_complex ------</span>
-<a name="ln-2441"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_2d_complex_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-2441"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_2d_complex_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-2442"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span>
 <a name="ln-2443"></a>    <span class="kt">integer</span>              <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
 <a name="ln-2444"></a>    <span class="kt">complex</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">kind</span><span class="p">(</span><span class="mf">1.0D0</span><span class="p">)),</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">),</span> <span class="n">var2</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
@@ -2805,10 +2805,10 @@
 <a name="ln-2464"></a>      <span class="k">return</span>
 <a name="ln-2465"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-2466"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-2467"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_2d_complex_</span>
+<a name="ln-2467"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_2d_complex_</span>
 <a name="ln-2468"></a>
 <a name="ln-2469"></a>  <span class="c">!------ 2d_complex ------</span>
-<a name="ln-2470"></a>  <span class="k">subroutine </span><span class="n">assert_not_equals_2d_complex_in_range_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a name="ln-2470"></a>  <span class="k">subroutine </span><span class="n">assert_not_equal_2d_complex_in_range_</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 <a name="ln-2471"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span>
 <a name="ln-2472"></a>    <span class="kt">integer</span>              <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
 <a name="ln-2473"></a>    <span class="kt">complex</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">kind</span><span class="p">(</span><span class="mf">1.0D0</span><span class="p">)),</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">),</span> <span class="n">var2</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
@@ -2831,7 +2831,7 @@
 <a name="ln-2490"></a>      <span class="k">return</span>
 <a name="ln-2491"></a><span class="k">    </span><span class="n">endif</span>
 <a name="ln-2492"></a>    <span class="k">call </span><span class="n">add_success</span>
-<a name="ln-2493"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equals_2d_complex_in_range_</span>
+<a name="ln-2493"></a>  <span class="k">end subroutine </span><span class="n">assert_not_equal_2d_complex_in_range_</span>
 <a name="ln-2494"></a>
 <a name="ln-2495"></a>  <span class="c">!====== end of generated code ======</span>
 <a name="ln-2496"></a>
@@ -2854,7 +2854,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-04-07T02:53:26.304282 
+             on 2020-04-07T03:01:00.474980 
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> naturalFRUIT was developed by Cibin Joseph</p></div>

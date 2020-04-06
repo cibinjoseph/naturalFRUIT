@@ -12,7 +12,7 @@
 !
 ! This package is to perform unit test for FORTRAN subroutines
 !
-! The method used most are: assert_true, assert_equals
+! The method used most are: assert_true, assert_equal
 !
 ! Coding convention:
 !   1) All methods must be exposed by interface.  i.e. interface fruit_initialize
@@ -26,9 +26,9 @@ module fruit_util
   !! A utility module for [[fruit]] to use.
   private
 
-  public :: equals, to_s, strip
+  public :: equal, to_s, strip
 
-  interface equals
+  interface equal
     module procedure equalEpsilon
     module procedure floatEqual
     module procedure integerEqual
@@ -132,12 +132,12 @@ contains
   !------------------------
   ! test if 2 values are close
   !------------------------
-  !logical function equals (number1, number2) 
+  !logical function equal (number1, number2) 
   !  real,  intent (in) :: number1, number2
   !  
   !  return equalEpsilon (number1, number2, epsilon(number1))
   !
-  !end function equals
+  !end function equal
 
 
   function equalEpsilon (number1, number2, epsilon ) result (resultValue)
@@ -329,8 +329,8 @@ module fruit
     failed_assert_action, get_total_count, &
     get_failed_count, is_all_successful, &
     run_test_case
-  public :: assert_equals
-  public :: assert_not_equals
+  public :: assert_equal
+  public :: assert_not_equal
   public :: assert_true
   public :: stash_test_suite, restore_test_suite
   public :: FRUIT_PREFIX_LEN_MAX
@@ -343,11 +343,11 @@ module fruit
     module procedure assert_false_
   end interface
 
-  interface assert_equals
+  interface assert_equal
     !! summary: Test that *var1* and *var2* are equal. 
     !! Test that *var1* and *var2* are equal. 
     !! If the values do not compare equal, the test will fail.<br/><br/>
-    !! assert_equals invokes one of the following subroutines according 
+    !! assert_equal invokes one of the following subroutines according 
     !! to the number or type of arguments.
     !====== begin of generated interface ======
     module procedure assert_eq_logical_
@@ -380,40 +380,40 @@ module fruit
     !====== end of generated inteface ======
   end interface
 
-  interface assert_not_equals
+  interface assert_not_equal
     !! summary: Test that *var1* and *var2* are not equal. 
     !! Test that *var1* and *var2* are not equal. 
     !! If the values do compare equal, the test will fail.<br/><br/>
-    !! assert_not_equals invokes one of the following subroutines according 
+    !! assert_not_equal invokes one of the following subroutines according 
     !! to the number or type of arguments.
     !====== begin of generated interface ======
-    module procedure assert_not_equals_logical_
-    module procedure assert_not_equals_1d_logical_
-    module procedure assert_not_equals_2d_logical_
-    module procedure assert_not_equals_string_
-    module procedure assert_not_equals_1d_string_
-    module procedure assert_not_equals_2d_string_
-    module procedure assert_not_equals_int_
-    module procedure assert_not_equals_1d_int_
-    module procedure assert_not_equals_2d_int_
-    module procedure assert_not_equals_real_
-    module procedure assert_not_equals_real_in_range_
-    module procedure assert_not_equals_1d_real_
-    module procedure assert_not_equals_1d_real_in_range_
-    module procedure assert_not_equals_2d_real_
-    module procedure assert_not_equals_2d_real_in_range_
-    module procedure assert_not_equals_double_
-    module procedure assert_not_equals_double_in_range_
-    module procedure assert_not_equals_1d_double_
-    module procedure assert_not_equals_1d_double_in_range_
-    module procedure assert_not_equals_2d_double_
-    module procedure assert_not_equals_2d_double_in_range_
-    module procedure assert_not_equals_complex_
-    module procedure assert_not_equals_complex_in_range_
-    module procedure assert_not_equals_1d_complex_
-    module procedure assert_not_equals_1d_complex_in_range_
-    module procedure assert_not_equals_2d_complex_
-    module procedure assert_not_equals_2d_complex_in_range_
+    module procedure assert_not_equal_logical_
+    module procedure assert_not_equal_1d_logical_
+    module procedure assert_not_equal_2d_logical_
+    module procedure assert_not_equal_string_
+    module procedure assert_not_equal_1d_string_
+    module procedure assert_not_equal_2d_string_
+    module procedure assert_not_equal_int_
+    module procedure assert_not_equal_1d_int_
+    module procedure assert_not_equal_2d_int_
+    module procedure assert_not_equal_real_
+    module procedure assert_not_equal_real_in_range_
+    module procedure assert_not_equal_1d_real_
+    module procedure assert_not_equal_1d_real_in_range_
+    module procedure assert_not_equal_2d_real_
+    module procedure assert_not_equal_2d_real_in_range_
+    module procedure assert_not_equal_double_
+    module procedure assert_not_equal_double_in_range_
+    module procedure assert_not_equal_1d_double_
+    module procedure assert_not_equal_1d_double_in_range_
+    module procedure assert_not_equal_2d_double_
+    module procedure assert_not_equal_2d_double_in_range_
+    module procedure assert_not_equal_complex_
+    module procedure assert_not_equal_complex_in_range_
+    module procedure assert_not_equal_1d_complex_
+    module procedure assert_not_equal_1d_complex_in_range_
+    module procedure assert_not_equal_2d_complex_
+    module procedure assert_not_equal_2d_complex_in_range_
     !====== end of generated inteface ======
 
   end interface
@@ -1827,7 +1827,7 @@ contains
   end subroutine assert_eq_2d_complex_in_range_
 
   !------ 0d_logical ------
-  subroutine assert_not_equals_logical_(var1, var2, message)
+  subroutine assert_not_equal_logical_(var1, var2, message)
 
     logical, intent (in) :: var1, var2
 
@@ -1847,10 +1847,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_logical_
+  end subroutine assert_not_equal_logical_
 
   !------ 1d_logical ------
-  subroutine assert_not_equals_1d_logical_(var1, var2, n, message)
+  subroutine assert_not_equal_1d_logical_(var1, var2, n, message)
     integer, intent (in) :: n
     integer              :: i
     logical, intent (in) :: var1(n), var2(n)
@@ -1871,10 +1871,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_1d_logical_
+  end subroutine assert_not_equal_1d_logical_
 
   !------ 2d_logical ------
-  subroutine assert_not_equals_2d_logical_(var1, var2, n, m, message)
+  subroutine assert_not_equal_2d_logical_(var1, var2, n, m, message)
     integer, intent (in) :: n, m
     integer              :: i, j
     logical, intent (in) :: var1(n, m), var2(n, m)
@@ -1897,10 +1897,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_2d_logical_
+  end subroutine assert_not_equal_2d_logical_
 
   !------ 0d_string ------
-  subroutine assert_not_equals_string_(var1, var2, message)
+  subroutine assert_not_equal_string_(var1, var2, message)
 
     character (len = *), intent (in) :: var1, var2
 
@@ -1920,10 +1920,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_string_
+  end subroutine assert_not_equal_string_
 
   !------ 1d_string ------
-  subroutine assert_not_equals_1d_string_(var1, var2, n, message)
+  subroutine assert_not_equal_1d_string_(var1, var2, n, message)
     integer, intent (in) :: n
     integer              :: i
     character (len = *), intent (in) :: var1(n), var2(n)
@@ -1944,10 +1944,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_1d_string_
+  end subroutine assert_not_equal_1d_string_
 
   !------ 2d_string ------
-  subroutine assert_not_equals_2d_string_(var1, var2, n, m, message)
+  subroutine assert_not_equal_2d_string_(var1, var2, n, m, message)
     integer, intent (in) :: n, m
     integer              :: i, j
     character (len = *), intent (in) :: var1(n, m), var2(n, m)
@@ -1970,10 +1970,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_2d_string_
+  end subroutine assert_not_equal_2d_string_
 
   !------ 0d_int ------
-  subroutine assert_not_equals_int_(var1, var2, message)
+  subroutine assert_not_equal_int_(var1, var2, message)
 
     integer, intent (in) :: var1, var2
 
@@ -1993,10 +1993,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_int_
+  end subroutine assert_not_equal_int_
 
   !------ 1d_int ------
-  subroutine assert_not_equals_1d_int_(var1, var2, n, message)
+  subroutine assert_not_equal_1d_int_(var1, var2, n, message)
     integer, intent (in) :: n
     integer              :: i
     integer, intent (in) :: var1(n), var2(n)
@@ -2017,10 +2017,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_1d_int_
+  end subroutine assert_not_equal_1d_int_
 
   !------ 2d_int ------
-  subroutine assert_not_equals_2d_int_(var1, var2, n, m, message)
+  subroutine assert_not_equal_2d_int_(var1, var2, n, m, message)
     integer, intent (in) :: n, m
     integer              :: i, j
     integer, intent (in) :: var1(n, m), var2(n, m)
@@ -2043,10 +2043,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_2d_int_
+  end subroutine assert_not_equal_2d_int_
 
   !------ 0d_real ------
-  subroutine assert_not_equals_real_(var1, var2, message)
+  subroutine assert_not_equal_real_(var1, var2, message)
 
     real, intent (in) :: var1, var2
 
@@ -2066,10 +2066,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_real_
+  end subroutine assert_not_equal_real_
 
   !------ 0d_real ------
-  subroutine assert_not_equals_real_in_range_(var1, var2, delta, message)
+  subroutine assert_not_equal_real_in_range_(var1, var2, delta, message)
 
     real, intent (in) :: var1, var2
     real, intent (in) :: delta
@@ -2089,10 +2089,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_real_in_range_
+  end subroutine assert_not_equal_real_in_range_
 
   !------ 1d_real ------
-  subroutine assert_not_equals_1d_real_(var1, var2, n, message)
+  subroutine assert_not_equal_1d_real_(var1, var2, n, message)
     integer, intent (in) :: n
     integer              :: i
     real, intent (in) :: var1(n), var2(n)
@@ -2113,10 +2113,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_1d_real_
+  end subroutine assert_not_equal_1d_real_
 
   !------ 1d_real ------
-  subroutine assert_not_equals_1d_real_in_range_(var1, var2, n, delta, message)
+  subroutine assert_not_equal_1d_real_in_range_(var1, var2, n, delta, message)
     integer, intent (in) :: n
     integer              :: i
     real, intent (in) :: var1(n), var2(n)
@@ -2137,10 +2137,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_1d_real_in_range_
+  end subroutine assert_not_equal_1d_real_in_range_
 
   !------ 2d_real ------
-  subroutine assert_not_equals_2d_real_(var1, var2, n, m, message)
+  subroutine assert_not_equal_2d_real_(var1, var2, n, m, message)
     integer, intent (in) :: n, m
     integer              :: i, j
     real, intent (in) :: var1(n, m), var2(n, m)
@@ -2163,10 +2163,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_2d_real_
+  end subroutine assert_not_equal_2d_real_
 
   !------ 2d_real ------
-  subroutine assert_not_equals_2d_real_in_range_(var1, var2, n, m, delta, message)
+  subroutine assert_not_equal_2d_real_in_range_(var1, var2, n, m, delta, message)
     integer, intent (in) :: n, m
     integer              :: i, j
     real, intent (in) :: var1(n, m), var2(n, m)
@@ -2189,10 +2189,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_2d_real_in_range_
+  end subroutine assert_not_equal_2d_real_in_range_
 
   !------ 0d_double ------
-  subroutine assert_not_equals_double_(var1, var2, message)
+  subroutine assert_not_equal_double_(var1, var2, message)
 
     double precision, intent (in) :: var1, var2
 
@@ -2212,10 +2212,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_double_
+  end subroutine assert_not_equal_double_
 
   !------ 0d_double ------
-  subroutine assert_not_equals_double_in_range_(var1, var2, delta, message)
+  subroutine assert_not_equal_double_in_range_(var1, var2, delta, message)
 
     double precision, intent (in) :: var1, var2
     double precision, intent (in) :: delta
@@ -2235,10 +2235,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_double_in_range_
+  end subroutine assert_not_equal_double_in_range_
 
   !------ 1d_double ------
-  subroutine assert_not_equals_1d_double_(var1, var2, n, message)
+  subroutine assert_not_equal_1d_double_(var1, var2, n, message)
     integer, intent (in) :: n
     integer              :: i
     double precision, intent (in) :: var1(n), var2(n)
@@ -2259,10 +2259,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_1d_double_
+  end subroutine assert_not_equal_1d_double_
 
   !------ 1d_double ------
-  subroutine assert_not_equals_1d_double_in_range_(var1, var2, n, delta, message)
+  subroutine assert_not_equal_1d_double_in_range_(var1, var2, n, delta, message)
     integer, intent (in) :: n
     integer              :: i
     double precision, intent (in) :: var1(n), var2(n)
@@ -2283,10 +2283,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_1d_double_in_range_
+  end subroutine assert_not_equal_1d_double_in_range_
 
   !------ 2d_double ------
-  subroutine assert_not_equals_2d_double_(var1, var2, n, m, message)
+  subroutine assert_not_equal_2d_double_(var1, var2, n, m, message)
     integer, intent (in) :: n, m
     integer              :: i, j
     double precision, intent (in) :: var1(n, m), var2(n, m)
@@ -2309,10 +2309,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_2d_double_
+  end subroutine assert_not_equal_2d_double_
 
   !------ 2d_double ------
-  subroutine assert_not_equals_2d_double_in_range_(var1, var2, n, m, delta, message)
+  subroutine assert_not_equal_2d_double_in_range_(var1, var2, n, m, delta, message)
     integer, intent (in) :: n, m
     integer              :: i, j
     double precision, intent (in) :: var1(n, m), var2(n, m)
@@ -2335,10 +2335,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_2d_double_in_range_
+  end subroutine assert_not_equal_2d_double_in_range_
 
   !------ 0d_complex ------
-  subroutine assert_not_equals_complex_(var1, var2, message)
+  subroutine assert_not_equal_complex_(var1, var2, message)
 
     complex(kind=kind(1.0D0)), intent (in) :: var1, var2
 
@@ -2361,10 +2361,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_complex_
+  end subroutine assert_not_equal_complex_
 
   !------ 0d_complex ------
-  subroutine assert_not_equals_complex_in_range_(var1, var2, delta, message)
+  subroutine assert_not_equal_complex_in_range_(var1, var2, delta, message)
 
     complex(kind=kind(1.0D0)), intent (in) :: var1, var2
     double precision, intent (in) :: delta
@@ -2384,10 +2384,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_complex_in_range_
+  end subroutine assert_not_equal_complex_in_range_
 
   !------ 1d_complex ------
-  subroutine assert_not_equals_1d_complex_(var1, var2, n, message)
+  subroutine assert_not_equal_1d_complex_(var1, var2, n, message)
     integer, intent (in) :: n
     integer              :: i
     complex(kind=kind(1.0D0)), intent (in) :: var1(n), var2(n)
@@ -2411,10 +2411,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_1d_complex_
+  end subroutine assert_not_equal_1d_complex_
 
   !------ 1d_complex ------
-  subroutine assert_not_equals_1d_complex_in_range_(var1, var2, n, delta, message)
+  subroutine assert_not_equal_1d_complex_in_range_(var1, var2, n, delta, message)
     integer, intent (in) :: n
     integer              :: i
     complex(kind=kind(1.0D0)), intent (in) :: var1(n), var2(n)
@@ -2435,10 +2435,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_1d_complex_in_range_
+  end subroutine assert_not_equal_1d_complex_in_range_
 
   !------ 2d_complex ------
-  subroutine assert_not_equals_2d_complex_(var1, var2, n, m, message)
+  subroutine assert_not_equal_2d_complex_(var1, var2, n, m, message)
     integer, intent (in) :: n, m
     integer              :: i, j
     complex(kind=kind(1.0D0)), intent (in) :: var1(n, m), var2(n, m)
@@ -2464,10 +2464,10 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_2d_complex_
+  end subroutine assert_not_equal_2d_complex_
 
   !------ 2d_complex ------
-  subroutine assert_not_equals_2d_complex_in_range_(var1, var2, n, m, delta, message)
+  subroutine assert_not_equal_2d_complex_in_range_(var1, var2, n, m, delta, message)
     integer, intent (in) :: n, m
     integer              :: i, j
     complex(kind=kind(1.0D0)), intent (in) :: var1(n, m), var2(n, m)
@@ -2490,7 +2490,7 @@ contains
       return
     endif
     call add_success
-  end subroutine assert_not_equals_2d_complex_in_range_
+  end subroutine assert_not_equal_2d_complex_in_range_
 
   !====== end of generated code ======
 

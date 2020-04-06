@@ -188,9 +188,9 @@
       
       <a class="list-group-item" href="../module/fruit.html#interface-assert_false">assert_false</a>
       
-      <a class="list-group-item" href="../module/fruit.html#interface-assert_equals">assert_equals</a>
+      <a class="list-group-item" href="../module/fruit.html#interface-assert_equal">assert_equal</a>
       
-      <a class="list-group-item" href="../module/fruit.html#interface-assert_not_equals">assert_not_equals</a>
+      <a class="list-group-item" href="../module/fruit.html#interface-assert_not_equal">assert_not_equal</a>
       
       <a class="list-group-item" href="../module/fruit.html#interface-add_fail">add_fail</a>
       
@@ -576,9 +576,9 @@
       
       <a class="list-group-item" href="../module/fruit.html#interface-assert_false">assert_false</a>
       
-      <a class="list-group-item" href="../module/fruit.html#interface-assert_equals">assert_equals</a>
+      <a class="list-group-item" href="../module/fruit.html#interface-assert_equal">assert_equal</a>
       
-      <a class="list-group-item" href="../module/fruit.html#interface-assert_not_equals">assert_not_equals</a>
+      <a class="list-group-item" href="../module/fruit.html#interface-assert_not_equal">assert_not_equal</a>
       
       <a class="list-group-item" href="../module/fruit.html#interface-add_fail">add_fail</a>
       
@@ -827,13 +827,13 @@ private subroutine assert_false_(var1, message)
     
      
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="interface-assert_equals"></span><h3>public interface <a href='../interface/assert_equals.html'>assert_equals</a>
+  <div class="panel-heading codesum"><span class="anchor" id="interface-assert_equal"></span><h3>public interface <a href='../interface/assert_equal.html'>assert_equal</a>
     
   </h3></div>
   
   <div class="panel-body">
     
-    <p>Test that <em>var1</em> and <em>var2</em> are equal.</p><a href="../interface/assert_equals.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+    <p>Test that <em>var1</em> and <em>var2</em> are equal.</p><a href="../interface/assert_equal.html" class="pull-right"><emph>Read more&hellip;</emph></a>
   </div>
   
   <ul class="list-group">
@@ -3493,13 +3493,13 @@ private subroutine assert_eq_2d_complex_in_range_(var1, var2, n, m, delta, messa
     
      
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="interface-assert_not_equals"></span><h3>public interface <a href='../interface/assert_not_equals.html'>assert_not_equals</a>
+  <div class="panel-heading codesum"><span class="anchor" id="interface-assert_not_equal"></span><h3>public interface <a href='../interface/assert_not_equal.html'>assert_not_equal</a>
     
   </h3></div>
   
   <div class="panel-body">
     
-    <p>Test that <em>var1</em> and <em>var2</em> are not equal.</p><a href="../interface/assert_not_equals.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+    <p>Test that <em>var1</em> and <em>var2</em> are not equal.</p><a href="../interface/assert_not_equal.html" class="pull-right"><emph>Read more&hellip;</emph></a>
   </div>
   
   <ul class="list-group">
@@ -3510,7 +3510,7 @@ private subroutine assert_eq_2d_complex_in_range_(var1, var2, n, m, delta, messa
     
     
     <h3>
-private subroutine assert_not_equals_logical_(var1, var2, message)
+private subroutine assert_not_equal_logical_(var1, var2, message)
     
     
    
@@ -3588,7 +3588,7 @@ private subroutine assert_not_equals_logical_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_not_equals_1d_logical_(var1, var2, n, message)
+private subroutine assert_not_equal_1d_logical_(var1, var2, n, message)
     
     
    
@@ -3681,7 +3681,7 @@ private subroutine assert_not_equals_1d_logical_(var1, var2, n, message)
     
     
     <h3>
-private subroutine assert_not_equals_2d_logical_(var1, var2, n, m, message)
+private subroutine assert_not_equal_2d_logical_(var1, var2, n, m, message)
     
     
    
@@ -3789,7 +3789,7 @@ private subroutine assert_not_equals_2d_logical_(var1, var2, n, m, message)
     
     
     <h3>
-private subroutine assert_not_equals_string_(var1, var2, message)
+private subroutine assert_not_equal_string_(var1, var2, message)
     
     
    
@@ -3867,7 +3867,7 @@ private subroutine assert_not_equals_string_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_not_equals_1d_string_(var1, var2, n, message)
+private subroutine assert_not_equal_1d_string_(var1, var2, n, message)
     
     
    
@@ -3960,7 +3960,7 @@ private subroutine assert_not_equals_1d_string_(var1, var2, n, message)
     
     
     <h3>
-private subroutine assert_not_equals_2d_string_(var1, var2, n, m, message)
+private subroutine assert_not_equal_2d_string_(var1, var2, n, m, message)
     
     
    
@@ -4068,7 +4068,7 @@ private subroutine assert_not_equals_2d_string_(var1, var2, n, m, message)
     
     
     <h3>
-private subroutine assert_not_equals_int_(var1, var2, message)
+private subroutine assert_not_equal_int_(var1, var2, message)
     
     
    
@@ -4146,7 +4146,7 @@ private subroutine assert_not_equals_int_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_not_equals_1d_int_(var1, var2, n, message)
+private subroutine assert_not_equal_1d_int_(var1, var2, n, message)
     
     
    
@@ -4239,7 +4239,7 @@ private subroutine assert_not_equals_1d_int_(var1, var2, n, message)
     
     
     <h3>
-private subroutine assert_not_equals_2d_int_(var1, var2, n, m, message)
+private subroutine assert_not_equal_2d_int_(var1, var2, n, m, message)
     
     
    
@@ -4347,7 +4347,7 @@ private subroutine assert_not_equals_2d_int_(var1, var2, n, m, message)
     
     
     <h3>
-private subroutine assert_not_equals_real_(var1, var2, message)
+private subroutine assert_not_equal_real_(var1, var2, message)
     
     
    
@@ -4425,7 +4425,7 @@ private subroutine assert_not_equals_real_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_not_equals_real_in_range_(var1, var2, delta, message)
+private subroutine assert_not_equal_real_in_range_(var1, var2, delta, message)
     
     
    
@@ -4518,7 +4518,7 @@ private subroutine assert_not_equals_real_in_range_(var1, var2, delta, message)
     
     
     <h3>
-private subroutine assert_not_equals_1d_real_(var1, var2, n, message)
+private subroutine assert_not_equal_1d_real_(var1, var2, n, message)
     
     
    
@@ -4611,7 +4611,7 @@ private subroutine assert_not_equals_1d_real_(var1, var2, n, message)
     
     
     <h3>
-private subroutine assert_not_equals_1d_real_in_range_(var1, var2, n, delta, message)
+private subroutine assert_not_equal_1d_real_in_range_(var1, var2, n, delta, message)
     
     
    
@@ -4719,7 +4719,7 @@ private subroutine assert_not_equals_1d_real_in_range_(var1, var2, n, delta, mes
     
     
     <h3>
-private subroutine assert_not_equals_2d_real_(var1, var2, n, m, message)
+private subroutine assert_not_equal_2d_real_(var1, var2, n, m, message)
     
     
    
@@ -4827,7 +4827,7 @@ private subroutine assert_not_equals_2d_real_(var1, var2, n, m, message)
     
     
     <h3>
-private subroutine assert_not_equals_2d_real_in_range_(var1, var2, n, m, delta, message)
+private subroutine assert_not_equal_2d_real_in_range_(var1, var2, n, m, delta, message)
     
     
    
@@ -4950,7 +4950,7 @@ private subroutine assert_not_equals_2d_real_in_range_(var1, var2, n, m, delta, 
     
     
     <h3>
-private subroutine assert_not_equals_double_(var1, var2, message)
+private subroutine assert_not_equal_double_(var1, var2, message)
     
     
    
@@ -5028,7 +5028,7 @@ private subroutine assert_not_equals_double_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_not_equals_double_in_range_(var1, var2, delta, message)
+private subroutine assert_not_equal_double_in_range_(var1, var2, delta, message)
     
     
    
@@ -5121,7 +5121,7 @@ private subroutine assert_not_equals_double_in_range_(var1, var2, delta, message
     
     
     <h3>
-private subroutine assert_not_equals_1d_double_(var1, var2, n, message)
+private subroutine assert_not_equal_1d_double_(var1, var2, n, message)
     
     
    
@@ -5214,7 +5214,7 @@ private subroutine assert_not_equals_1d_double_(var1, var2, n, message)
     
     
     <h3>
-private subroutine assert_not_equals_1d_double_in_range_(var1, var2, n, delta, message)
+private subroutine assert_not_equal_1d_double_in_range_(var1, var2, n, delta, message)
     
     
    
@@ -5322,7 +5322,7 @@ private subroutine assert_not_equals_1d_double_in_range_(var1, var2, n, delta, m
     
     
     <h3>
-private subroutine assert_not_equals_2d_double_(var1, var2, n, m, message)
+private subroutine assert_not_equal_2d_double_(var1, var2, n, m, message)
     
     
    
@@ -5430,7 +5430,7 @@ private subroutine assert_not_equals_2d_double_(var1, var2, n, m, message)
     
     
     <h3>
-private subroutine assert_not_equals_2d_double_in_range_(var1, var2, n, m, delta, message)
+private subroutine assert_not_equal_2d_double_in_range_(var1, var2, n, m, delta, message)
     
     
    
@@ -5553,7 +5553,7 @@ private subroutine assert_not_equals_2d_double_in_range_(var1, var2, n, m, delta
     
     
     <h3>
-private subroutine assert_not_equals_complex_(var1, var2, message)
+private subroutine assert_not_equal_complex_(var1, var2, message)
     
     
    
@@ -5631,7 +5631,7 @@ private subroutine assert_not_equals_complex_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_not_equals_complex_in_range_(var1, var2, delta, message)
+private subroutine assert_not_equal_complex_in_range_(var1, var2, delta, message)
     
     
    
@@ -5724,7 +5724,7 @@ private subroutine assert_not_equals_complex_in_range_(var1, var2, delta, messag
     
     
     <h3>
-private subroutine assert_not_equals_1d_complex_(var1, var2, n, message)
+private subroutine assert_not_equal_1d_complex_(var1, var2, n, message)
     
     
    
@@ -5817,7 +5817,7 @@ private subroutine assert_not_equals_1d_complex_(var1, var2, n, message)
     
     
     <h3>
-private subroutine assert_not_equals_1d_complex_in_range_(var1, var2, n, delta, message)
+private subroutine assert_not_equal_1d_complex_in_range_(var1, var2, n, delta, message)
     
     
    
@@ -5925,7 +5925,7 @@ private subroutine assert_not_equals_1d_complex_in_range_(var1, var2, n, delta, 
     
     
     <h3>
-private subroutine assert_not_equals_2d_complex_(var1, var2, n, m, message)
+private subroutine assert_not_equal_2d_complex_(var1, var2, n, m, message)
     
     
    
@@ -6033,7 +6033,7 @@ private subroutine assert_not_equals_2d_complex_(var1, var2, n, m, message)
     
     
     <h3>
-private subroutine assert_not_equals_2d_complex_in_range_(var1, var2, n, m, delta, message)
+private subroutine assert_not_equal_2d_complex_in_range_(var1, var2, n, m, delta, message)
     
     
    
@@ -8909,7 +8909,7 @@ public subroutine <a href='../proc/assert_true.html'>assert_true</a>(var1, messa
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-04-07T02:53:26.304282 
+             on 2020-04-07T03:01:00.474980 
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> naturalFRUIT was developed by Cibin Joseph</p></div>
