@@ -323,15 +323,15 @@ module fruit
     get_last_message, &
     is_last_passed, &
     is_case_passed, &
-    add_success, addSuccess, &
+    add_success, &
     set_unit_name, get_unit_name, &
     set_case_name, get_case_name, &
-    failed_assert_action, get_total_count, getTotalCount, &
-    get_failed_count, getFailedCount, is_all_successful, isAllSuccessful, &
-    run_test_case, runTestCase
+    failed_assert_action, get_total_count, &
+    get_failed_count, is_all_successful, &
+    run_test_case
   public :: assert_equals
-  public :: assert_not_equals, assertNotEquals
-  public :: assert_true,       assertTrue
+  public :: assert_not_equals
+  public :: assert_true
   public :: stash_test_suite, restore_test_suite
   public :: FRUIT_PREFIX_LEN_MAX
   public :: override_xml_work, end_override_xml_work
