@@ -13,9 +13,9 @@ module fruit_mpi
   integer, parameter :: NUMBER_LENGTH = 10
   integer, parameter :: FN_LENGTH = 50
 
-  public ::          fruit_init_mpi_xml
-  interface          fruit_init_mpi_xml
-    module procedure fruit_init_mpi_xml_
+  public ::          fruit_initialize_mpi_xml
+  interface          fruit_initialize_mpi_xml
+    module procedure fruit_initialize_mpi_xml_
   end interface
 
   public ::          fruit_finalize_mpi
@@ -33,7 +33,7 @@ module fruit_mpi
     module procedure fruit_summary_mpi_xml_
   end interface
 contains
-  subroutine fruit_init_mpi_xml_(rank)
+  subroutine fruit_initialize_mpi_xml_(rank)
     integer, intent(in) :: rank
     character(len = FN_LENGTH) :: xml_filename_work
 
@@ -41,7 +41,7 @@ contains
     call set_xml_filename_work(xml_filename_work)
 
     call init_fruit_xml(rank)
-  end subroutine fruit_init_mpi_xml_
+  end subroutine fruit_initialize_mpi_xml_
 
   subroutine     fruit_finalize_mpi_(size, rank)
     integer, intent(in) :: size, rank

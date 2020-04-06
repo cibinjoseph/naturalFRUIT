@@ -1,4 +1,3 @@
-
 ! Copyright (c) 2005-2010, 2012-2013, Andrew Hang Chen and contributors,
 ! All rights reserved.
 ! Licensed under the 3-clause BSD license.
@@ -16,8 +15,8 @@
 ! The method used most are: assert_true, assert_equals
 !
 ! Coding convention:
-!   1) All methods must be exposed by interface.  i.e. interface init_fruit
-!   2) Variable and methods are lower case connected with underscores.  i.e. init_fruit, and
+!   1) All methods must be exposed by interface.  i.e. interface fruit_initialize
+!   2) Variable and methods are lower case connected with underscores.  i.e. fruit_initialize, and
 !      failed_assert_count
 !
 
@@ -319,7 +318,7 @@ module fruit
   type(ty_stack), save :: stashed_suite
 
   public :: &
-    init_fruit
+    fruit_initialize
   public :: &
     get_last_message, &
     is_last_passed, &
@@ -341,7 +340,7 @@ module fruit
   public :: initializeFruit
   interface initializeFruit
     !! deprecated: true 
-    !! Deprecated. Use [[init_fruit]].
+    !! Deprecated. Use [[fruit_initialize]].
     module procedure obsolete_initializeFruit_
   end interface
 
@@ -588,11 +587,11 @@ module fruit
     module procedure run_test_case_named_
   end interface
 
-  public ::          init_fruit_xml
-  interface          init_fruit_xml
+  public ::          fruit_initialize_xml
+  interface          fruit_initialize_xml
     !! category: driver subroutine
     !! Initialize FRUIT driver environment for output to XML file
-    module procedure init_fruit_xml_
+    module procedure fruit_initialize_xml_
   end interface
 
   public ::          fruit_summary
@@ -761,7 +760,7 @@ module fruit
     module procedure  fruit_show_dots_
   end interface
 contains
-  subroutine init_fruit(rank)
+  subroutine fruit_initialize(rank)
     !! category: driver subroutine
     !! Initialize FRUIT driver environment.
     integer, intent(in), optional :: rank
@@ -789,7 +788,7 @@ contains
       allocate(message_array(MSG_ARRAY_INCREMENT))
     end if
     !$omp end critical (FRUIT_OMP_ALLOCATE_MESSAGE_ARRAY)
-  end subroutine init_fruit
+  end subroutine fruit_initialize
 
   subroutine fruit_finalize_
     !$omp critical     (FRUIT_OMP_DEALLOCATE_MESSAGE_ARRAY)
@@ -799,7 +798,7 @@ contains
     !$omp end critical (FRUIT_OMP_DEALLOCATE_MESSAGE_ARRAY)
   end subroutine fruit_finalize_
 
-  subroutine init_fruit_xml_(rank)
+  subroutine fruit_initialize_xml_(rank)
     integer, optional, intent(in) :: rank
     logical :: rank_zero_or_single
 
@@ -838,7 +837,7 @@ contains
 
     open (xml_work, FILE = xml_filename_work, action ="write", status='replace')
     close(xml_work)
-  end subroutine init_fruit_xml_
+  end subroutine fruit_initialize_xml_
 
   function  case_delta_t()
     character(len = STRLEN_T) :: case_delta_t
@@ -953,8 +952,8 @@ contains
   end function int_to_str
 
   subroutine obsolete_initializeFruit_
-    call obsolete_ ("initializeFruit is OBSOLETE.  replaced by init_fruit")
-    call init_fruit
+    call obsolete_ ("initializeFruit is OBSOLETE.  replaced by fruit_initialize")
+    call fruit_initialize
   end subroutine obsolete_initializeFruit_
 
   subroutine obsolete_getTestSummary_

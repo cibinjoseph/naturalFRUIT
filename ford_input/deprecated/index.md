@@ -5,19 +5,15 @@ The following procedures have been deprecated or replaced with other procedures 
 @note
 Table under construction
 
-<!---
 <table style="width:100%", rules="rows">
 <tr>
 <th>Deprecated</th>
 <th>Replaced by</th>
+<th>Notes</th>
 </tr>
 <tr>
-<td>Jill</td>
-<td>Smith</td>
-</tr>
-<tr>
-<td>Eve</td>
-<td>Jackson</td>
+<td>init_fruit</td>
+<td>fruit_initialize</td>
+<td>For consistency</td>
 </tr>
 </table>  
--->
