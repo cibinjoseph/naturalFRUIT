@@ -356,8 +356,8 @@
 <a name="ln-15"></a><span class="c">! The method used most are: assert_true, assert_equals</span>
 <a name="ln-16"></a><span class="c">!</span>
 <a name="ln-17"></a><span class="c">! Coding convention:</span>
-<a name="ln-18"></a><span class="c">!   1) All methods must be exposed by interface.  i.e. interface init_fruit</span>
-<a name="ln-19"></a><span class="c">!   2) Variable and methods are lower case connected with underscores.  i.e. init_fruit, and</span>
+<a name="ln-18"></a><span class="c">!   1) All methods must be exposed by interface.  i.e. interface fruit_initialize</span>
+<a name="ln-19"></a><span class="c">!   2) Variable and methods are lower case connected with underscores.  i.e. fruit_initialize, and</span>
 <a name="ln-20"></a><span class="c">!      failed_assert_count</span>
 <a name="ln-21"></a><span class="c">!</span>
 <a name="ln-22"></a>
@@ -659,7 +659,7 @@
 <a name="ln-318"></a>  <span class="k">type</span><span class="p">(</span><span class="n">ty_stack</span><span class="p">),</span> <span class="k">save</span> <span class="kd">::</span> <span class="n">stashed_suite</span>
 <a name="ln-319"></a>
 <a name="ln-320"></a>  <span class="k">public</span> <span class="kd">::</span> <span class="p">&amp;</span>
-<a name="ln-321"></a>    <span class="n">init_fruit</span>
+<a name="ln-321"></a>    <span class="n">fruit_initialize</span>
 <a name="ln-322"></a>  <span class="k">public</span> <span class="kd">::</span> <span class="p">&amp;</span>
 <a name="ln-323"></a>    <span class="n">get_last_message</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-324"></a>    <span class="n">is_last_passed</span><span class="p">,</span> <span class="p">&amp;</span>
@@ -681,7 +681,7 @@
 <a name="ln-340"></a>  <span class="k">public</span> <span class="kd">::</span> <span class="n">initializeFruit</span>
 <a name="ln-341"></a>  <span class="k">interface </span><span class="n">initializeFruit</span>
 <a name="ln-342"></a>    <span class="c">!! deprecated: true </span>
-<a name="ln-343"></a>    <span class="c">!! Deprecated. Use [[init_fruit]].</span>
+<a name="ln-343"></a>    <span class="c">!! Deprecated. Use [[fruit_initialize]].</span>
 <a name="ln-344"></a>    <span class="k">module procedure </span><span class="n">obsolete_initializeFruit_</span>
 <a name="ln-345"></a>  <span class="k">end interface</span>
 <a name="ln-346"></a>
@@ -928,11 +928,11 @@
 <a name="ln-587"></a>    <span class="k">module procedure </span><span class="n">run_test_case_named_</span>
 <a name="ln-588"></a>  <span class="k">end interface</span>
 <a name="ln-589"></a>
-<a name="ln-590"></a><span class="k">  public</span> <span class="kd">::</span>          <span class="n">init_fruit_xml</span>
-<a name="ln-591"></a>  <span class="k">interface          </span><span class="n">init_fruit_xml</span>
+<a name="ln-590"></a><span class="k">  public</span> <span class="kd">::</span>          <span class="n">fruit_initialize_xml</span>
+<a name="ln-591"></a>  <span class="k">interface          </span><span class="n">fruit_initialize_xml</span>
 <a name="ln-592"></a>    <span class="c">!! category: driver subroutine</span>
 <a name="ln-593"></a>    <span class="c">!! Initialize FRUIT driver environment for output to XML file</span>
-<a name="ln-594"></a>    <span class="k">module procedure </span><span class="n">init_fruit_xml_</span>
+<a name="ln-594"></a>    <span class="k">module procedure </span><span class="n">fruit_initialize_xml_</span>
 <a name="ln-595"></a>  <span class="k">end interface</span>
 <a name="ln-596"></a>
 <a name="ln-597"></a><span class="k">  public</span> <span class="kd">::</span>          <span class="n">fruit_summary</span>
@@ -1101,7 +1101,7 @@
 <a name="ln-760"></a>    <span class="k">module procedure  </span><span class="n">fruit_show_dots_</span>
 <a name="ln-761"></a>  <span class="k">end interface</span>
 <a name="ln-762"></a><span class="k">contains</span>
-<a name="ln-763"></a><span class="k">  subroutine </span><span class="n">init_fruit</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span>
+<a name="ln-763"></a><span class="k">  subroutine </span><span class="n">fruit_initialize</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span>
 <a name="ln-764"></a>    <span class="c">!! category: driver subroutine</span>
 <a name="ln-765"></a>    <span class="c">!! Initialize FRUIT driver environment.</span>
 <a name="ln-766"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">rank</span>
@@ -1129,7 +1129,7 @@
 <a name="ln-788"></a><span class="k">      allocate</span><span class="p">(</span><span class="n">message_array</span><span class="p">(</span><span class="n">MSG_ARRAY_INCREMENT</span><span class="p">))</span>
 <a name="ln-789"></a>    <span class="k">end if</span>
 <a name="ln-790"></a>    <span class="c">!$omp end critical (FRUIT_OMP_ALLOCATE_MESSAGE_ARRAY)</span>
-<a name="ln-791"></a>  <span class="k">end subroutine </span><span class="n">init_fruit</span>
+<a name="ln-791"></a>  <span class="k">end subroutine </span><span class="n">fruit_initialize</span>
 <a name="ln-792"></a>
 <a name="ln-793"></a>  <span class="k">subroutine </span><span class="n">fruit_finalize_</span>
 <a name="ln-794"></a>    <span class="c">!$omp critical     (FRUIT_OMP_DEALLOCATE_MESSAGE_ARRAY)</span>
@@ -1139,7 +1139,7 @@
 <a name="ln-798"></a>    <span class="c">!$omp end critical (FRUIT_OMP_DEALLOCATE_MESSAGE_ARRAY)</span>
 <a name="ln-799"></a>  <span class="k">end subroutine </span><span class="n">fruit_finalize_</span>
 <a name="ln-800"></a>
-<a name="ln-801"></a>  <span class="k">subroutine </span><span class="n">init_fruit_xml_</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span>
+<a name="ln-801"></a>  <span class="k">subroutine </span><span class="n">fruit_initialize_xml_</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span>
 <a name="ln-802"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">optional</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rank</span>
 <a name="ln-803"></a>    <span class="kt">logical</span> <span class="kd">::</span> <span class="n">rank_zero_or_single</span>
 <a name="ln-804"></a>
@@ -1178,7 +1178,7 @@
 <a name="ln-837"></a>
 <a name="ln-838"></a>    <span class="k">open</span> <span class="p">(</span><span class="n">xml_work</span><span class="p">,</span> <span class="k">FILE</span> <span class="o">=</span> <span class="n">xml_filename_work</span><span class="p">,</span> <span class="n">action</span> <span class="o">=</span><span class="s2">&quot;write&quot;</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">)</span>
 <a name="ln-839"></a>    <span class="k">close</span><span class="p">(</span><span class="n">xml_work</span><span class="p">)</span>
-<a name="ln-840"></a>  <span class="k">end subroutine </span><span class="n">init_fruit_xml_</span>
+<a name="ln-840"></a>  <span class="k">end subroutine </span><span class="n">fruit_initialize_xml_</span>
 <a name="ln-841"></a>
 <a name="ln-842"></a>  <span class="k">function  </span><span class="n">case_delta_t</span><span class="p">()</span>
 <a name="ln-843"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span> <span class="o">=</span> <span class="n">STRLEN_T</span><span class="p">)</span> <span class="kd">::</span> <span class="n">case_delta_t</span>
@@ -1293,8 +1293,8 @@
 <a name="ln-952"></a>  <span class="k">end function </span><span class="n">int_to_str</span>
 <a name="ln-953"></a>
 <a name="ln-954"></a>  <span class="k">subroutine </span><span class="n">obsolete_initializeFruit_</span>
-<a name="ln-955"></a>    <span class="k">call </span><span class="n">obsolete_</span> <span class="p">(</span><span class="s2">&quot;initializeFruit is OBSOLETE.  replaced by init_fruit&quot;</span><span class="p">)</span>
-<a name="ln-956"></a>    <span class="k">call </span><span class="n">init_fruit</span>
+<a name="ln-955"></a>    <span class="k">call </span><span class="n">obsolete_</span> <span class="p">(</span><span class="s2">&quot;initializeFruit is OBSOLETE.  replaced by fruit_initialize&quot;</span><span class="p">)</span>
+<a name="ln-956"></a>    <span class="k">call </span><span class="n">fruit_initialize</span>
 <a name="ln-957"></a>  <span class="k">end subroutine </span><span class="n">obsolete_initializeFruit_</span>
 <a name="ln-958"></a>
 <a name="ln-959"></a>  <span class="k">subroutine </span><span class="n">obsolete_getTestSummary_</span>
@@ -3059,7 +3059,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-04-07T01:58:30.009542 
+             on 2020-04-07T02:09:24.901168 
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> naturalFRUIT was developed by Cibin Joseph</p></div>
