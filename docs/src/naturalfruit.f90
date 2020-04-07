@@ -1015,6 +1015,7 @@ contains
 
   ! Private, helper routine to wrap lines of success/failed marks
   subroutine output_mark_( chr )
+    !! Wrap lines of success/failed marks
     character(1), intent(in) :: chr
     !  integer, save :: linechar_count = 0
     !  Definition of linechar_count is moved to module,
@@ -1032,14 +1033,17 @@ contains
   end subroutine output_mark_
 
   subroutine success_mark_
+    !! Print success mark
     call output_mark_( '.' )
   end subroutine success_mark_
 
   subroutine failed_mark_
+    !! Print failed mark
     call output_mark_( 'F' )
   end subroutine failed_mark_
 
   subroutine increase_message_stack_
+    !! Increase message stack size
     character(len=MSG_LENGTH) :: msg_swap_holder(current_max)
 
     if (message_index > MAX_MSG_STACK_SIZE) then
@@ -1070,11 +1074,15 @@ contains
 
 
   subroutine get_xml_filename_work_(string)
+    !! category: driver subroutine
+    !! Get filename of XML file. result.xml by default.
     character(len = *), intent(out) :: string
     string = trim(xml_filename_work)
   end subroutine get_xml_filename_work_
 
   subroutine set_xml_filename_work_(string)
+    !! category: driver subroutine
+    !! Set filename of XML file. result.xml by default.
     character(len = *), intent(in) :: string
     xml_filename_work = trim(string)
   end subroutine set_xml_filename_work_
@@ -1092,6 +1100,8 @@ contains
   end function get_last_message
 
   subroutine get_message_index_(index)
+    !! category: driver subroutine
+    !! Get number of failed assertion messages.
     integer, intent(out) :: index
 
     index = message_index
@@ -1099,6 +1109,8 @@ contains
 
 
   subroutine get_message_array_(msgs)
+    !! category: driver subroutine
+    !! Get failed asssertion messages to *msgs*.
     character(len = *), intent(out) :: msgs(:)
     integer :: i
     msgs(:) = ""
@@ -1110,6 +1122,8 @@ contains
 
 
   subroutine get_messages_(msgs)
+    !! category: driver subroutine
+    !! Get failed asssertion messages to *msgs*.
     character(len = *), intent(out) :: msgs(:)
     integer :: i, j
 
