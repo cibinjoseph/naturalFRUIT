@@ -4,7 +4,7 @@ The following procedures have been deprecated or replaced to maintain consistenc
 
 <table style="width:60%", rules="rows">
 <tr>
-<th>Consistency</th>
+<th>Deprecated</th>
 <th>Replaced by</th>
 </tr>
 <tr>
