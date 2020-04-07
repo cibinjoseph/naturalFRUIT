@@ -651,7 +651,6 @@ contains
       end subroutine
     end interface
     character(*), intent(in) :: tc_name
-
     integer :: initial_failed_assert_count
 
     initial_failed_assert_count = failed_assert_count
@@ -1159,9 +1158,7 @@ contains
   !------ 0d_logical ------
   subroutine assert_eq_logical_(var1, var2, message)
     !! display: none
-
     logical, intent(in) :: var1, var2
-
     character(len=*), intent(in), optional :: message
 
     if (var1 .neqv. var2) then
@@ -1177,10 +1174,10 @@ contains
   !------ 1d_logical ------
   subroutine assert_eq_1d_logical_(var1, var2, n, message)
     integer, intent(in) :: n
-    integer              :: i
     logical, intent(in) :: var1(n), var2(n)
-
+    integer :: i
     character(len=*), intent(in), optional :: message
+
     do i = 1, n
       if (var1(i) .neqv. var2(i)) then
         call failed_assert_action(&
@@ -1195,10 +1192,10 @@ contains
   !------ 2d_logical ------
   subroutine assert_eq_2d_logical_(var1, var2, n, m, message)
     integer, intent(in) :: n, m
-    integer              :: i, j
     logical, intent(in) :: var1(n, m), var2(n, m)
-
+    integer :: i, j
     character(len=*), intent(in), optional :: message
+
     do j = 1, m
       do i = 1, n
         if (var1(i, j) .neqv. var2(i, j)) then
@@ -1214,9 +1211,7 @@ contains
 
   !------ 0d_string ------
   subroutine assert_eq_string_(var1, var2, message)
-
     character(len=*), intent(in) :: var1, var2
-
     character(len=*), intent(in), optional :: message
 
     if (trim(strip(var1)) /= trim(strip(var2))) then
@@ -1232,10 +1227,10 @@ contains
   !------ 1d_string ------
   subroutine assert_eq_1d_string_(var1, var2, n, message)
     integer, intent(in) :: n
-    integer              :: i
     character(len=*), intent(in) :: var1(n), var2(n)
-
+    integer :: i
     character(len=*), intent(in), optional :: message
+
     do i = 1, n
       if (trim(strip(var1(i))) /= trim(strip(var2(i)))) then
         call failed_assert_action(&
@@ -1250,10 +1245,10 @@ contains
   !------ 2d_string ------
   subroutine assert_eq_2d_string_(var1, var2, n, m, message)
     integer, intent(in) :: n, m
-    integer              :: i, j
     character(len=*), intent(in) :: var1(n, m), var2(n, m)
-
+    integer :: i, j
     character(len=*), intent(in), optional :: message
+
     do j = 1, m
       do i = 1, n
         if (trim(strip(var1(i, j))) /= trim(strip(var2(i, j)))) then
@@ -1269,9 +1264,7 @@ contains
 
   !------ 0d_int ------
   subroutine assert_eq_int_(var1, var2, message)
-
     integer, intent(in) :: var1, var2
-
     character(len=*), intent(in), optional :: message
 
     if (var1 /= var2) then
@@ -1287,10 +1280,10 @@ contains
   !------ 1d_int ------
   subroutine assert_eq_1d_int_(var1, var2, n, message)
     integer, intent(in) :: n
-    integer              :: i
     integer, intent(in) :: var1(n), var2(n)
-
+    integer :: i
     character(len=*), intent(in), optional :: message
+
     do i = 1, n
       if (var1(i) /= var2(i)) then
         call failed_assert_action(&
@@ -1305,10 +1298,10 @@ contains
   !------ 2d_int ------
   subroutine assert_eq_2d_int_(var1, var2, n, m, message)
     integer, intent(in) :: n, m
-    integer              :: i, j
     integer, intent(in) :: var1(n, m), var2(n, m)
-
+    integer :: i, j
     character(len=*), intent(in), optional :: message
+
     do j = 1, m
       do i = 1, n
         if (var1(i, j) /= var2(i, j)) then
@@ -1324,9 +1317,7 @@ contains
 
   !------ 0d_real ------
   subroutine assert_eq_real_(var1, var2, message)
-
     real, intent(in) :: var1, var2
-
     character(len=*), intent(in), optional :: message
 
     if ((var1 < var2) .or. (var1 > var2)) then
@@ -1341,7 +1332,6 @@ contains
 
   !------ 0d_real ------
   subroutine assert_eq_real_in_range_(var1, var2, delta, message)
-
     real, intent(in) :: var1, var2
     real, intent(in) :: delta
     character(len=*), intent(in), optional :: message
@@ -1359,10 +1349,10 @@ contains
   !------ 1d_real ------
   subroutine assert_eq_1d_real_(var1, var2, n, message)
     integer, intent(in) :: n
-    integer              :: i
+    integer :: i
     real, intent(in) :: var1(n), var2(n)
-
     character(len=*), intent(in), optional :: message
+
     do i = 1, n
       if ((var1(i) < var2(i)) .or. (var1(i) > var2(i))) then
         call failed_assert_action(&
@@ -1377,10 +1367,11 @@ contains
   !------ 1d_real ------
   subroutine assert_eq_1d_real_in_range_(var1, var2, n, delta, message)
     integer, intent(in) :: n
-    integer              :: i
+    integer :: i
     real, intent(in) :: var1(n), var2(n)
     real, intent(in) :: delta
     character(len=*), intent(in), optional :: message
+
     do i = 1, n
       if (abs(var1(i) - var2(i)) > delta) then
         call failed_assert_action(&
@@ -1395,10 +1386,10 @@ contains
   !------ 2d_real ------
   subroutine assert_eq_2d_real_(var1, var2, n, m, message)
     integer, intent(in) :: n, m
-    integer              :: i, j
+    integer :: i, j
     real, intent(in) :: var1(n, m), var2(n, m)
-
     character(len=*), intent(in), optional :: message
+
     do j = 1, m
       do i = 1, n
         if ((var1(i, j) < var2(i, j)) .or. (var1(i, j) > var2(i, j))) then
@@ -1415,10 +1406,11 @@ contains
   !------ 2d_real ------
   subroutine assert_eq_2d_real_in_range_(var1, var2, n, m, delta, message)
     integer, intent(in) :: n, m
-    integer              :: i, j
+    integer :: i, j
     real, intent(in) :: var1(n, m), var2(n, m)
     real, intent(in) :: delta
     character(len=*), intent(in), optional :: message
+
     do j = 1, m
       do i = 1, n
         if (abs(var1(i, j) - var2(i, j)) > delta) then
@@ -1434,9 +1426,7 @@ contains
 
   !------ 0d_double ------
   subroutine assert_eq_double_(var1, var2, message)
-
     double precision, intent(in) :: var1, var2
-
     character(len=*), intent(in), optional :: message
 
     if ((var1 < var2) .or. (var1 > var2)) then
@@ -1451,7 +1441,6 @@ contains
 
   !------ 0d_double ------
   subroutine assert_eq_double_in_range_(var1, var2, delta, message)
-
     double precision, intent(in) :: var1, var2
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
@@ -1469,10 +1458,10 @@ contains
   !------ 1d_double ------
   subroutine assert_eq_1d_double_(var1, var2, n, message)
     integer, intent(in) :: n
-    integer              :: i
+    integer :: i
     double precision, intent(in) :: var1(n), var2(n)
-
     character(len=*), intent(in), optional :: message
+
     do i = 1, n
       if ((var1(i) < var2(i)) .or. (var1(i) > var2(i))) then
         call failed_assert_action(&
@@ -1487,10 +1476,11 @@ contains
   !------ 1d_double ------
   subroutine assert_eq_1d_double_in_range_(var1, var2, n, delta, message)
     integer, intent(in) :: n
-    integer              :: i
+    integer :: i
     double precision, intent(in) :: var1(n), var2(n)
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
+
     do i = 1, n
       if (abs(var1(i) - var2(i)) > delta) then
         call failed_assert_action(&
@@ -1505,10 +1495,10 @@ contains
   !------ 2d_double ------
   subroutine assert_eq_2d_double_(var1, var2, n, m, message)
     integer, intent(in) :: n, m
-    integer              :: i, j
+    integer :: i, j
     double precision, intent(in) :: var1(n, m), var2(n, m)
-
     character(len=*), intent(in), optional :: message
+
     do j = 1, m
       do i = 1, n
         if ((var1(i, j) < var2(i, j)) .or. (var1(i, j) > var2(i, j))) then
@@ -1525,10 +1515,11 @@ contains
   !------ 2d_double ------
   subroutine assert_eq_2d_double_in_range_(var1, var2, n, m, delta, message)
     integer, intent(in) :: n, m
-    integer              :: i, j
+    integer :: i, j
     double precision, intent(in) :: var1(n, m), var2(n, m)
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
+
     do j = 1, m
       do i = 1, n
         if (abs(var1(i, j) - var2(i, j)) > delta) then
@@ -1544,9 +1535,7 @@ contains
 
   !------ 0d_complex ------
   subroutine assert_eq_complex_(var1, var2, message)
-
     complex(kind=kind(1.0D0)), intent(in) :: var1, var2
-
     character(len=*), intent(in), optional :: message
 
     if ((real(var1) < real(var2)) .or. &
@@ -1564,7 +1553,6 @@ contains
 
   !------ 0d_complex ------
   subroutine assert_eq_complex_in_range_(var1, var2, delta, message)
-
     complex(kind=kind(1.0D0)), intent(in) :: var1, var2
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
@@ -1582,10 +1570,10 @@ contains
   !------ 1d_complex ------
   subroutine assert_eq_1d_complex_(var1, var2, n, message)
     integer, intent(in) :: n
-    integer              :: i
+    integer :: i
     complex(kind=kind(1.0D0)), intent(in) :: var1(n), var2(n)
-
     character(len=*), intent(in), optional :: message
+
     do i = 1, n
       if ((real(var1(i)) < real(var2(i))) .or. &
         &(real(var1(i)) > real(var2(i))) .or. &
@@ -1603,10 +1591,11 @@ contains
   !------ 1d_complex ------
   subroutine assert_eq_1d_complex_in_range_(var1, var2, n, delta, message)
     integer, intent(in) :: n
-    integer              :: i
+    integer :: i
     complex(kind=kind(1.0D0)), intent(in) :: var1(n), var2(n)
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
+
     do i = 1, n
       if (abs(var1(i) - var2(i)) > delta) then
         call failed_assert_action(&
@@ -1621,10 +1610,10 @@ contains
   !------ 2d_complex ------
   subroutine assert_eq_2d_complex_(var1, var2, n, m, message)
     integer, intent(in) :: n, m
-    integer              :: i, j
+    integer :: i, j
     complex(kind=kind(1.0D0)), intent(in) :: var1(n, m), var2(n, m)
-
     character(len=*), intent(in), optional :: message
+
     do j = 1, m
       do i = 1, n
         if ((real(var1(i, j)) < real(var2(i, j))) .or. &
@@ -1644,10 +1633,11 @@ contains
   !------ 2d_complex ------
   subroutine assert_eq_2d_complex_in_range_(var1, var2, n, m, delta, message)
     integer, intent(in) :: n, m
-    integer              :: i, j
+    integer :: i, j
     complex(kind=kind(1.0D0)), intent(in) :: var1(n, m), var2(n, m)
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
+
     do j = 1, m
       do i = 1, n
         if (abs(var1(i, j) - var2(i, j)) > delta) then
@@ -1663,9 +1653,7 @@ contains
 
   !------ 0d_logical ------
   subroutine assert_not_equal_logical_(var1, var2, message)
-
     logical, intent(in) :: var1, var2
-
     character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
@@ -1687,9 +1675,8 @@ contains
   !------ 1d_logical ------
   subroutine assert_not_equal_1d_logical_(var1, var2, n, message)
     integer, intent(in) :: n
-    integer              :: i
+    integer :: i
     logical, intent(in) :: var1(n), var2(n)
-
     character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
@@ -1711,9 +1698,8 @@ contains
   !------ 2d_logical ------
   subroutine assert_not_equal_2d_logical_(var1, var2, n, m, message)
     integer, intent(in) :: n, m
-    integer              :: i, j
+    integer :: i, j
     logical, intent(in) :: var1(n, m), var2(n, m)
-
     character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
@@ -1736,9 +1722,7 @@ contains
 
   !------ 0d_string ------
   subroutine assert_not_equal_string_(var1, var2, message)
-
     character(len=*), intent(in) :: var1, var2
-
     character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
@@ -1760,9 +1744,8 @@ contains
   !------ 1d_string ------
   subroutine assert_not_equal_1d_string_(var1, var2, n, message)
     integer, intent(in) :: n
-    integer              :: i
+    integer :: i
     character(len=*), intent(in) :: var1(n), var2(n)
-
     character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
@@ -1784,9 +1767,8 @@ contains
   !------ 2d_string ------
   subroutine assert_not_equal_2d_string_(var1, var2, n, m, message)
     integer, intent(in) :: n, m
-    integer              :: i, j
+    integer :: i, j
     character(len=*), intent(in) :: var1(n, m), var2(n, m)
-
     character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
@@ -1809,9 +1791,7 @@ contains
 
   !------ 0d_int ------
   subroutine assert_not_equal_int_(var1, var2, message)
-
     integer, intent(in) :: var1, var2
-
     character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
@@ -1833,9 +1813,8 @@ contains
   !------ 1d_int ------
   subroutine assert_not_equal_1d_int_(var1, var2, n, message)
     integer, intent(in) :: n
-    integer              :: i
+    integer :: i
     integer, intent(in) :: var1(n), var2(n)
-
     character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
@@ -1857,9 +1836,8 @@ contains
   !------ 2d_int ------
   subroutine assert_not_equal_2d_int_(var1, var2, n, m, message)
     integer, intent(in) :: n, m
-    integer              :: i, j
+    integer :: i, j
     integer, intent(in) :: var1(n, m), var2(n, m)
-
     character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
@@ -1882,9 +1860,7 @@ contains
 
   !------ 0d_real ------
   subroutine assert_not_equal_real_(var1, var2, message)
-
     real, intent(in) :: var1, var2
-
     character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
@@ -1905,7 +1881,6 @@ contains
 
   !------ 0d_real ------
   subroutine assert_not_equal_real_in_range_(var1, var2, delta, message)
-
     real, intent(in) :: var1, var2
     real, intent(in) :: delta
     character(len=*), intent(in), optional :: message
@@ -1929,9 +1904,8 @@ contains
   !------ 1d_real ------
   subroutine assert_not_equal_1d_real_(var1, var2, n, message)
     integer, intent(in) :: n
-    integer              :: i
+    integer :: i
     real, intent(in) :: var1(n), var2(n)
-
     character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
@@ -1953,7 +1927,7 @@ contains
   !------ 1d_real ------
   subroutine assert_not_equal_1d_real_in_range_(var1, var2, n, delta, message)
     integer, intent(in) :: n
-    integer              :: i
+    integer :: i
     real, intent(in) :: var1(n), var2(n)
     real, intent(in) :: delta
     character(len=*), intent(in), optional :: message
@@ -1977,9 +1951,8 @@ contains
   !------ 2d_real ------
   subroutine assert_not_equal_2d_real_(var1, var2, n, m, message)
     integer, intent(in) :: n, m
-    integer              :: i, j
+    integer :: i, j
     real, intent(in) :: var1(n, m), var2(n, m)
-
     character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
@@ -2003,7 +1976,7 @@ contains
   !------ 2d_real ------
   subroutine assert_not_equal_2d_real_in_range_(var1, var2, n, m, delta, message)
     integer, intent(in) :: n, m
-    integer              :: i, j
+    integer :: i, j
     real, intent(in) :: var1(n, m), var2(n, m)
     real, intent(in) :: delta
     character(len=*), intent(in), optional :: message
@@ -2028,9 +2001,7 @@ contains
 
   !------ 0d_double ------
   subroutine assert_not_equal_double_(var1, var2, message)
-
     double precision, intent(in) :: var1, var2
-
     character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
@@ -2051,7 +2022,6 @@ contains
 
   !------ 0d_double ------
   subroutine assert_not_equal_double_in_range_(var1, var2, delta, message)
-
     double precision, intent(in) :: var1, var2
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
@@ -2075,9 +2045,8 @@ contains
   !------ 1d_double ------
   subroutine assert_not_equal_1d_double_(var1, var2, n, message)
     integer, intent(in) :: n
-    integer              :: i
+    integer :: i
     double precision, intent(in) :: var1(n), var2(n)
-
     character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
@@ -2099,7 +2068,7 @@ contains
   !------ 1d_double ------
   subroutine assert_not_equal_1d_double_in_range_(var1, var2, n, delta, message)
     integer, intent(in) :: n
-    integer              :: i
+    integer :: i
     double precision, intent(in) :: var1(n), var2(n)
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
@@ -2123,9 +2092,8 @@ contains
   !------ 2d_double ------
   subroutine assert_not_equal_2d_double_(var1, var2, n, m, message)
     integer, intent(in) :: n, m
-    integer              :: i, j
+    integer :: i, j
     double precision, intent(in) :: var1(n, m), var2(n, m)
-
     character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
@@ -2149,7 +2117,7 @@ contains
   !------ 2d_double ------
   subroutine assert_not_equal_2d_double_in_range_(var1, var2, n, m, delta, message)
     integer, intent(in) :: n, m
-    integer              :: i, j
+    integer :: i, j
     double precision, intent(in) :: var1(n, m), var2(n, m)
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
@@ -2174,9 +2142,7 @@ contains
 
   !------ 0d_complex ------
   subroutine assert_not_equal_complex_(var1, var2, message)
-
     complex(kind=kind(1.0D0)), intent(in) :: var1, var2
-
     character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
@@ -2200,7 +2166,6 @@ contains
 
   !------ 0d_complex ------
   subroutine assert_not_equal_complex_in_range_(var1, var2, delta, message)
-
     complex(kind=kind(1.0D0)), intent(in) :: var1, var2
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
@@ -2224,9 +2189,8 @@ contains
   !------ 1d_complex ------
   subroutine assert_not_equal_1d_complex_(var1, var2, n, message)
     integer, intent(in) :: n
-    integer              :: i
+    integer :: i
     complex(kind=kind(1.0D0)), intent(in) :: var1(n), var2(n)
-
     character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
@@ -2251,7 +2215,7 @@ contains
   !------ 1d_complex ------
   subroutine assert_not_equal_1d_complex_in_range_(var1, var2, n, delta, message)
     integer, intent(in) :: n
-    integer              :: i
+    integer :: i
     complex(kind=kind(1.0D0)), intent(in) :: var1(n), var2(n)
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
@@ -2275,9 +2239,8 @@ contains
   !------ 2d_complex ------
   subroutine assert_not_equal_2d_complex_(var1, var2, n, m, message)
     integer, intent(in) :: n, m
-    integer              :: i, j
+    integer :: i, j
     complex(kind=kind(1.0D0)), intent(in) :: var1(n, m), var2(n, m)
-
     character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
@@ -2304,7 +2267,7 @@ contains
   !------ 2d_complex ------
   subroutine assert_not_equal_2d_complex_in_range_(var1, var2, n, m, delta, message)
     integer, intent(in) :: n, m
-    integer              :: i, j
+    integer :: i, j
     complex(kind=kind(1.0D0)), intent(in) :: var1(n, m), var2(n, m)
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
