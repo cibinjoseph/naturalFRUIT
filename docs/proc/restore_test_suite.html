@@ -281,31 +281,31 @@ public subroutine restore_test_suite()
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">restore_test_suite</span>
-    <span class="c">!! category: driver subroutine </span>
+    <span class="c">!! category: driver subroutine</span>
     <span class="c">!! Restore results of test case for use.</span>
     <span class="n">successful_assert_count</span> <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">successful_assert_count</span>
-    <span class="n">failed_assert_count</span>     <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">failed_assert_count</span>
+    <span class="n">failed_assert_count</span> <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">failed_assert_count</span>
 
     <span class="n">message_index</span> <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">message_index</span>
     <span class="n">message_index_from</span> <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">message_index_from</span>
-    <span class="n">current_max</span>  <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">current_max</span>
+    <span class="n">current_max</span> <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">current_max</span>
 
-    <span class="k">deallocate</span><span class="p">(</span><span class="n">message_array</span><span class="p">)</span>
-    <span class="k">allocate</span><span class="p">(</span>  <span class="n">message_array</span><span class="p">(</span><span class="n">current_max</span><span class="p">))</span>
+    <span class="k">deallocate</span> <span class="p">(</span><span class="n">message_array</span><span class="p">)</span>
+    <span class="k">allocate</span> <span class="p">(</span><span class="n">message_array</span><span class="p">(</span><span class="n">current_max</span><span class="p">))</span>
     <span class="n">message_array</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">message_index</span><span class="p">)</span> <span class="o">=</span> <span class="p">&amp;</span>
       <span class="p">&amp;</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">message_array</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">message_index</span><span class="p">)</span>
-    <span class="k">deallocate</span><span class="p">(</span><span class="n">stashed_suite</span><span class="p">%</span><span class="n">message_array</span><span class="p">)</span>
+    <span class="k">deallocate</span> <span class="p">(</span><span class="n">stashed_suite</span><span class="p">%</span><span class="n">message_array</span><span class="p">)</span>
 
     <span class="n">successful_case_count</span> <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">successful_case_count</span>
-    <span class="n">failed_case_count</span>     <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">failed_case_count</span>
-    <span class="n">testCaseIndex</span>         <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">testCaseIndex</span>
+    <span class="n">failed_case_count</span> <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">failed_case_count</span>
+    <span class="n">testCaseIndex</span> <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">testCaseIndex</span>
 
-    <span class="n">case_name</span>          <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">case_name</span>
-    <span class="n">last_passed</span>        <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">last_passed</span>
-    <span class="n">case_passed</span>        <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">case_passed</span>
-    <span class="n">case_time_from</span>     <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">case_time_from</span>
-    <span class="n">linechar_count</span>     <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">linechar_count</span>
-    <span class="n">if_show_dots</span>       <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">if_show_dots</span>
+    <span class="n">case_name</span> <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">case_name</span>
+    <span class="n">last_passed</span> <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">last_passed</span>
+    <span class="n">case_passed</span> <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">case_passed</span>
+    <span class="n">case_time_from</span> <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">case_time_from</span>
+    <span class="n">linechar_count</span> <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">linechar_count</span>
+    <span class="n">if_show_dots</span> <span class="o">=</span> <span class="n">stashed_suite</span><span class="p">%</span><span class="n">if_show_dots</span>
   <span class="k">end subroutine </span><span class="n">restore_test_suite</span>
 </pre></div>
 
@@ -328,7 +328,7 @@ public subroutine restore_test_suite()
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-04-07T21:21:07.458786 
+             on 2020-04-08T02:03:36.357036 
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> naturalFRUIT was developed by Cibin Joseph</p></div>
