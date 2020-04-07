@@ -29,6 +29,8 @@ module fruit_util
   public :: equal, to_s, strip
 
   interface equal
+    !! category: fruit_util
+    !! Check equality
     module procedure equalEpsilon
     module procedure floatEqual
     module procedure integerEqual
@@ -38,6 +40,7 @@ module fruit_util
   end interface
 
   interface to_s
+    !! Convert to string
     module procedure to_s_int_
     module procedure to_s_real_
     module procedure to_s_logical_
@@ -48,12 +51,15 @@ module fruit_util
   end interface
 
   interface strip
+    !! Remove leading and trailing spaces
     module procedure strip_
     module procedure strip_length_
   end interface
 contains
 
   function to_s_int_ (value)
+    !! category: fruit_util
+    !! Convert integer to string
     implicit none
     character(len=500):: to_s_int_
     integer, intent(in) :: value
@@ -63,6 +69,7 @@ contains
   end function to_s_int_
 
   function to_s_real_ (value)
+    !! Convert real to string
     implicit none
     character(len=500):: to_s_real_
     real, intent(in) :: value
@@ -72,6 +79,7 @@ contains
   end function to_s_real_
 
   function to_s_double_ (value)
+    !! Convert double to string
     implicit none
     character(len=500):: to_s_double_
     double precision, intent(in) :: value
@@ -81,6 +89,7 @@ contains
   end function to_s_double_
 
   function to_s_complex_ (value)
+    !! Convert complex to string
     implicit none
     character(len=500):: to_s_complex_
     complex, intent(in) :: value
@@ -90,6 +99,7 @@ contains
   end function to_s_complex_
 
   function to_s_double_complex_ (value)
+    !! Convert complex double to string
     implicit none
     character(len=500):: to_s_double_complex_
     complex(kind=kind(1.0D0)), intent(in) :: value
@@ -99,6 +109,7 @@ contains
   end function to_s_double_complex_
 
   function to_s_logical_ (value)
+    !! Convert logical to string
     implicit none
     character(len=500):: to_s_logical_
     logical, intent(in) :: value
@@ -108,6 +119,7 @@ contains
   end function to_s_logical_
 
   function to_s_string_ (value)
+    !! Convert string to string
     implicit none
     character(len=500):: to_s_string_
     character(len=*), intent(in) :: value
@@ -115,6 +127,7 @@ contains
   end function to_s_string_
 
   function strip_(value)
+    !! Remove leading and trailing spaces
     implicit none
     character(len=500):: strip_
     character(len=*), intent(in) :: value
@@ -122,6 +135,8 @@ contains
   end function strip_
 
   function strip_length_(value, length)
+    !! Remove leading and trailing spaces
+    !! and return specified length
     implicit none
     character(len=*), intent(in) :: value
     integer, intent(in) :: length
@@ -141,6 +156,7 @@ contains
 
 
   function equalEpsilon (number1, number2, epsilon ) result (resultValue)
+    !! Check equality of reals within a certain tolerance
     real , intent (in) :: number1, number2, epsilon 
     logical :: resultValue 
 
@@ -160,6 +176,7 @@ contains
   end function equalEpsilon
 
   function floatEqual (number1, number2 ) result (resultValue)
+    !! Check equality of reals within a default tolerance
     real , intent (in) :: number1, number2
     real :: epsilon 
     logical :: resultValue 
@@ -180,6 +197,7 @@ contains
   end function floatEqual
 
   function doublePrecisionEqual (number1, number2 ) result (resultValue)
+    !! Check equality of double within a default tolerance
     double precision , intent (in) :: number1, number2
     real :: epsilon 
     logical :: resultValue 
@@ -201,6 +219,7 @@ contains
   end function doublePrecisionEqual
 
   function integerEqual (number1, number2 ) result (resultValue)
+    !! Check equality of integers
     integer , intent (in) :: number1, number2
     logical :: resultValue 
 
@@ -214,6 +233,7 @@ contains
   end function integerEqual
 
   function stringEqual (str1, str2 ) result (resultValue)
+    !! Check equality of strings
     character(*) , intent (in) :: str1, str2
     logical :: resultValue 
 
@@ -225,6 +245,7 @@ contains
   end function stringEqual
 
   function logicalEqual (l1, l2 ) result (resultValue)
+    !! Check equality of logicals
     logical, intent (in) :: l1, l2
     logical              :: resultValue 
 
@@ -238,6 +259,9 @@ end module fruit_util
 
 
 module fruit
+  !! Summary: This module contains fruit procedures and variables
+  !! This module contains the procedures and variables that the user may use 
+  !! for unit testing with fruit.
   use fruit_util
   implicit none
   private
@@ -643,6 +667,8 @@ contains
   end subroutine fruit_initialize
 
   subroutine fruit_finalize_
+    !! category: driver subroutine
+    !! Finalize FRUIT driver environment.
     !$omp critical     (FRUIT_OMP_DEALLOCATE_MESSAGE_ARRAY)
     if (allocated(message_array)) then
       deallocate(message_array)
@@ -651,6 +677,8 @@ contains
   end subroutine fruit_finalize_
 
   subroutine fruit_initialize_xml_(rank)
+    !! category: driver subroutine
+    !! Initialize XML file for FRUIT driver environment.
     integer, optional, intent(in) :: rank
     logical :: rank_zero_or_single
 
@@ -711,6 +739,8 @@ contains
   end function case_delta_t
 
   subroutine case_passed_xml_(tc_name, classname)
+    !! category: driver subroutine
+    !! Write to XML file a passed case.
     character(*), intent(in) :: tc_name
     character(*), intent(in) :: classname
     character(len = STRLEN_T) :: case_time
@@ -726,6 +756,8 @@ contains
 
 
   subroutine case_failed_xml_(tc_name, classname)
+    !! category: driver subroutine
+    !! Write to XML file a passed case.
     character(*), intent(in) :: tc_name
     character(*), intent(in) :: classname
     integer :: i, j
@@ -763,6 +795,8 @@ contains
   end subroutine case_failed_xml_
 
   subroutine fruit_summary_xml_
+    !! category: driver subroutine
+    !! Summarize FRUIT test results in XML format to result.xml file.
     character(len = XML_LINE_LENGTH) :: whole_line
     character(len = 100) :: full_count
     character(len = 100) :: fail_count
@@ -819,17 +853,24 @@ contains
 
 
   subroutine fruit_show_dots_
+    !! category: driver subroutine
+    !! Set if_show_dots variable to true.
     if_show_dots = .true.
   end subroutine fruit_show_dots_
 
 
   subroutine fruit_hide_dots_
+    !! category: driver subroutine
+    !! Set if_show_dots variable to false.
     if_show_dots = .false.
   end subroutine fruit_hide_dots_
 
 
   ! Run a named test case
   subroutine run_test_case_named_( tc, tc_name )
+    !! category: basket subroutine
+    !! summary: Run a specific test case.
+    !! Run a specific test case.
     interface
       subroutine tc()
       end subroutine
@@ -874,6 +915,9 @@ contains
 
   ! Run an 'unnamed' test case
   subroutine run_test_case_( tc )
+    !! category: basket subroutine
+    !! summary: Run a specific test case.
+    !! Run a specific test case.
     interface
       subroutine tc()
       end subroutine
@@ -885,8 +929,9 @@ contains
 
 
   subroutine fruit_summary_
+    !! category: driver subroutine
+    !! Summarize FRUIT test results to screen.
     integer :: i
-
 
     write (stdout,*)
     write (stdout,*)
@@ -926,6 +971,8 @@ contains
       & succ_assert, fail_assert, &
       & succ_case  , fail_case    &
       &)
+    !! category: driver subroutine
+    !! Print statistics of cases and asserts in default format.
     integer, intent(in) :: succ_assert, fail_assert
     integer, intent(in) :: succ_case  , fail_case
 
@@ -942,11 +989,17 @@ contains
   end subroutine fruit_summary_table_
 
   subroutine add_fail_ (message)
+    !! category: driver subroutine
+    !! summary: Print message to screen on assert failure and add to count.
+    !! Print message to screen on assert failure and add to count.
     character (*), intent (in), optional :: message
     call failed_assert_action('none', 'none', message, if_is = .true.)
   end subroutine add_fail_
 
   subroutine add_fail_unit_ (unitName, message)
+    !! category: driver subroutine
+    !! summary: Print message to screen on assert failure and add to count.
+    !! Print message to screen on assert failure and add to count.
     character (*), intent (in) :: unitName
     character (*), intent (in) :: message
 
