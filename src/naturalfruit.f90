@@ -204,7 +204,7 @@ module fruit
 
   end interface
 
-  public ::           add_fail
+  public :: add_fail
   interface add_fail
     !! category: driver subroutine
     !! summary: Print message to screen on assert failure and add to count.
@@ -225,49 +225,49 @@ module fruit
     module procedure run_test_case_named_
   end interface
 
-  public ::          fruit_initialize_xml
+  public :: fruit_initialize_xml
   interface fruit_initialize_xml
     !! category: driver subroutine
     !! Initialize FRUIT driver environment for output to XML file
     module procedure fruit_initialize_xml_
   end interface
 
-  public ::          fruit_summary
+  public :: fruit_summary
   interface fruit_summary
     !! category: driver subroutine
     !! Summarize FRUIT test results to screen.
     module procedure fruit_summary_
   end interface
 
-  public ::          fruit_summary_xml
+  public :: fruit_summary_xml
   interface fruit_summary_xml
     !! category: driver subroutine
     !! Summarize FRUIT test results in XML format to result.xml file.
     module procedure fruit_summary_xml_
   end interface
 
-  public ::          case_passed_xml
+  public :: case_passed_xml
   interface case_passed_xml
     !! category: driver subroutine
     !! Write to XML file a passed case.
     module procedure case_passed_xml_
   end interface
 
-  public ::          case_failed_xml
+  public :: case_failed_xml
   interface case_failed_xml
     !! category: driver subroutine
     !! Write to XML file a failed case.
     module procedure case_failed_xml_
   end interface
 
-  public ::          override_stdout
+  public :: override_stdout
   interface override_stdout
     !! category: driver subroutine
     !! Override stdout to a user-specified file. Terminal by default.
     module procedure override_stdout_
   end interface
 
-  public ::          end_override_stdout
+  public :: end_override_stdout
   interface end_override_stdout
     !! category: driver subroutine
     !! Revert override of stdout to default. Terminal by default.
@@ -286,35 +286,35 @@ module fruit
     module procedure end_override_xml_work_
   end interface
 
-  public ::          get_xml_filename_work
+  public :: get_xml_filename_work
   interface get_xml_filename_work
     !! category: driver subroutine
     !! Get filename of XML file. result.xml by default.
     module procedure get_xml_filename_work_
   end interface
 
-  public ::          set_xml_filename_work
+  public :: set_xml_filename_work
   interface set_xml_filename_work
     !! category: driver subroutine
     !! Set filename of XML file. result.xml by default.
     module procedure set_xml_filename_work_
   end interface
 
-  public ::          get_message_index
+  public :: get_message_index
   interface get_message_index
     !! category: driver subroutine
     !! Get number of failed assertion messages.
     module procedure get_message_index_
   end interface
 
-  public ::          get_messages
+  public :: get_messages
   interface get_messages
     !! category: driver subroutine
     !! Get failed asssertion messages to *msgs*.
     module procedure get_messages_
   end interface
 
-  public ::          get_message_array
+  public :: get_message_array
   interface get_message_array
     !! category: driver subroutine
     !! Get failed asssertion messages to *msgs*.
@@ -343,21 +343,21 @@ module fruit
     module procedure get_case_name_
   end interface
 
-  public ::          fruit_finalize
+  public :: fruit_finalize
   interface fruit_finalize
     !! category: driver subroutine
     !! Finalize FRUIT driver environment.
     module procedure fruit_finalize_
   end interface
 
-  public ::          set_prefix
+  public :: set_prefix
   interface set_prefix
     !! category: driver subroutine
     !! Set a common prefix for classname. Null by default.
     module procedure set_prefix_
   end interface
 
-  public ::          get_prefix
+  public :: get_prefix
   interface get_prefix
     !! category: driver subroutine
     !! Get a common prefix for classname. Null by default.
@@ -377,21 +377,21 @@ module fruit
     module procedure fruit_summary_table_
   end interface
 
-  public ::           fruit_if_case_failed
+  public :: fruit_if_case_failed
   interface fruit_if_case_failed
     !! category: driver subroutine
     !! Return TRUE if any assert in current case has failed.
     module procedure fruit_if_case_failed_
   end interface
 
-  public ::           fruit_hide_dots
+  public :: fruit_hide_dots
   interface fruit_hide_dots
     !! category: driver subroutine
     !! Hide dots signifying test success on screen. Visible by default.
     module procedure fruit_hide_dots_
   end interface
 
-  public ::           fruit_show_dots
+  public :: fruit_show_dots
   interface fruit_show_dots
     !! category: driver subroutine
     !! Show dots signifying test success on screen. Visible by default.
