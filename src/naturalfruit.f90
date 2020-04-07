@@ -600,7 +600,7 @@ contains
       read (xml_work, '(a)', end=999) whole_line
       write (XML_OPEN, '(a)') trim(whole_line)
     enddo
-999 continue
+    999 continue
     close (xml_work)
 
     write (XML_OPEN, '("  </testsuite>")')
@@ -1199,11 +1199,21 @@ contains
   end subroutine assert_eq_1d_logical_
 
   !------ 2d_logical ------
-  subroutine assert_eq_2d_logical_(var1, var2, n, m, message)
-    integer, intent(in) :: n, m
-    logical, intent(in) :: var1(n, m), var2(n, m)
-    integer :: i, j
+  subroutine assert_eq_2d_logical_(var1, var2, message)
+    logical, intent(in), dimension(:, :) :: var1, var2
+    integer :: i, j, n, m
     character(len=*), intent(in), optional :: message
+
+    n = size(var1, 1)
+    m = size(var1, 2)
+
+    if ((size(var2, 1) .ne. n) .and. (size(var2, 2) .ne. m)) then
+      call failed_assert_action( &
+        & to_s(n)//' x '//to_s(m), &
+        & to_s(size(var2, 1))//' x '//to_s(size(var2,1)), &
+        & '2d arrays have different sizes, '//message, if_is=.true.)
+      return
+    endif
 
     do j = 1, m
       do i = 1, n
@@ -1261,11 +1271,21 @@ contains
   end subroutine assert_eq_1d_string_
 
   !------ 2d_string ------
-  subroutine assert_eq_2d_string_(var1, var2, n, m, message)
-    integer, intent(in) :: n, m
-    character(len=*), intent(in) :: var1(n, m), var2(n, m)
-    integer :: i, j
+  subroutine assert_eq_2d_string_(var1, var2, message)
+    character(len=*), intent(in), dimension(:, :) :: var1, var2
+    integer :: i, j, n, m
     character(len=*), intent(in), optional :: message
+
+    n = size(var1, 1)
+    m = size(var1, 2)
+
+    if ((size(var2, 1) .ne. n) .and. (size(var2, 2) .ne. m)) then
+      call failed_assert_action( &
+        & to_s(n)//' x '//to_s(m), &
+        & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
+        & '2d arrays have different sizes, '//message, if_is=.true.)
+      return
+    endif
 
     do j = 1, m
       do i = 1, n
@@ -1323,11 +1343,21 @@ contains
   end subroutine assert_eq_1d_int_
 
   !------ 2d_int ------
-  subroutine assert_eq_2d_int_(var1, var2, n, m, message)
-    integer, intent(in) :: n, m
-    integer, intent(in) :: var1(n, m), var2(n, m)
-    integer :: i, j
+  subroutine assert_eq_2d_int_(var1, var2, message)
+    integer, intent(in), dimension(:, :) :: var1, var2
+    integer :: i, j, n, m
     character(len=*), intent(in), optional :: message
+
+    n = size(var1, 1)
+    m = size(var1, 2)
+
+    if ((size(var2, 1) .ne. n) .and. (size(var2, 2) .ne. m)) then
+      call failed_assert_action( &
+        & to_s(n)//' x '//to_s(m), &
+        & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
+        & '2d arrays have different sizes, '//message, if_is=.true.)
+      return
+    endif
 
     do j = 1, m
       do i = 1, n
@@ -1429,11 +1459,21 @@ contains
   end subroutine assert_eq_1d_real_in_range_
 
   !------ 2d_real ------
-  subroutine assert_eq_2d_real_(var1, var2, n, m, message)
-    integer, intent(in) :: n, m
-    integer :: i, j
-    real, intent(in) :: var1(n, m), var2(n, m)
+  subroutine assert_eq_2d_real_(var1, var2, message)
+    integer :: i, j, n, m
+    real, intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
+
+    n = size(var1, 1)
+    m = size(var1, 2)
+
+    if ((size(var2, 1) .ne. n) .and. (size(var2, 2) .ne. m)) then
+      call failed_assert_action( &
+        & to_s(n)//' x '//to_s(m), &
+        & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
+        & '2d arrays have different sizes, '//message, if_is=.true.)
+      return
+    endif
 
     do j = 1, m
       do i = 1, n
@@ -1449,12 +1489,22 @@ contains
   end subroutine assert_eq_2d_real_
 
   !------ 2d_real ------
-  subroutine assert_eq_2d_real_in_range_(var1, var2, n, m, delta, message)
-    integer, intent(in) :: n, m
-    integer :: i, j
-    real, intent(in) :: var1(n, m), var2(n, m)
+  subroutine assert_eq_2d_real_in_range_(var1, var2, delta, message)
+    integer :: i, j, n, m
+    real, intent(in), dimension(:, :) :: var1, var2
     real, intent(in) :: delta
     character(len=*), intent(in), optional :: message
+
+    n = size(var1, 1)
+    m = size(var1, 2)
+
+    if ((size(var2, 1) .ne. n) .and. (size(var2, 2) .ne. m)) then
+      call failed_assert_action( &
+        & to_s(n)//' x '//to_s(m), &
+        & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
+        & '2d arrays have different sizes, '//message, if_is=.true.)
+      return
+    endif
 
     do j = 1, m
       do i = 1, n
@@ -1556,11 +1606,21 @@ contains
   end subroutine assert_eq_1d_double_in_range_
 
   !------ 2d_double ------
-  subroutine assert_eq_2d_double_(var1, var2, n, m, message)
-    integer, intent(in) :: n, m
-    integer :: i, j
-    double precision, intent(in) :: var1(n, m), var2(n, m)
+  subroutine assert_eq_2d_double_(var1, var2, message)
+    integer :: i, j, n, m
+    double precision, intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
+
+    n = size(var1, 1)
+    m = size(var1, 2)
+
+    if ((size(var2, 1) .ne. n) .and. (size(var2, 2) .ne. m)) then
+      call failed_assert_action( &
+        & to_s(n)//' x '//to_s(m), &
+        & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
+        & '2d arrays have different sizes, '//message, if_is=.true.)
+      return
+    endif
 
     do j = 1, m
       do i = 1, n
@@ -1576,12 +1636,22 @@ contains
   end subroutine assert_eq_2d_double_
 
   !------ 2d_double ------
-  subroutine assert_eq_2d_double_in_range_(var1, var2, n, m, delta, message)
-    integer, intent(in) :: n, m
-    integer :: i, j
-    double precision, intent(in) :: var1(n, m), var2(n, m)
+  subroutine assert_eq_2d_double_in_range_(var1, var2, delta, message)
+    integer :: i, j, n, m
+    double precision, intent(in), dimension(:, :) :: var1, var2
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
+
+    n = size(var1, 1)
+    m = size(var1, 2)
+
+    if ((size(var2, 1) .ne. n) .and. (size(var2, 2) .ne. m)) then
+      call failed_assert_action( &
+        & to_s(n)//' x '//to_s(m), &
+        & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
+        & '2d arrays have different sizes, '//message, if_is=.true.)
+      return
+    endif
 
     do j = 1, m
       do i = 1, n
@@ -1689,11 +1759,21 @@ contains
   end subroutine assert_eq_1d_complex_in_range_
 
   !------ 2d_complex ------
-  subroutine assert_eq_2d_complex_(var1, var2, n, m, message)
-    integer, intent(in) :: n, m
-    integer :: i, j
-    complex(kind=kind(1.0D0)), intent(in) :: var1(n, m), var2(n, m)
+  subroutine assert_eq_2d_complex_(var1, var2, message)
+    integer :: i, j, n, m
+    complex(kind=kind(1.0D0)), intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
+
+    n = size(var1, 1)
+    m = size(var1, 2)
+
+    if ((size(var2, 1) .ne. n) .and. (size(var2, 2) .ne. m)) then
+      call failed_assert_action( &
+        & to_s(n)//' x '//to_s(m), &
+        & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
+        & '2d arrays have different sizes, '//message, if_is=.true.)
+      return
+    endif
 
     do j = 1, m
       do i = 1, n
@@ -1712,12 +1792,22 @@ contains
   end subroutine assert_eq_2d_complex_
 
   !------ 2d_complex ------
-  subroutine assert_eq_2d_complex_in_range_(var1, var2, n, m, delta, message)
-    integer, intent(in) :: n, m
-    integer :: i, j
-    complex(kind=kind(1.0D0)), intent(in) :: var1(n, m), var2(n, m)
+  subroutine assert_eq_2d_complex_in_range_(var1, var2, delta, message)
+    integer :: i, j, n, m
+    complex(kind=kind(1.0D0)), intent(in), dimension(:, :) :: var1, var2
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
+
+    n = size(var1, 1)
+    m = size(var1, 2)
+
+    if ((size(var2, 1) .ne. n) .and. (size(var2, 2) .ne. m)) then
+      call failed_assert_action( &
+        & to_s(n)//' x '//to_s(m), &
+        & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
+        & '2d arrays have different sizes, '//message, if_is=.true.)
+      return
+    endif
 
     do j = 1, m
       do i = 1, n
