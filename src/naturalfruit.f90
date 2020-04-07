@@ -15,30 +15,30 @@
 ! The methods used most are: assert_true, assert_equal
 !
 ! Coding convention:
-!   1) All methods must be exposed by interface. 
-!   2) Variable and methods are lower case connected with underscores.  
+!   1) All methods must be exposed by interface.
+!   2) Variable and methods are lower case connected with underscores.
 !      For example, fruit_initialize, and failed_assert_count.
 !
 
 module fruit
   !! Summary: This module contains fruit procedures and variables
-  !! This module contains the procedures and variables that the user may use 
+  !! This module contains the procedures and variables that the user may use
   !! for unit testing with fruit.
   implicit none
   private
 
   integer, parameter :: STDOUT_DEFAULT = 6
-  integer :: stdout   = STDOUT_DEFAULT
+  integer :: stdout = STDOUT_DEFAULT
 
   integer, parameter :: XML_OPEN = 20
   integer, parameter :: XML_WORK_DEFAULT = 21
   integer :: xml_work = XML_WORK_DEFAULT
-  character (len = *), parameter :: xml_filename     = "result.xml"
-  character (len = *), parameter :: XML_FN_WORK_DEF = "result_tmp.xml"
-  character (len = 50) :: xml_filename_work = XML_FN_WORK_DEF
+  character(len=*), parameter :: xml_filename = "result.xml"
+  character(len=*), parameter :: XML_FN_WORK_DEF = "result_tmp.xml"
+  character(len=50) :: xml_filename_work = XML_FN_WORK_DEF
 
   integer, parameter :: MAX_NUM_FAILURES_IN_XML = 10
-  integer, parameter :: XML_LINE_LENGTH = 2670  
+  integer, parameter :: XML_LINE_LENGTH = 2670
   ! xml_line_length >= max_num_failures_in_xml * (msg_length + 1) + 50
 
   integer, parameter :: STRLEN_T = 12
@@ -61,9 +61,9 @@ module fruit
   integer, private, save :: message_index_from = 1
   integer, private, save :: current_max = 50
 
-  character (len = MSG_LENGTH), private, allocatable :: message_array(:)
-  character (len = MSG_LENGTH), private, save :: msg = '[unit name not set from set_name]: '
-  character (len = MSG_LENGTH), private, save :: case_name  = DEFAULT_CASE_NAME
+  character(len=MSG_LENGTH), private, allocatable :: message_array(:)
+  character(len=MSG_LENGTH), private, save :: msg = '[unit name not set from set_name]: '
+  character(len=MSG_LENGTH), private, save :: case_name = DEFAULT_CASE_NAME
 
   integer, private, save :: successful_case_count = 0
   integer, private, save :: failed_case_count = 0
@@ -75,7 +75,7 @@ module fruit
   logical, private, save :: if_show_dots = .true.
 
   integer, parameter :: FRUIT_PREFIX_LEN_MAX = 50
-  character(len = FRUIT_PREFIX_LEN_MAX) :: prefix = ""
+  character(len=FRUIT_PREFIX_LEN_MAX) :: prefix = ""
   !---------- save ----------
 
   type ty_stack
@@ -87,8 +87,8 @@ module fruit
     integer :: message_index_from
     integer :: current_max
 
-    character (len = MSG_LENGTH), pointer :: message_array(:)
-    character (len = MSG_LENGTH) :: case_name !  = DEFAULT_CASE_NAME
+    character(len=MSG_LENGTH), pointer :: message_array(:)
+    character(len=MSG_LENGTH) :: case_name !  = DEFAULT_CASE_NAME
 
     integer :: successful_case_count
     integer :: failed_case_count
@@ -124,16 +124,16 @@ module fruit
   public :: get_assert_and_case_count
   private :: strip, to_s
 
-  interface          assert_false
+  interface assert_false
     !! Test that *var1* is false.
     module procedure assert_false_
   end interface
 
   interface assert_equal
-    !! summary: Test that *var1* and *var2* are equal. 
-    !! Test that *var1* and *var2* are equal. 
+    !! summary: Test that *var1* and *var2* are equal.
+    !! Test that *var1* and *var2* are equal.
     !! If the values do not compare equal, the test will fail.<br/><br/>
-    !! assert_equal invokes one of the following subroutines according 
+    !! assert_equal invokes one of the following subroutines according
     !! to the number or type of arguments.
     !====== begin of generated interface ======
     module procedure assert_eq_logical_
@@ -167,10 +167,10 @@ module fruit
   end interface
 
   interface assert_not_equal
-    !! summary: Test that *var1* and *var2* are not equal. 
-    !! Test that *var1* and *var2* are not equal. 
+    !! summary: Test that *var1* and *var2* are not equal.
+    !! Test that *var1* and *var2* are not equal.
     !! If the values do compare equal, the test will fail.<br/><br/>
-    !! assert_not_equal invokes one of the following subroutines according 
+    !! assert_not_equal invokes one of the following subroutines according
     !! to the number or type of arguments.
     !====== begin of generated interface ======
     module procedure assert_not_equal_logical_
@@ -205,11 +205,11 @@ module fruit
   end interface
 
   public ::           add_fail
-  interface           add_fail
+  interface add_fail
     !! category: driver subroutine
     !! summary: Print message to screen on assert failure and add to count.
     !! Print message to screen on assert failure and add to count.<br/><br/>
-    !! add_fail invokes one of the following subroutines according 
+    !! add_fail invokes one of the following subroutines according
     !! to number of arguments.
     module procedure add_fail_
     module procedure add_fail_unit_
@@ -219,183 +219,183 @@ module fruit
     !! category: basket subroutine
     !! summary: Run a specific test case.
     !! Run a specific test case.<br/><br/>
-    !! run_test_case invokes one of the following subroutines according 
+    !! run_test_case invokes one of the following subroutines according
     !! to number of arguments.
     module procedure run_test_case_
     module procedure run_test_case_named_
   end interface
 
   public ::          fruit_initialize_xml
-  interface          fruit_initialize_xml
+  interface fruit_initialize_xml
     !! category: driver subroutine
     !! Initialize FRUIT driver environment for output to XML file
     module procedure fruit_initialize_xml_
   end interface
 
   public ::          fruit_summary
-  interface          fruit_summary
+  interface fruit_summary
     !! category: driver subroutine
     !! Summarize FRUIT test results to screen.
     module procedure fruit_summary_
   end interface
 
   public ::          fruit_summary_xml
-  interface          fruit_summary_xml
+  interface fruit_summary_xml
     !! category: driver subroutine
     !! Summarize FRUIT test results in XML format to result.xml file.
     module procedure fruit_summary_xml_
   end interface
 
   public ::          case_passed_xml
-  interface          case_passed_xml
+  interface case_passed_xml
     !! category: driver subroutine
     !! Write to XML file a passed case.
     module procedure case_passed_xml_
   end interface
 
   public ::          case_failed_xml
-  interface          case_failed_xml
+  interface case_failed_xml
     !! category: driver subroutine
     !! Write to XML file a failed case.
     module procedure case_failed_xml_
   end interface
 
   public ::          override_stdout
-  interface          override_stdout
+  interface override_stdout
     !! category: driver subroutine
     !! Override stdout to a user-specified file. Terminal by default.
     module procedure override_stdout_
   end interface
 
   public ::          end_override_stdout
-  interface          end_override_stdout
+  interface end_override_stdout
     !! category: driver subroutine
     !! Revert override of stdout to default. Terminal by default.
     module procedure end_override_stdout_
   end interface
 
-  interface          override_xml_work
+  interface override_xml_work
     !! category: driver subroutine
     !! Override XML file unit number to a user-specified number. 21 by default.
     module procedure override_xml_work_
   end interface
 
-  interface          end_override_xml_work
+  interface end_override_xml_work
     !! category: driver subroutine
     !! Revert override of XML file unit number to default. 21 by default.
     module procedure end_override_xml_work_
   end interface
 
   public ::          get_xml_filename_work
-  interface          get_xml_filename_work
+  interface get_xml_filename_work
     !! category: driver subroutine
     !! Get filename of XML file. result.xml by default.
     module procedure get_xml_filename_work_
   end interface
 
   public ::          set_xml_filename_work
-  interface          set_xml_filename_work
+  interface set_xml_filename_work
     !! category: driver subroutine
     !! Set filename of XML file. result.xml by default.
     module procedure set_xml_filename_work_
   end interface
 
   public ::          get_message_index
-  interface          get_message_index
+  interface get_message_index
     !! category: driver subroutine
     !! Get number of failed assertion messages.
     module procedure get_message_index_
   end interface
 
   public ::          get_messages
-  interface          get_messages
+  interface get_messages
     !! category: driver subroutine
     !! Get failed asssertion messages to *msgs*.
     module procedure get_messages_
   end interface
 
   public ::          get_message_array
-  interface          get_message_array
+  interface get_message_array
     !! category: driver subroutine
     !! Get failed asssertion messages to *msgs*.
     module procedure get_message_array_
   end interface
 
-  interface          set_unit_name
+  interface set_unit_name
     !! category: driver subroutine
     !! Set name of unit/case to *value*.
     module procedure set_case_name_
   end interface
-  interface          set_case_name
+  interface set_case_name
     !! category: driver subroutine
     !! Set name of unit/case to *value*.
     module procedure set_case_name_
   end interface
 
-  interface          get_unit_name
+  interface get_unit_name
     !! category: driver subroutine
     !! Get name of unit/case to *value*.
     module procedure get_case_name_
   end interface
-  interface          get_case_name
+  interface get_case_name
     !! category: driver subroutine
     !! Get name of unit/case to *value*.
     module procedure get_case_name_
   end interface
 
-  public ::          fruit_finalize 
-  interface          fruit_finalize
+  public ::          fruit_finalize
+  interface fruit_finalize
     !! category: driver subroutine
     !! Finalize FRUIT driver environment.
     module procedure fruit_finalize_
   end interface
 
   public ::          set_prefix
-  interface          set_prefix
+  interface set_prefix
     !! category: driver subroutine
     !! Set a common prefix for classname. Null by default.
     module procedure set_prefix_
   end interface
 
   public ::          get_prefix
-  interface          get_prefix
+  interface get_prefix
     !! category: driver subroutine
     !! Get a common prefix for classname. Null by default.
     module procedure get_prefix_
   end interface
 
-  interface          get_assert_and_case_count
+  interface get_assert_and_case_count
     !! category: driver subroutine
     !! Get statistics of cases and asserts.
     module procedure get_assert_and_case_count_
   end interface
 
   public          :: fruit_summary_table
-  interface          fruit_summary_table
+  interface fruit_summary_table
     !! category: driver subroutine
     !! Print statistics of cases and asserts in default format.
     module procedure fruit_summary_table_
   end interface
 
   public ::           fruit_if_case_failed
-  interface           fruit_if_case_failed
+  interface fruit_if_case_failed
     !! category: driver subroutine
     !! Return TRUE if any assert in current case has failed.
-    module procedure  fruit_if_case_failed_
+    module procedure fruit_if_case_failed_
   end interface
 
   public ::           fruit_hide_dots
-  interface           fruit_hide_dots
+  interface fruit_hide_dots
     !! category: driver subroutine
     !! Hide dots signifying test success on screen. Visible by default.
-    module procedure  fruit_hide_dots_
+    module procedure fruit_hide_dots_
   end interface
 
   public ::           fruit_show_dots
-  interface           fruit_show_dots
+  interface fruit_show_dots
     !! category: driver subroutine
     !! Show dots signifying test success on screen. Visible by default.
-    module procedure  fruit_show_dots_
+    module procedure fruit_show_dots_
   end interface
 
   interface strip
@@ -434,15 +434,15 @@ contains
     endif
 
     if (if_write) then
-      write (stdout,*)
-      write (stdout,*) "Test module initialized"
-      write (stdout,*)
-      write (stdout,*) "   . : successful assert,   F : failed assert "
-      write (stdout,*)
+      write (stdout, *)
+      write (stdout, *) "Test module initialized"
+      write (stdout, *)
+      write (stdout, *) "   . : successful assert,   F : failed assert "
+      write (stdout, *)
     endif
     !$omp critical     (FRUIT_OMP_ALLOCATE_MESSAGE_ARRAY)
-    if ( .not. allocated(message_array) ) then
-      allocate(message_array(MSG_ARRAY_INCREMENT))
+    if (.not. allocated(message_array)) then
+      allocate (message_array(MSG_ARRAY_INCREMENT))
     end if
     !$omp end critical (FRUIT_OMP_ALLOCATE_MESSAGE_ARRAY)
   end subroutine fruit_initialize
@@ -452,7 +452,7 @@ contains
     !! Finalize FRUIT driver environment.
     !$omp critical     (FRUIT_OMP_DEALLOCATE_MESSAGE_ARRAY)
     if (allocated(message_array)) then
-      deallocate(message_array)
+      deallocate (message_array)
     endif
     !$omp end critical (FRUIT_OMP_DEALLOCATE_MESSAGE_ARRAY)
   end subroutine fruit_finalize_
@@ -470,52 +470,51 @@ contains
       endif
     endif
 
-
     if (rank_zero_or_single) then
-      open (XML_OPEN, file = xml_filename, action ="write", status = "replace")
-      write(XML_OPEN, '("<?xml version=""1.0"" encoding=""UTF-8""?>")')
-      write(XML_OPEN, '("<testsuites>")')
-      write(XML_OPEN, '("  <testsuite ")', advance = "no")
-      write(XML_OPEN, '(      "errors=""0"" "   )', advance = "no")
-      write(XML_OPEN, '(      "tests=""1"" "    )', advance = "no")
-      write(XML_OPEN, '(      "failures=""1"" " )', advance = "no")
-      write(XML_OPEN, '(      "name=""", a, """ ")', advance = "no") "name of test suite"
-      write(XML_OPEN, '(      "id=""1"">")')
+      open (XML_OPEN, file=xml_filename, action="write", status="replace")
+      write (XML_OPEN, '("<?xml version=""1.0"" encoding=""UTF-8""?>")')
+      write (XML_OPEN, '("<testsuites>")')
+      write (XML_OPEN, '("  <testsuite ")', advance="no")
+      write (XML_OPEN, '(      "errors=""0"" "   )', advance="no")
+      write (XML_OPEN, '(      "tests=""1"" "    )', advance="no")
+      write (XML_OPEN, '(      "failures=""1"" " )', advance="no")
+      write (XML_OPEN, '(      "name=""", a, """ ")', advance="no") "name of test suite"
+      write (XML_OPEN, '(      "id=""1"">")')
 
-      write(XML_OPEN, &
+      write (XML_OPEN, &
         &  '("    <testcase name=""", a, """ classname=""", a, """ time=""", a, """>")') &
         &  "dummy_testcase", "dummy_classname", "0"
 
-      write(XML_OPEN, '(a)', advance = "no") "      <failure type=""failure"" message="""
-      write(XML_OPEN, '(a)', advance = "no") "FRUIT did not generate regular content of result.xml."
-      write(XML_OPEN, '(a)')                 """/>"
-      write(XML_OPEN, '("    </testcase>")')
+      write (XML_OPEN, '(a)', advance="no") "      <failure type=""failure"" message="""
+      write (XML_OPEN, '(a)', advance="no") "FRUIT did not generate regular content of result.xml."
+      write (XML_OPEN, '(a)') """/>"
+      write (XML_OPEN, '("    </testcase>")')
 
-      write(XML_OPEN, '("  </testsuite>")')
-      write(XML_OPEN, '("</testsuites>")')
-      close(XML_OPEN)
+      write (XML_OPEN, '("  </testsuite>")')
+      write (XML_OPEN, '("</testsuites>")')
+      close (XML_OPEN)
     endif
 
-    open (xml_work, FILE = xml_filename_work, action ="write", status='replace')
-    close(xml_work)
+    open (xml_work, FILE=xml_filename_work, action="write", status='replace')
+    close (xml_work)
   end subroutine fruit_initialize_xml_
 
-  function  case_delta_t()
-    character(len = STRLEN_T) :: case_delta_t
+  function case_delta_t()
+    character(len=STRLEN_T) :: case_delta_t
     real :: delta_t
     integer :: case_time_to, time_rate, time_max
 
     call system_clock(case_time_to, time_rate, time_max)
     if (time_rate > 0) then
-      delta_t = real(case_time_to - case_time_from) / real(time_rate)
+      delta_t = real(case_time_to - case_time_from)/real(time_rate)
       if (delta_t < 0) then
-        delta_t = delta_t + real(time_max) / real(time_rate)
+        delta_t = delta_t + real(time_max)/real(time_rate)
       endif
     else
       delta_t = 0
     endif
 
-    write(case_delta_t, '(g12.4)') delta_t
+    write (case_delta_t, '(g12.4)') delta_t
     case_delta_t = adjustl(case_delta_t)
   end function case_delta_t
 
@@ -524,17 +523,16 @@ contains
     !! Write to XML file a passed case.
     character(*), intent(in) :: tc_name
     character(*), intent(in) :: classname
-    character(len = STRLEN_T) :: case_time
+    character(len=STRLEN_T) :: case_time
 
     case_time = case_delta_t()
 
-    open (xml_work, FILE = xml_filename_work, position='append')
-    write(xml_work, &
+    open (xml_work, FILE=xml_filename_work, position='append')
+    write (xml_work, &
       &  '("    <testcase name=""", a, """ classname=""", a, a, """ time=""", a, """/>")') &
       &  trim(tc_name), trim(prefix), trim(classname), trim(case_time)
-    close(xml_work)
+    close (xml_work)
   end subroutine case_passed_xml_
-
 
   subroutine case_failed_xml_(tc_name, classname)
     !! category: driver subroutine
@@ -542,82 +540,81 @@ contains
     character(*), intent(in) :: tc_name
     character(*), intent(in) :: classname
     integer :: i, j
-    character(len = STRLEN_T) :: case_time
+    character(len=STRLEN_T) :: case_time
 
     case_time = case_delta_t()
 
-    open (xml_work, FILE = xml_filename_work, position='append')
-    write(xml_work, &
+    open (xml_work, FILE=xml_filename_work, position='append')
+    write (xml_work, &
       &  '("    <testcase name=""", a, """ classname=""", a, a, """ time=""", a, """>")') &
       &  trim(tc_name), trim(prefix), trim(classname), trim(case_time)
 
-    write(xml_work, '("      <failure type=""failure"" message=""")', advance = "no")
+    write (xml_work, '("      <failure type=""failure"" message=""")', advance="no")
 
     do i = message_index_from, message_index - 1
       j = i - message_index_from + 1
       if (j > MAX_NUM_FAILURES_IN_XML) then
-        write(xml_work, '("(omit the rest)")', advance="no")
+        write (xml_work, '("(omit the rest)")', advance="no")
         exit
       endif
 
-      write(xml_work, '(a)', advance = "no") trim(strip(message_array(i)))
+      write (xml_work, '(a)', advance="no") trim(strip(message_array(i)))
 
       if (i == message_index - 1) then
         continue
       else
-        write(xml_work, '("&#xA;")', advance="no")
+        write (xml_work, '("&#xA;")', advance="no")
       endif
     enddo
-    write(xml_work, '("""/>")')
+    write (xml_work, '("""/>")')
 
-    write(xml_work, &
+    write (xml_work, &
       &  '("    </testcase>")')
-    close(xml_work)
+    close (xml_work)
   end subroutine case_failed_xml_
 
   subroutine fruit_summary_xml_
     !! category: driver subroutine
     !! Summarize FRUIT test results in XML format to result.xml file.
-    character(len = XML_LINE_LENGTH) :: whole_line
-    character(len = 100) :: full_count
-    character(len = 100) :: fail_count
+    character(len=XML_LINE_LENGTH) :: whole_line
+    character(len=100) :: full_count
+    character(len=100) :: fail_count
 
     full_count = int_to_str(successful_case_count + failed_case_count)
     fail_count = int_to_str(failed_case_count)
 
-    open (XML_OPEN, file = xml_filename, action ="write", status = "replace")
-    write(XML_OPEN, '("<?xml version=""1.0"" encoding=""UTF-8""?>")')
-    write(XML_OPEN, '("<testsuites>")')
-    write(XML_OPEN, '("  <testsuite errors=""0"" ")', advance = "no")
-    write(XML_OPEN, '("tests=""", a, """ ")', advance = "no") &
+    open (XML_OPEN, file=xml_filename, action="write", status="replace")
+    write (XML_OPEN, '("<?xml version=""1.0"" encoding=""UTF-8""?>")')
+    write (XML_OPEN, '("<testsuites>")')
+    write (XML_OPEN, '("  <testsuite errors=""0"" ")', advance="no")
+    write (XML_OPEN, '("tests=""", a, """ ")', advance="no") &
       &  trim(full_count)
-    write(XML_OPEN, '("failures=""", a, """ ")', advance = "no") &
+    write (XML_OPEN, '("failures=""", a, """ ")', advance="no") &
       &  trim(fail_count)
-    write(XML_OPEN, '("name=""", a, """ ")', advance = "no") &
+    write (XML_OPEN, '("name=""", a, """ ")', advance="no") &
       &  "name of test suite"
-    write(XML_OPEN, '("id=""1"">")')
+    write (XML_OPEN, '("id=""1"">")')
 
-    open (xml_work, FILE = xml_filename_work)
+    open (xml_work, FILE=xml_filename_work)
     do
-      read(xml_work, '(a)', end = 999) whole_line
-      write(XML_OPEN, '(a)') trim(whole_line)
+      read (xml_work, '(a)', end=999) whole_line
+      write (XML_OPEN, '(a)') trim(whole_line)
     enddo
-    999 continue
-    close(xml_work)
+999 continue
+    close (xml_work)
 
-    write(XML_OPEN, '("  </testsuite>")')
-    write(XML_OPEN, '("</testsuites>")')
-    close(XML_OPEN)
+    write (XML_OPEN, '("  </testsuite>")')
+    write (XML_OPEN, '("</testsuites>")')
+    close (XML_OPEN)
   end subroutine fruit_summary_xml_
 
   function int_to_str(i)
     integer, intent(in) :: i
-    character(LEN = NUMBER_LENGTH) :: int_to_str
+    character(LEN=NUMBER_LENGTH) :: int_to_str
 
-    write(int_to_str, '(i10)') i
+    write (int_to_str, '(i10)') i
     int_to_str = adjustl(int_to_str)
   end function int_to_str
-
 
   logical function fruit_if_case_failed_()
     if (failed_assert_count == 0) then
@@ -632,13 +629,11 @@ contains
     endif
   end function fruit_if_case_failed_
 
-
   subroutine fruit_show_dots_
     !! category: driver subroutine
     !! Set if_show_dots variable to true.
     if_show_dots = .true.
   end subroutine fruit_show_dots_
-
 
   subroutine fruit_hide_dots_
     !! category: driver subroutine
@@ -646,9 +641,8 @@ contains
     if_show_dots = .false.
   end subroutine fruit_hide_dots_
 
-
   ! Run a named test case
-  subroutine run_test_case_named_( tc, tc_name )
+  subroutine run_test_case_named_(tc, tc_name)
     !! category: basket subroutine
     !! summary: Run a specific test case.
     !! Run a specific test case.
@@ -663,7 +657,7 @@ contains
     initial_failed_assert_count = failed_assert_count
 
     ! Set the name of the unit test
-    call set_case_name( tc_name )
+    call set_case_name(tc_name)
 
     last_passed = .true.
     case_passed = .true.
@@ -679,23 +673,23 @@ contains
 
     !$OMP BARRIER
 
-    if ( initial_failed_assert_count .eq. failed_assert_count ) then
+    if (initial_failed_assert_count .eq. failed_assert_count) then
       ! If no additional assertions failed during the run of this test case
       ! then the test case was successful
-      successful_case_count = successful_case_count+1
+      successful_case_count = successful_case_count + 1
     else
-      failed_case_count = failed_case_count+1
+      failed_case_count = failed_case_count + 1
     end if
 
-    testCaseIndex = testCaseIndex+1
+    testCaseIndex = testCaseIndex + 1
 
     ! Reset the name of the unit test back to the default
-    call set_case_name( DEFAULT_CASE_NAME )
+    call set_case_name(DEFAULT_CASE_NAME)
 
   end subroutine run_test_case_named_
 
   ! Run an 'unnamed' test case
-  subroutine run_test_case_( tc )
+  subroutine run_test_case_(tc)
     !! category: basket subroutine
     !! summary: Run a specific test case.
     !! Run a specific test case.
@@ -704,45 +698,44 @@ contains
       end subroutine
     end interface
 
-    call run_test_case_named_( tc, '_unnamed_' )
+    call run_test_case_named_(tc, '_unnamed_')
 
   end subroutine run_test_case_
-
 
   subroutine fruit_summary_
     !! category: driver subroutine
     !! Summarize FRUIT test results to screen.
     integer :: i
 
-    write (stdout,*)
-    write (stdout,*)
-    write (stdout,*) '    Start of FRUIT summary: '
-    write (stdout,*)
+    write (stdout, *)
+    write (stdout, *)
+    write (stdout, *) '    Start of FRUIT summary: '
+    write (stdout, *)
 
     if (failed_assert_count > 0) then
-      write (stdout,*) 'Some tests failed!'
+      write (stdout, *) 'Some tests failed!'
     else
-      write (stdout,*) 'SUCCESSFUL!'
+      write (stdout, *) 'SUCCESSFUL!'
     end if
 
-    write (stdout,*)
-    if ( message_index > 1) then
-      write (stdout,*) '  -- Failed assertion messages:'
+    write (stdout, *)
+    if (message_index > 1) then
+      write (stdout, *) '  -- Failed assertion messages:'
 
       do i = 1, message_index - 1
-        write (stdout,"(A)") '   '//trim(strip(message_array(i)))
+        write (stdout, "(A)") '   '//trim(strip(message_array(i)))
       end do
 
-      write (stdout,*) '  -- end of failed assertion messages.'
-      write (stdout,*)
+      write (stdout, *) '  -- end of failed assertion messages.'
+      write (stdout, *)
     else
-      write (stdout,*) '  No messages '
+      write (stdout, *) '  No messages '
     end if
 
     if (successful_assert_count + failed_assert_count /= 0) then
       call fruit_summary_table_(&
         & successful_assert_count, failed_assert_count, &
-        & successful_case_count,   failed_case_count &
+        & successful_case_count, failed_case_count &
         &)
     end if
     write (stdout, *) '  -- end of FRUIT summary'
@@ -750,52 +743,52 @@ contains
 
   subroutine fruit_summary_table_(&
       & succ_assert, fail_assert, &
-      & succ_case  , fail_case    &
+      & succ_case, fail_case    &
       &)
     !! category: driver subroutine
     !! Print statistics of cases and asserts in default format.
     integer, intent(in) :: succ_assert, fail_assert
-    integer, intent(in) :: succ_case  , fail_case
+    integer, intent(in) :: succ_case, fail_case
 
-    write (stdout,*) 'Total asserts :   ', succ_assert + fail_assert
-    write (stdout,*) 'Successful    :   ', succ_assert
-    write (stdout,*) 'Failed        :   ', fail_assert
-    write (stdout,'("Successful rate:   ",f6.2,"%")')  real(succ_assert) * 100.0 / &
-      real (succ_assert + fail_assert)
+    write (stdout, *) 'Total asserts :   ', succ_assert + fail_assert
+    write (stdout, *) 'Successful    :   ', succ_assert
+    write (stdout, *) 'Failed        :   ', fail_assert
+    write (stdout, '("Successful rate:   ",f6.2,"%")') real(succ_assert)*100.0/ &
+      real(succ_assert + fail_assert)
     write (stdout, *)
-    write (stdout,*) 'Successful asserts / total asserts : [ ',&
+    write (stdout, *) 'Successful asserts / total asserts : [ ', &
       succ_assert, '/', succ_assert + fail_assert, ' ]'
-    write (stdout,*) 'Successful cases   / total cases   : [ ', succ_case, '/', &
+    write (stdout, *) 'Successful cases   / total cases   : [ ', succ_case, '/', &
       succ_case + fail_case, ' ]'
   end subroutine fruit_summary_table_
 
-  subroutine add_fail_ (message)
+  subroutine add_fail_(message)
     !! category: driver subroutine
     !! summary: Print message to screen on assert failure and add to count.
     !! Print message to screen on assert failure and add to count.
-    character (*), intent (in), optional :: message
-    call failed_assert_action('none', 'none', message, if_is = .true.)
+    character(*), intent(in), optional :: message
+    call failed_assert_action('none', 'none', message, if_is=.true.)
   end subroutine add_fail_
 
-  subroutine add_fail_unit_ (unitName, message)
+  subroutine add_fail_unit_(unitName, message)
     !! category: driver subroutine
     !! summary: Print message to screen on assert failure and add to count.
     !! Print message to screen on assert failure and add to count.
-    character (*), intent (in) :: unitName
-    character (*), intent (in) :: message
+    character(*), intent(in) :: unitName
+    character(*), intent(in) :: message
 
-    call add_fail_ ("[in " //  unitName // "(fail)]: " //  message)
+    call add_fail_("[in "//unitName//"(fail)]: "//message)
   end subroutine add_fail_unit_
 
   subroutine is_all_successful(result)
     !! category: driver subroutine
     !! Return true to *result* if any assert has failed till now.
     logical, intent(out) :: result
-    result= (failed_assert_count .eq. 0 )
+    result = (failed_assert_count .eq. 0)
   end subroutine is_all_successful
 
   ! Private, helper routine to wrap lines of success/failed marks
-  subroutine output_mark_( chr )
+  subroutine output_mark_(chr)
     !! Wrap lines of success/failed marks
     character(1), intent(in) :: chr
     !  integer, save :: linechar_count = 0
@@ -804,10 +797,10 @@ contains
 
     !$omp critical      (FRUIT_OMP_ADD_OUTPUT_MARK)
     linechar_count = linechar_count + 1
-    if ( linechar_count .lt. MAX_MARKS_PER_LINE ) then
-      write(stdout,"(A1)",ADVANCE='NO') chr
+    if (linechar_count .lt. MAX_MARKS_PER_LINE) then
+      write (stdout, "(A1)", ADVANCE='NO') chr
     else
-      write(stdout,"(A1)",ADVANCE='YES') chr
+      write (stdout, "(A1)", ADVANCE='YES') chr
       linechar_count = 0
     endif
     !$omp end critical  (FRUIT_OMP_ADD_OUTPUT_MARK)
@@ -815,12 +808,12 @@ contains
 
   subroutine success_mark_
     !! Print success mark
-    call output_mark_( '.' )
+    call output_mark_('.')
   end subroutine success_mark_
 
   subroutine failed_mark_
     !! Print failed mark
-    call output_mark_( 'F' )
+    call output_mark_('F')
   end subroutine failed_mark_
 
   subroutine increase_message_stack_
@@ -833,14 +826,14 @@ contains
 
     if (message_index > current_max) then
       msg_swap_holder(1:current_max) = message_array(1:current_max)
-      deallocate(message_array)
+      deallocate (message_array)
       current_max = current_max + MSG_ARRAY_INCREMENT
-      allocate(message_array(current_max))
+      allocate (message_array(current_max))
       message_array(1:current_max - MSG_ARRAY_INCREMENT) &
-        = msg_swap_holder(1: current_max - MSG_ARRAY_INCREMENT)
+        = msg_swap_holder(1:current_max - MSG_ARRAY_INCREMENT)
     end if
 
-    message_array (message_index) = msg
+    message_array(message_index) = msg
     if (message_index == MAX_MSG_STACK_SIZE) then
       message_array(message_index) = "Max number of messages reached. Further messages suppressed."
     endif
@@ -848,33 +841,31 @@ contains
     message_index = message_index + 1
 
     if (message_index > MAX_MSG_STACK_SIZE) then
-      write(stdout,*) "Stop because there are too many error messages to put into stack."
-      write(stdout,*) "Try to increase MAX_MSG_STACK_SIZE if you really need so."
+      write (stdout, *) "Stop because there are too many error messages to put into stack."
+      write (stdout, *) "Try to increase MAX_MSG_STACK_SIZE if you really need so."
     end if
   end subroutine increase_message_stack_
-
 
   subroutine get_xml_filename_work_(string)
     !! category: driver subroutine
     !! Get filename of XML file. result.xml by default.
-    character(len = *), intent(out) :: string
+    character(len=*), intent(out) :: string
     string = trim(xml_filename_work)
   end subroutine get_xml_filename_work_
 
   subroutine set_xml_filename_work_(string)
     !! category: driver subroutine
     !! Set filename of XML file. result.xml by default.
-    character(len = *), intent(in) :: string
+    character(len=*), intent(in) :: string
     xml_filename_work = trim(string)
   end subroutine set_xml_filename_work_
-
 
   function get_last_message()
     !! category: driver subroutine
     !! Return last message.
     character(len=MSG_LENGTH) :: get_last_message
     if (message_index > 1) then
-      get_last_message = strip(message_array(message_index-1), MSG_LENGTH)
+      get_last_message = strip(message_array(message_index - 1), MSG_LENGTH)
     else
       get_last_message = ''
     end if
@@ -888,11 +879,10 @@ contains
     index = message_index
   end subroutine get_message_index_
 
-
   subroutine get_message_array_(msgs)
     !! category: driver subroutine
     !! Get failed asssertion messages to *msgs*.
-    character(len = *), intent(out) :: msgs(:)
+    character(len=*), intent(out) :: msgs(:)
     integer :: i
     msgs(:) = ""
 
@@ -901,11 +891,10 @@ contains
     enddo
   end subroutine get_message_array_
 
-
   subroutine get_messages_(msgs)
     !! category: driver subroutine
     !! Get failed asssertion messages to *msgs*.
-    character(len = *), intent(out) :: msgs(:)
+    character(len=*), intent(out) :: msgs(:)
     integer :: i, j
 
     msgs(:) = ""
@@ -924,7 +913,7 @@ contains
     count = successful_assert_count + failed_assert_count
   end subroutine get_total_count
 
-  subroutine get_failed_count (count)
+  subroutine get_failed_count(count)
     !! category: driver subroutine
     !! Get number of assert failures.
     integer, intent(out) :: count
@@ -945,7 +934,7 @@ contains
     endif
   end subroutine add_success
 
-  subroutine failed_assert_action (expected, got, message, if_is)
+  subroutine failed_assert_action(expected, got, message, if_is)
     !! category: driver subroutine
     !! Print *message* to screen and take necessary actions for assert failure.
     character(*), intent(in) :: expected, got
@@ -954,9 +943,9 @@ contains
 
     !$omp critical     (FRUIT_OMP_ADD_FAIL)
     if (present(if_is)) then
-      call make_error_msg_ (expected, got, if_is,  message)
+      call make_error_msg_(expected, got, if_is, message)
     else
-      call make_error_msg_ (expected, got, .true., message)
+      call make_error_msg_(expected, got, .true., message)
     endif
     call increase_message_stack_
     failed_assert_count = failed_assert_count + 1
@@ -976,23 +965,23 @@ contains
     value = strip(case_name)
   end subroutine get_case_name_
 
-  subroutine make_error_msg_ (var1, var2, if_is, message)
+  subroutine make_error_msg_(var1, var2, if_is, message)
     character(*), intent(in) :: var1, var2
-    logical,      intent(in)           :: if_is
+    logical, intent(in)           :: if_is
     character(*), intent(in), optional :: message
 
-    msg = '[' // trim(strip(case_name)) // ']: ' 
+    msg = '['//trim(strip(case_name))//']: '
     if (if_is) then
-      msg = trim(msg) //     'Expected'
+      msg = trim(msg)//'Expected'
     else
-      msg = trim(msg) // 'Expected Not'
+      msg = trim(msg)//'Expected Not'
     endif
-    msg = trim(msg) // " " // '[' // trim(strip(var1)) // '], '
-    msg = trim(msg) // " " // 'Got'
-    msg = trim(msg) // " " // '[' // trim(strip(var2)) // ']'
+    msg = trim(msg)//" "//'['//trim(strip(var1))//'], '
+    msg = trim(msg)//" "//'Got'
+    msg = trim(msg)//" "//'['//trim(strip(var2))//']'
 
     if (present(message)) then
-      msg = trim(msg) // '; User message: [' // trim(message) // ']'
+      msg = trim(msg)//'; User message: ['//trim(message)//']'
     endif
   end subroutine make_error_msg_
 
@@ -1012,35 +1001,35 @@ contains
 
   subroutine override_stdout_(write_unit, filename)
     integer, intent(in) ::    write_unit
-    character(len = *), intent(in) :: filename
+    character(len=*), intent(in) :: filename
 
     stdout = write_unit
-    open(stdout, file = filename, action = "write", status = "replace")
+    open (stdout, file=filename, action="write", status="replace")
   end subroutine override_stdout_
 
   subroutine override_xml_work_(new_unit, filename)
     integer, intent(in) ::    new_unit
-    character(len = *), intent(in) :: filename
+    character(len=*), intent(in) :: filename
 
     xml_work = new_unit
     xml_filename_work = filename
-    open(xml_work, file = filename, action = "write", status = "replace")
+    open (xml_work, file=filename, action="write", status="replace")
   end subroutine override_xml_work_
 
   subroutine stash_test_suite
-    !! category: driver subroutine 
+    !! category: driver subroutine
     !! Stash results of test case for later use.
     stashed_suite%successful_assert_count = successful_assert_count
     successful_assert_count = 0
 
-    stashed_suite%failed_assert_count     = failed_assert_count
+    stashed_suite%failed_assert_count = failed_assert_count
     failed_assert_count = 0
 
-    allocate(stashed_suite%message_array(current_max))
+    allocate (stashed_suite%message_array(current_max))
     stashed_suite%message_array(1:message_index) = &
       & message_array(1:message_index)
-    deallocate(message_array)
-    allocate(message_array(MSG_ARRAY_INCREMENT))
+    deallocate (message_array)
+    allocate (message_array(MSG_ARRAY_INCREMENT))
 
     stashed_suite%message_index = message_index
     message_index = 1
@@ -1051,9 +1040,9 @@ contains
     current_max = 50
     stashed_suite%successful_case_count = successful_case_count
     successful_case_count = 0
-    stashed_suite%failed_case_count     = failed_case_count
+    stashed_suite%failed_case_count = failed_case_count
     failed_case_count = 0
-    stashed_suite%testCaseIndex         = testCaseIndex
+    stashed_suite%testCaseIndex = testCaseIndex
     testCaseIndex = 1
     stashed_suite%case_name = case_name
     case_name = DEFAULT_CASE_NAME
@@ -1071,47 +1060,47 @@ contains
   end subroutine stash_test_suite
 
   subroutine restore_test_suite
-    !! category: driver subroutine 
+    !! category: driver subroutine
     !! Restore results of test case for use.
     successful_assert_count = stashed_suite%successful_assert_count
-    failed_assert_count     = stashed_suite%failed_assert_count
+    failed_assert_count = stashed_suite%failed_assert_count
 
     message_index = stashed_suite%message_index
     message_index_from = stashed_suite%message_index_from
-    current_max  = stashed_suite%current_max
+    current_max = stashed_suite%current_max
 
-    deallocate(message_array)
-    allocate(  message_array(current_max))
+    deallocate (message_array)
+    allocate (message_array(current_max))
     message_array(1:message_index) = &
       & stashed_suite%message_array(1:message_index)
-    deallocate(stashed_suite%message_array)
+    deallocate (stashed_suite%message_array)
 
     successful_case_count = stashed_suite%successful_case_count
-    failed_case_count     = stashed_suite%failed_case_count
-    testCaseIndex         = stashed_suite%testCaseIndex
+    failed_case_count = stashed_suite%failed_case_count
+    testCaseIndex = stashed_suite%testCaseIndex
 
-    case_name          = stashed_suite%case_name
-    last_passed        = stashed_suite%last_passed
-    case_passed        = stashed_suite%case_passed
-    case_time_from     = stashed_suite%case_time_from
-    linechar_count     = stashed_suite%linechar_count
-    if_show_dots       = stashed_suite%if_show_dots
+    case_name = stashed_suite%case_name
+    last_passed = stashed_suite%last_passed
+    case_passed = stashed_suite%case_passed
+    case_time_from = stashed_suite%case_time_from
+    linechar_count = stashed_suite%linechar_count
+    if_show_dots = stashed_suite%if_show_dots
   end subroutine restore_test_suite
 
   subroutine end_override_stdout_
-    close(stdout)
+    close (stdout)
     stdout = STDOUT_DEFAULT
   end subroutine end_override_stdout_
 
   subroutine end_override_xml_work_
-    close(xml_work)
+    close (xml_work)
     xml_work = XML_WORK_DEFAULT
     xml_filename_work = XML_FN_WORK_DEF
   end subroutine end_override_xml_work_
 
   subroutine set_prefix_(str)
-    character (len = *), intent(in) :: str
-    character (len = len_trim(str)) :: str2
+    character(len=*), intent(in) :: str
+    character(len=len_trim(str)) :: str2
 
     str2 = trim(adjustl(str))
     if (len_trim(str2) <= FRUIT_PREFIX_LEN_MAX) then
@@ -1122,7 +1111,7 @@ contains
   end subroutine set_prefix_
 
   subroutine get_prefix_(str)
-    character (len = *), intent(out) :: str
+    character(len=*), intent(out) :: str
 
     if (len(str) <= len(prefix)) then
       str = trim(prefix)
@@ -1134,37 +1123,35 @@ contains
   subroutine get_assert_and_case_count_(fail_assert, suc_assert, fail_case, suc_case)
     integer, intent(out) :: fail_assert, suc_assert, fail_case, suc_case
 
-    fail_assert =     failed_assert_count
+    fail_assert = failed_assert_count
     suc_assert = successful_assert_count
-    fail_case   =     failed_case_count
-    suc_case   = successful_case_count
+    fail_case = failed_case_count
+    suc_case = successful_case_count
   end subroutine get_assert_and_case_count_
-
 
   !--------------------------------------------------------------------------------
   ! all assertions
   !--------------------------------------------------------------------------------
-  subroutine assert_true (var1, message)
+  subroutine assert_true(var1, message)
     !! Test that *var1* is true.
-    logical, intent (in) :: var1
-    character (*), intent (in), optional :: message
+    logical, intent(in) :: var1
+    character(*), intent(in), optional :: message
 
-    if ( var1 .eqv. .true.) then
+    if (var1 .eqv. .true.) then
       call add_success
     else
-      call failed_assert_action(to_s(.true.), to_s(var1), message, if_is = .true.)
+      call failed_assert_action(to_s(.true.), to_s(var1), message, if_is=.true.)
     end if
   end subroutine assert_true
 
-
   subroutine assert_false_(var1, message)
     logical, intent(in) :: var1
-    character(len = *), intent(in), optional :: message
+    character(len=*), intent(in), optional :: message
 
     if (var1 .eqv. .false.) then
       call add_success
     else
-      call failed_assert_action(to_s(.true.), to_s(var1), message, if_is = .false.)
+      call failed_assert_action(to_s(.true.), to_s(var1), message, if_is=.false.)
     endif
   end subroutine assert_false_
 
@@ -1173,14 +1160,14 @@ contains
   subroutine assert_eq_logical_(var1, var2, message)
     !! display: none
 
-    logical, intent (in) :: var1, var2
+    logical, intent(in) :: var1, var2
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
 
     if (var1 .neqv. var2) then
       call failed_assert_action(&
         & to_s(var1), &
-        & to_s(var2), message, if_is = .true.)
+        & to_s(var2), message, if_is=.true.)
       return
     endif
 
@@ -1189,16 +1176,16 @@ contains
 
   !------ 1d_logical ------
   subroutine assert_eq_1d_logical_(var1, var2, n, message)
-    integer, intent (in) :: n
+    integer, intent(in) :: n
     integer              :: i
-    logical, intent (in) :: var1(n), var2(n)
+    logical, intent(in) :: var1(n), var2(n)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     do i = 1, n
       if (var1(i) .neqv. var2(i)) then
         call failed_assert_action(&
           & to_s(var1(i)), &
-          & to_s(var2(i)), '1d array has difference, ' // message, if_is = .true.)
+          & to_s(var2(i)), '1d array has difference, '//message, if_is=.true.)
         return
       endif
     enddo
@@ -1207,17 +1194,17 @@ contains
 
   !------ 2d_logical ------
   subroutine assert_eq_2d_logical_(var1, var2, n, m, message)
-    integer, intent (in) :: n, m
+    integer, intent(in) :: n, m
     integer              :: i, j
-    logical, intent (in) :: var1(n, m), var2(n, m)
+    logical, intent(in) :: var1(n, m), var2(n, m)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     do j = 1, m
       do i = 1, n
         if (var1(i, j) .neqv. var2(i, j)) then
           call failed_assert_action(&
             & to_s(var1(i, j)), &
-            & to_s(var2(i, j)), '2d array has difference, ' // message, if_is = .true.)
+            & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
           return
         endif
       enddo
@@ -1228,14 +1215,14 @@ contains
   !------ 0d_string ------
   subroutine assert_eq_string_(var1, var2, message)
 
-    character (len = *), intent (in) :: var1, var2
+    character(len=*), intent(in) :: var1, var2
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
 
     if (trim(strip(var1)) /= trim(strip(var2))) then
       call failed_assert_action(&
         & to_s(var1), &
-        & to_s(var2), message, if_is = .true.)
+        & to_s(var2), message, if_is=.true.)
       return
     endif
 
@@ -1244,16 +1231,16 @@ contains
 
   !------ 1d_string ------
   subroutine assert_eq_1d_string_(var1, var2, n, message)
-    integer, intent (in) :: n
+    integer, intent(in) :: n
     integer              :: i
-    character (len = *), intent (in) :: var1(n), var2(n)
+    character(len=*), intent(in) :: var1(n), var2(n)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     do i = 1, n
       if (trim(strip(var1(i))) /= trim(strip(var2(i)))) then
         call failed_assert_action(&
           & to_s(var1(i)), &
-          & to_s(var2(i)), '1d array has difference, ' // message, if_is = .true.)
+          & to_s(var2(i)), '1d array has difference, '//message, if_is=.true.)
         return
       endif
     enddo
@@ -1262,17 +1249,17 @@ contains
 
   !------ 2d_string ------
   subroutine assert_eq_2d_string_(var1, var2, n, m, message)
-    integer, intent (in) :: n, m
+    integer, intent(in) :: n, m
     integer              :: i, j
-    character (len = *), intent (in) :: var1(n, m), var2(n, m)
+    character(len=*), intent(in) :: var1(n, m), var2(n, m)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     do j = 1, m
       do i = 1, n
         if (trim(strip(var1(i, j))) /= trim(strip(var2(i, j)))) then
           call failed_assert_action(&
             & to_s(var1(i, j)), &
-            & to_s(var2(i, j)), '2d array has difference, ' // message, if_is = .true.)
+            & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
           return
         endif
       enddo
@@ -1283,14 +1270,14 @@ contains
   !------ 0d_int ------
   subroutine assert_eq_int_(var1, var2, message)
 
-    integer, intent (in) :: var1, var2
+    integer, intent(in) :: var1, var2
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
 
     if (var1 /= var2) then
       call failed_assert_action(&
         & to_s(var1), &
-        & to_s(var2), message, if_is = .true.)
+        & to_s(var2), message, if_is=.true.)
       return
     endif
 
@@ -1299,16 +1286,16 @@ contains
 
   !------ 1d_int ------
   subroutine assert_eq_1d_int_(var1, var2, n, message)
-    integer, intent (in) :: n
+    integer, intent(in) :: n
     integer              :: i
-    integer, intent (in) :: var1(n), var2(n)
+    integer, intent(in) :: var1(n), var2(n)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     do i = 1, n
       if (var1(i) /= var2(i)) then
         call failed_assert_action(&
           & to_s(var1(i)), &
-          & to_s(var2(i)), '1d array has difference, ' // message, if_is = .true.)
+          & to_s(var2(i)), '1d array has difference, '//message, if_is=.true.)
         return
       endif
     enddo
@@ -1317,17 +1304,17 @@ contains
 
   !------ 2d_int ------
   subroutine assert_eq_2d_int_(var1, var2, n, m, message)
-    integer, intent (in) :: n, m
+    integer, intent(in) :: n, m
     integer              :: i, j
-    integer, intent (in) :: var1(n, m), var2(n, m)
+    integer, intent(in) :: var1(n, m), var2(n, m)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     do j = 1, m
       do i = 1, n
         if (var1(i, j) /= var2(i, j)) then
           call failed_assert_action(&
             & to_s(var1(i, j)), &
-            & to_s(var2(i, j)), '2d array has difference, ' // message, if_is = .true.)
+            & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
           return
         endif
       enddo
@@ -1338,14 +1325,14 @@ contains
   !------ 0d_real ------
   subroutine assert_eq_real_(var1, var2, message)
 
-    real, intent (in) :: var1, var2
+    real, intent(in) :: var1, var2
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
 
     if ((var1 < var2) .or. (var1 > var2)) then
       call failed_assert_action(&
         & to_s(var1), &
-        & to_s(var2), message, if_is = .true.)
+        & to_s(var2), message, if_is=.true.)
       return
     endif
 
@@ -1355,14 +1342,14 @@ contains
   !------ 0d_real ------
   subroutine assert_eq_real_in_range_(var1, var2, delta, message)
 
-    real, intent (in) :: var1, var2
-    real, intent (in) :: delta
-    character(len = *), intent (in), optional :: message
+    real, intent(in) :: var1, var2
+    real, intent(in) :: delta
+    character(len=*), intent(in), optional :: message
 
     if (abs(var1 - var2) > delta) then
       call failed_assert_action(&
         & to_s(var1), &
-        & to_s(var2), message, if_is = .true.)
+        & to_s(var2), message, if_is=.true.)
       return
     endif
 
@@ -1371,16 +1358,16 @@ contains
 
   !------ 1d_real ------
   subroutine assert_eq_1d_real_(var1, var2, n, message)
-    integer, intent (in) :: n
+    integer, intent(in) :: n
     integer              :: i
-    real, intent (in) :: var1(n), var2(n)
+    real, intent(in) :: var1(n), var2(n)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     do i = 1, n
       if ((var1(i) < var2(i)) .or. (var1(i) > var2(i))) then
         call failed_assert_action(&
           & to_s(var1(i)), &
-          & to_s(var2(i)), '1d array has difference, ' // message, if_is = .true.)
+          & to_s(var2(i)), '1d array has difference, '//message, if_is=.true.)
         return
       endif
     enddo
@@ -1389,16 +1376,16 @@ contains
 
   !------ 1d_real ------
   subroutine assert_eq_1d_real_in_range_(var1, var2, n, delta, message)
-    integer, intent (in) :: n
+    integer, intent(in) :: n
     integer              :: i
-    real, intent (in) :: var1(n), var2(n)
-    real, intent (in) :: delta
-    character(len = *), intent (in), optional :: message
+    real, intent(in) :: var1(n), var2(n)
+    real, intent(in) :: delta
+    character(len=*), intent(in), optional :: message
     do i = 1, n
       if (abs(var1(i) - var2(i)) > delta) then
         call failed_assert_action(&
           & to_s(var1(i)), &
-          & to_s(var2(i)), '1d array has difference, ' // message, if_is = .true.)
+          & to_s(var2(i)), '1d array has difference, '//message, if_is=.true.)
         return
       endif
     enddo
@@ -1407,17 +1394,17 @@ contains
 
   !------ 2d_real ------
   subroutine assert_eq_2d_real_(var1, var2, n, m, message)
-    integer, intent (in) :: n, m
+    integer, intent(in) :: n, m
     integer              :: i, j
-    real, intent (in) :: var1(n, m), var2(n, m)
+    real, intent(in) :: var1(n, m), var2(n, m)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     do j = 1, m
       do i = 1, n
         if ((var1(i, j) < var2(i, j)) .or. (var1(i, j) > var2(i, j))) then
           call failed_assert_action(&
             & to_s(var1(i, j)), &
-            & to_s(var2(i, j)), '2d array has difference, ' // message, if_is = .true.)
+            & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
           return
         endif
       enddo
@@ -1427,17 +1414,17 @@ contains
 
   !------ 2d_real ------
   subroutine assert_eq_2d_real_in_range_(var1, var2, n, m, delta, message)
-    integer, intent (in) :: n, m
+    integer, intent(in) :: n, m
     integer              :: i, j
-    real, intent (in) :: var1(n, m), var2(n, m)
-    real, intent (in) :: delta
-    character(len = *), intent (in), optional :: message
+    real, intent(in) :: var1(n, m), var2(n, m)
+    real, intent(in) :: delta
+    character(len=*), intent(in), optional :: message
     do j = 1, m
       do i = 1, n
         if (abs(var1(i, j) - var2(i, j)) > delta) then
           call failed_assert_action(&
             & to_s(var1(i, j)), &
-            & to_s(var2(i, j)), '2d array has difference, ' // message, if_is = .true.)
+            & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
           return
         endif
       enddo
@@ -1448,14 +1435,14 @@ contains
   !------ 0d_double ------
   subroutine assert_eq_double_(var1, var2, message)
 
-    double precision, intent (in) :: var1, var2
+    double precision, intent(in) :: var1, var2
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
 
     if ((var1 < var2) .or. (var1 > var2)) then
       call failed_assert_action(&
         & to_s(var1), &
-        & to_s(var2), message, if_is = .true.)
+        & to_s(var2), message, if_is=.true.)
       return
     endif
 
@@ -1465,14 +1452,14 @@ contains
   !------ 0d_double ------
   subroutine assert_eq_double_in_range_(var1, var2, delta, message)
 
-    double precision, intent (in) :: var1, var2
-    double precision, intent (in) :: delta
-    character(len = *), intent (in), optional :: message
+    double precision, intent(in) :: var1, var2
+    double precision, intent(in) :: delta
+    character(len=*), intent(in), optional :: message
 
     if (abs(var1 - var2) > delta) then
       call failed_assert_action(&
         & to_s(var1), &
-        & to_s(var2), message, if_is = .true.)
+        & to_s(var2), message, if_is=.true.)
       return
     endif
 
@@ -1481,16 +1468,16 @@ contains
 
   !------ 1d_double ------
   subroutine assert_eq_1d_double_(var1, var2, n, message)
-    integer, intent (in) :: n
+    integer, intent(in) :: n
     integer              :: i
-    double precision, intent (in) :: var1(n), var2(n)
+    double precision, intent(in) :: var1(n), var2(n)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     do i = 1, n
       if ((var1(i) < var2(i)) .or. (var1(i) > var2(i))) then
         call failed_assert_action(&
           & to_s(var1(i)), &
-          & to_s(var2(i)), '1d array has difference, ' // message, if_is = .true.)
+          & to_s(var2(i)), '1d array has difference, '//message, if_is=.true.)
         return
       endif
     enddo
@@ -1499,16 +1486,16 @@ contains
 
   !------ 1d_double ------
   subroutine assert_eq_1d_double_in_range_(var1, var2, n, delta, message)
-    integer, intent (in) :: n
+    integer, intent(in) :: n
     integer              :: i
-    double precision, intent (in) :: var1(n), var2(n)
-    double precision, intent (in) :: delta
-    character(len = *), intent (in), optional :: message
+    double precision, intent(in) :: var1(n), var2(n)
+    double precision, intent(in) :: delta
+    character(len=*), intent(in), optional :: message
     do i = 1, n
       if (abs(var1(i) - var2(i)) > delta) then
         call failed_assert_action(&
           & to_s(var1(i)), &
-          & to_s(var2(i)), '1d array has difference, ' // message, if_is = .true.)
+          & to_s(var2(i)), '1d array has difference, '//message, if_is=.true.)
         return
       endif
     enddo
@@ -1517,17 +1504,17 @@ contains
 
   !------ 2d_double ------
   subroutine assert_eq_2d_double_(var1, var2, n, m, message)
-    integer, intent (in) :: n, m
+    integer, intent(in) :: n, m
     integer              :: i, j
-    double precision, intent (in) :: var1(n, m), var2(n, m)
+    double precision, intent(in) :: var1(n, m), var2(n, m)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     do j = 1, m
       do i = 1, n
         if ((var1(i, j) < var2(i, j)) .or. (var1(i, j) > var2(i, j))) then
           call failed_assert_action(&
             & to_s(var1(i, j)), &
-            & to_s(var2(i, j)), '2d array has difference, ' // message, if_is = .true.)
+            & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
           return
         endif
       enddo
@@ -1537,17 +1524,17 @@ contains
 
   !------ 2d_double ------
   subroutine assert_eq_2d_double_in_range_(var1, var2, n, m, delta, message)
-    integer, intent (in) :: n, m
+    integer, intent(in) :: n, m
     integer              :: i, j
-    double precision, intent (in) :: var1(n, m), var2(n, m)
-    double precision, intent (in) :: delta
-    character(len = *), intent (in), optional :: message
+    double precision, intent(in) :: var1(n, m), var2(n, m)
+    double precision, intent(in) :: delta
+    character(len=*), intent(in), optional :: message
     do j = 1, m
       do i = 1, n
         if (abs(var1(i, j) - var2(i, j)) > delta) then
           call failed_assert_action(&
             & to_s(var1(i, j)), &
-            & to_s(var2(i, j)), '2d array has difference, ' // message, if_is = .true.)
+            & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
           return
         endif
       enddo
@@ -1558,17 +1545,17 @@ contains
   !------ 0d_complex ------
   subroutine assert_eq_complex_(var1, var2, message)
 
-    complex(kind=kind(1.0D0)), intent (in) :: var1, var2
+    complex(kind=kind(1.0D0)), intent(in) :: var1, var2
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
 
-    if ((real (var1) < real (var2)) .or. &
-      &(real (var1) > real (var2)) .or. &
+    if ((real(var1) < real(var2)) .or. &
+      &(real(var1) > real(var2)) .or. &
       &(aimag(var1) < aimag(var2)) .or. &
       &(aimag(var1) > aimag(var2))) then
       call failed_assert_action(&
         & to_s(var1), &
-        & to_s(var2), message, if_is = .true.)
+        & to_s(var2), message, if_is=.true.)
       return
     endif
 
@@ -1578,14 +1565,14 @@ contains
   !------ 0d_complex ------
   subroutine assert_eq_complex_in_range_(var1, var2, delta, message)
 
-    complex(kind=kind(1.0D0)), intent (in) :: var1, var2
-    double precision, intent (in) :: delta
-    character(len = *), intent (in), optional :: message
+    complex(kind=kind(1.0D0)), intent(in) :: var1, var2
+    double precision, intent(in) :: delta
+    character(len=*), intent(in), optional :: message
 
     if (abs(var1 - var2) > delta) then
       call failed_assert_action(&
         & to_s(var1), &
-        & to_s(var2), message, if_is = .true.)
+        & to_s(var2), message, if_is=.true.)
       return
     endif
 
@@ -1594,19 +1581,19 @@ contains
 
   !------ 1d_complex ------
   subroutine assert_eq_1d_complex_(var1, var2, n, message)
-    integer, intent (in) :: n
+    integer, intent(in) :: n
     integer              :: i
-    complex(kind=kind(1.0D0)), intent (in) :: var1(n), var2(n)
+    complex(kind=kind(1.0D0)), intent(in) :: var1(n), var2(n)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     do i = 1, n
-      if ((real (var1(i)) < real (var2(i))) .or. &
-        &(real (var1(i)) > real (var2(i))) .or. &
+      if ((real(var1(i)) < real(var2(i))) .or. &
+        &(real(var1(i)) > real(var2(i))) .or. &
         &(aimag(var1(i)) < aimag(var2(i))) .or. &
         &(aimag(var1(i)) > aimag(var2(i)))) then
         call failed_assert_action(&
           & to_s(var1(i)), &
-          & to_s(var2(i)), '1d array has difference, ' // message, if_is = .true.)
+          & to_s(var2(i)), '1d array has difference, '//message, if_is=.true.)
         return
       endif
     enddo
@@ -1615,16 +1602,16 @@ contains
 
   !------ 1d_complex ------
   subroutine assert_eq_1d_complex_in_range_(var1, var2, n, delta, message)
-    integer, intent (in) :: n
+    integer, intent(in) :: n
     integer              :: i
-    complex(kind=kind(1.0D0)), intent (in) :: var1(n), var2(n)
-    double precision, intent (in) :: delta
-    character(len = *), intent (in), optional :: message
+    complex(kind=kind(1.0D0)), intent(in) :: var1(n), var2(n)
+    double precision, intent(in) :: delta
+    character(len=*), intent(in), optional :: message
     do i = 1, n
       if (abs(var1(i) - var2(i)) > delta) then
         call failed_assert_action(&
           & to_s(var1(i)), &
-          & to_s(var2(i)), '1d array has difference, ' // message, if_is = .true.)
+          & to_s(var2(i)), '1d array has difference, '//message, if_is=.true.)
         return
       endif
     enddo
@@ -1633,20 +1620,20 @@ contains
 
   !------ 2d_complex ------
   subroutine assert_eq_2d_complex_(var1, var2, n, m, message)
-    integer, intent (in) :: n, m
+    integer, intent(in) :: n, m
     integer              :: i, j
-    complex(kind=kind(1.0D0)), intent (in) :: var1(n, m), var2(n, m)
+    complex(kind=kind(1.0D0)), intent(in) :: var1(n, m), var2(n, m)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     do j = 1, m
       do i = 1, n
-        if ((real (var1(i, j)) < real (var2(i, j))) .or. &
-          &(real (var1(i, j)) > real (var2(i, j))) .or. &
+        if ((real(var1(i, j)) < real(var2(i, j))) .or. &
+          &(real(var1(i, j)) > real(var2(i, j))) .or. &
           &(aimag(var1(i, j)) < aimag(var2(i, j))) .or. &
           &(aimag(var1(i, j)) > aimag(var2(i, j)))) then
           call failed_assert_action(&
             & to_s(var1(i, j)), &
-            & to_s(var2(i, j)), '2d array has difference, ' // message, if_is = .true.)
+            & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
           return
         endif
       enddo
@@ -1656,17 +1643,17 @@ contains
 
   !------ 2d_complex ------
   subroutine assert_eq_2d_complex_in_range_(var1, var2, n, m, delta, message)
-    integer, intent (in) :: n, m
+    integer, intent(in) :: n, m
     integer              :: i, j
-    complex(kind=kind(1.0D0)), intent (in) :: var1(n, m), var2(n, m)
-    double precision, intent (in) :: delta
-    character(len = *), intent (in), optional :: message
+    complex(kind=kind(1.0D0)), intent(in) :: var1(n, m), var2(n, m)
+    double precision, intent(in) :: delta
+    character(len=*), intent(in), optional :: message
     do j = 1, m
       do i = 1, n
         if (abs(var1(i, j) - var2(i, j)) > delta) then
           call failed_assert_action(&
             & to_s(var1(i, j)), &
-            & to_s(var2(i, j)), '2d array has difference, ' // message, if_is = .true.)
+            & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
           return
         endif
       enddo
@@ -1677,9 +1664,9 @@ contains
   !------ 0d_logical ------
   subroutine assert_not_equal_logical_(var1, var2, message)
 
-    logical, intent (in) :: var1, var2
+    logical, intent(in) :: var1, var2
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -1691,7 +1678,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1), &
-        & to_s(var2), message, if_is = .false.)
+        & to_s(var2), message, if_is=.false.)
       return
     endif
     call add_success
@@ -1699,11 +1686,11 @@ contains
 
   !------ 1d_logical ------
   subroutine assert_not_equal_1d_logical_(var1, var2, n, message)
-    integer, intent (in) :: n
+    integer, intent(in) :: n
     integer              :: i
-    logical, intent (in) :: var1(n), var2(n)
+    logical, intent(in) :: var1(n), var2(n)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -1715,7 +1702,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1(1)), &
-        & to_s(var2(1)), '1d array has no difference, ' // message, if_is = .false.)
+        & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
       return
     endif
     call add_success
@@ -1723,11 +1710,11 @@ contains
 
   !------ 2d_logical ------
   subroutine assert_not_equal_2d_logical_(var1, var2, n, m, message)
-    integer, intent (in) :: n, m
+    integer, intent(in) :: n, m
     integer              :: i, j
-    logical, intent (in) :: var1(n, m), var2(n, m)
+    logical, intent(in) :: var1(n, m), var2(n, m)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -1741,7 +1728,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1(1, 1)), &
-        & to_s(var2(1, 1)), '2d array has no difference, ' // message, if_is = .false.)
+        & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
       return
     endif
     call add_success
@@ -1750,9 +1737,9 @@ contains
   !------ 0d_string ------
   subroutine assert_not_equal_string_(var1, var2, message)
 
-    character (len = *), intent (in) :: var1, var2
+    character(len=*), intent(in) :: var1, var2
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -1764,7 +1751,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1), &
-        & to_s(var2), message, if_is = .false.)
+        & to_s(var2), message, if_is=.false.)
       return
     endif
     call add_success
@@ -1772,11 +1759,11 @@ contains
 
   !------ 1d_string ------
   subroutine assert_not_equal_1d_string_(var1, var2, n, message)
-    integer, intent (in) :: n
+    integer, intent(in) :: n
     integer              :: i
-    character (len = *), intent (in) :: var1(n), var2(n)
+    character(len=*), intent(in) :: var1(n), var2(n)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -1788,7 +1775,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1(1)), &
-        & to_s(var2(1)), '1d array has no difference, ' // message, if_is = .false.)
+        & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
       return
     endif
     call add_success
@@ -1796,11 +1783,11 @@ contains
 
   !------ 2d_string ------
   subroutine assert_not_equal_2d_string_(var1, var2, n, m, message)
-    integer, intent (in) :: n, m
+    integer, intent(in) :: n, m
     integer              :: i, j
-    character (len = *), intent (in) :: var1(n, m), var2(n, m)
+    character(len=*), intent(in) :: var1(n, m), var2(n, m)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -1814,7 +1801,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1(1, 1)), &
-        & to_s(var2(1, 1)), '2d array has no difference, ' // message, if_is = .false.)
+        & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
       return
     endif
     call add_success
@@ -1823,9 +1810,9 @@ contains
   !------ 0d_int ------
   subroutine assert_not_equal_int_(var1, var2, message)
 
-    integer, intent (in) :: var1, var2
+    integer, intent(in) :: var1, var2
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -1837,7 +1824,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1), &
-        & to_s(var2), message, if_is = .false.)
+        & to_s(var2), message, if_is=.false.)
       return
     endif
     call add_success
@@ -1845,11 +1832,11 @@ contains
 
   !------ 1d_int ------
   subroutine assert_not_equal_1d_int_(var1, var2, n, message)
-    integer, intent (in) :: n
+    integer, intent(in) :: n
     integer              :: i
-    integer, intent (in) :: var1(n), var2(n)
+    integer, intent(in) :: var1(n), var2(n)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -1861,7 +1848,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1(1)), &
-        & to_s(var2(1)), '1d array has no difference, ' // message, if_is = .false.)
+        & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
       return
     endif
     call add_success
@@ -1869,11 +1856,11 @@ contains
 
   !------ 2d_int ------
   subroutine assert_not_equal_2d_int_(var1, var2, n, m, message)
-    integer, intent (in) :: n, m
+    integer, intent(in) :: n, m
     integer              :: i, j
-    integer, intent (in) :: var1(n, m), var2(n, m)
+    integer, intent(in) :: var1(n, m), var2(n, m)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -1887,7 +1874,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1(1, 1)), &
-        & to_s(var2(1, 1)), '2d array has no difference, ' // message, if_is = .false.)
+        & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
       return
     endif
     call add_success
@@ -1896,9 +1883,9 @@ contains
   !------ 0d_real ------
   subroutine assert_not_equal_real_(var1, var2, message)
 
-    real, intent (in) :: var1, var2
+    real, intent(in) :: var1, var2
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -1910,7 +1897,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1), &
-        & to_s(var2), message, if_is = .false.)
+        & to_s(var2), message, if_is=.false.)
       return
     endif
     call add_success
@@ -1919,9 +1906,9 @@ contains
   !------ 0d_real ------
   subroutine assert_not_equal_real_in_range_(var1, var2, delta, message)
 
-    real, intent (in) :: var1, var2
-    real, intent (in) :: delta
-    character(len = *), intent (in), optional :: message
+    real, intent(in) :: var1, var2
+    real, intent(in) :: delta
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -1933,7 +1920,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1), &
-        & to_s(var2), message, if_is = .false.)
+        & to_s(var2), message, if_is=.false.)
       return
     endif
     call add_success
@@ -1941,11 +1928,11 @@ contains
 
   !------ 1d_real ------
   subroutine assert_not_equal_1d_real_(var1, var2, n, message)
-    integer, intent (in) :: n
+    integer, intent(in) :: n
     integer              :: i
-    real, intent (in) :: var1(n), var2(n)
+    real, intent(in) :: var1(n), var2(n)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -1957,7 +1944,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1(1)), &
-        & to_s(var2(1)), '1d array has no difference, ' // message, if_is = .false.)
+        & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
       return
     endif
     call add_success
@@ -1965,11 +1952,11 @@ contains
 
   !------ 1d_real ------
   subroutine assert_not_equal_1d_real_in_range_(var1, var2, n, delta, message)
-    integer, intent (in) :: n
+    integer, intent(in) :: n
     integer              :: i
-    real, intent (in) :: var1(n), var2(n)
-    real, intent (in) :: delta
-    character(len = *), intent (in), optional :: message
+    real, intent(in) :: var1(n), var2(n)
+    real, intent(in) :: delta
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -1981,7 +1968,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1(1)), &
-        & to_s(var2(1)), '1d array has no difference, ' // message, if_is = .false.)
+        & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
       return
     endif
     call add_success
@@ -1989,11 +1976,11 @@ contains
 
   !------ 2d_real ------
   subroutine assert_not_equal_2d_real_(var1, var2, n, m, message)
-    integer, intent (in) :: n, m
+    integer, intent(in) :: n, m
     integer              :: i, j
-    real, intent (in) :: var1(n, m), var2(n, m)
+    real, intent(in) :: var1(n, m), var2(n, m)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -2007,7 +1994,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1(1, 1)), &
-        & to_s(var2(1, 1)), '2d array has no difference, ' // message, if_is = .false.)
+        & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
       return
     endif
     call add_success
@@ -2015,11 +2002,11 @@ contains
 
   !------ 2d_real ------
   subroutine assert_not_equal_2d_real_in_range_(var1, var2, n, m, delta, message)
-    integer, intent (in) :: n, m
+    integer, intent(in) :: n, m
     integer              :: i, j
-    real, intent (in) :: var1(n, m), var2(n, m)
-    real, intent (in) :: delta
-    character(len = *), intent (in), optional :: message
+    real, intent(in) :: var1(n, m), var2(n, m)
+    real, intent(in) :: delta
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -2033,7 +2020,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1(1, 1)), &
-        & to_s(var2(1, 1)), '2d array has no difference, ' // message, if_is = .false.)
+        & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
       return
     endif
     call add_success
@@ -2042,9 +2029,9 @@ contains
   !------ 0d_double ------
   subroutine assert_not_equal_double_(var1, var2, message)
 
-    double precision, intent (in) :: var1, var2
+    double precision, intent(in) :: var1, var2
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -2056,7 +2043,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1), &
-        & to_s(var2), message, if_is = .false.)
+        & to_s(var2), message, if_is=.false.)
       return
     endif
     call add_success
@@ -2065,9 +2052,9 @@ contains
   !------ 0d_double ------
   subroutine assert_not_equal_double_in_range_(var1, var2, delta, message)
 
-    double precision, intent (in) :: var1, var2
-    double precision, intent (in) :: delta
-    character(len = *), intent (in), optional :: message
+    double precision, intent(in) :: var1, var2
+    double precision, intent(in) :: delta
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -2079,7 +2066,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1), &
-        & to_s(var2), message, if_is = .false.)
+        & to_s(var2), message, if_is=.false.)
       return
     endif
     call add_success
@@ -2087,11 +2074,11 @@ contains
 
   !------ 1d_double ------
   subroutine assert_not_equal_1d_double_(var1, var2, n, message)
-    integer, intent (in) :: n
+    integer, intent(in) :: n
     integer              :: i
-    double precision, intent (in) :: var1(n), var2(n)
+    double precision, intent(in) :: var1(n), var2(n)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -2103,7 +2090,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1(1)), &
-        & to_s(var2(1)), '1d array has no difference, ' // message, if_is = .false.)
+        & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
       return
     endif
     call add_success
@@ -2111,11 +2098,11 @@ contains
 
   !------ 1d_double ------
   subroutine assert_not_equal_1d_double_in_range_(var1, var2, n, delta, message)
-    integer, intent (in) :: n
+    integer, intent(in) :: n
     integer              :: i
-    double precision, intent (in) :: var1(n), var2(n)
-    double precision, intent (in) :: delta
-    character(len = *), intent (in), optional :: message
+    double precision, intent(in) :: var1(n), var2(n)
+    double precision, intent(in) :: delta
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -2127,7 +2114,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1(1)), &
-        & to_s(var2(1)), '1d array has no difference, ' // message, if_is = .false.)
+        & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
       return
     endif
     call add_success
@@ -2135,11 +2122,11 @@ contains
 
   !------ 2d_double ------
   subroutine assert_not_equal_2d_double_(var1, var2, n, m, message)
-    integer, intent (in) :: n, m
+    integer, intent(in) :: n, m
     integer              :: i, j
-    double precision, intent (in) :: var1(n, m), var2(n, m)
+    double precision, intent(in) :: var1(n, m), var2(n, m)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -2153,7 +2140,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1(1, 1)), &
-        & to_s(var2(1, 1)), '2d array has no difference, ' // message, if_is = .false.)
+        & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
       return
     endif
     call add_success
@@ -2161,11 +2148,11 @@ contains
 
   !------ 2d_double ------
   subroutine assert_not_equal_2d_double_in_range_(var1, var2, n, m, delta, message)
-    integer, intent (in) :: n, m
+    integer, intent(in) :: n, m
     integer              :: i, j
-    double precision, intent (in) :: var1(n, m), var2(n, m)
-    double precision, intent (in) :: delta
-    character(len = *), intent (in), optional :: message
+    double precision, intent(in) :: var1(n, m), var2(n, m)
+    double precision, intent(in) :: delta
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -2179,7 +2166,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1(1, 1)), &
-        & to_s(var2(1, 1)), '2d array has no difference, ' // message, if_is = .false.)
+        & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
       return
     endif
     call add_success
@@ -2188,15 +2175,15 @@ contains
   !------ 0d_complex ------
   subroutine assert_not_equal_complex_(var1, var2, message)
 
-    complex(kind=kind(1.0D0)), intent (in) :: var1, var2
+    complex(kind=kind(1.0D0)), intent(in) :: var1, var2
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
 
-    if ((real (var1) < real (var2)) .or. &
-      &(real (var1) > real (var2)) .or. &
+    if ((real(var1) < real(var2)) .or. &
+      &(real(var1) > real(var2)) .or. &
       &(aimag(var1) < aimag(var2)) .or. &
       &(aimag(var1) > aimag(var2))) then
       same_so_far = .false.
@@ -2205,7 +2192,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1), &
-        & to_s(var2), message, if_is = .false.)
+        & to_s(var2), message, if_is=.false.)
       return
     endif
     call add_success
@@ -2214,9 +2201,9 @@ contains
   !------ 0d_complex ------
   subroutine assert_not_equal_complex_in_range_(var1, var2, delta, message)
 
-    complex(kind=kind(1.0D0)), intent (in) :: var1, var2
-    double precision, intent (in) :: delta
-    character(len = *), intent (in), optional :: message
+    complex(kind=kind(1.0D0)), intent(in) :: var1, var2
+    double precision, intent(in) :: delta
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -2228,7 +2215,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1), &
-        & to_s(var2), message, if_is = .false.)
+        & to_s(var2), message, if_is=.false.)
       return
     endif
     call add_success
@@ -2236,17 +2223,17 @@ contains
 
   !------ 1d_complex ------
   subroutine assert_not_equal_1d_complex_(var1, var2, n, message)
-    integer, intent (in) :: n
+    integer, intent(in) :: n
     integer              :: i
-    complex(kind=kind(1.0D0)), intent (in) :: var1(n), var2(n)
+    complex(kind=kind(1.0D0)), intent(in) :: var1(n), var2(n)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
     do i = 1, n
-      if ((real (var1(i)) < real (var2(i))) .or. &
-        &(real (var1(i)) > real (var2(i))) .or. &
+      if ((real(var1(i)) < real(var2(i))) .or. &
+        &(real(var1(i)) > real(var2(i))) .or. &
         &(aimag(var1(i)) < aimag(var2(i))) .or. &
         &(aimag(var1(i)) > aimag(var2(i)))) then
         same_so_far = .false.
@@ -2255,7 +2242,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1(1)), &
-        & to_s(var2(1)), '1d array has no difference, ' // message, if_is = .false.)
+        & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
       return
     endif
     call add_success
@@ -2263,11 +2250,11 @@ contains
 
   !------ 1d_complex ------
   subroutine assert_not_equal_1d_complex_in_range_(var1, var2, n, delta, message)
-    integer, intent (in) :: n
+    integer, intent(in) :: n
     integer              :: i
-    complex(kind=kind(1.0D0)), intent (in) :: var1(n), var2(n)
-    double precision, intent (in) :: delta
-    character(len = *), intent (in), optional :: message
+    complex(kind=kind(1.0D0)), intent(in) :: var1(n), var2(n)
+    double precision, intent(in) :: delta
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -2279,7 +2266,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1(1)), &
-        & to_s(var2(1)), '1d array has no difference, ' // message, if_is = .false.)
+        & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
       return
     endif
     call add_success
@@ -2287,18 +2274,18 @@ contains
 
   !------ 2d_complex ------
   subroutine assert_not_equal_2d_complex_(var1, var2, n, m, message)
-    integer, intent (in) :: n, m
+    integer, intent(in) :: n, m
     integer              :: i, j
-    complex(kind=kind(1.0D0)), intent (in) :: var1(n, m), var2(n, m)
+    complex(kind=kind(1.0D0)), intent(in) :: var1(n, m), var2(n, m)
 
-    character(len = *), intent (in), optional :: message
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
     do j = 1, m
       do i = 1, n
-        if ((real (var1(i, j)) < real (var2(i, j))) .or. &
-          &(real (var1(i, j)) > real (var2(i, j))) .or. &
+        if ((real(var1(i, j)) < real(var2(i, j))) .or. &
+          &(real(var1(i, j)) > real(var2(i, j))) .or. &
           &(aimag(var1(i, j)) < aimag(var2(i, j))) .or. &
           &(aimag(var1(i, j)) > aimag(var2(i, j)))) then
           same_so_far = .false.
@@ -2308,7 +2295,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1(1, 1)), &
-        & to_s(var2(1, 1)), '2d array has no difference, ' // message, if_is = .false.)
+        & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
       return
     endif
     call add_success
@@ -2316,11 +2303,11 @@ contains
 
   !------ 2d_complex ------
   subroutine assert_not_equal_2d_complex_in_range_(var1, var2, n, m, delta, message)
-    integer, intent (in) :: n, m
+    integer, intent(in) :: n, m
     integer              :: i, j
-    complex(kind=kind(1.0D0)), intent (in) :: var1(n, m), var2(n, m)
-    double precision, intent (in) :: delta
-    character(len = *), intent (in), optional :: message
+    complex(kind=kind(1.0D0)), intent(in) :: var1(n, m), var2(n, m)
+    double precision, intent(in) :: delta
+    character(len=*), intent(in), optional :: message
     logical :: same_so_far
 
     same_so_far = .true.
@@ -2334,7 +2321,7 @@ contains
     if (same_so_far) then
       call failed_assert_action(&
         & to_s(var1(1, 1)), &
-        & to_s(var2(1, 1)), '2d array has no difference, ' // message, if_is = .false.)
+        & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
       return
     endif
     call add_success
@@ -2342,7 +2329,7 @@ contains
 
   !====== end of generated code ======
 
-  function to_s_int_ (value)
+  function to_s_int_(value)
     !! category: fruit_util
     !! Convert integer to string
     implicit none
@@ -2353,7 +2340,7 @@ contains
     to_s_int_ = adjustl(trim(result))
   end function to_s_int_
 
-  function to_s_real_ (value)
+  function to_s_real_(value)
     !! Convert real to string
     implicit none
     character(len=500):: to_s_real_
@@ -2363,7 +2350,7 @@ contains
     to_s_real_ = adjustl(trim(result))
   end function to_s_real_
 
-  function to_s_double_ (value)
+  function to_s_double_(value)
     !! Convert double to string
     implicit none
     character(len=500):: to_s_double_
@@ -2373,7 +2360,7 @@ contains
     to_s_double_ = adjustl(trim(result))
   end function to_s_double_
 
-  function to_s_complex_ (value)
+  function to_s_complex_(value)
     !! Convert complex to string
     implicit none
     character(len=500):: to_s_complex_
@@ -2383,7 +2370,7 @@ contains
     to_s_complex_ = adjustl(trim(result))
   end function to_s_complex_
 
-  function to_s_double_complex_ (value)
+  function to_s_double_complex_(value)
     !! Convert complex double to string
     implicit none
     character(len=500):: to_s_double_complex_
@@ -2393,7 +2380,7 @@ contains
     to_s_double_complex_ = adjustl(trim(result))
   end function to_s_double_complex_
 
-  function to_s_logical_ (value)
+  function to_s_logical_(value)
     !! Convert logical to string
     implicit none
     character(len=500):: to_s_logical_
@@ -2403,7 +2390,7 @@ contains
     to_s_logical_ = adjustl(trim(result))
   end function to_s_logical_
 
-  function to_s_string_ (value)
+  function to_s_string_(value)
     !! Convert string to string
     implicit none
     character(len=500):: to_s_string_
@@ -2425,9 +2412,8 @@ contains
     implicit none
     character(len=*), intent(in) :: value
     integer, intent(in) :: length
-    character(len= length):: strip_length_
+    character(len=length):: strip_length_
     strip_length_ = trim(adjustl(value))
   end function strip_length_
-
 
 end module fruit
