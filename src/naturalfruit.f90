@@ -20,126 +20,10 @@
 !      failed_assert_count
 !
 
-
-module fruit_util
-  !! display: none
-  !! A utility module for [[fruit]] to use.
-  private
-
-  public :: to_s, strip
-
-  interface to_s
-    !! Convert to string
-    module procedure to_s_int_
-    module procedure to_s_real_
-    module procedure to_s_logical_
-    module procedure to_s_double_
-    module procedure to_s_complex_
-    module procedure to_s_double_complex_
-    module procedure to_s_string_
-  end interface
-
-  interface strip
-    !! Remove leading and trailing spaces
-    module procedure strip_
-    module procedure strip_length_
-  end interface
-contains
-
-  function to_s_int_ (value)
-    !! category: fruit_util
-    !! Convert integer to string
-    implicit none
-    character(len=500):: to_s_int_
-    integer, intent(in) :: value
-    character(len=500) :: result
-    write (result, *) value
-    to_s_int_ = adjustl(trim(result))
-  end function to_s_int_
-
-  function to_s_real_ (value)
-    !! Convert real to string
-    implicit none
-    character(len=500):: to_s_real_
-    real, intent(in) :: value
-    character(len=500) :: result
-    write (result, *) value
-    to_s_real_ = adjustl(trim(result))
-  end function to_s_real_
-
-  function to_s_double_ (value)
-    !! Convert double to string
-    implicit none
-    character(len=500):: to_s_double_
-    double precision, intent(in) :: value
-    character(len=500) :: result
-    write (result, *) value
-    to_s_double_ = adjustl(trim(result))
-  end function to_s_double_
-
-  function to_s_complex_ (value)
-    !! Convert complex to string
-    implicit none
-    character(len=500):: to_s_complex_
-    complex, intent(in) :: value
-    character(len=500) :: result
-    write (result, *) value
-    to_s_complex_ = adjustl(trim(result))
-  end function to_s_complex_
-
-  function to_s_double_complex_ (value)
-    !! Convert complex double to string
-    implicit none
-    character(len=500):: to_s_double_complex_
-    complex(kind=kind(1.0D0)), intent(in) :: value
-    character(len=500) :: result
-    write (result, *) value
-    to_s_double_complex_ = adjustl(trim(result))
-  end function to_s_double_complex_
-
-  function to_s_logical_ (value)
-    !! Convert logical to string
-    implicit none
-    character(len=500):: to_s_logical_
-    logical, intent(in) :: value
-    character(len=500) :: result
-    write (result, *) value
-    to_s_logical_ = adjustl(trim(result))
-  end function to_s_logical_
-
-  function to_s_string_ (value)
-    !! Convert string to string
-    implicit none
-    character(len=500):: to_s_string_
-    character(len=*), intent(in) :: value
-    to_s_string_ = value
-  end function to_s_string_
-
-  function strip_(value)
-    !! Remove leading and trailing spaces
-    implicit none
-    character(len=500):: strip_
-    character(len=*), intent(in) :: value
-    strip_ = trim(adjustl(value))
-  end function strip_
-
-  function strip_length_(value, length)
-    !! Remove leading and trailing spaces
-    !! and return specified length
-    implicit none
-    character(len=*), intent(in) :: value
-    integer, intent(in) :: length
-    character(len= length):: strip_length_
-    strip_length_ = trim(adjustl(value))
-  end function strip_length_
-end module fruit_util
-
-
 module fruit
   !! Summary: This module contains fruit procedures and variables
   !! This module contains the procedures and variables that the user may use 
   !! for unit testing with fruit.
-  use fruit_util
   implicit none
   private
 
@@ -233,12 +117,13 @@ module fruit
   public :: assert_equal
   public :: assert_not_equal
   public :: assert_true
+  public :: assert_false
   public :: stash_test_suite, restore_test_suite
   public :: FRUIT_PREFIX_LEN_MAX
   public :: override_xml_work, end_override_xml_work
   public :: get_assert_and_case_count
+  private :: strip, to_s
 
-  public ::          assert_false
   interface          assert_false
     !! Test that *var1* is false.
     module procedure assert_false_
@@ -512,7 +397,26 @@ module fruit
     !! Show dots signifying test success on screen. Visible by default.
     module procedure  fruit_show_dots_
   end interface
+
+  interface strip
+    !! Remove leading and trailing spaces
+    module procedure strip_
+    module procedure strip_length_
+  end interface
+
+  interface to_s
+    !! Convert to string
+    module procedure to_s_int_
+    module procedure to_s_real_
+    module procedure to_s_logical_
+    module procedure to_s_double_
+    module procedure to_s_complex_
+    module procedure to_s_double_complex_
+    module procedure to_s_string_
+  end interface
+
 contains
+
   subroutine fruit_initialize(rank)
     !! category: driver subroutine
     !! Initialize FRUIT driver environment.
@@ -2438,6 +2342,92 @@ contains
 
   !====== end of generated code ======
 
+  function to_s_int_ (value)
+    !! category: fruit_util
+    !! Convert integer to string
+    implicit none
+    character(len=500):: to_s_int_
+    integer, intent(in) :: value
+    character(len=500) :: result
+    write (result, *) value
+    to_s_int_ = adjustl(trim(result))
+  end function to_s_int_
+
+  function to_s_real_ (value)
+    !! Convert real to string
+    implicit none
+    character(len=500):: to_s_real_
+    real, intent(in) :: value
+    character(len=500) :: result
+    write (result, *) value
+    to_s_real_ = adjustl(trim(result))
+  end function to_s_real_
+
+  function to_s_double_ (value)
+    !! Convert double to string
+    implicit none
+    character(len=500):: to_s_double_
+    double precision, intent(in) :: value
+    character(len=500) :: result
+    write (result, *) value
+    to_s_double_ = adjustl(trim(result))
+  end function to_s_double_
+
+  function to_s_complex_ (value)
+    !! Convert complex to string
+    implicit none
+    character(len=500):: to_s_complex_
+    complex, intent(in) :: value
+    character(len=500) :: result
+    write (result, *) value
+    to_s_complex_ = adjustl(trim(result))
+  end function to_s_complex_
+
+  function to_s_double_complex_ (value)
+    !! Convert complex double to string
+    implicit none
+    character(len=500):: to_s_double_complex_
+    complex(kind=kind(1.0D0)), intent(in) :: value
+    character(len=500) :: result
+    write (result, *) value
+    to_s_double_complex_ = adjustl(trim(result))
+  end function to_s_double_complex_
+
+  function to_s_logical_ (value)
+    !! Convert logical to string
+    implicit none
+    character(len=500):: to_s_logical_
+    logical, intent(in) :: value
+    character(len=500) :: result
+    write (result, *) value
+    to_s_logical_ = adjustl(trim(result))
+  end function to_s_logical_
+
+  function to_s_string_ (value)
+    !! Convert string to string
+    implicit none
+    character(len=500):: to_s_string_
+    character(len=*), intent(in) :: value
+    to_s_string_ = value
+  end function to_s_string_
+
+  function strip_(value)
+    !! Remove leading and trailing spaces
+    implicit none
+    character(len=500):: strip_
+    character(len=*), intent(in) :: value
+    strip_ = trim(adjustl(value))
+  end function strip_
+
+  function strip_length_(value, length)
+    !! Remove leading and trailing spaces
+    !! and return specified length
+    implicit none
+    character(len=*), intent(in) :: value
+    integer, intent(in) :: length
+    character(len= length):: strip_length_
+    strip_length_ = trim(adjustl(value))
+  end function strip_length_
+
+
 end module fruit
-
-
