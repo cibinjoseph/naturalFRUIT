@@ -1,6 +1,6 @@
-title: Deprecated Procedures
+title: Deprecated methods
 
-The following procedures have been deprecated or replaced to maintain consistency and/or accuracy.
+The following methods have been deprecated or replaced to maintain consistency and/or accuracy.
 
 <table style="width:60%", rules="rows">
 <tr>
