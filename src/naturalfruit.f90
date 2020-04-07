@@ -1172,15 +1172,24 @@ contains
   end subroutine assert_eq_logical_
 
   !------ 1d_logical ------
-  subroutine assert_eq_1d_logical_(var1, var2, n, message)
-    integer, intent(in) :: n
-    logical, intent(in) :: var1(n), var2(n)
-    integer :: i
+  subroutine assert_eq_1d_logical_(var1, var2, message)
+    logical, intent(in), dimension(:) :: var1, var2
+    integer :: i, sz1, sz2
     character(len=*), intent(in), optional :: message
 
-    do i = 1, n
+    sz1 = size(var1, 1)
+    sz2 = size(var2, 1)
+
+    if (sz1 .ne. sz2) then
+      call failed_assert_action( &
+        & to_s(sz1), &
+        & to_s(sz2), '1d arrays have different sizes, '//message, if_is=.true.)
+      return
+    endif
+
+    do i = 1, sz1
       if (var1(i) .neqv. var2(i)) then
-        call failed_assert_action(&
+        call failed_assert_action( &
           & to_s(var1(i)), &
           & to_s(var2(i)), '1d array has difference, '//message, if_is=.true.)
         return
@@ -1225,13 +1234,22 @@ contains
   end subroutine assert_eq_string_
 
   !------ 1d_string ------
-  subroutine assert_eq_1d_string_(var1, var2, n, message)
-    integer, intent(in) :: n
-    character(len=*), intent(in) :: var1(n), var2(n)
-    integer :: i
+  subroutine assert_eq_1d_string_(var1, var2, message)
+    character(len=*), intent(in), dimension(:) :: var1, var2
+    integer :: i, sz1, sz2
     character(len=*), intent(in), optional :: message
 
-    do i = 1, n
+    sz1 = size(var1, 1)
+    sz2 = size(var2, 1)
+
+    if (sz1 .ne. sz2) then
+      call failed_assert_action( &
+        & to_s(sz1), &
+        & to_s(sz2), '1d arrays have different sizes, '//message, if_is=.true.)
+      return
+    endif
+
+    do i = 1, sz1
       if (trim(strip(var1(i))) /= trim(strip(var2(i)))) then
         call failed_assert_action(&
           & to_s(var1(i)), &
@@ -1278,13 +1296,22 @@ contains
   end subroutine assert_eq_int_
 
   !------ 1d_int ------
-  subroutine assert_eq_1d_int_(var1, var2, n, message)
-    integer, intent(in) :: n
-    integer, intent(in) :: var1(n), var2(n)
-    integer :: i
+  subroutine assert_eq_1d_int_(var1, var2, message)
+    integer, intent(in), dimension(:) :: var1, var2
+    integer :: i, sz1, sz2
     character(len=*), intent(in), optional :: message
 
-    do i = 1, n
+    sz1 = size(var1, 1)
+    sz2 = size(var2, 1)
+
+    if (sz1 .ne. sz2) then
+      call failed_assert_action( &
+        & to_s(sz1), &
+        & to_s(sz2), '1d arrays have different sizes, '//message, if_is=.true.)
+      return
+    endif
+
+    do i = 1, sz1
       if (var1(i) /= var2(i)) then
         call failed_assert_action(&
           & to_s(var1(i)), &
@@ -1347,13 +1374,22 @@ contains
   end subroutine assert_eq_real_in_range_
 
   !------ 1d_real ------
-  subroutine assert_eq_1d_real_(var1, var2, n, message)
-    integer, intent(in) :: n
-    integer :: i
-    real, intent(in) :: var1(n), var2(n)
+  subroutine assert_eq_1d_real_(var1, var2, message)
+    integer :: i, sz1, sz2
+    real, intent(in), dimension(:) :: var1, var2
     character(len=*), intent(in), optional :: message
 
-    do i = 1, n
+    sz1 = size(var1, 1)
+    sz2 = size(var2, 1)
+
+    if (sz1 .ne. sz2) then
+      call failed_assert_action( &
+        & to_s(sz1), &
+        & to_s(sz2), '1d arrays have different sizes, '//message, if_is=.true.)
+      return
+    endif
+
+    do i = 1, sz1
       if ((var1(i) < var2(i)) .or. (var1(i) > var2(i))) then
         call failed_assert_action(&
           & to_s(var1(i)), &
@@ -1365,14 +1401,23 @@ contains
   end subroutine assert_eq_1d_real_
 
   !------ 1d_real ------
-  subroutine assert_eq_1d_real_in_range_(var1, var2, n, delta, message)
-    integer, intent(in) :: n
-    integer :: i
-    real, intent(in) :: var1(n), var2(n)
+  subroutine assert_eq_1d_real_in_range_(var1, var2, delta, message)
+    real, intent(in), dimension(:) :: var1, var2
     real, intent(in) :: delta
     character(len=*), intent(in), optional :: message
+    integer :: i, sz1, sz2
 
-    do i = 1, n
+    sz1 = size(var1, 1)
+    sz2 = size(var2, 1)
+
+    if (sz1 .ne. sz2) then
+      call failed_assert_action( &
+        & to_s(sz1), &
+        & to_s(sz2), '1d arrays have different sizes, '//message, if_is=.true.)
+      return
+    endif
+
+    do i = 1, sz1
       if (abs(var1(i) - var2(i)) > delta) then
         call failed_assert_action(&
           & to_s(var1(i)), &
@@ -1456,13 +1501,22 @@ contains
   end subroutine assert_eq_double_in_range_
 
   !------ 1d_double ------
-  subroutine assert_eq_1d_double_(var1, var2, n, message)
-    integer, intent(in) :: n
-    integer :: i
-    double precision, intent(in) :: var1(n), var2(n)
+  subroutine assert_eq_1d_double_(var1, var2, message)
+    integer :: i, sz1, sz2
+    double precision, intent(in), dimension(:) :: var1, var2
     character(len=*), intent(in), optional :: message
 
-    do i = 1, n
+    sz1 = size(var1, 1)
+    sz2 = size(var2, 1)
+
+    if (sz1 .ne. sz2) then
+      call failed_assert_action( &
+        & to_s(sz1), &
+        & to_s(sz2), '1d arrays have different sizes, '//message, if_is=.true.)
+      return
+    endif
+
+    do i = 1, sz1
       if ((var1(i) < var2(i)) .or. (var1(i) > var2(i))) then
         call failed_assert_action(&
           & to_s(var1(i)), &
@@ -1474,14 +1528,23 @@ contains
   end subroutine assert_eq_1d_double_
 
   !------ 1d_double ------
-  subroutine assert_eq_1d_double_in_range_(var1, var2, n, delta, message)
-    integer, intent(in) :: n
-    integer :: i
-    double precision, intent(in) :: var1(n), var2(n)
+  subroutine assert_eq_1d_double_in_range_(var1, var2, delta, message)
+    integer :: i, sz1, sz2
+    double precision, intent(in), dimension(:) :: var1, var2
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
 
-    do i = 1, n
+    sz1 = size(var1, 1)
+    sz2 = size(var2, 1)
+
+    if (sz1 .ne. sz2) then
+      call failed_assert_action( &
+        & to_s(sz1), &
+        & to_s(sz2), '1d arrays have different sizes, '//message, if_is=.true.)
+      return
+    endif
+
+    do i = 1, sz1
       if (abs(var1(i) - var2(i)) > delta) then
         call failed_assert_action(&
           & to_s(var1(i)), &
@@ -1568,13 +1631,22 @@ contains
   end subroutine assert_eq_complex_in_range_
 
   !------ 1d_complex ------
-  subroutine assert_eq_1d_complex_(var1, var2, n, message)
-    integer, intent(in) :: n
-    integer :: i
-    complex(kind=kind(1.0D0)), intent(in) :: var1(n), var2(n)
+  subroutine assert_eq_1d_complex_(var1, var2, message)
+    integer :: i, sz1, sz2
+    complex(kind=kind(1.0D0)), intent(in), dimension(:) :: var1, var2
     character(len=*), intent(in), optional :: message
 
-    do i = 1, n
+    sz1 = size(var1, 1)
+    sz2 = size(var2, 1)
+
+    if (sz1 .ne. sz2) then
+      call failed_assert_action( &
+        & to_s(sz1), &
+        & to_s(sz2), '1d arrays have different sizes, '//message, if_is=.true.)
+      return
+    endif
+
+    do i = 1, sz1
       if ((real(var1(i)) < real(var2(i))) .or. &
         &(real(var1(i)) > real(var2(i))) .or. &
         &(aimag(var1(i)) < aimag(var2(i))) .or. &
@@ -1589,14 +1661,23 @@ contains
   end subroutine assert_eq_1d_complex_
 
   !------ 1d_complex ------
-  subroutine assert_eq_1d_complex_in_range_(var1, var2, n, delta, message)
-    integer, intent(in) :: n
-    integer :: i
-    complex(kind=kind(1.0D0)), intent(in) :: var1(n), var2(n)
+  subroutine assert_eq_1d_complex_in_range_(var1, var2, delta, message)
+    integer :: i, sz1, sz2
+    complex(kind=kind(1.0D0)), intent(in), dimension(:) :: var1, var2
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
 
-    do i = 1, n
+    sz1 = size(var1, 1)
+    sz2 = size(var2, 1)
+
+    if (sz1 .ne. sz2) then
+      call failed_assert_action( &
+        & to_s(sz1), &
+        & to_s(sz2), '1d arrays have different sizes, '//message, if_is=.true.)
+      return
+    endif
+
+    do i = 1, sz1
       if (abs(var1(i) - var2(i)) > delta) then
         call failed_assert_action(&
           & to_s(var1(i)), &
