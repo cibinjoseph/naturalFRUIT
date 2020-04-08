@@ -1,17 +1,17 @@
-program checkAll
-  ! ! A basic set of tests for assert methods
+program testAsserts
+  !! A basic set of tests for assert methods
   use fruit
   implicit none
 
   integer, parameter :: dp = kind(1.0d0)
-  integer, parameter :: nAsserts = 12
+  integer, parameter :: nAsserts = 15
   logical, dimension(nAsserts) :: stat_true
 
   logical, dimension(3) :: logi1 = (/.true., .false., .true./)
   logical, dimension(2, 3) :: logi2
   real, dimension(5) :: real1 = (/1.0, 2.0, 3.0, 5.0, 6.0/)
   real, dimension(2, 5) :: real2
-  real(dp), dimension(5) :: doub1 = (/1.0d0, 2.0d0, 3.0d0, 5.0d0, 6.0d0/)
+  real(dp), dimension(5) :: doub1 = (/1.0_dp, 2.0_dp, 3.0_dp, 5.0_dp, 6.0_dp/)
   real(dp), dimension(2, 5) :: doub2
   complex :: comp0
   complex, dimension(2) :: comp1
@@ -66,11 +66,11 @@ program checkAll
   call assert_equal(compd1, compd1, status=stat_true(14))
   call assert_equal(compd2, compd2, status=stat_true(15))
 
-  if (.not. all(stat)) then
-    print*, stat
+  if (.not. all(stat_true)) then
+    print*, stat_true
     error stop 'ERROR: All were not true'
   else
     print*, '- All cases passed'
   endif
 
-end program checkAll
+end program testAsserts
