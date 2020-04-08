@@ -1156,1312 +1156,1769 @@ contains
 
   !====== begin of generated code ======
   !------ 0d_logical ------
-  subroutine assert_eq_logical_(var1, var2, message)
-    !! display: none
+  subroutine assert_eq_logical_(var1, var2, message, status)
     logical, intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     if (var1 .neqv. var2) then
-      call failed_assert_action(&
-        & to_s(var1), &
-        & to_s(var2), message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_logical_
 
   !------ 1d_logical ------
-  subroutine assert_eq_1d_logical_(var1, var2, message)
+  subroutine assert_eq_1d_logical_(var1, var2, message, status)
     logical, intent(in), dimension(:) :: var1, var2
     integer :: i, n
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     n = size(var1, 1)
 
     if (n .ne. size(var2, 1)) then
-      call failed_assert_action( &
-        & to_s(n), &
-        & to_s(size(var2, 1)), &
-        & '1d arrays have different sizes, '//message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n), &
+          & to_s(size(var2, 1)), &
+          & '1d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
     do i = 1, n
       if (var1(i) .neqv. var2(i)) then
-        call failed_assert_action( &
-          & to_s(var1(i)), &
-          & to_s(var2(i)), &
-          & '1d array has difference, '//message, if_is=.true.)
+        if (.not. present(status)) then
+          call failed_assert_action( &
+            & to_s(var1(i)), &
+            & to_s(var2(i)), &
+            & '1d array has difference, '//message, if_is=.true.)
+        else
+          status = .false.
+        endif
         return
       endif
     enddo
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_1d_logical_
 
   !------ 2d_logical ------
-  subroutine assert_eq_2d_logical_(var1, var2, message)
+  subroutine assert_eq_2d_logical_(var1, var2, message, status)
     logical, intent(in), dimension(:, :) :: var1, var2
     integer :: i, j, n, m
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     n = size(var1, 1)
     m = size(var1, 2)
 
     if ((size(var2, 1) .ne. n) .and. (size(var2, 2) .ne. m)) then
-      call failed_assert_action( &
-        & to_s(n)//' x '//to_s(m), &
-        & to_s(size(var2, 1))//' x '//to_s(size(var2,1)), &
-        & '2d arrays have different sizes, '//message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n)//' x '//to_s(m), &
+          & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
+          & '2d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
     do j = 1, m
       do i = 1, n
         if (var1(i, j) .neqv. var2(i, j)) then
-          call failed_assert_action(&
-            & to_s(var1(i, j)), &
-            & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
+          if (.not. present(status)) then
+            call failed_assert_action( &
+              & to_s(var1(i, j)), &
+              & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
+          else
+            status = .false.
+          endif
           return
         endif
       enddo
     enddo
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_2d_logical_
 
   !------ 0d_string ------
-  subroutine assert_eq_string_(var1, var2, message)
+  subroutine assert_eq_string_(var1, var2, message, status)
     character(len=*), intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     if (trim(strip(var1)) /= trim(strip(var2))) then
-      call failed_assert_action(&
-        & to_s(var1), &
-        & to_s(var2), message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_string_
 
   !------ 1d_string ------
-  subroutine assert_eq_1d_string_(var1, var2, message)
+  subroutine assert_eq_1d_string_(var1, var2, message, status)
     character(len=*), intent(in), dimension(:) :: var1, var2
     integer :: i, n
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     n = size(var1, 1)
 
     if (n .ne. size(var2, 1)) then
-      call failed_assert_action( &
-        & to_s(n), &
-        & to_s(size(var2, 1)), &
-        & '1d arrays have different sizes, '//message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n), &
+          & to_s(size(var2, 1)), &
+          & '1d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
     do i = 1, n
       if (trim(strip(var1(i))) /= trim(strip(var2(i)))) then
-        call failed_assert_action(&
-          & to_s(var1(i)), &
-          & to_s(var2(i)), &
-          & '1d array has difference, '//message, if_is=.true.)
+        if (.not. present(status)) then
+          call failed_assert_action( &
+            & to_s(var1(i)), &
+            & to_s(var2(i)), &
+            & '1d array has difference, '//message, if_is=.true.)
+        else
+          status = .false.
+        endif
         return
       endif
     enddo
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_1d_string_
 
   !------ 2d_string ------
-  subroutine assert_eq_2d_string_(var1, var2, message)
+  subroutine assert_eq_2d_string_(var1, var2, message, status)
     character(len=*), intent(in), dimension(:, :) :: var1, var2
     integer :: i, j, n, m
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     n = size(var1, 1)
     m = size(var1, 2)
 
     if ((size(var2, 1) .ne. n) .and. (size(var2, 2) .ne. m)) then
-      call failed_assert_action( &
-        & to_s(n)//' x '//to_s(m), &
-        & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
-        & '2d arrays have different sizes, '//message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n)//' x '//to_s(m), &
+          & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
+          & '2d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
     do j = 1, m
       do i = 1, n
         if (trim(strip(var1(i, j))) /= trim(strip(var2(i, j)))) then
-          call failed_assert_action(&
-            & to_s(var1(i, j)), &
-            & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
+          if (.not. present(status)) then
+            call failed_assert_action( &
+              & to_s(var1(i, j)), &
+              & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
+          else
+            status = .false.
+          endif
           return
         endif
       enddo
     enddo
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_2d_string_
 
   !------ 0d_int ------
-  subroutine assert_eq_int_(var1, var2, message)
+  subroutine assert_eq_int_(var1, var2, message, status)
     integer, intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     if (var1 /= var2) then
-      call failed_assert_action(&
-        & to_s(var1), &
-        & to_s(var2), message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_int_
 
   !------ 1d_int ------
-  subroutine assert_eq_1d_int_(var1, var2, message)
+  subroutine assert_eq_1d_int_(var1, var2, message, status)
     integer, intent(in), dimension(:) :: var1, var2
     integer :: i, n
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     n = size(var1, 1)
 
     if (n .ne. size(var2, 1)) then
-      call failed_assert_action( &
-        & to_s(n), &
-        & to_s(size(var2, 1)), &
-        & '1d arrays have different sizes, '//message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n), &
+          & to_s(size(var2, 1)), &
+          & '1d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
     do i = 1, n
       if (var1(i) /= var2(i)) then
-        call failed_assert_action(&
-          & to_s(var1(i)), &
-          & to_s(var2(i)), &
-          & '1d array has difference, '//message, if_is=.true.)
+        if (.not. present(status)) then
+          call failed_assert_action( &
+            & to_s(var1(i)), &
+            & to_s(var2(i)), &
+            & '1d array has difference, '//message, if_is=.true.)
+        else
+          status = .false.
+        endif
         return
       endif
     enddo
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_1d_int_
 
   !------ 2d_int ------
-  subroutine assert_eq_2d_int_(var1, var2, message)
+  subroutine assert_eq_2d_int_(var1, var2, message, status)
     integer, intent(in), dimension(:, :) :: var1, var2
     integer :: i, j, n, m
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     n = size(var1, 1)
     m = size(var1, 2)
 
     if ((size(var2, 1) .ne. n) .and. (size(var2, 2) .ne. m)) then
-      call failed_assert_action( &
-        & to_s(n)//' x '//to_s(m), &
-        & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
-        & '2d arrays have different sizes, '//message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n)//' x '//to_s(m), &
+          & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
+          & '2d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
     do j = 1, m
       do i = 1, n
         if (var1(i, j) /= var2(i, j)) then
-          call failed_assert_action(&
-            & to_s(var1(i, j)), &
-            & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
+          if (.not. present(status)) then
+            call failed_assert_action( &
+              & to_s(var1(i, j)), &
+              & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
+          else
+            status = .false.
+          endif
           return
         endif
       enddo
     enddo
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_2d_int_
 
   !------ 0d_real ------
-  subroutine assert_eq_real_(var1, var2, message)
+  subroutine assert_eq_real_(var1, var2, message, status)
     real, intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     if ((var1 < var2) .or. (var1 > var2)) then
-      call failed_assert_action(&
-        & to_s(var1), &
-        & to_s(var2), message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_real_
 
   !------ 0d_real ------
-  subroutine assert_eq_real_in_range_(var1, var2, delta, message)
+  subroutine assert_eq_real_in_range_(var1, var2, delta, message, status)
     real, intent(in) :: var1, var2
     real, intent(in) :: delta
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     if (abs(var1 - var2) > delta) then
-      call failed_assert_action(&
-        & to_s(var1), &
-        & to_s(var2), message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_real_in_range_
 
   !------ 1d_real ------
-  subroutine assert_eq_1d_real_(var1, var2, message)
+  subroutine assert_eq_1d_real_(var1, var2, message, status)
     integer :: i, n
     real, intent(in), dimension(:) :: var1, var2
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     n = size(var1, 1)
 
     if (n .ne. size(var2, 1)) then
-      call failed_assert_action( &
-        & to_s(n), &
-        & to_s(size(var2, 1)), &
-        & '1d arrays have different sizes, '//message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n), &
+          & to_s(size(var2, 1)), &
+          & '1d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
     do i = 1, n
       if ((var1(i) < var2(i)) .or. (var1(i) > var2(i))) then
-        call failed_assert_action(&
-          & to_s(var1(i)), &
-          & to_s(var2(i)), &
-          & '1d array has difference, '//message, if_is=.true.)
+        if (.not. present(status)) then
+          call failed_assert_action( &
+            & to_s(var1(i)), &
+            & to_s(var2(i)), &
+            & '1d array has difference, '//message, if_is=.true.)
+        else
+          status = .false.
+        endif
         return
       endif
     enddo
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_1d_real_
 
   !------ 1d_real ------
-  subroutine assert_eq_1d_real_in_range_(var1, var2, delta, message)
+  subroutine assert_eq_1d_real_in_range_(var1, var2, delta, message, status)
     real, intent(in), dimension(:) :: var1, var2
     real, intent(in) :: delta
     character(len=*), intent(in), optional :: message
     integer :: i, n
+    logical, intent(out), optional :: status
 
     n = size(var1, 1)
 
     if (n .ne. size(var2, 1)) then
-      call failed_assert_action( &
-        & to_s(n), &
-        & to_s(size(var2, 1)), & 
-        & '1d arrays have different sizes, '//message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n), &
+          & to_s(size(var2, 1)), &
+          & '1d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
     do i = 1, n
       if (abs(var1(i) - var2(i)) > delta) then
-        call failed_assert_action(&
-          & to_s(var1(i)), &
-          & to_s(var2(i)), &
-          & '1d array has difference, '//message, if_is=.true.)
+        if (.not. present(status)) then
+          call failed_assert_action( &
+            & to_s(var1(i)), &
+            & to_s(var2(i)), &
+            & '1d array has difference, '//message, if_is=.true.)
+        else
+          status = .false.
+        endif
         return
       endif
     enddo
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_1d_real_in_range_
 
   !------ 2d_real ------
-  subroutine assert_eq_2d_real_(var1, var2, message)
+  subroutine assert_eq_2d_real_(var1, var2, message, status)
     integer :: i, j, n, m
     real, intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     n = size(var1, 1)
     m = size(var1, 2)
 
     if ((size(var2, 1) .ne. n) .and. (size(var2, 2) .ne. m)) then
-      call failed_assert_action( &
-        & to_s(n)//' x '//to_s(m), &
-        & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
-        & '2d arrays have different sizes, '//message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n)//' x '//to_s(m), &
+          & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
+          & '2d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
     do j = 1, m
       do i = 1, n
         if ((var1(i, j) < var2(i, j)) .or. (var1(i, j) > var2(i, j))) then
-          call failed_assert_action(&
-            & to_s(var1(i, j)), &
-            & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
+          if (.not. present(status)) then
+            call failed_assert_action( &
+              & to_s(var1(i, j)), &
+              & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
+          else
+            status = .false.
+          endif
           return
         endif
       enddo
     enddo
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_2d_real_
 
   !------ 2d_real ------
-  subroutine assert_eq_2d_real_in_range_(var1, var2, delta, message)
+  subroutine assert_eq_2d_real_in_range_(var1, var2, delta, message, status)
     integer :: i, j, n, m
     real, intent(in), dimension(:, :) :: var1, var2
     real, intent(in) :: delta
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     n = size(var1, 1)
     m = size(var1, 2)
 
     if ((size(var2, 1) .ne. n) .and. (size(var2, 2) .ne. m)) then
-      call failed_assert_action( &
-        & to_s(n)//' x '//to_s(m), &
-        & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
-        & '2d arrays have different sizes, '//message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n)//' x '//to_s(m), &
+          & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
+          & '2d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
     do j = 1, m
       do i = 1, n
         if (abs(var1(i, j) - var2(i, j)) > delta) then
-          call failed_assert_action(&
-            & to_s(var1(i, j)), &
-            & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
+          if (.not. present(status)) then
+            call failed_assert_action( &
+              & to_s(var1(i, j)), &
+              & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
+          else
+            status = .false.
+          endif
           return
         endif
       enddo
     enddo
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_2d_real_in_range_
 
   !------ 0d_double ------
-  subroutine assert_eq_double_(var1, var2, message)
+  subroutine assert_eq_double_(var1, var2, message, status)
     double precision, intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     if ((var1 < var2) .or. (var1 > var2)) then
-      call failed_assert_action(&
-        & to_s(var1), &
-        & to_s(var2), message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_double_
 
   !------ 0d_double ------
-  subroutine assert_eq_double_in_range_(var1, var2, delta, message)
+  subroutine assert_eq_double_in_range_(var1, var2, delta, message, status)
     double precision, intent(in) :: var1, var2
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     if (abs(var1 - var2) > delta) then
-      call failed_assert_action(&
-        & to_s(var1), &
-        & to_s(var2), message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_double_in_range_
 
   !------ 1d_double ------
-  subroutine assert_eq_1d_double_(var1, var2, message)
+  subroutine assert_eq_1d_double_(var1, var2, message, status)
     integer :: i, n
     double precision, intent(in), dimension(:) :: var1, var2
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     n = size(var1, 1)
 
     if (n .ne. size(var2, 1)) then
-      call failed_assert_action( &
-        & to_s(n), &
-        & to_s(size(var2, 1)), &
-        & '1d arrays have different sizes, '//message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n), &
+          & to_s(size(var2, 1)), &
+          & '1d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
     do i = 1, n
+      if (.not. present(status)) then
+      else
+        status = .false.
+      endif
       if ((var1(i) < var2(i)) .or. (var1(i) > var2(i))) then
-        call failed_assert_action(&
-          & to_s(var1(i)), &
-          & to_s(var2(i)), &
-          & '1d array has difference, '//message, if_is=.true.)
+        if (.not. present(status)) then
+          call failed_assert_action( &
+            & to_s(var1(i)), &
+            & to_s(var2(i)), &
+            & '1d array has difference, '//message, if_is=.true.)
+        else
+          status = .false.
+        endif
         return
       endif
     enddo
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_1d_double_
 
   !------ 1d_double ------
-  subroutine assert_eq_1d_double_in_range_(var1, var2, delta, message)
+  subroutine assert_eq_1d_double_in_range_(var1, var2, delta, message, status)
     integer :: i, n
     double precision, intent(in), dimension(:) :: var1, var2
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     n = size(var1, 1)
 
     if (n .ne. size(var2, 1)) then
-      call failed_assert_action( &
-        & to_s(n), &
-        & to_s(size(var2, 1)), '1d arrays have different sizes, '//message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n), &
+          & to_s(size(var2, 1)), '1d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
     do i = 1, n
+      if (.not. present(status)) then
+      else
+        status = .false.
+      endif
       if (abs(var1(i) - var2(i)) > delta) then
-        call failed_assert_action(&
-          & to_s(var1(i)), &
-          & to_s(var2(i)), '1d array has difference, '//message, if_is=.true.)
+        if (.not. present(status)) then
+          call failed_assert_action( &
+            & to_s(var1(i)), &
+            & to_s(var2(i)), '1d array has difference, '//message, if_is=.true.)
+        else
+          status = .false.
+        endif
         return
       endif
     enddo
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_1d_double_in_range_
 
   !------ 2d_double ------
-  subroutine assert_eq_2d_double_(var1, var2, message)
+  subroutine assert_eq_2d_double_(var1, var2, message, status)
     integer :: i, j, n, m
     double precision, intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     n = size(var1, 1)
     m = size(var1, 2)
 
     if ((size(var2, 1) .ne. n) .and. (size(var2, 2) .ne. m)) then
-      call failed_assert_action( &
-        & to_s(n)//' x '//to_s(m), &
-        & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
-        & '2d arrays have different sizes, '//message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n)//' x '//to_s(m), &
+          & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
+          & '2d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
     do j = 1, m
+      if (.not. present(status)) then
+      else
+        status = .false.
+      endif
       do i = 1, n
         if ((var1(i, j) < var2(i, j)) .or. (var1(i, j) > var2(i, j))) then
-          call failed_assert_action(&
-            & to_s(var1(i, j)), &
-            & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
+          if (.not. present(status)) then
+            call failed_assert_action( &
+              & to_s(var1(i, j)), &
+              & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
+          else
+            status = .false.
+          endif
           return
         endif
       enddo
     enddo
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_2d_double_
 
   !------ 2d_double ------
-  subroutine assert_eq_2d_double_in_range_(var1, var2, delta, message)
+  subroutine assert_eq_2d_double_in_range_(var1, var2, delta, message, status)
     integer :: i, j, n, m
     double precision, intent(in), dimension(:, :) :: var1, var2
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     n = size(var1, 1)
     m = size(var1, 2)
 
     if ((size(var2, 1) .ne. n) .and. (size(var2, 2) .ne. m)) then
-      call failed_assert_action( &
-        & to_s(n)//' x '//to_s(m), &
-        & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
-        & '2d arrays have different sizes, '//message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n)//' x '//to_s(m), &
+          & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
+          & '2d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
     do j = 1, m
+      if (.not. present(status)) then
+      else
+        status = .false.
+      endif
       do i = 1, n
         if (abs(var1(i, j) - var2(i, j)) > delta) then
-          call failed_assert_action(&
-            & to_s(var1(i, j)), &
-            & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
+          if (.not. present(status)) then
+            call failed_assert_action( &
+              & to_s(var1(i, j)), &
+              & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
+          else
+            status = .false.
+          endif
           return
         endif
       enddo
     enddo
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_2d_double_in_range_
 
   !------ 0d_complex ------
-  subroutine assert_eq_complex_(var1, var2, message)
+  subroutine assert_eq_complex_(var1, var2, message, status)
     complex(kind=kind(1.0D0)), intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     if ((real(var1) < real(var2)) .or. &
       &(real(var1) > real(var2)) .or. &
       &(aimag(var1) < aimag(var2)) .or. &
       &(aimag(var1) > aimag(var2))) then
-      call failed_assert_action(&
-        & to_s(var1), &
-        & to_s(var2), message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_complex_
 
   !------ 0d_complex ------
-  subroutine assert_eq_complex_in_range_(var1, var2, delta, message)
+  subroutine assert_eq_complex_in_range_(var1, var2, delta, message, status)
     complex(kind=kind(1.0D0)), intent(in) :: var1, var2
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     if (abs(var1 - var2) > delta) then
-      call failed_assert_action(&
-        & to_s(var1), &
-        & to_s(var2), message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_complex_in_range_
 
   !------ 1d_complex ------
-  subroutine assert_eq_1d_complex_(var1, var2, message)
+  subroutine assert_eq_1d_complex_(var1, var2, message, status)
     integer :: i, n
     complex(kind=kind(1.0D0)), intent(in), dimension(:) :: var1, var2
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     n = size(var1, 1)
 
     if (n .ne. size(var2, 1)) then
-      call failed_assert_action( &
-        & to_s(n), &
-        & to_s(size(var2, 1)), '1d arrays have different sizes, '//message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n), &
+          & to_s(size(var2, 1)), '1d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
     do i = 1, n
+      if (.not. present(status)) then
+      else
+        status = .false.
+      endif
       if ((real(var1(i)) < real(var2(i))) .or. &
         &(real(var1(i)) > real(var2(i))) .or. &
         &(aimag(var1(i)) < aimag(var2(i))) .or. &
         &(aimag(var1(i)) > aimag(var2(i)))) then
-        call failed_assert_action(&
-          & to_s(var1(i)), &
-          & to_s(var2(i)), '1d array has difference, '//message, if_is=.true.)
+        if (.not. present(status)) then
+          call failed_assert_action( &
+            & to_s(var1(i)), &
+            & to_s(var2(i)), '1d array has difference, '//message, if_is=.true.)
+        else
+          status = .false.
+        endif
         return
       endif
     enddo
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_1d_complex_
 
   !------ 1d_complex ------
-  subroutine assert_eq_1d_complex_in_range_(var1, var2, delta, message)
+  subroutine assert_eq_1d_complex_in_range_(var1, var2, delta, message, status)
     integer :: i, n
     complex(kind=kind(1.0D0)), intent(in), dimension(:) :: var1, var2
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     n = size(var1, 1)
 
     if (n .ne. size(var2, 1)) then
-      call failed_assert_action( &
-        & to_s(n), &
-        & to_s(size(var2, 1)), '1d arrays have different sizes, '//message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n), &
+          & to_s(size(var2, 1)), '1d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
     do i = 1, n
+      if (.not. present(status)) then
+      else
+        status = .false.
+      endif
       if (abs(var1(i) - var2(i)) > delta) then
-        call failed_assert_action(&
-          & to_s(var1(i)), &
-          & to_s(var2(i)), '1d array has difference, '//message, if_is=.true.)
+        if (.not. present(status)) then
+          call failed_assert_action( &
+            & to_s(var1(i)), &
+            & to_s(var2(i)), '1d array has difference, '//message, if_is=.true.)
+        else
+          status = .false.
+        endif
         return
       endif
     enddo
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_1d_complex_in_range_
 
   !------ 2d_complex ------
-  subroutine assert_eq_2d_complex_(var1, var2, message)
+  subroutine assert_eq_2d_complex_(var1, var2, message, status)
     integer :: i, j, n, m
     complex(kind=kind(1.0D0)), intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     n = size(var1, 1)
     m = size(var1, 2)
 
     if ((size(var2, 1) .ne. n) .and. (size(var2, 2) .ne. m)) then
-      call failed_assert_action( &
-        & to_s(n)//' x '//to_s(m), &
-        & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
-        & '2d arrays have different sizes, '//message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n)//' x '//to_s(m), &
+          & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
+          & '2d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
     do j = 1, m
+      if (.not. present(status)) then
+      else
+        status = .false.
+      endif
       do i = 1, n
         if ((real(var1(i, j)) < real(var2(i, j))) .or. &
           &(real(var1(i, j)) > real(var2(i, j))) .or. &
           &(aimag(var1(i, j)) < aimag(var2(i, j))) .or. &
           &(aimag(var1(i, j)) > aimag(var2(i, j)))) then
-          call failed_assert_action(&
-            & to_s(var1(i, j)), &
-            & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
+          if (.not. present(status)) then
+            call failed_assert_action( &
+              & to_s(var1(i, j)), &
+              & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
+          else
+            status = .false.
+          endif
           return
         endif
       enddo
     enddo
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_2d_complex_
 
   !------ 2d_complex ------
-  subroutine assert_eq_2d_complex_in_range_(var1, var2, delta, message)
+  subroutine assert_eq_2d_complex_in_range_(var1, var2, delta, message, status)
     integer :: i, j, n, m
     complex(kind=kind(1.0D0)), intent(in), dimension(:, :) :: var1, var2
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     n = size(var1, 1)
     m = size(var1, 2)
 
     if ((size(var2, 1) .ne. n) .and. (size(var2, 2) .ne. m)) then
-      call failed_assert_action( &
-        & to_s(n)//' x '//to_s(m), &
-        & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
-        & '2d arrays have different sizes, '//message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n)//' x '//to_s(m), &
+          & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
+          & '2d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
       return
     endif
 
     do j = 1, m
+      if (.not. present(status)) then
+      else
+        status = .false.
+      endif
       do i = 1, n
         if (abs(var1(i, j) - var2(i, j)) > delta) then
-          call failed_assert_action(&
-            & to_s(var1(i, j)), &
-            & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
+          if (.not. present(status)) then
+            call failed_assert_action( &
+              & to_s(var1(i, j)), &
+              & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
+          else
+            status = .false.
+          endif
           return
         endif
       enddo
     enddo
-    call add_success
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_eq_2d_complex_in_range_
 
   !------ 0d_logical ------
-  subroutine assert_not_equal_logical_(var1, var2, message)
+  subroutine assert_not_equal_logical_(var1, var2, message, status)
     logical, intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
+    call assert_equal(var1, var2, status=is_equal)
 
-    if (var1 .neqv. var2) then
-      same_so_far = .false.
-    endif
-
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1), &
-        & to_s(var2), message, if_is=.false.)
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.false.)
+      else
+        status = .false.
+      endif
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_logical_
 
   !------ 1d_logical ------
-  subroutine assert_not_equal_1d_logical_(var1, var2, n, message)
-    integer, intent(in) :: n
-    integer :: i
-    logical, intent(in) :: var1(n), var2(n)
+  subroutine assert_not_equal_1d_logical_(var1, var2, message, status)
+    logical, intent(in), dimension(:) :: var1, var2
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
-    do i = 1, n
-      if (var1(i) .neqv. var2(i)) then
-        same_so_far = .false.
+    call assert_equal(var1, var2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1)), &
+          & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
       endif
-    enddo
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1(1)), &
-        & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_1d_logical_
 
   !------ 2d_logical ------
-  subroutine assert_not_equal_2d_logical_(var1, var2, n, m, message)
-    integer, intent(in) :: n, m
-    integer :: i, j
-    logical, intent(in) :: var1(n, m), var2(n, m)
+  subroutine assert_not_equal_2d_logical_(var1, var2, message, status)
+    integer :: i, j, n, m
+    logical, intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
-    do j = 1, m
-      do i = 1, n
-        if (var1(i, j) .neqv. var2(i, j)) then
-          same_so_far = .false.
-        endif
-      enddo
-    enddo
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1(1, 1)), &
-        & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+    call assert_equal(var1, var2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1, 1)), &
+          & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
+      endif
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_2d_logical_
 
   !------ 0d_string ------
-  subroutine assert_not_equal_string_(var1, var2, message)
+  subroutine assert_not_equal_string_(var1, var2, message, status)
     character(len=*), intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
+    call assert_equal(var1, var2, status=is_equal)
 
-    if (trim(strip(var1)) /= trim(strip(var2))) then
-      same_so_far = .false.
-    endif
-
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1), &
-        & to_s(var2), message, if_is=.false.)
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.false.)
+      else
+        status = .false.
+      endif
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
+
   end subroutine assert_not_equal_string_
 
   !------ 1d_string ------
-  subroutine assert_not_equal_1d_string_(var1, var2, n, message)
-    integer, intent(in) :: n
-    integer :: i
-    character(len=*), intent(in) :: var1(n), var2(n)
+  subroutine assert_not_equal_1d_string_(var1, var2, message, status)
+    character(len=*), intent(in), dimension(:) :: var1, var2
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
-    do i = 1, n
-      if (trim(strip(var1(i))) /= trim(strip(var2(i)))) then
-        same_so_far = .false.
+    call assert_equal(var1, var2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1)), &
+          & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
       endif
-    enddo
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1(1)), &
-        & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_1d_string_
 
   !------ 2d_string ------
-  subroutine assert_not_equal_2d_string_(var1, var2, n, m, message)
-    integer, intent(in) :: n, m
-    integer :: i, j
-    character(len=*), intent(in) :: var1(n, m), var2(n, m)
+  subroutine assert_not_equal_2d_string_(var1, var2, message, status)
+    integer :: i, j, n, m
+    character(len=*), intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
-    do j = 1, m
-      do i = 1, n
-        if (trim(strip(var1(i, j))) /= trim(strip(var2(i, j)))) then
-          same_so_far = .false.
-        endif
-      enddo
-    enddo
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1(1, 1)), &
-        & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+    call assert_equal(var1, var2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1, 1)), &
+          & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
+      endif
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_2d_string_
 
   !------ 0d_int ------
-  subroutine assert_not_equal_int_(var1, var2, message)
+  subroutine assert_not_equal_int_(var1, var2, message, status)
     integer, intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
+    call assert_equal(var1, var2, status=is_equal)
 
-    if (var1 /= var2) then
-      same_so_far = .false.
-    endif
-
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1), &
-        & to_s(var2), message, if_is=.false.)
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.false.)
+      else
+        status = .false.
+      endif
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_int_
 
   !------ 1d_int ------
-  subroutine assert_not_equal_1d_int_(var1, var2, n, message)
-    integer, intent(in) :: n
-    integer :: i
-    integer, intent(in) :: var1(n), var2(n)
+  subroutine assert_not_equal_1d_int_(var1, var2, message, status)
+    integer, intent(in), dimension(:) :: var1, var2
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
-    do i = 1, n
-      if (var1(i) /= var2(i)) then
-        same_so_far = .false.
+    call assert_equal(var1, var2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1)), &
+          & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
       endif
-    enddo
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1(1)), &
-        & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_1d_int_
 
   !------ 2d_int ------
-  subroutine assert_not_equal_2d_int_(var1, var2, n, m, message)
-    integer, intent(in) :: n, m
-    integer :: i, j
-    integer, intent(in) :: var1(n, m), var2(n, m)
+  subroutine assert_not_equal_2d_int_(var1, var2, message, status)
+    integer :: i, j, n, m
+    integer, intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
-    do j = 1, m
-      do i = 1, n
-        if (var1(i, j) /= var2(i, j)) then
-          same_so_far = .false.
-        endif
-      enddo
-    enddo
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1(1, 1)), &
-        & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+    call assert_equal(var1, var2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1, 1)), &
+          & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
+      endif
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_2d_int_
 
   !------ 0d_real ------
-  subroutine assert_not_equal_real_(var1, var2, message)
+  subroutine assert_not_equal_real_(var1, var2, message, status)
     real, intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
+    call assert_equal(var1, var2, status=is_equal)
 
-    if ((var1 < var2) .or. (var1 > var2)) then
-      same_so_far = .false.
-    endif
-
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1), &
-        & to_s(var2), message, if_is=.false.)
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.false.)
+      else
+        status = .false.
+      endif
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_real_
 
   !------ 0d_real ------
-  subroutine assert_not_equal_real_in_range_(var1, var2, delta, message)
+  subroutine assert_not_equal_real_in_range_(var1, var2, delta, message, status)
     real, intent(in) :: var1, var2
     real, intent(in) :: delta
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
+    call assert_equal(var1, var2, status=is_equal)
 
-    if (abs(var1 - var2) > delta) then
-      same_so_far = .false.
-    endif
-
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1), &
-        & to_s(var2), message, if_is=.false.)
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.false.)
+      else
+        status = .false.
+      endif
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_real_in_range_
 
   !------ 1d_real ------
-  subroutine assert_not_equal_1d_real_(var1, var2, n, message)
-    integer, intent(in) :: n
-    integer :: i
-    real, intent(in) :: var1(n), var2(n)
+  subroutine assert_not_equal_1d_real_(var1, var2, message, status)
+    real, intent(in), dimension(:) :: var1, var2
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
-    do i = 1, n
-      if ((var1(i) < var2(i)) .or. (var1(i) > var2(i))) then
-        same_so_far = .false.
+    call assert_equal(var1, var2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1)), &
+          & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
       endif
-    enddo
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1(1)), &
-        & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_1d_real_
 
   !------ 1d_real ------
-  subroutine assert_not_equal_1d_real_in_range_(var1, var2, n, delta, message)
-    integer, intent(in) :: n
-    integer :: i
-    real, intent(in) :: var1(n), var2(n)
+  subroutine assert_not_equal_1d_real_in_range_(var1, var2, delta, message, status)
+    real, intent(in), dimension(:) :: var1, var2
     real, intent(in) :: delta
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
-    do i = 1, n
-      if (abs(var1(i) - var2(i)) > delta) then
-        same_so_far = .false.
+    call assert_equal(var1, var2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1)), &
+          & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
       endif
-    enddo
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1(1)), &
-        & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_1d_real_in_range_
 
   !------ 2d_real ------
-  subroutine assert_not_equal_2d_real_(var1, var2, n, m, message)
-    integer, intent(in) :: n, m
-    integer :: i, j
-    real, intent(in) :: var1(n, m), var2(n, m)
+  subroutine assert_not_equal_2d_real_(var1, var2, message, status)
+    integer :: i, j, n, m
+    real, intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
-    do j = 1, m
-      do i = 1, n
-        if ((var1(i, j) < var2(i, j)) .or. (var1(i, j) > var2(i, j))) then
-          same_so_far = .false.
-        endif
-      enddo
-    enddo
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1(1, 1)), &
-        & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+    call assert_equal(var1, var2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1, 1)), &
+          & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
+      endif
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_2d_real_
 
   !------ 2d_real ------
-  subroutine assert_not_equal_2d_real_in_range_(var1, var2, n, m, delta, message)
-    integer, intent(in) :: n, m
-    integer :: i, j
-    real, intent(in) :: var1(n, m), var2(n, m)
+  subroutine assert_not_equal_2d_real_in_range_(var1, var2, delta, message, status)
+    integer :: i, j, n, m
+    real, intent(in), dimension(:, :) :: var1, var2
     real, intent(in) :: delta
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
-    do j = 1, m
-      do i = 1, n
-        if (abs(var1(i, j) - var2(i, j)) > delta) then
-          same_so_far = .false.
-        endif
-      enddo
-    enddo
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1(1, 1)), &
-        & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+    call assert_equal(var1, var2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1, 1)), &
+          & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
+      endif
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_2d_real_in_range_
 
   !------ 0d_double ------
-  subroutine assert_not_equal_double_(var1, var2, message)
+  subroutine assert_not_equal_double_(var1, var2, message, status)
     double precision, intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
+    call assert_equal(var1, var2, status=is_equal)
 
-    if ((var1 < var2) .or. (var1 > var2)) then
-      same_so_far = .false.
-    endif
-
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1), &
-        & to_s(var2), message, if_is=.false.)
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.false.)
+      else
+        status = .false.
+      endif
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_double_
 
   !------ 0d_double ------
-  subroutine assert_not_equal_double_in_range_(var1, var2, delta, message)
+  subroutine assert_not_equal_double_in_range_(var1, var2, delta, message, status)
     double precision, intent(in) :: var1, var2
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
+    call assert_equal(var1, var2, status=is_equal)
 
-    if (abs(var1 - var2) > delta) then
-      same_so_far = .false.
-    endif
-
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1), &
-        & to_s(var2), message, if_is=.false.)
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.false.)
+      else
+        status = .false.
+      endif
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_double_in_range_
 
   !------ 1d_double ------
-  subroutine assert_not_equal_1d_double_(var1, var2, n, message)
-    integer, intent(in) :: n
-    integer :: i
-    double precision, intent(in) :: var1(n), var2(n)
+  subroutine assert_not_equal_1d_double_(var1, var2, message, status)
+    double precision, intent(in), dimension(:) :: var1, var2
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
-    do i = 1, n
-      if ((var1(i) < var2(i)) .or. (var1(i) > var2(i))) then
-        same_so_far = .false.
+    call assert_equal(var1, var2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1)), &
+          & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
       endif
-    enddo
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1(1)), &
-        & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_1d_double_
 
   !------ 1d_double ------
-  subroutine assert_not_equal_1d_double_in_range_(var1, var2, n, delta, message)
-    integer, intent(in) :: n
-    integer :: i
-    double precision, intent(in) :: var1(n), var2(n)
+  subroutine assert_not_equal_1d_double_in_range_(var1, var2, delta, message, status)
+    double precision, intent(in), dimension(:) :: var1, var2
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
-    do i = 1, n
-      if (abs(var1(i) - var2(i)) > delta) then
-        same_so_far = .false.
+    call assert_equal(var1, var2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1)), &
+          & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
       endif
-    enddo
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1(1)), &
-        & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_1d_double_in_range_
 
   !------ 2d_double ------
-  subroutine assert_not_equal_2d_double_(var1, var2, n, m, message)
-    integer, intent(in) :: n, m
-    integer :: i, j
-    double precision, intent(in) :: var1(n, m), var2(n, m)
+  subroutine assert_not_equal_2d_double_(var1, var2, message, status)
+    integer :: i, j, n, m
+    double precision, intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
-    do j = 1, m
-      do i = 1, n
-        if ((var1(i, j) < var2(i, j)) .or. (var1(i, j) > var2(i, j))) then
-          same_so_far = .false.
-        endif
-      enddo
-    enddo
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1(1, 1)), &
-        & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+    call assert_equal(var1, var2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1, 1)), &
+          & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
+      endif
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_2d_double_
 
   !------ 2d_double ------
-  subroutine assert_not_equal_2d_double_in_range_(var1, var2, n, m, delta, message)
-    integer, intent(in) :: n, m
-    integer :: i, j
-    double precision, intent(in) :: var1(n, m), var2(n, m)
+  subroutine assert_not_equal_2d_double_in_range_(var1, var2, delta, message, status)
+    integer :: i, j, n, m
+    double precision, intent(in), dimension(:, :) :: var1, var2
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
-    do j = 1, m
-      do i = 1, n
-        if (abs(var1(i, j) - var2(i, j)) > delta) then
-          same_so_far = .false.
-        endif
-      enddo
-    enddo
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1(1, 1)), &
-        & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+    call assert_equal(var1, var2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1, 1)), &
+          & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
+      endif
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_2d_double_in_range_
 
   !------ 0d_complex ------
-  subroutine assert_not_equal_complex_(var1, var2, message)
+  subroutine assert_not_equal_complex_(var1, var2, message, status)
     complex(kind=kind(1.0D0)), intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
+    call assert_equal(var1, var2, status=is_equal)
 
-    if ((real(var1) < real(var2)) .or. &
-      &(real(var1) > real(var2)) .or. &
-      &(aimag(var1) < aimag(var2)) .or. &
-      &(aimag(var1) > aimag(var2))) then
-      same_so_far = .false.
-    endif
-
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1), &
-        & to_s(var2), message, if_is=.false.)
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.false.)
+      else
+        status = .false.
+      endif
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_complex_
 
   !------ 0d_complex ------
-  subroutine assert_not_equal_complex_in_range_(var1, var2, delta, message)
+  subroutine assert_not_equal_complex_in_range_(var1, var2, delta, message, status)
     complex(kind=kind(1.0D0)), intent(in) :: var1, var2
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
+    call assert_equal(var1, var2, status=is_equal)
 
-    if (abs(var1 - var2) > delta) then
-      same_so_far = .false.
-    endif
-
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1), &
-        & to_s(var2), message, if_is=.false.)
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.false.)
+      else
+        status = .false.
+      endif
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_complex_in_range_
 
   !------ 1d_complex ------
-  subroutine assert_not_equal_1d_complex_(var1, var2, n, message)
-    integer, intent(in) :: n
-    integer :: i
-    complex(kind=kind(1.0D0)), intent(in) :: var1(n), var2(n)
+  subroutine assert_not_equal_1d_complex_(var1, var2, message, status)
+    complex(kind=kind(1.0D0)), intent(in), dimension(:) :: var1, var2
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
-    do i = 1, n
-      if ((real(var1(i)) < real(var2(i))) .or. &
-        &(real(var1(i)) > real(var2(i))) .or. &
-        &(aimag(var1(i)) < aimag(var2(i))) .or. &
-        &(aimag(var1(i)) > aimag(var2(i)))) then
-        same_so_far = .false.
+    call assert_equal(var1, var2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1)), &
+          & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
       endif
-    enddo
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1(1)), &
-        & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_1d_complex_
 
   !------ 1d_complex ------
-  subroutine assert_not_equal_1d_complex_in_range_(var1, var2, n, delta, message)
-    integer, intent(in) :: n
-    integer :: i
-    complex(kind=kind(1.0D0)), intent(in) :: var1(n), var2(n)
+  subroutine assert_not_equal_1d_complex_in_range_(var1, var2, delta, message, status)
+    complex(kind=kind(1.0D0)), intent(in), dimension(:) :: var1, var2
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
-    do i = 1, n
-      if (abs(var1(i) - var2(i)) > delta) then
-        same_so_far = .false.
+    call assert_equal(var1, var2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1)), &
+          & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
       endif
-    enddo
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1(1)), &
-        & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_1d_complex_in_range_
 
   !------ 2d_complex ------
-  subroutine assert_not_equal_2d_complex_(var1, var2, n, m, message)
-    integer, intent(in) :: n, m
-    integer :: i, j
-    complex(kind=kind(1.0D0)), intent(in) :: var1(n, m), var2(n, m)
+  subroutine assert_not_equal_2d_complex_(var1, var2, message, status)
+    integer :: i, j, n, m
+    complex(kind=kind(1.0D0)), intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
-    do j = 1, m
-      do i = 1, n
-        if ((real(var1(i, j)) < real(var2(i, j))) .or. &
-          &(real(var1(i, j)) > real(var2(i, j))) .or. &
-          &(aimag(var1(i, j)) < aimag(var2(i, j))) .or. &
-          &(aimag(var1(i, j)) > aimag(var2(i, j)))) then
-          same_so_far = .false.
-        endif
-      enddo
-    enddo
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1(1, 1)), &
-        & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+    call assert_equal(var1, var2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1, 1)), &
+          & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
+      endif
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_2d_complex_
 
   !------ 2d_complex ------
-  subroutine assert_not_equal_2d_complex_in_range_(var1, var2, n, m, delta, message)
-    integer, intent(in) :: n, m
-    integer :: i, j
-    complex(kind=kind(1.0D0)), intent(in) :: var1(n, m), var2(n, m)
+  subroutine assert_not_equal_2d_complex_in_range_(var1, var2, delta, message, status)
+    integer :: i, j, n, m
+    complex(kind=kind(1.0D0)), intent(in), dimension(:, :) :: var1, var2
     double precision, intent(in) :: delta
     character(len=*), intent(in), optional :: message
-    logical :: same_so_far
+    logical, intent(out), optional :: status
+    logical :: is_equal
 
-    same_so_far = .true.
-    do j = 1, m
-      do i = 1, n
-        if (abs(var1(i, j) - var2(i, j)) > delta) then
-          same_so_far = .false.
-        endif
-      enddo
-    enddo
-    if (same_so_far) then
-      call failed_assert_action(&
-        & to_s(var1(1, 1)), &
-        & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+    call assert_equal(var1, var2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1, 1)), &
+          & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
+      endif
       return
     endif
-    call add_success
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
   end subroutine assert_not_equal_2d_complex_in_range_
 
   !====== end of generated code ======

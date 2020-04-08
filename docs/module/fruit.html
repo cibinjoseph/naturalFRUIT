@@ -124,7 +124,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="91.1% of total for modules and submodules.">1713 statements</a>
+    title="92.8% of total for modules and submodules.">2141 statements</a>
      </li> 
      
      
@@ -731,7 +731,7 @@ private subroutine assert_false_(var1, message)
     
     
     <h3>
-private subroutine assert_eq_logical_(var1, var2, message)
+private subroutine assert_eq_logical_(var1, var2, message, status)
     
     
    
@@ -796,6 +796,21 @@ private subroutine assert_eq_logical_(var1, var2, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -809,7 +824,7 @@ private subroutine assert_eq_logical_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_eq_1d_logical_(var1, var2, message)
+private subroutine assert_eq_1d_logical_(var1, var2, message, status)
     
     
    
@@ -874,6 +889,21 @@ private subroutine assert_eq_1d_logical_(var1, var2, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -887,7 +917,7 @@ private subroutine assert_eq_1d_logical_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_eq_2d_logical_(var1, var2, message)
+private subroutine assert_eq_2d_logical_(var1, var2, message, status)
     
     
    
@@ -952,6 +982,21 @@ private subroutine assert_eq_2d_logical_(var1, var2, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -965,7 +1010,7 @@ private subroutine assert_eq_2d_logical_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_eq_string_(var1, var2, message)
+private subroutine assert_eq_string_(var1, var2, message, status)
     
     
    
@@ -1030,6 +1075,21 @@ private subroutine assert_eq_string_(var1, var2, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -1043,7 +1103,7 @@ private subroutine assert_eq_string_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_eq_1d_string_(var1, var2, message)
+private subroutine assert_eq_1d_string_(var1, var2, message, status)
     
     
    
@@ -1108,6 +1168,21 @@ private subroutine assert_eq_1d_string_(var1, var2, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -1121,7 +1196,7 @@ private subroutine assert_eq_1d_string_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_eq_2d_string_(var1, var2, message)
+private subroutine assert_eq_2d_string_(var1, var2, message, status)
     
     
    
@@ -1186,6 +1261,21 @@ private subroutine assert_eq_2d_string_(var1, var2, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -1199,7 +1289,7 @@ private subroutine assert_eq_2d_string_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_eq_int_(var1, var2, message)
+private subroutine assert_eq_int_(var1, var2, message, status)
     
     
    
@@ -1264,6 +1354,21 @@ private subroutine assert_eq_int_(var1, var2, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -1277,7 +1382,7 @@ private subroutine assert_eq_int_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_eq_1d_int_(var1, var2, message)
+private subroutine assert_eq_1d_int_(var1, var2, message, status)
     
     
    
@@ -1342,6 +1447,21 @@ private subroutine assert_eq_1d_int_(var1, var2, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -1355,7 +1475,7 @@ private subroutine assert_eq_1d_int_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_eq_2d_int_(var1, var2, message)
+private subroutine assert_eq_2d_int_(var1, var2, message, status)
     
     
    
@@ -1420,6 +1540,21 @@ private subroutine assert_eq_2d_int_(var1, var2, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -1433,7 +1568,7 @@ private subroutine assert_eq_2d_int_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_eq_real_(var1, var2, message)
+private subroutine assert_eq_real_(var1, var2, message, status)
     
     
    
@@ -1498,96 +1633,18 @@ private subroutine assert_eq_real_(var1, var2, message)
   
 </tr>
 
-</tbody>
-</table>
-
-      
-    
-    
-
-    </li>
-  
-    <li class="list-group-item">
-    
-    
-    <h3>
-private subroutine assert_eq_real_in_range_(var1, var2, delta, message)
-    
-    
-   
-</h3>
-    
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
   
   
   
   
 <tr>
   
-  <td><span class="anchor" ></span>real,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>var1</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>var2</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>delta</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in),</td>
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
   <td>optional</td>
   
   <td></td><td>::</td>
-  <td><strong>message</strong></td><td></td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -1604,7 +1661,7 @@ private subroutine assert_eq_real_in_range_(var1, var2, delta, message)
     
     
     <h3>
-private subroutine assert_eq_1d_real_(var1, var2, message)
+private subroutine assert_eq_real_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -1631,88 +1688,10 @@ private subroutine assert_eq_1d_real_(var1, var2, message)
 <tr>
   
   <td><span class="anchor" ></span>real,</td>
-  <td>intent(in),</td>
+  <td>intent(in)</td>
   <td></td>
-  
-  <td>dimension(:)</td><td>::</td>
-  <td><strong>var1</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:)</td><td>::</td>
-  <td><strong>var2</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
   
   <td></td><td>::</td>
-  <td><strong>message</strong></td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-    </li>
-  
-    <li class="list-group-item">
-    
-    
-    <h3>
-private subroutine assert_eq_1d_real_in_range_(var1, var2, delta, message)
-    
-    
-   
-</h3>
-    
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:)</td><td>::</td>
   <td><strong>var1</strong></td><td></td>
   
 </tr>
@@ -1724,10 +1703,10 @@ private subroutine assert_eq_1d_real_in_range_(var1, var2, delta, message)
 <tr>
   
   <td><span class="anchor" ></span>real,</td>
-  <td>intent(in),</td>
+  <td>intent(in)</td>
   <td></td>
   
-  <td>dimension(:)</td><td>::</td>
+  <td></td><td>::</td>
   <td><strong>var2</strong></td><td></td>
   
 </tr>
@@ -1762,6 +1741,21 @@ private subroutine assert_eq_1d_real_in_range_(var1, var2, delta, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -1775,7 +1769,208 @@ private subroutine assert_eq_1d_real_in_range_(var1, var2, delta, message)
     
     
     <h3>
-private subroutine assert_eq_2d_real_(var1, var2, message)
+private subroutine assert_eq_1d_real_(var1, var2, message, status)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real,</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real,</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private subroutine assert_eq_1d_real_in_range_(var1, var2, delta, message, status)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real,</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real,</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>delta</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private subroutine assert_eq_2d_real_(var1, var2, message, status)
     
     
    
@@ -1840,6 +2035,21 @@ private subroutine assert_eq_2d_real_(var1, var2, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -1853,7 +2063,7 @@ private subroutine assert_eq_2d_real_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_eq_2d_real_in_range_(var1, var2, delta, message)
+private subroutine assert_eq_2d_real_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -1933,6 +2143,21 @@ private subroutine assert_eq_2d_real_in_range_(var1, var2, delta, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -1946,7 +2171,7 @@ private subroutine assert_eq_2d_real_in_range_(var1, var2, delta, message)
     
     
     <h3>
-private subroutine assert_eq_double_(var1, var2, message)
+private subroutine assert_eq_double_(var1, var2, message, status)
     
     
    
@@ -2011,96 +2236,18 @@ private subroutine assert_eq_double_(var1, var2, message)
   
 </tr>
 
-</tbody>
-</table>
-
-      
-    
-    
-
-    </li>
-  
-    <li class="list-group-item">
-    
-    
-    <h3>
-private subroutine assert_eq_double_in_range_(var1, var2, delta, message)
-    
-    
-   
-</h3>
-    
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
   
   
   
   
 <tr>
   
-  <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>var1</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>var2</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>delta</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in),</td>
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
   <td>optional</td>
   
   <td></td><td>::</td>
-  <td><strong>message</strong></td><td></td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -2117,7 +2264,7 @@ private subroutine assert_eq_double_in_range_(var1, var2, delta, message)
     
     
     <h3>
-private subroutine assert_eq_1d_double_(var1, var2, message)
+private subroutine assert_eq_double_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -2144,348 +2291,6 @@ private subroutine assert_eq_1d_double_(var1, var2, message)
 <tr>
   
   <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:)</td><td>::</td>
-  <td><strong>var1</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:)</td><td>::</td>
-  <td><strong>var2</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td></td><td>::</td>
-  <td><strong>message</strong></td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-    </li>
-  
-    <li class="list-group-item">
-    
-    
-    <h3>
-private subroutine assert_eq_1d_double_in_range_(var1, var2, delta, message)
-    
-    
-   
-</h3>
-    
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:)</td><td>::</td>
-  <td><strong>var1</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:)</td><td>::</td>
-  <td><strong>var2</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>delta</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td></td><td>::</td>
-  <td><strong>message</strong></td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-    </li>
-  
-    <li class="list-group-item">
-    
-    
-    <h3>
-private subroutine assert_eq_2d_double_(var1, var2, message)
-    
-    
-   
-</h3>
-    
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:, :)</td><td>::</td>
-  <td><strong>var1</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:, :)</td><td>::</td>
-  <td><strong>var2</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td></td><td>::</td>
-  <td><strong>message</strong></td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-    </li>
-  
-    <li class="list-group-item">
-    
-    
-    <h3>
-private subroutine assert_eq_2d_double_in_range_(var1, var2, delta, message)
-    
-    
-   
-</h3>
-    
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:, :)</td><td>::</td>
-  <td><strong>var1</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:, :)</td><td>::</td>
-  <td><strong>var2</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>delta</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td></td><td>::</td>
-  <td><strong>message</strong></td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-    </li>
-  
-    <li class="list-group-item">
-    
-    
-    <h3>
-private subroutine assert_eq_complex_(var1, var2, message)
-    
-    
-   
-</h3>
-    
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -2500,85 +2305,7 @@ private subroutine assert_eq_complex_(var1, var2, message)
   
 <tr>
   
-  <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>var2</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td></td><td>::</td>
-  <td><strong>message</strong></td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-    </li>
-  
-    <li class="list-group-item">
-    
-    
-    <h3>
-private subroutine assert_eq_complex_in_range_(var1, var2, delta, message)
-    
-    
-   
-</h3>
-    
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>var1</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
+  <td><span class="anchor" ></span>double precision,</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -2617,6 +2344,21 @@ private subroutine assert_eq_complex_in_range_(var1, var2, delta, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -2630,7 +2372,610 @@ private subroutine assert_eq_complex_in_range_(var1, var2, delta, message)
     
     
     <h3>
-private subroutine assert_eq_1d_complex_(var1, var2, message)
+private subroutine assert_eq_1d_double_(var1, var2, message, status)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>double precision,</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>double precision,</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private subroutine assert_eq_1d_double_in_range_(var1, var2, delta, message, status)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>double precision,</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>double precision,</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>double precision,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>delta</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private subroutine assert_eq_2d_double_(var1, var2, message, status)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>double precision,</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>double precision,</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private subroutine assert_eq_2d_double_in_range_(var1, var2, delta, message, status)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>double precision,</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>double precision,</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>double precision,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>delta</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private subroutine assert_eq_complex_(var1, var2, message, status)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private subroutine assert_eq_complex_in_range_(var1, var2, delta, message, status)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>double precision,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>delta</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private subroutine assert_eq_1d_complex_(var1, var2, message, status)
     
     
    
@@ -2695,6 +3040,21 @@ private subroutine assert_eq_1d_complex_(var1, var2, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -2708,7 +3068,7 @@ private subroutine assert_eq_1d_complex_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_eq_1d_complex_in_range_(var1, var2, delta, message)
+private subroutine assert_eq_1d_complex_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -2788,6 +3148,21 @@ private subroutine assert_eq_1d_complex_in_range_(var1, var2, delta, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -2801,7 +3176,7 @@ private subroutine assert_eq_1d_complex_in_range_(var1, var2, delta, message)
     
     
     <h3>
-private subroutine assert_eq_2d_complex_(var1, var2, message)
+private subroutine assert_eq_2d_complex_(var1, var2, message, status)
     
     
    
@@ -2866,6 +3241,21 @@ private subroutine assert_eq_2d_complex_(var1, var2, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -2879,7 +3269,7 @@ private subroutine assert_eq_2d_complex_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_eq_2d_complex_in_range_(var1, var2, delta, message)
+private subroutine assert_eq_2d_complex_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -2956,6 +3346,21 @@ private subroutine assert_eq_2d_complex_in_range_(var1, var2, delta, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -2992,7 +3397,7 @@ private subroutine assert_eq_2d_complex_in_range_(var1, var2, delta, message)
     
     
     <h3>
-private subroutine assert_not_equal_logical_(var1, var2, message)
+private subroutine assert_not_equal_logical_(var1, var2, message, status)
     
     
    
@@ -3057,6 +3462,21 @@ private subroutine assert_not_equal_logical_(var1, var2, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -3070,7 +3490,7 @@ private subroutine assert_not_equal_logical_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_not_equal_1d_logical_(var1, var2, n, message)
+private subroutine assert_not_equal_1d_logical_(var1, var2, message, status)
     
     
    
@@ -3097,11 +3517,11 @@ private subroutine assert_not_equal_1d_logical_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>logical,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n)</td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -3112,26 +3532,11 @@ private subroutine assert_not_equal_1d_logical_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>logical,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -3150,6 +3555,21 @@ private subroutine assert_not_equal_1d_logical_(var1, var2, n, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -3163,7 +3583,7 @@ private subroutine assert_not_equal_1d_logical_(var1, var2, n, message)
     
     
     <h3>
-private subroutine assert_not_equal_2d_logical_(var1, var2, n, m, message)
+private subroutine assert_not_equal_2d_logical_(var1, var2, message, status)
     
     
    
@@ -3190,11 +3610,11 @@ private subroutine assert_not_equal_2d_logical_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>logical,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n,m)</td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -3205,41 +3625,11 @@ private subroutine assert_not_equal_2d_logical_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>logical,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n,m)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>m</strong></td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -3258,6 +3648,21 @@ private subroutine assert_not_equal_2d_logical_(var1, var2, n, m, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -3271,7 +3676,7 @@ private subroutine assert_not_equal_2d_logical_(var1, var2, n, m, message)
     
     
     <h3>
-private subroutine assert_not_equal_string_(var1, var2, message)
+private subroutine assert_not_equal_string_(var1, var2, message, status)
     
     
    
@@ -3336,6 +3741,21 @@ private subroutine assert_not_equal_string_(var1, var2, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -3349,7 +3769,7 @@ private subroutine assert_not_equal_string_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_not_equal_1d_string_(var1, var2, n, message)
+private subroutine assert_not_equal_1d_string_(var1, var2, message, status)
     
     
    
@@ -3376,11 +3796,11 @@ private subroutine assert_not_equal_1d_string_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n)</td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -3391,26 +3811,11 @@ private subroutine assert_not_equal_1d_string_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -3429,6 +3834,21 @@ private subroutine assert_not_equal_1d_string_(var1, var2, n, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -3442,7 +3862,7 @@ private subroutine assert_not_equal_1d_string_(var1, var2, n, message)
     
     
     <h3>
-private subroutine assert_not_equal_2d_string_(var1, var2, n, m, message)
+private subroutine assert_not_equal_2d_string_(var1, var2, message, status)
     
     
    
@@ -3469,11 +3889,11 @@ private subroutine assert_not_equal_2d_string_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n,m)</td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -3484,41 +3904,11 @@ private subroutine assert_not_equal_2d_string_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n,m)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>m</strong></td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -3537,6 +3927,21 @@ private subroutine assert_not_equal_2d_string_(var1, var2, n, m, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -3550,7 +3955,7 @@ private subroutine assert_not_equal_2d_string_(var1, var2, n, m, message)
     
     
     <h3>
-private subroutine assert_not_equal_int_(var1, var2, message)
+private subroutine assert_not_equal_int_(var1, var2, message, status)
     
     
    
@@ -3615,6 +4020,21 @@ private subroutine assert_not_equal_int_(var1, var2, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -3628,7 +4048,7 @@ private subroutine assert_not_equal_int_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_not_equal_1d_int_(var1, var2, n, message)
+private subroutine assert_not_equal_1d_int_(var1, var2, message, status)
     
     
    
@@ -3655,11 +4075,11 @@ private subroutine assert_not_equal_1d_int_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n)</td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -3670,26 +4090,11 @@ private subroutine assert_not_equal_1d_int_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -3708,6 +4113,21 @@ private subroutine assert_not_equal_1d_int_(var1, var2, n, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -3721,7 +4141,7 @@ private subroutine assert_not_equal_1d_int_(var1, var2, n, message)
     
     
     <h3>
-private subroutine assert_not_equal_2d_int_(var1, var2, n, m, message)
+private subroutine assert_not_equal_2d_int_(var1, var2, message, status)
     
     
    
@@ -3748,11 +4168,11 @@ private subroutine assert_not_equal_2d_int_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n,m)</td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -3763,41 +4183,11 @@ private subroutine assert_not_equal_2d_int_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n,m)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>m</strong></td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -3816,6 +4206,21 @@ private subroutine assert_not_equal_2d_int_(var1, var2, n, m, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -3829,7 +4234,7 @@ private subroutine assert_not_equal_2d_int_(var1, var2, n, m, message)
     
     
     <h3>
-private subroutine assert_not_equal_real_(var1, var2, message)
+private subroutine assert_not_equal_real_(var1, var2, message, status)
     
     
    
@@ -3894,6 +4299,21 @@ private subroutine assert_not_equal_real_(var1, var2, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -3907,7 +4327,7 @@ private subroutine assert_not_equal_real_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_not_equal_real_in_range_(var1, var2, delta, message)
+private subroutine assert_not_equal_real_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -3987,6 +4407,21 @@ private subroutine assert_not_equal_real_in_range_(var1, var2, delta, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -4000,7 +4435,7 @@ private subroutine assert_not_equal_real_in_range_(var1, var2, delta, message)
     
     
     <h3>
-private subroutine assert_not_equal_1d_real_(var1, var2, n, message)
+private subroutine assert_not_equal_1d_real_(var1, var2, message, status)
     
     
    
@@ -4027,11 +4462,11 @@ private subroutine assert_not_equal_1d_real_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>real,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n)</td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -4042,26 +4477,11 @@ private subroutine assert_not_equal_1d_real_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>real,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -4080,6 +4500,21 @@ private subroutine assert_not_equal_1d_real_(var1, var2, n, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -4093,7 +4528,7 @@ private subroutine assert_not_equal_1d_real_(var1, var2, n, message)
     
     
     <h3>
-private subroutine assert_not_equal_1d_real_in_range_(var1, var2, n, delta, message)
+private subroutine assert_not_equal_1d_real_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -4120,11 +4555,11 @@ private subroutine assert_not_equal_1d_real_in_range_(var1, var2, n, delta, mess
 <tr>
   
   <td><span class="anchor" ></span>real,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n)</td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -4135,26 +4570,11 @@ private subroutine assert_not_equal_1d_real_in_range_(var1, var2, n, delta, mess
 <tr>
   
   <td><span class="anchor" ></span>real,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -4188,6 +4608,21 @@ private subroutine assert_not_equal_1d_real_in_range_(var1, var2, n, delta, mess
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -4201,7 +4636,7 @@ private subroutine assert_not_equal_1d_real_in_range_(var1, var2, n, delta, mess
     
     
     <h3>
-private subroutine assert_not_equal_2d_real_(var1, var2, n, m, message)
+private subroutine assert_not_equal_2d_real_(var1, var2, message, status)
     
     
    
@@ -4228,11 +4663,11 @@ private subroutine assert_not_equal_2d_real_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>real,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n,m)</td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -4243,41 +4678,11 @@ private subroutine assert_not_equal_2d_real_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>real,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n,m)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>m</strong></td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -4296,6 +4701,21 @@ private subroutine assert_not_equal_2d_real_(var1, var2, n, m, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -4309,7 +4729,7 @@ private subroutine assert_not_equal_2d_real_(var1, var2, n, m, message)
     
     
     <h3>
-private subroutine assert_not_equal_2d_real_in_range_(var1, var2, n, m, delta, message)
+private subroutine assert_not_equal_2d_real_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -4336,11 +4756,11 @@ private subroutine assert_not_equal_2d_real_in_range_(var1, var2, n, m, delta, m
 <tr>
   
   <td><span class="anchor" ></span>real,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n,m)</td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -4351,41 +4771,11 @@ private subroutine assert_not_equal_2d_real_in_range_(var1, var2, n, m, delta, m
 <tr>
   
   <td><span class="anchor" ></span>real,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n,m)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>m</strong></td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -4419,6 +4809,21 @@ private subroutine assert_not_equal_2d_real_in_range_(var1, var2, n, m, delta, m
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -4432,7 +4837,7 @@ private subroutine assert_not_equal_2d_real_in_range_(var1, var2, n, m, delta, m
     
     
     <h3>
-private subroutine assert_not_equal_double_(var1, var2, message)
+private subroutine assert_not_equal_double_(var1, var2, message, status)
     
     
    
@@ -4497,6 +4902,21 @@ private subroutine assert_not_equal_double_(var1, var2, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -4510,7 +4930,7 @@ private subroutine assert_not_equal_double_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_not_equal_double_in_range_(var1, var2, delta, message)
+private subroutine assert_not_equal_double_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -4590,6 +5010,21 @@ private subroutine assert_not_equal_double_in_range_(var1, var2, delta, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -4603,7 +5038,7 @@ private subroutine assert_not_equal_double_in_range_(var1, var2, delta, message)
     
     
     <h3>
-private subroutine assert_not_equal_1d_double_(var1, var2, n, message)
+private subroutine assert_not_equal_1d_double_(var1, var2, message, status)
     
     
    
@@ -4630,11 +5065,11 @@ private subroutine assert_not_equal_1d_double_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n)</td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -4645,26 +5080,11 @@ private subroutine assert_not_equal_1d_double_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -4683,6 +5103,21 @@ private subroutine assert_not_equal_1d_double_(var1, var2, n, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -4696,7 +5131,7 @@ private subroutine assert_not_equal_1d_double_(var1, var2, n, message)
     
     
     <h3>
-private subroutine assert_not_equal_1d_double_in_range_(var1, var2, n, delta, message)
+private subroutine assert_not_equal_1d_double_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -4723,11 +5158,11 @@ private subroutine assert_not_equal_1d_double_in_range_(var1, var2, n, delta, me
 <tr>
   
   <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n)</td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -4738,26 +5173,11 @@ private subroutine assert_not_equal_1d_double_in_range_(var1, var2, n, delta, me
 <tr>
   
   <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -4791,6 +5211,21 @@ private subroutine assert_not_equal_1d_double_in_range_(var1, var2, n, delta, me
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -4804,7 +5239,7 @@ private subroutine assert_not_equal_1d_double_in_range_(var1, var2, n, delta, me
     
     
     <h3>
-private subroutine assert_not_equal_2d_double_(var1, var2, n, m, message)
+private subroutine assert_not_equal_2d_double_(var1, var2, message, status)
     
     
    
@@ -4831,11 +5266,11 @@ private subroutine assert_not_equal_2d_double_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n,m)</td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -4846,41 +5281,11 @@ private subroutine assert_not_equal_2d_double_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n,m)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>m</strong></td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -4899,6 +5304,21 @@ private subroutine assert_not_equal_2d_double_(var1, var2, n, m, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -4912,7 +5332,7 @@ private subroutine assert_not_equal_2d_double_(var1, var2, n, m, message)
     
     
     <h3>
-private subroutine assert_not_equal_2d_double_in_range_(var1, var2, n, m, delta, message)
+private subroutine assert_not_equal_2d_double_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -4939,11 +5359,11 @@ private subroutine assert_not_equal_2d_double_in_range_(var1, var2, n, m, delta,
 <tr>
   
   <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n,m)</td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -4954,41 +5374,11 @@ private subroutine assert_not_equal_2d_double_in_range_(var1, var2, n, m, delta,
 <tr>
   
   <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n,m)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>m</strong></td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -5022,6 +5412,21 @@ private subroutine assert_not_equal_2d_double_in_range_(var1, var2, n, m, delta,
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -5035,7 +5440,7 @@ private subroutine assert_not_equal_2d_double_in_range_(var1, var2, n, m, delta,
     
     
     <h3>
-private subroutine assert_not_equal_complex_(var1, var2, message)
+private subroutine assert_not_equal_complex_(var1, var2, message, status)
     
     
    
@@ -5100,6 +5505,21 @@ private subroutine assert_not_equal_complex_(var1, var2, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -5113,7 +5533,7 @@ private subroutine assert_not_equal_complex_(var1, var2, message)
     
     
     <h3>
-private subroutine assert_not_equal_complex_in_range_(var1, var2, delta, message)
+private subroutine assert_not_equal_complex_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -5193,6 +5613,21 @@ private subroutine assert_not_equal_complex_in_range_(var1, var2, delta, message
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -5206,7 +5641,7 @@ private subroutine assert_not_equal_complex_in_range_(var1, var2, delta, message
     
     
     <h3>
-private subroutine assert_not_equal_1d_complex_(var1, var2, n, message)
+private subroutine assert_not_equal_1d_complex_(var1, var2, message, status)
     
     
    
@@ -5233,11 +5668,11 @@ private subroutine assert_not_equal_1d_complex_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n)</td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -5248,26 +5683,11 @@ private subroutine assert_not_equal_1d_complex_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -5286,6 +5706,21 @@ private subroutine assert_not_equal_1d_complex_(var1, var2, n, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -5299,7 +5734,7 @@ private subroutine assert_not_equal_1d_complex_(var1, var2, n, message)
     
     
     <h3>
-private subroutine assert_not_equal_1d_complex_in_range_(var1, var2, n, delta, message)
+private subroutine assert_not_equal_1d_complex_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -5326,11 +5761,11 @@ private subroutine assert_not_equal_1d_complex_in_range_(var1, var2, n, delta, m
 <tr>
   
   <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n)</td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -5341,26 +5776,11 @@ private subroutine assert_not_equal_1d_complex_in_range_(var1, var2, n, delta, m
 <tr>
   
   <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -5394,6 +5814,21 @@ private subroutine assert_not_equal_1d_complex_in_range_(var1, var2, n, delta, m
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -5407,7 +5842,7 @@ private subroutine assert_not_equal_1d_complex_in_range_(var1, var2, n, delta, m
     
     
     <h3>
-private subroutine assert_not_equal_2d_complex_(var1, var2, n, m, message)
+private subroutine assert_not_equal_2d_complex_(var1, var2, message, status)
     
     
    
@@ -5434,11 +5869,11 @@ private subroutine assert_not_equal_2d_complex_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n,m)</td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -5449,41 +5884,11 @@ private subroutine assert_not_equal_2d_complex_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n,m)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>m</strong></td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -5502,6 +5907,21 @@ private subroutine assert_not_equal_2d_complex_(var1, var2, n, m, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -5515,7 +5935,7 @@ private subroutine assert_not_equal_2d_complex_(var1, var2, n, m, message)
     
     
     <h3>
-private subroutine assert_not_equal_2d_complex_in_range_(var1, var2, n, m, delta, message)
+private subroutine assert_not_equal_2d_complex_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -5542,11 +5962,11 @@ private subroutine assert_not_equal_2d_complex_in_range_(var1, var2, n, m, delta
 <tr>
   
   <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n,m)</td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -5557,41 +5977,11 @@ private subroutine assert_not_equal_2d_complex_in_range_(var1, var2, n, m, delta
 <tr>
   
   <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n,m)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>m</strong></td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -5622,6 +6012,21 @@ private subroutine assert_not_equal_2d_complex_in_range_(var1, var2, n, m, delta
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -8463,7 +8868,7 @@ public subroutine <a href='../proc/assert_true.html'>assert_true</a>(var1, messa
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-04-08T02:03:36.357036 
+             on 2020-04-08T16:02:01.943725 
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> naturalFRUIT was developed by Cibin Joseph</p></div>

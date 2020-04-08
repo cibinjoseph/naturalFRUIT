@@ -124,7 +124,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="<p>10.3% of total for procedures.</p>Including implementation: 506 statements, 179.4% of total for procedures.">29 statements</a>
+    title="<p>10.3% of total for procedures.</p>Including implementation: 587 statements, 208.2% of total for procedures.">29 statements</a>
      </li> 
      
      
@@ -364,7 +364,7 @@
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_logical_"></span><h3>
-private subroutine assert_not_equal_logical_(var1, var2, message)
+private subroutine assert_not_equal_logical_(var1, var2, message, status)
     
     
    
@@ -428,6 +428,21 @@ private subroutine assert_not_equal_logical_(var1, var2, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -445,7 +460,7 @@ private subroutine assert_not_equal_logical_(var1, var2, message)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_1d_logical_"></span><h3>
-private subroutine assert_not_equal_1d_logical_(var1, var2, n, message)
+private subroutine assert_not_equal_1d_logical_(var1, var2, message, status)
     
     
    
@@ -474,11 +489,11 @@ private subroutine assert_not_equal_1d_logical_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>logical,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n)</td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -489,26 +504,11 @@ private subroutine assert_not_equal_1d_logical_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>logical,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -524,6 +524,21 @@ private subroutine assert_not_equal_1d_logical_(var1, var2, n, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -541,7 +556,7 @@ private subroutine assert_not_equal_1d_logical_(var1, var2, n, message)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_2d_logical_"></span><h3>
-private subroutine assert_not_equal_2d_logical_(var1, var2, n, m, message)
+private subroutine assert_not_equal_2d_logical_(var1, var2, message, status)
     
     
    
@@ -570,11 +585,11 @@ private subroutine assert_not_equal_2d_logical_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>logical,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n,m)</td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -585,41 +600,11 @@ private subroutine assert_not_equal_2d_logical_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>logical,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n,m)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>m</strong></td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -635,6 +620,21 @@ private subroutine assert_not_equal_2d_logical_(var1, var2, n, m, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -652,7 +652,7 @@ private subroutine assert_not_equal_2d_logical_(var1, var2, n, m, message)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_string_"></span><h3>
-private subroutine assert_not_equal_string_(var1, var2, message)
+private subroutine assert_not_equal_string_(var1, var2, message, status)
     
     
    
@@ -716,6 +716,21 @@ private subroutine assert_not_equal_string_(var1, var2, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -733,7 +748,7 @@ private subroutine assert_not_equal_string_(var1, var2, message)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_1d_string_"></span><h3>
-private subroutine assert_not_equal_1d_string_(var1, var2, n, message)
+private subroutine assert_not_equal_1d_string_(var1, var2, message, status)
     
     
    
@@ -762,11 +777,11 @@ private subroutine assert_not_equal_1d_string_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n)</td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -777,26 +792,11 @@ private subroutine assert_not_equal_1d_string_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -812,6 +812,21 @@ private subroutine assert_not_equal_1d_string_(var1, var2, n, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -829,7 +844,7 @@ private subroutine assert_not_equal_1d_string_(var1, var2, n, message)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_2d_string_"></span><h3>
-private subroutine assert_not_equal_2d_string_(var1, var2, n, m, message)
+private subroutine assert_not_equal_2d_string_(var1, var2, message, status)
     
     
    
@@ -858,11 +873,11 @@ private subroutine assert_not_equal_2d_string_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n,m)</td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -873,41 +888,11 @@ private subroutine assert_not_equal_2d_string_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n,m)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>m</strong></td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -923,6 +908,21 @@ private subroutine assert_not_equal_2d_string_(var1, var2, n, m, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -940,7 +940,7 @@ private subroutine assert_not_equal_2d_string_(var1, var2, n, m, message)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_int_"></span><h3>
-private subroutine assert_not_equal_int_(var1, var2, message)
+private subroutine assert_not_equal_int_(var1, var2, message, status)
     
     
    
@@ -1004,6 +1004,21 @@ private subroutine assert_not_equal_int_(var1, var2, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -1021,7 +1036,7 @@ private subroutine assert_not_equal_int_(var1, var2, message)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_1d_int_"></span><h3>
-private subroutine assert_not_equal_1d_int_(var1, var2, n, message)
+private subroutine assert_not_equal_1d_int_(var1, var2, message, status)
     
     
    
@@ -1050,11 +1065,11 @@ private subroutine assert_not_equal_1d_int_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n)</td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -1065,26 +1080,11 @@ private subroutine assert_not_equal_1d_int_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -1100,6 +1100,21 @@ private subroutine assert_not_equal_1d_int_(var1, var2, n, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -1117,7 +1132,7 @@ private subroutine assert_not_equal_1d_int_(var1, var2, n, message)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_2d_int_"></span><h3>
-private subroutine assert_not_equal_2d_int_(var1, var2, n, m, message)
+private subroutine assert_not_equal_2d_int_(var1, var2, message, status)
     
     
    
@@ -1146,11 +1161,11 @@ private subroutine assert_not_equal_2d_int_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n,m)</td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -1161,41 +1176,11 @@ private subroutine assert_not_equal_2d_int_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n,m)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>m</strong></td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -1211,6 +1196,21 @@ private subroutine assert_not_equal_2d_int_(var1, var2, n, m, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -1228,7 +1228,7 @@ private subroutine assert_not_equal_2d_int_(var1, var2, n, m, message)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_real_"></span><h3>
-private subroutine assert_not_equal_real_(var1, var2, message)
+private subroutine assert_not_equal_real_(var1, var2, message, status)
     
     
    
@@ -1292,6 +1292,21 @@ private subroutine assert_not_equal_real_(var1, var2, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -1309,7 +1324,7 @@ private subroutine assert_not_equal_real_(var1, var2, message)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_real_in_range_"></span><h3>
-private subroutine assert_not_equal_real_in_range_(var1, var2, delta, message)
+private subroutine assert_not_equal_real_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -1388,6 +1403,21 @@ private subroutine assert_not_equal_real_in_range_(var1, var2, delta, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -1405,7 +1435,7 @@ private subroutine assert_not_equal_real_in_range_(var1, var2, delta, message)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_1d_real_"></span><h3>
-private subroutine assert_not_equal_1d_real_(var1, var2, n, message)
+private subroutine assert_not_equal_1d_real_(var1, var2, message, status)
     
     
    
@@ -1434,11 +1464,11 @@ private subroutine assert_not_equal_1d_real_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>real,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n)</td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -1449,26 +1479,11 @@ private subroutine assert_not_equal_1d_real_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>real,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -1484,6 +1499,21 @@ private subroutine assert_not_equal_1d_real_(var1, var2, n, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -1501,7 +1531,7 @@ private subroutine assert_not_equal_1d_real_(var1, var2, n, message)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_1d_real_in_range_"></span><h3>
-private subroutine assert_not_equal_1d_real_in_range_(var1, var2, n, delta, message)
+private subroutine assert_not_equal_1d_real_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -1530,11 +1560,11 @@ private subroutine assert_not_equal_1d_real_in_range_(var1, var2, n, delta, mess
 <tr>
   
   <td><span class="anchor" ></span>real,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n)</td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -1545,26 +1575,11 @@ private subroutine assert_not_equal_1d_real_in_range_(var1, var2, n, delta, mess
 <tr>
   
   <td><span class="anchor" ></span>real,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -1595,6 +1610,21 @@ private subroutine assert_not_equal_1d_real_in_range_(var1, var2, n, delta, mess
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -1612,7 +1642,7 @@ private subroutine assert_not_equal_1d_real_in_range_(var1, var2, n, delta, mess
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_2d_real_"></span><h3>
-private subroutine assert_not_equal_2d_real_(var1, var2, n, m, message)
+private subroutine assert_not_equal_2d_real_(var1, var2, message, status)
     
     
    
@@ -1641,11 +1671,11 @@ private subroutine assert_not_equal_2d_real_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>real,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n,m)</td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -1656,41 +1686,11 @@ private subroutine assert_not_equal_2d_real_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>real,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n,m)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>m</strong></td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -1706,6 +1706,21 @@ private subroutine assert_not_equal_2d_real_(var1, var2, n, m, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -1723,7 +1738,7 @@ private subroutine assert_not_equal_2d_real_(var1, var2, n, m, message)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_2d_real_in_range_"></span><h3>
-private subroutine assert_not_equal_2d_real_in_range_(var1, var2, n, m, delta, message)
+private subroutine assert_not_equal_2d_real_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -1752,11 +1767,11 @@ private subroutine assert_not_equal_2d_real_in_range_(var1, var2, n, m, delta, m
 <tr>
   
   <td><span class="anchor" ></span>real,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n,m)</td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -1767,41 +1782,11 @@ private subroutine assert_not_equal_2d_real_in_range_(var1, var2, n, m, delta, m
 <tr>
   
   <td><span class="anchor" ></span>real,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n,m)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>m</strong></td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -1832,6 +1817,21 @@ private subroutine assert_not_equal_2d_real_in_range_(var1, var2, n, m, delta, m
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -1849,7 +1849,7 @@ private subroutine assert_not_equal_2d_real_in_range_(var1, var2, n, m, delta, m
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_double_"></span><h3>
-private subroutine assert_not_equal_double_(var1, var2, message)
+private subroutine assert_not_equal_double_(var1, var2, message, status)
     
     
    
@@ -1913,6 +1913,21 @@ private subroutine assert_not_equal_double_(var1, var2, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -1930,7 +1945,7 @@ private subroutine assert_not_equal_double_(var1, var2, message)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_double_in_range_"></span><h3>
-private subroutine assert_not_equal_double_in_range_(var1, var2, delta, message)
+private subroutine assert_not_equal_double_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -2009,6 +2024,21 @@ private subroutine assert_not_equal_double_in_range_(var1, var2, delta, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -2026,7 +2056,7 @@ private subroutine assert_not_equal_double_in_range_(var1, var2, delta, message)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_1d_double_"></span><h3>
-private subroutine assert_not_equal_1d_double_(var1, var2, n, message)
+private subroutine assert_not_equal_1d_double_(var1, var2, message, status)
     
     
    
@@ -2055,11 +2085,11 @@ private subroutine assert_not_equal_1d_double_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n)</td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -2070,26 +2100,11 @@ private subroutine assert_not_equal_1d_double_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -2105,6 +2120,21 @@ private subroutine assert_not_equal_1d_double_(var1, var2, n, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -2122,7 +2152,7 @@ private subroutine assert_not_equal_1d_double_(var1, var2, n, message)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_1d_double_in_range_"></span><h3>
-private subroutine assert_not_equal_1d_double_in_range_(var1, var2, n, delta, message)
+private subroutine assert_not_equal_1d_double_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -2151,11 +2181,11 @@ private subroutine assert_not_equal_1d_double_in_range_(var1, var2, n, delta, me
 <tr>
   
   <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n)</td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -2166,26 +2196,11 @@ private subroutine assert_not_equal_1d_double_in_range_(var1, var2, n, delta, me
 <tr>
   
   <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -2216,6 +2231,21 @@ private subroutine assert_not_equal_1d_double_in_range_(var1, var2, n, delta, me
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -2233,7 +2263,7 @@ private subroutine assert_not_equal_1d_double_in_range_(var1, var2, n, delta, me
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_2d_double_"></span><h3>
-private subroutine assert_not_equal_2d_double_(var1, var2, n, m, message)
+private subroutine assert_not_equal_2d_double_(var1, var2, message, status)
     
     
    
@@ -2262,11 +2292,11 @@ private subroutine assert_not_equal_2d_double_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n,m)</td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -2277,41 +2307,11 @@ private subroutine assert_not_equal_2d_double_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n,m)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>m</strong></td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -2327,6 +2327,21 @@ private subroutine assert_not_equal_2d_double_(var1, var2, n, m, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -2344,7 +2359,7 @@ private subroutine assert_not_equal_2d_double_(var1, var2, n, m, message)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_2d_double_in_range_"></span><h3>
-private subroutine assert_not_equal_2d_double_in_range_(var1, var2, n, m, delta, message)
+private subroutine assert_not_equal_2d_double_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -2373,11 +2388,11 @@ private subroutine assert_not_equal_2d_double_in_range_(var1, var2, n, m, delta,
 <tr>
   
   <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n,m)</td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -2388,41 +2403,11 @@ private subroutine assert_not_equal_2d_double_in_range_(var1, var2, n, m, delta,
 <tr>
   
   <td><span class="anchor" ></span>double precision,</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n,m)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>m</strong></td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -2453,6 +2438,21 @@ private subroutine assert_not_equal_2d_double_in_range_(var1, var2, n, m, delta,
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -2470,7 +2470,7 @@ private subroutine assert_not_equal_2d_double_in_range_(var1, var2, n, m, delta,
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_complex_"></span><h3>
-private subroutine assert_not_equal_complex_(var1, var2, message)
+private subroutine assert_not_equal_complex_(var1, var2, message, status)
     
     
    
@@ -2534,6 +2534,21 @@ private subroutine assert_not_equal_complex_(var1, var2, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -2551,7 +2566,7 @@ private subroutine assert_not_equal_complex_(var1, var2, message)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_complex_in_range_"></span><h3>
-private subroutine assert_not_equal_complex_in_range_(var1, var2, delta, message)
+private subroutine assert_not_equal_complex_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -2633,6 +2648,21 @@ private subroutine assert_not_equal_complex_in_range_(var1, var2, delta, message
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -2647,7 +2677,7 @@ private subroutine assert_not_equal_complex_in_range_(var1, var2, delta, message
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_1d_complex_"></span><h3>
-private subroutine assert_not_equal_1d_complex_(var1, var2, n, message)
+private subroutine assert_not_equal_1d_complex_(var1, var2, message, status)
     
     
    
@@ -2676,11 +2706,11 @@ private subroutine assert_not_equal_1d_complex_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n)</td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -2691,26 +2721,11 @@ private subroutine assert_not_equal_1d_complex_(var1, var2, n, message)
 <tr>
   
   <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -2726,6 +2741,21 @@ private subroutine assert_not_equal_1d_complex_(var1, var2, n, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -2743,7 +2773,7 @@ private subroutine assert_not_equal_1d_complex_(var1, var2, n, message)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_1d_complex_in_range_"></span><h3>
-private subroutine assert_not_equal_1d_complex_in_range_(var1, var2, n, delta, message)
+private subroutine assert_not_equal_1d_complex_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -2772,11 +2802,11 @@ private subroutine assert_not_equal_1d_complex_in_range_(var1, var2, n, delta, m
 <tr>
   
   <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n)</td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -2787,26 +2817,11 @@ private subroutine assert_not_equal_1d_complex_in_range_(var1, var2, n, delta, m
 <tr>
   
   <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -2837,6 +2852,21 @@ private subroutine assert_not_equal_1d_complex_in_range_(var1, var2, n, delta, m
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -2854,7 +2884,7 @@ private subroutine assert_not_equal_1d_complex_in_range_(var1, var2, n, delta, m
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_2d_complex_"></span><h3>
-private subroutine assert_not_equal_2d_complex_(var1, var2, n, m, message)
+private subroutine assert_not_equal_2d_complex_(var1, var2, message, status)
     
     
    
@@ -2883,11 +2913,11 @@ private subroutine assert_not_equal_2d_complex_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n,m)</td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -2898,41 +2928,11 @@ private subroutine assert_not_equal_2d_complex_(var1, var2, n, m, message)
 <tr>
   
   <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n,m)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>m</strong></td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -2951,6 +2951,21 @@ private subroutine assert_not_equal_2d_complex_(var1, var2, n, m, message)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -2965,7 +2980,7 @@ private subroutine assert_not_equal_2d_complex_(var1, var2, n, m, message)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_equal_2d_complex_in_range_"></span><h3>
-private subroutine assert_not_equal_2d_complex_in_range_(var1, var2, n, m, delta, message)
+private subroutine assert_not_equal_2d_complex_in_range_(var1, var2, delta, message, status)
     
     
    
@@ -2994,11 +3009,11 @@ private subroutine assert_not_equal_2d_complex_in_range_(var1, var2, n, m, delta
 <tr>
   
   <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var1</strong>(n,m)</td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
   
 </tr>
 
@@ -3009,41 +3024,11 @@ private subroutine assert_not_equal_2d_complex_in_range_(var1, var2, n, m, delta
 <tr>
   
   <td><span class="anchor" ></span>complex(kind=kind(1.0D0)),</td>
-  <td>intent(in)</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>var2</strong>(n,m)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>m</strong></td><td></td>
+  <td>dimension(:, :)</td><td>::</td>
+  <td><strong>var2</strong></td><td></td>
   
 </tr>
 
@@ -3074,6 +3059,21 @@ private subroutine assert_not_equal_2d_complex_in_range_(var1, var2, n, m, delta
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -3105,7 +3105,7 @@ private subroutine assert_not_equal_2d_complex_in_range_(var1, var2, n, m, delta
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-04-08T02:03:36.357036 
+             on 2020-04-08T16:02:01.943725 
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> naturalFRUIT was developed by Cibin Joseph</p></div>
