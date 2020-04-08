@@ -3328,7 +3328,6 @@ contains
   function to_s_int_(value)
     !! category: fruit_util
     !! Convert integer to string
-    implicit none
     character(len=500):: to_s_int_
     integer, intent(in) :: value
     character(len=500) :: result
@@ -3338,7 +3337,6 @@ contains
 
   function to_s_real_(value)
     !! Convert real to string
-    implicit none
     character(len=500):: to_s_real_
     real, intent(in) :: value
     character(len=500) :: result
@@ -3348,7 +3346,6 @@ contains
 
   function to_s_double_(value)
     !! Convert double to string
-    implicit none
     character(len=500):: to_s_double_
     real(dp), intent(in) :: value
     character(len=500) :: result
@@ -3358,7 +3355,6 @@ contains
 
   function to_s_complex_(value)
     !! Convert complex to string
-    implicit none
     character(len=500):: to_s_complex_
     complex, intent(in) :: value
     character(len=500) :: result
@@ -3368,7 +3364,6 @@ contains
 
   function to_s_double_complex_(value)
     !! Convert complex double to string
-    implicit none
     character(len=500):: to_s_double_complex_
     complex(dp), intent(in) :: value
     character(len=500) :: result
@@ -3378,7 +3373,6 @@ contains
 
   function to_s_logical_(value)
     !! Convert logical to string
-    implicit none
     character(len=500):: to_s_logical_
     logical, intent(in) :: value
     character(len=500) :: result
@@ -3388,7 +3382,6 @@ contains
 
   function to_s_string_(value)
     !! Convert string to string
-    implicit none
     character(len=500):: to_s_string_
     character(len=*), intent(in) :: value
     to_s_string_ = value
@@ -3396,7 +3389,6 @@ contains
 
   function strip_(value)
     !! Remove leading and trailing spaces
-    implicit none
     character(len=500):: strip_
     character(len=*), intent(in) :: value
     strip_ = trim(adjustl(value))
@@ -3405,7 +3397,6 @@ contains
   function strip_length_(value, length)
     !! Remove leading and trailing spaces
     !! and return specified length
-    implicit none
     character(len=*), intent(in) :: value
     integer, intent(in) :: length
     character(len=length):: strip_length_
