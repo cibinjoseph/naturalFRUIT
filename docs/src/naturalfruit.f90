@@ -20,12 +20,14 @@
 !      For example, fruit_initialize, and failed_assert_count.
 !
 
-module fruit
+module naturalfruit
   !! Summary: This module contains fruit procedures and variables
   !! This module contains the procedures and variables that the user may use
   !! for unit testing with fruit.
   implicit none
   private
+
+  integer, parameter :: dp = kind(1.0d0)  !! Double precision
 
   integer, parameter :: STDOUT_DEFAULT = 6
   integer :: stdout = STDOUT_DEFAULT
@@ -80,8 +82,7 @@ module fruit
 
   type ty_stack
     !! display: none
-    integer :: successful_assert_count
-    integer :: failed_assert_count
+    integer :: successful_assert_count, failed_assert_count
 
     integer :: message_index
     integer :: message_index_from
@@ -90,8 +91,7 @@ module fruit
     character(len=MSG_LENGTH), pointer :: message_array(:)
     character(len=MSG_LENGTH) :: case_name !  = DEFAULT_CASE_NAME
 
-    integer :: successful_case_count
-    integer :: failed_case_count
+    integer :: successful_case_count, failed_case_count
     integer :: testCaseIndex
     logical :: last_passed
     logical :: case_passed = DEFAULT_CASE_PASSED
@@ -102,27 +102,47 @@ module fruit
 
   type(ty_stack), save :: stashed_suite
 
-  public :: &
-    fruit_initialize
-  public :: &
-    get_last_message, &
-    is_last_passed, &
-    is_case_passed, &
-    add_success, &
-    set_unit_name, get_unit_name, &
-    set_case_name, get_case_name, &
-    failed_assert_action, get_total_count, &
-    get_failed_count, is_all_successful, &
-    run_test_case
-  public :: assert_equal
-  public :: assert_not_equal
-  public :: assert_true
-  public :: assert_false
-  public :: stash_test_suite, restore_test_suite
   public :: FRUIT_PREFIX_LEN_MAX
-  public :: override_xml_work, end_override_xml_work
-  public :: get_assert_and_case_count
   private :: strip, to_s
+
+  ! Assert subroutines
+  public :: assert_equal, assert_not_equal
+  public :: assert_true, assert_false
+
+  ! Common test case subroutines
+  public :: run_test_case
+  public :: fruit_initialize, fruit_finalize
+  public :: fruit_summary, fruit_summary_table
+  public :: fruit_if_case_failed, failed_assert_action
+  public :: get_total_count, get_failed_count
+  public :: get_assert_and_case_count
+  public :: get_unit_name, set_unit_name
+  public :: get_case_name, set_case_name
+  public :: add_success, add_fail
+  public :: stash_test_suite, restore_test_suite
+
+
+  ! Subroutines for checks
+  public :: is_last_passed, is_case_passed
+  public :: is_all_successful
+
+  ! Message subroutines
+  public :: get_last_message
+  public :: get_messages, get_message_array
+  public :: get_message_index
+
+  ! XML specific subroutines
+  public :: fruit_initialize_xml
+  public :: fruit_summary_xml
+  public :: case_passed_xml, case_failed_xml
+  public :: get_xml_filename_work, set_xml_filename_work
+
+  ! Override subroutines
+  public :: override_stdout, end_override_stdout
+  public :: override_xml_work, end_override_xml_work
+  public :: fruit_hide_dots, fruit_show_dots
+  public :: get_prefix, set_prefix
+
 
   interface assert_false
     !! Test that *var1* is false.
@@ -157,12 +177,18 @@ module fruit
     module procedure assert_eq_1d_double_in_range_
     module procedure assert_eq_2d_double_
     module procedure assert_eq_2d_double_in_range_
-    module procedure assert_eq_complex_
-    module procedure assert_eq_complex_in_range_
-    module procedure assert_eq_1d_complex_
-    module procedure assert_eq_1d_complex_in_range_
-    module procedure assert_eq_2d_complex_
-    module procedure assert_eq_2d_complex_in_range_
+    module procedure assert_eq_complex_real_
+    module procedure assert_eq_complex_real_in_range_
+    module procedure assert_eq_1d_complex_real_
+    module procedure assert_eq_1d_complex_real_in_range_
+    module procedure assert_eq_2d_complex_real_
+    module procedure assert_eq_2d_complex_real_in_range_
+    module procedure assert_eq_complex_double_
+    module procedure assert_eq_complex_double_in_range_
+    module procedure assert_eq_1d_complex_double_
+    module procedure assert_eq_1d_complex_double_in_range_
+    module procedure assert_eq_2d_complex_double_
+    module procedure assert_eq_2d_complex_double_in_range_
     !====== end of generated inteface ======
   end interface
 
@@ -173,38 +199,43 @@ module fruit
     !! assert_not_equal invokes one of the following subroutines according
     !! to the number or type of arguments.
     !====== begin of generated interface ======
-    module procedure assert_not_equal_logical_
-    module procedure assert_not_equal_1d_logical_
-    module procedure assert_not_equal_2d_logical_
-    module procedure assert_not_equal_string_
-    module procedure assert_not_equal_1d_string_
-    module procedure assert_not_equal_2d_string_
-    module procedure assert_not_equal_int_
-    module procedure assert_not_equal_1d_int_
-    module procedure assert_not_equal_2d_int_
-    module procedure assert_not_equal_real_
-    module procedure assert_not_equal_real_in_range_
-    module procedure assert_not_equal_1d_real_
-    module procedure assert_not_equal_1d_real_in_range_
-    module procedure assert_not_equal_2d_real_
-    module procedure assert_not_equal_2d_real_in_range_
-    module procedure assert_not_equal_double_
-    module procedure assert_not_equal_double_in_range_
-    module procedure assert_not_equal_1d_double_
-    module procedure assert_not_equal_1d_double_in_range_
-    module procedure assert_not_equal_2d_double_
-    module procedure assert_not_equal_2d_double_in_range_
-    module procedure assert_not_equal_complex_
-    module procedure assert_not_equal_complex_in_range_
-    module procedure assert_not_equal_1d_complex_
-    module procedure assert_not_equal_1d_complex_in_range_
-    module procedure assert_not_equal_2d_complex_
-    module procedure assert_not_equal_2d_complex_in_range_
+    module procedure assert_not_eq_logical_
+    module procedure assert_not_eq_1d_logical_
+    module procedure assert_not_eq_2d_logical_
+    module procedure assert_not_eq_string_
+    module procedure assert_not_eq_1d_string_
+    module procedure assert_not_eq_2d_string_
+    module procedure assert_not_eq_int_
+    module procedure assert_not_eq_1d_int_
+    module procedure assert_not_eq_2d_int_
+    module procedure assert_not_eq_real_
+    module procedure assert_not_eq_real_in_range_
+    module procedure assert_not_eq_1d_real_
+    module procedure assert_not_eq_1d_real_in_range_
+    module procedure assert_not_eq_2d_real_
+    module procedure assert_not_eq_2d_real_in_range_
+    module procedure assert_not_eq_double_
+    module procedure assert_not_eq_double_in_range_
+    module procedure assert_not_eq_1d_double_
+    module procedure assert_not_eq_1d_double_in_range_
+    module procedure assert_not_eq_2d_double_
+    module procedure assert_not_eq_2d_double_in_range_
+    module procedure assert_not_eq_complex_real_
+    module procedure assert_not_eq_complex_real_in_range_
+    module procedure assert_not_eq_1d_complex_real_
+    module procedure assert_not_eq_1d_complex_real_in_range_
+    module procedure assert_not_eq_2d_complex_real_
+    module procedure assert_not_eq_2d_complex_real_in_range_
+    module procedure assert_not_eq_complex_double_
+    module procedure assert_not_eq_complex_double_in_range_
+    module procedure assert_not_eq_1d_complex_double_
+    module procedure assert_not_eq_1d_complex_double_in_range_
+    module procedure assert_not_eq_2d_complex_double_
+    module procedure assert_not_eq_2d_complex_double_in_range_
     !====== end of generated inteface ======
 
   end interface
 
-  public :: add_fail
   interface add_fail
     !! category: driver subroutine
     !! summary: Print message to screen on assert failure and add to count.
@@ -225,49 +256,42 @@ module fruit
     module procedure run_test_case_named_
   end interface
 
-  public :: fruit_initialize_xml
   interface fruit_initialize_xml
     !! category: driver subroutine
     !! Initialize FRUIT driver environment for output to XML file
     module procedure fruit_initialize_xml_
   end interface
 
-  public :: fruit_summary
   interface fruit_summary
     !! category: driver subroutine
     !! Summarize FRUIT test results to screen.
     module procedure fruit_summary_
   end interface
 
-  public :: fruit_summary_xml
   interface fruit_summary_xml
     !! category: driver subroutine
     !! Summarize FRUIT test results in XML format to result.xml file.
     module procedure fruit_summary_xml_
   end interface
 
-  public :: case_passed_xml
   interface case_passed_xml
     !! category: driver subroutine
     !! Write to XML file a passed case.
     module procedure case_passed_xml_
   end interface
 
-  public :: case_failed_xml
   interface case_failed_xml
     !! category: driver subroutine
     !! Write to XML file a failed case.
     module procedure case_failed_xml_
   end interface
 
-  public :: override_stdout
   interface override_stdout
     !! category: driver subroutine
     !! Override stdout to a user-specified file. Terminal by default.
     module procedure override_stdout_
   end interface
 
-  public :: end_override_stdout
   interface end_override_stdout
     !! category: driver subroutine
     !! Revert override of stdout to default. Terminal by default.
@@ -286,35 +310,30 @@ module fruit
     module procedure end_override_xml_work_
   end interface
 
-  public :: get_xml_filename_work
   interface get_xml_filename_work
     !! category: driver subroutine
     !! Get filename of XML file. result.xml by default.
     module procedure get_xml_filename_work_
   end interface
 
-  public :: set_xml_filename_work
   interface set_xml_filename_work
     !! category: driver subroutine
     !! Set filename of XML file. result.xml by default.
     module procedure set_xml_filename_work_
   end interface
 
-  public :: get_message_index
   interface get_message_index
     !! category: driver subroutine
     !! Get number of failed assertion messages.
     module procedure get_message_index_
   end interface
 
-  public :: get_messages
   interface get_messages
     !! category: driver subroutine
     !! Get failed asssertion messages to *msgs*.
     module procedure get_messages_
   end interface
 
-  public :: get_message_array
   interface get_message_array
     !! category: driver subroutine
     !! Get failed asssertion messages to *msgs*.
@@ -326,6 +345,7 @@ module fruit
     !! Set name of unit/case to *value*.
     module procedure set_case_name_
   end interface
+
   interface set_case_name
     !! category: driver subroutine
     !! Set name of unit/case to *value*.
@@ -337,27 +357,25 @@ module fruit
     !! Get name of unit/case to *value*.
     module procedure get_case_name_
   end interface
+
   interface get_case_name
     !! category: driver subroutine
     !! Get name of unit/case to *value*.
     module procedure get_case_name_
   end interface
 
-  public :: fruit_finalize
   interface fruit_finalize
     !! category: driver subroutine
     !! Finalize FRUIT driver environment.
     module procedure fruit_finalize_
   end interface
 
-  public :: set_prefix
   interface set_prefix
     !! category: driver subroutine
     !! Set a common prefix for classname. Null by default.
     module procedure set_prefix_
   end interface
 
-  public :: get_prefix
   interface get_prefix
     !! category: driver subroutine
     !! Get a common prefix for classname. Null by default.
@@ -370,28 +388,24 @@ module fruit
     module procedure get_assert_and_case_count_
   end interface
 
-  public          :: fruit_summary_table
   interface fruit_summary_table
     !! category: driver subroutine
     !! Print statistics of cases and asserts in default format.
     module procedure fruit_summary_table_
   end interface
 
-  public :: fruit_if_case_failed
   interface fruit_if_case_failed
     !! category: driver subroutine
     !! Return TRUE if any assert in current case has failed.
     module procedure fruit_if_case_failed_
   end interface
 
-  public :: fruit_hide_dots
   interface fruit_hide_dots
     !! category: driver subroutine
     !! Hide dots signifying test success on screen. Visible by default.
     module procedure fruit_hide_dots_
   end interface
 
-  public :: fruit_show_dots
   interface fruit_show_dots
     !! category: driver subroutine
     !! Show dots signifying test success on screen. Visible by default.
@@ -558,7 +572,7 @@ contains
         exit
       endif
 
-      write (xml_work, '(a)', advance="no") trim(strip(message_array(i)))
+      write (xml_work, '(a)', advance="no") strip(message_array(i))
 
       if (i == message_index - 1) then
         continue
@@ -698,7 +712,6 @@ contains
     end interface
 
     call run_test_case_named_(tc, '_unnamed_')
-
   end subroutine run_test_case_
 
   subroutine fruit_summary_
@@ -722,7 +735,7 @@ contains
       write (stdout, *) '  -- Failed assertion messages:'
 
       do i = 1, message_index - 1
-        write (stdout, "(A)") '   '//trim(strip(message_array(i)))
+        write (stdout, "(A)") '   '//strip(message_array(i))
       end do
 
       write (stdout, *) '  -- end of failed assertion messages.'
@@ -886,7 +899,7 @@ contains
     msgs(:) = ""
 
     do i = 1, message_index - 1
-      msgs(i) = trim(strip(message_array(i)))
+      msgs(i) = strip(message_array(i))
     enddo
   end subroutine get_message_array_
 
@@ -900,7 +913,7 @@ contains
     do i = message_index_from, message_index - 1
       j = i - message_index_from + 1
       if (j > ubound(msgs, 1)) exit
-      msgs(j) = trim(strip(message_array(i)))
+      msgs(j) = strip(message_array(i))
     enddo
   end subroutine get_messages_
 
@@ -969,15 +982,15 @@ contains
     logical, intent(in)           :: if_is
     character(*), intent(in), optional :: message
 
-    msg = '['//trim(strip(case_name))//']: '
+    msg = '['//strip(case_name)//']: '
     if (if_is) then
       msg = trim(msg)//'Expected'
     else
       msg = trim(msg)//'Expected Not'
     endif
-    msg = trim(msg)//" "//'['//trim(strip(var1))//'], '
+    msg = trim(msg)//" "//'['//strip(var1)//'], '
     msg = trim(msg)//" "//'Got'
-    msg = trim(msg)//" "//'['//trim(strip(var2))//']'
+    msg = trim(msg)//" "//'['//strip(var2)//']'
 
     if (present(message)) then
       msg = trim(msg)//'; User message: ['//trim(message)//']'
@@ -1271,7 +1284,7 @@ contains
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
-    if (trim(strip(var1)) /= trim(strip(var2))) then
+    if (strip(var1) /= strip(var2)) then
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1), &
@@ -1311,7 +1324,7 @@ contains
     endif
 
     do i = 1, n
-      if (trim(strip(var1(i))) /= trim(strip(var2(i)))) then
+      if (strip(var1(i)) /= strip(var2(i))) then
         if (.not. present(status)) then
           call failed_assert_action( &
             & to_s(var1(i)), &
@@ -1354,7 +1367,7 @@ contains
 
     do j = 1, m
       do i = 1, n
-        if (trim(strip(var1(i, j))) /= trim(strip(var2(i, j)))) then
+        if (strip(var1(i, j)) /= strip(var2(i, j))) then
           if (.not. present(status)) then
             call failed_assert_action( &
               & to_s(var1(i, j)), &
@@ -1487,7 +1500,7 @@ contains
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
-    if ((var1 < var2) .or. (var1 > var2)) then
+    if (var1 .ne. var2) then
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1), &
@@ -1552,7 +1565,7 @@ contains
     endif
 
     do i = 1, n
-      if ((var1(i) < var2(i)) .or. (var1(i) > var2(i))) then
+      if (var1(i) .ne. var2(i)) then
         if (.not. present(status)) then
           call failed_assert_action( &
             & to_s(var1(i)), &
@@ -1637,7 +1650,7 @@ contains
 
     do j = 1, m
       do i = 1, n
-        if ((var1(i, j) < var2(i, j)) .or. (var1(i, j) > var2(i, j))) then
+        if (var1(i, j) .ne. var2(i, j)) then
           if (.not. present(status)) then
             call failed_assert_action( &
               & to_s(var1(i, j)), &
@@ -1702,11 +1715,11 @@ contains
 
   !------ 0d_double ------
   subroutine assert_eq_double_(var1, var2, message, status)
-    double precision, intent(in) :: var1, var2
+    real(dp), intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
-    if ((var1 < var2) .or. (var1 > var2)) then
+    if (var1 .ne. var2) then
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1), &
@@ -1726,8 +1739,8 @@ contains
 
   !------ 0d_double ------
   subroutine assert_eq_double_in_range_(var1, var2, delta, message, status)
-    double precision, intent(in) :: var1, var2
-    double precision, intent(in) :: delta
+    real(dp), intent(in) :: var1, var2
+    real(dp), intent(in) :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
@@ -1752,7 +1765,7 @@ contains
   !------ 1d_double ------
   subroutine assert_eq_1d_double_(var1, var2, message, status)
     integer :: i, n
-    double precision, intent(in), dimension(:) :: var1, var2
+    real(dp), intent(in), dimension(:) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
@@ -1775,7 +1788,7 @@ contains
       else
         status = .false.
       endif
-      if ((var1(i) < var2(i)) .or. (var1(i) > var2(i))) then
+      if (var1(i) .ne. var2(i)) then
         if (.not. present(status)) then
           call failed_assert_action( &
             & to_s(var1(i)), &
@@ -1797,8 +1810,8 @@ contains
   !------ 1d_double ------
   subroutine assert_eq_1d_double_in_range_(var1, var2, delta, message, status)
     integer :: i, n
-    double precision, intent(in), dimension(:) :: var1, var2
-    double precision, intent(in) :: delta
+    real(dp), intent(in), dimension(:) :: var1, var2
+    real(dp), intent(in) :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
@@ -1841,7 +1854,7 @@ contains
   !------ 2d_double ------
   subroutine assert_eq_2d_double_(var1, var2, message, status)
     integer :: i, j, n, m
-    double precision, intent(in), dimension(:, :) :: var1, var2
+    real(dp), intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
@@ -1866,7 +1879,7 @@ contains
         status = .false.
       endif
       do i = 1, n
-        if ((var1(i, j) < var2(i, j)) .or. (var1(i, j) > var2(i, j))) then
+        if (var1(i, j) .ne. var2(i, j)) then
           if (.not. present(status)) then
             call failed_assert_action( &
               & to_s(var1(i, j)), &
@@ -1888,8 +1901,8 @@ contains
   !------ 2d_double ------
   subroutine assert_eq_2d_double_in_range_(var1, var2, delta, message, status)
     integer :: i, j, n, m
-    double precision, intent(in), dimension(:, :) :: var1, var2
-    double precision, intent(in) :: delta
+    real(dp), intent(in), dimension(:, :) :: var1, var2
+    real(dp), intent(in) :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
@@ -1933,16 +1946,13 @@ contains
     endif
   end subroutine assert_eq_2d_double_in_range_
 
-  !------ 0d_complex ------
-  subroutine assert_eq_complex_(var1, var2, message, status)
-    complex(kind=kind(1.0D0)), intent(in) :: var1, var2
+  !------ 0d_complex_real ------
+  subroutine assert_eq_complex_real_(var1, var2, message, status)
+    complex, intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
-    if ((real(var1) < real(var2)) .or. &
-      &(real(var1) > real(var2)) .or. &
-      &(aimag(var1) < aimag(var2)) .or. &
-      &(aimag(var1) > aimag(var2))) then
+    if (var1 .ne. var2) then
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1), &
@@ -1958,12 +1968,12 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_eq_complex_
+  end subroutine assert_eq_complex_real_
 
-  !------ 0d_complex ------
-  subroutine assert_eq_complex_in_range_(var1, var2, delta, message, status)
-    complex(kind=kind(1.0D0)), intent(in) :: var1, var2
-    double precision, intent(in) :: delta
+  !------ 0d_complex_real ------
+  subroutine assert_eq_complex_real_in_range_(var1, var2, delta, message, status)
+    complex, intent(in) :: var1, var2
+    real(dp), intent(in) :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
@@ -1983,12 +1993,12 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_eq_complex_in_range_
+  end subroutine assert_eq_complex_real_in_range_
 
-  !------ 1d_complex ------
-  subroutine assert_eq_1d_complex_(var1, var2, message, status)
+  !------ 1d_complex_real ------
+  subroutine assert_eq_1d_complex_real_(var1, var2, message, status)
     integer :: i, n
-    complex(kind=kind(1.0D0)), intent(in), dimension(:) :: var1, var2
+    complex, intent(in), dimension(:) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
@@ -2010,10 +2020,7 @@ contains
       else
         status = .false.
       endif
-      if ((real(var1(i)) < real(var2(i))) .or. &
-        &(real(var1(i)) > real(var2(i))) .or. &
-        &(aimag(var1(i)) < aimag(var2(i))) .or. &
-        &(aimag(var1(i)) > aimag(var2(i)))) then
+      if (var1(i) .ne. var2(i)) then
         if (.not. present(status)) then
           call failed_assert_action( &
             & to_s(var1(i)), &
@@ -2029,13 +2036,13 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_eq_1d_complex_
+  end subroutine assert_eq_1d_complex_real_
 
-  !------ 1d_complex ------
-  subroutine assert_eq_1d_complex_in_range_(var1, var2, delta, message, status)
+  !------ 1d_complex_real ------
+  subroutine assert_eq_1d_complex_real_in_range_(var1, var2, delta, message, status)
     integer :: i, n
-    complex(kind=kind(1.0D0)), intent(in), dimension(:) :: var1, var2
-    double precision, intent(in) :: delta
+    complex, intent(in), dimension(:) :: var1, var2
+    real(dp), intent(in) :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
@@ -2073,12 +2080,12 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_eq_1d_complex_in_range_
+  end subroutine assert_eq_1d_complex_real_in_range_
 
-  !------ 2d_complex ------
-  subroutine assert_eq_2d_complex_(var1, var2, message, status)
+  !------ 2d_complex_real ------
+  subroutine assert_eq_2d_complex_real_(var1, var2, message, status)
     integer :: i, j, n, m
-    complex(kind=kind(1.0D0)), intent(in), dimension(:, :) :: var1, var2
+    complex, intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
@@ -2103,10 +2110,7 @@ contains
         status = .false.
       endif
       do i = 1, n
-        if ((real(var1(i, j)) < real(var2(i, j))) .or. &
-          &(real(var1(i, j)) > real(var2(i, j))) .or. &
-          &(aimag(var1(i, j)) < aimag(var2(i, j))) .or. &
-          &(aimag(var1(i, j)) > aimag(var2(i, j)))) then
+        if (var1(i, j) .ne. var2(i, j)) then
           if (.not. present(status)) then
             call failed_assert_action( &
               & to_s(var1(i, j)), &
@@ -2123,13 +2127,13 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_eq_2d_complex_
+  end subroutine assert_eq_2d_complex_real_
 
-  !------ 2d_complex ------
-  subroutine assert_eq_2d_complex_in_range_(var1, var2, delta, message, status)
+  !------ 2d_complex_real ------
+  subroutine assert_eq_2d_complex_real_in_range_(var1, var2, delta, message, status)
     integer :: i, j, n, m
-    complex(kind=kind(1.0D0)), intent(in), dimension(:, :) :: var1, var2
-    double precision, intent(in) :: delta
+    complex, intent(in), dimension(:, :) :: var1, var2
+    real(dp), intent(in) :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
@@ -2171,10 +2175,241 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_eq_2d_complex_in_range_
+  end subroutine assert_eq_2d_complex_real_in_range_
+
+  !------ 0d_complex_double ------
+  subroutine assert_eq_complex_double_(var1, var2, message, status)
+    complex(dp), intent(in) :: var1, var2
+    character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
+
+    if (var1 .ne. var2) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.true.)
+      else
+        status = .false.
+      endif
+      return
+    endif
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
+  end subroutine assert_eq_complex_double_
+
+  !------ 0d_complex_double ------
+  subroutine assert_eq_complex_double_in_range_(var1, var2, delta, message, status)
+    complex(dp), intent(in) :: var1, var2
+    real(dp), intent(in) :: delta
+    character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
+
+    if (abs(var1 - var2) > delta) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.true.)
+      else
+        status = .false.
+      endif
+      return
+    endif
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
+  end subroutine assert_eq_complex_double_in_range_
+
+  !------ 1d_complex_double ------
+  subroutine assert_eq_1d_complex_double_(var1, var2, message, status)
+    integer :: i, n
+    complex(dp), intent(in), dimension(:) :: var1, var2
+    character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
+
+    n = size(var1, 1)
+
+    if (n .ne. size(var2, 1)) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n), &
+          & to_s(size(var2, 1)), '1d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
+      return
+    endif
+
+    do i = 1, n
+      if (.not. present(status)) then
+      else
+        status = .false.
+      endif
+      if (var1(i) .ne. var2(i)) then
+        if (.not. present(status)) then
+          call failed_assert_action( &
+            & to_s(var1(i)), &
+            & to_s(var2(i)), '1d array has difference, '//message, if_is=.true.)
+        else
+          status = .false.
+        endif
+        return
+      endif
+    enddo
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
+  end subroutine assert_eq_1d_complex_double_
+
+  !------ 1d_complex_double ------
+  subroutine assert_eq_1d_complex_double_in_range_(var1, var2, delta, message, status)
+    integer :: i, n
+    complex(dp), intent(in), dimension(:) :: var1, var2
+    real(dp), intent(in) :: delta
+    character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
+
+    n = size(var1, 1)
+
+    if (n .ne. size(var2, 1)) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n), &
+          & to_s(size(var2, 1)), '1d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
+      return
+    endif
+
+    do i = 1, n
+      if (.not. present(status)) then
+      else
+        status = .false.
+      endif
+      if (abs(var1(i) - var2(i)) > delta) then
+        if (.not. present(status)) then
+          call failed_assert_action( &
+            & to_s(var1(i)), &
+            & to_s(var2(i)), '1d array has difference, '//message, if_is=.true.)
+        else
+          status = .false.
+        endif
+        return
+      endif
+    enddo
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
+  end subroutine assert_eq_1d_complex_double_in_range_
+
+  !------ 2d_complex_double ------
+  subroutine assert_eq_2d_complex_double_(var1, var2, message, status)
+    integer :: i, j, n, m
+    complex(dp), intent(in), dimension(:, :) :: var1, var2
+    character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
+
+    n = size(var1, 1)
+    m = size(var1, 2)
+
+    if ((size(var2, 1) .ne. n) .and. (size(var2, 2) .ne. m)) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n)//' x '//to_s(m), &
+          & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
+          & '2d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
+      return
+    endif
+
+    do j = 1, m
+      if (.not. present(status)) then
+      else
+        status = .false.
+      endif
+      do i = 1, n
+        if (var1(i, j) .ne. var2(i, j)) then
+          if (.not. present(status)) then
+            call failed_assert_action( &
+              & to_s(var1(i, j)), &
+              & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
+          else
+            status = .false.
+          endif
+          return
+        endif
+      enddo
+    enddo
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
+  end subroutine assert_eq_2d_complex_double_
+
+  !------ 2d_complex_double ------
+  subroutine assert_eq_2d_complex_double_in_range_(var1, var2, delta, message, status)
+    integer :: i, j, n, m
+    complex(dp), intent(in), dimension(:, :) :: var1, var2
+    real(dp), intent(in) :: delta
+    character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
+
+    n = size(var1, 1)
+    m = size(var1, 2)
+
+    if ((size(var2, 1) .ne. n) .and. (size(var2, 2) .ne. m)) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(n)//' x '//to_s(m), &
+          & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
+          & '2d arrays have different sizes, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
+      return
+    endif
+
+    do j = 1, m
+      if (.not. present(status)) then
+      else
+        status = .false.
+      endif
+      do i = 1, n
+        if (abs(var1(i, j) - var2(i, j)) > delta) then
+          if (.not. present(status)) then
+            call failed_assert_action( &
+              & to_s(var1(i, j)), &
+              & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
+          else
+            status = .false.
+          endif
+          return
+        endif
+      enddo
+    enddo
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
+  end subroutine assert_eq_2d_complex_double_in_range_
 
   !------ 0d_logical ------
-  subroutine assert_not_equal_logical_(var1, var2, message, status)
+  subroutine assert_not_eq_logical_(var1, var2, message, status)
     logical, intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
@@ -2198,10 +2433,10 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_logical_
+  end subroutine assert_not_eq_logical_
 
   !------ 1d_logical ------
-  subroutine assert_not_equal_1d_logical_(var1, var2, message, status)
+  subroutine assert_not_eq_1d_logical_(var1, var2, message, status)
     logical, intent(in), dimension(:) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
@@ -2225,11 +2460,10 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_1d_logical_
+  end subroutine assert_not_eq_1d_logical_
 
   !------ 2d_logical ------
-  subroutine assert_not_equal_2d_logical_(var1, var2, message, status)
-    integer :: i, j, n, m
+  subroutine assert_not_eq_2d_logical_(var1, var2, message, status)
     logical, intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
@@ -2253,10 +2487,10 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_2d_logical_
+  end subroutine assert_not_eq_2d_logical_
 
   !------ 0d_string ------
-  subroutine assert_not_equal_string_(var1, var2, message, status)
+  subroutine assert_not_eq_string_(var1, var2, message, status)
     character(len=*), intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
@@ -2281,10 +2515,10 @@ contains
       status = .true.
     endif
 
-  end subroutine assert_not_equal_string_
+  end subroutine assert_not_eq_string_
 
   !------ 1d_string ------
-  subroutine assert_not_equal_1d_string_(var1, var2, message, status)
+  subroutine assert_not_eq_1d_string_(var1, var2, message, status)
     character(len=*), intent(in), dimension(:) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
@@ -2308,11 +2542,10 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_1d_string_
+  end subroutine assert_not_eq_1d_string_
 
   !------ 2d_string ------
-  subroutine assert_not_equal_2d_string_(var1, var2, message, status)
-    integer :: i, j, n, m
+  subroutine assert_not_eq_2d_string_(var1, var2, message, status)
     character(len=*), intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
@@ -2336,10 +2569,10 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_2d_string_
+  end subroutine assert_not_eq_2d_string_
 
   !------ 0d_int ------
-  subroutine assert_not_equal_int_(var1, var2, message, status)
+  subroutine assert_not_eq_int_(var1, var2, message, status)
     integer, intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
@@ -2363,10 +2596,10 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_int_
+  end subroutine assert_not_eq_int_
 
   !------ 1d_int ------
-  subroutine assert_not_equal_1d_int_(var1, var2, message, status)
+  subroutine assert_not_eq_1d_int_(var1, var2, message, status)
     integer, intent(in), dimension(:) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
@@ -2390,11 +2623,10 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_1d_int_
+  end subroutine assert_not_eq_1d_int_
 
   !------ 2d_int ------
-  subroutine assert_not_equal_2d_int_(var1, var2, message, status)
-    integer :: i, j, n, m
+  subroutine assert_not_eq_2d_int_(var1, var2, message, status)
     integer, intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
@@ -2418,10 +2650,10 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_2d_int_
+  end subroutine assert_not_eq_2d_int_
 
   !------ 0d_real ------
-  subroutine assert_not_equal_real_(var1, var2, message, status)
+  subroutine assert_not_eq_real_(var1, var2, message, status)
     real, intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
@@ -2445,17 +2677,17 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_real_
+  end subroutine assert_not_eq_real_
 
   !------ 0d_real ------
-  subroutine assert_not_equal_real_in_range_(var1, var2, delta, message, status)
+  subroutine assert_not_eq_real_in_range_(var1, var2, delta, message, status)
     real, intent(in) :: var1, var2
     real, intent(in) :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
     logical :: is_equal
 
-    call assert_equal(var1, var2, status=is_equal)
+    call assert_equal(var1, var2, delta, status=is_equal)
 
     if (is_equal) then
       if (.not. present(status)) then
@@ -2473,10 +2705,10 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_real_in_range_
+  end subroutine assert_not_eq_real_in_range_
 
   !------ 1d_real ------
-  subroutine assert_not_equal_1d_real_(var1, var2, message, status)
+  subroutine assert_not_eq_1d_real_(var1, var2, message, status)
     real, intent(in), dimension(:) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
@@ -2500,17 +2732,17 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_1d_real_
+  end subroutine assert_not_eq_1d_real_
 
   !------ 1d_real ------
-  subroutine assert_not_equal_1d_real_in_range_(var1, var2, delta, message, status)
+  subroutine assert_not_eq_1d_real_in_range_(var1, var2, delta, message, status)
     real, intent(in), dimension(:) :: var1, var2
     real, intent(in) :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
     logical :: is_equal
 
-    call assert_equal(var1, var2, status=is_equal)
+    call assert_equal(var1, var2, delta, status=is_equal)
 
     if (is_equal) then
       if (.not. present(status)) then
@@ -2528,11 +2760,10 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_1d_real_in_range_
+  end subroutine assert_not_eq_1d_real_in_range_
 
   !------ 2d_real ------
-  subroutine assert_not_equal_2d_real_(var1, var2, message, status)
-    integer :: i, j, n, m
+  subroutine assert_not_eq_2d_real_(var1, var2, message, status)
     real, intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
@@ -2556,18 +2787,17 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_2d_real_
+  end subroutine assert_not_eq_2d_real_
 
   !------ 2d_real ------
-  subroutine assert_not_equal_2d_real_in_range_(var1, var2, delta, message, status)
-    integer :: i, j, n, m
+  subroutine assert_not_eq_2d_real_in_range_(var1, var2, delta, message, status)
     real, intent(in), dimension(:, :) :: var1, var2
     real, intent(in) :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
     logical :: is_equal
 
-    call assert_equal(var1, var2, status=is_equal)
+    call assert_equal(var1, var2, delta, status=is_equal)
 
     if (is_equal) then
       if (.not. present(status)) then
@@ -2585,11 +2815,11 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_2d_real_in_range_
+  end subroutine assert_not_eq_2d_real_in_range_
 
   !------ 0d_double ------
-  subroutine assert_not_equal_double_(var1, var2, message, status)
-    double precision, intent(in) :: var1, var2
+  subroutine assert_not_eq_double_(var1, var2, message, status)
+    real(dp), intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
     logical :: is_equal
@@ -2612,17 +2842,17 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_double_
+  end subroutine assert_not_eq_double_
 
   !------ 0d_double ------
-  subroutine assert_not_equal_double_in_range_(var1, var2, delta, message, status)
-    double precision, intent(in) :: var1, var2
-    double precision, intent(in) :: delta
+  subroutine assert_not_eq_double_in_range_(var1, var2, delta, message, status)
+    real(dp), intent(in) :: var1, var2
+    real(dp), intent(in) :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
     logical :: is_equal
 
-    call assert_equal(var1, var2, status=is_equal)
+    call assert_equal(var1, var2, delta, status=is_equal)
 
     if (is_equal) then
       if (.not. present(status)) then
@@ -2640,11 +2870,11 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_double_in_range_
+  end subroutine assert_not_eq_double_in_range_
 
   !------ 1d_double ------
-  subroutine assert_not_equal_1d_double_(var1, var2, message, status)
-    double precision, intent(in), dimension(:) :: var1, var2
+  subroutine assert_not_eq_1d_double_(var1, var2, message, status)
+    real(dp), intent(in), dimension(:) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
     logical :: is_equal
@@ -2667,17 +2897,17 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_1d_double_
+  end subroutine assert_not_eq_1d_double_
 
   !------ 1d_double ------
-  subroutine assert_not_equal_1d_double_in_range_(var1, var2, delta, message, status)
-    double precision, intent(in), dimension(:) :: var1, var2
-    double precision, intent(in) :: delta
+  subroutine assert_not_eq_1d_double_in_range_(var1, var2, delta, message, status)
+    real(dp), intent(in), dimension(:) :: var1, var2
+    real(dp), intent(in) :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
     logical :: is_equal
 
-    call assert_equal(var1, var2, status=is_equal)
+    call assert_equal(var1, var2, delta, status=is_equal)
 
     if (is_equal) then
       if (.not. present(status)) then
@@ -2695,12 +2925,11 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_1d_double_in_range_
+  end subroutine assert_not_eq_1d_double_in_range_
 
   !------ 2d_double ------
-  subroutine assert_not_equal_2d_double_(var1, var2, message, status)
-    integer :: i, j, n, m
-    double precision, intent(in), dimension(:, :) :: var1, var2
+  subroutine assert_not_eq_2d_double_(var1, var2, message, status)
+    real(dp), intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
     logical :: is_equal
@@ -2723,18 +2952,17 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_2d_double_
+  end subroutine assert_not_eq_2d_double_
 
   !------ 2d_double ------
-  subroutine assert_not_equal_2d_double_in_range_(var1, var2, delta, message, status)
-    integer :: i, j, n, m
-    double precision, intent(in), dimension(:, :) :: var1, var2
-    double precision, intent(in) :: delta
+  subroutine assert_not_eq_2d_double_in_range_(var1, var2, delta, message, status)
+    real(dp), intent(in), dimension(:, :) :: var1, var2
+    real(dp), intent(in) :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
     logical :: is_equal
 
-    call assert_equal(var1, var2, status=is_equal)
+    call assert_equal(var1, var2, delta, status=is_equal)
 
     if (is_equal) then
       if (.not. present(status)) then
@@ -2752,11 +2980,11 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_2d_double_in_range_
+  end subroutine assert_not_eq_2d_double_in_range_
 
-  !------ 0d_complex ------
-  subroutine assert_not_equal_complex_(var1, var2, message, status)
-    complex(kind=kind(1.0D0)), intent(in) :: var1, var2
+  !------ 0d_complex_real_ ------
+  subroutine assert_not_eq_complex_real_(var1, var2, message, status)
+    complex, intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
     logical :: is_equal
@@ -2779,12 +3007,149 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_complex_
+  end subroutine assert_not_eq_complex_real_
 
-  !------ 0d_complex ------
-  subroutine assert_not_equal_complex_in_range_(var1, var2, delta, message, status)
-    complex(kind=kind(1.0D0)), intent(in) :: var1, var2
-    double precision, intent(in) :: delta
+  !------ 0d_complex_real_------
+  subroutine assert_not_eq_complex_real_in_range_(var1, var2, delta, message, status)
+    complex, intent(in) :: var1, var2
+    real(dp), intent(in) :: delta
+    character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
+    logical :: is_equal
+
+    call assert_equal(var1, var2, delta, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.false.)
+      else
+        status = .false.
+      endif
+      return
+    endif
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
+  end subroutine assert_not_eq_complex_real_in_range_
+
+  !------ 1d_complex_real_------
+  subroutine assert_not_eq_1d_complex_real_(var1, var2, message, status)
+    complex, intent(in), dimension(:) :: var1, var2
+    character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
+    logical :: is_equal
+
+    call assert_equal(var1, var2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1)), &
+          & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
+      endif
+      return
+    endif
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
+  end subroutine assert_not_eq_1d_complex_real_
+
+  !------ 1d_complex_real_------
+  subroutine assert_not_eq_1d_complex_real_in_range_(var1, var2, delta, message, status)
+    complex, intent(in), dimension(:) :: var1, var2
+    real(dp), intent(in) :: delta
+    character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
+    logical :: is_equal
+
+    call assert_equal(var1, var2, delta, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1)), &
+          & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
+      endif
+      return
+    endif
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
+  end subroutine assert_not_eq_1d_complex_real_in_range_
+
+  !------ 2d_complex_real_------
+  subroutine assert_not_eq_2d_complex_real_(var1, var2, message, status)
+    complex, intent(in), dimension(:, :) :: var1, var2
+    character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
+    logical :: is_equal
+
+    call assert_equal(var1, var2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1, 1)), &
+          & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
+      endif
+      return
+    endif
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
+  end subroutine assert_not_eq_2d_complex_real_
+
+  !------ 2d_complex_real_------
+  subroutine assert_not_eq_2d_complex_real_in_range_(var1, var2, delta, message, status)
+    complex, intent(in), dimension(:, :) :: var1, var2
+    real(dp), intent(in) :: delta
+    character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
+    logical :: is_equal
+
+    call assert_equal(var1, var2, delta, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(1, 1)), &
+          & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+      else
+        status = .false.
+      endif
+      return
+    endif
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
+  end subroutine assert_not_eq_2d_complex_real_in_range_
+
+  !------ 0d_complex_double_ ------
+  subroutine assert_not_eq_complex_double_(var1, var2, message, status)
+    complex(dp), intent(in) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
     logical :: is_equal
@@ -2807,11 +3172,39 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_complex_in_range_
+  end subroutine assert_not_eq_complex_double_
 
-  !------ 1d_complex ------
-  subroutine assert_not_equal_1d_complex_(var1, var2, message, status)
-    complex(kind=kind(1.0D0)), intent(in), dimension(:) :: var1, var2
+  !------ 0d_complex_double_------
+  subroutine assert_not_eq_complex_double_in_range_(var1, var2, delta, message, status)
+    complex(dp), intent(in) :: var1, var2
+    real(dp), intent(in) :: delta
+    character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
+    logical :: is_equal
+
+    call assert_equal(var1, var2, delta, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1), &
+          & to_s(var2), message, if_is=.false.)
+      else
+        status = .false.
+      endif
+      return
+    endif
+
+    if (.not. present(status)) then
+      call add_success
+    else
+      status = .true.
+    endif
+  end subroutine assert_not_eq_complex_double_in_range_
+
+  !------ 1d_complex_double_------
+  subroutine assert_not_eq_1d_complex_double_(var1, var2, message, status)
+    complex(dp), intent(in), dimension(:) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
     logical :: is_equal
@@ -2834,17 +3227,17 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_1d_complex_
+  end subroutine assert_not_eq_1d_complex_double_
 
-  !------ 1d_complex ------
-  subroutine assert_not_equal_1d_complex_in_range_(var1, var2, delta, message, status)
-    complex(kind=kind(1.0D0)), intent(in), dimension(:) :: var1, var2
-    double precision, intent(in) :: delta
+  !------ 1d_complex_double_------
+  subroutine assert_not_eq_1d_complex_double_in_range_(var1, var2, delta, message, status)
+    complex(dp), intent(in), dimension(:) :: var1, var2
+    real(dp), intent(in) :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
     logical :: is_equal
 
-    call assert_equal(var1, var2, status=is_equal)
+    call assert_equal(var1, var2, delta, status=is_equal)
 
     if (is_equal) then
       if (.not. present(status)) then
@@ -2862,12 +3255,11 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_1d_complex_in_range_
+  end subroutine assert_not_eq_1d_complex_double_in_range_
 
-  !------ 2d_complex ------
-  subroutine assert_not_equal_2d_complex_(var1, var2, message, status)
-    integer :: i, j, n, m
-    complex(kind=kind(1.0D0)), intent(in), dimension(:, :) :: var1, var2
+  !------ 2d_complex_double_------
+  subroutine assert_not_eq_2d_complex_double_(var1, var2, message, status)
+    complex(dp), intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
     logical :: is_equal
@@ -2890,18 +3282,17 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_2d_complex_
+  end subroutine assert_not_eq_2d_complex_double_
 
-  !------ 2d_complex ------
-  subroutine assert_not_equal_2d_complex_in_range_(var1, var2, delta, message, status)
-    integer :: i, j, n, m
-    complex(kind=kind(1.0D0)), intent(in), dimension(:, :) :: var1, var2
-    double precision, intent(in) :: delta
+  !------ 2d_complex_double_------
+  subroutine assert_not_eq_2d_complex_double_in_range_(var1, var2, delta, message, status)
+    complex(dp), intent(in), dimension(:, :) :: var1, var2
+    real(dp), intent(in) :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
     logical :: is_equal
 
-    call assert_equal(var1, var2, status=is_equal)
+    call assert_equal(var1, var2, delta, status=is_equal)
 
     if (is_equal) then
       if (.not. present(status)) then
@@ -2919,14 +3310,13 @@ contains
     else
       status = .true.
     endif
-  end subroutine assert_not_equal_2d_complex_in_range_
+  end subroutine assert_not_eq_2d_complex_double_in_range_
 
   !====== end of generated code ======
 
   function to_s_int_(value)
     !! category: fruit_util
     !! Convert integer to string
-    implicit none
     character(len=500):: to_s_int_
     integer, intent(in) :: value
     character(len=500) :: result
@@ -2936,7 +3326,6 @@ contains
 
   function to_s_real_(value)
     !! Convert real to string
-    implicit none
     character(len=500):: to_s_real_
     real, intent(in) :: value
     character(len=500) :: result
@@ -2946,9 +3335,8 @@ contains
 
   function to_s_double_(value)
     !! Convert double to string
-    implicit none
     character(len=500):: to_s_double_
-    double precision, intent(in) :: value
+    real(dp), intent(in) :: value
     character(len=500) :: result
     write (result, *) value
     to_s_double_ = adjustl(trim(result))
@@ -2956,7 +3344,6 @@ contains
 
   function to_s_complex_(value)
     !! Convert complex to string
-    implicit none
     character(len=500):: to_s_complex_
     complex, intent(in) :: value
     character(len=500) :: result
@@ -2966,9 +3353,8 @@ contains
 
   function to_s_double_complex_(value)
     !! Convert complex double to string
-    implicit none
     character(len=500):: to_s_double_complex_
-    complex(kind=kind(1.0D0)), intent(in) :: value
+    complex(dp), intent(in) :: value
     character(len=500) :: result
     write (result, *) value
     to_s_double_complex_ = adjustl(trim(result))
@@ -2976,7 +3362,6 @@ contains
 
   function to_s_logical_(value)
     !! Convert logical to string
-    implicit none
     character(len=500):: to_s_logical_
     logical, intent(in) :: value
     character(len=500) :: result
@@ -2986,7 +3371,6 @@ contains
 
   function to_s_string_(value)
     !! Convert string to string
-    implicit none
     character(len=500):: to_s_string_
     character(len=*), intent(in) :: value
     to_s_string_ = value
@@ -2994,7 +3378,6 @@ contains
 
   function strip_(value)
     !! Remove leading and trailing spaces
-    implicit none
     character(len=500):: strip_
     character(len=*), intent(in) :: value
     strip_ = trim(adjustl(value))
@@ -3003,11 +3386,10 @@ contains
   function strip_length_(value, length)
     !! Remove leading and trailing spaces
     !! and return specified length
-    implicit none
     character(len=*), intent(in) :: value
     integer, intent(in) :: length
     character(len=length):: strip_length_
     strip_length_ = trim(adjustl(value))
   end function strip_length_
 
-end module fruit
+end module naturalfruit
