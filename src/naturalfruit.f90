@@ -572,7 +572,7 @@ contains
         exit
       endif
 
-      write (xml_work, '(a)', advance="no") trim(strip(message_array(i)))
+      write (xml_work, '(a)', advance="no") strip(message_array(i))
 
       if (i == message_index - 1) then
         continue
@@ -735,7 +735,7 @@ contains
       write (stdout, *) '  -- Failed assertion messages:'
 
       do i = 1, message_index - 1
-        write (stdout, "(A)") '   '//trim(strip(message_array(i)))
+        write (stdout, "(A)") '   '//strip(message_array(i))
       end do
 
       write (stdout, *) '  -- end of failed assertion messages.'
@@ -899,7 +899,7 @@ contains
     msgs(:) = ""
 
     do i = 1, message_index - 1
-      msgs(i) = trim(strip(message_array(i)))
+      msgs(i) = strip(message_array(i))
     enddo
   end subroutine get_message_array_
 
@@ -913,7 +913,7 @@ contains
     do i = message_index_from, message_index - 1
       j = i - message_index_from + 1
       if (j > ubound(msgs, 1)) exit
-      msgs(j) = trim(strip(message_array(i)))
+      msgs(j) = strip(message_array(i))
     enddo
   end subroutine get_messages_
 
@@ -982,15 +982,15 @@ contains
     logical, intent(in)           :: if_is
     character(*), intent(in), optional :: message
 
-    msg = '['//trim(strip(case_name))//']: '
+    msg = '['//strip(case_name)//']: '
     if (if_is) then
       msg = trim(msg)//'Expected'
     else
       msg = trim(msg)//'Expected Not'
     endif
-    msg = trim(msg)//" "//'['//trim(strip(var1))//'], '
+    msg = trim(msg)//" "//'['//strip(var1)//'], '
     msg = trim(msg)//" "//'Got'
-    msg = trim(msg)//" "//'['//trim(strip(var2))//']'
+    msg = trim(msg)//" "//'['//strip(var2)//']'
 
     if (present(message)) then
       msg = trim(msg)//'; User message: ['//trim(message)//']'
@@ -1284,7 +1284,7 @@ contains
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
-    if (trim(strip(var1)) /= trim(strip(var2))) then
+    if (strip(var1) /= strip(var2)) then
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1), &
@@ -1324,7 +1324,7 @@ contains
     endif
 
     do i = 1, n
-      if (trim(strip(var1(i))) /= trim(strip(var2(i)))) then
+      if (strip(var1(i)) /= strip(var2(i))) then
         if (.not. present(status)) then
           call failed_assert_action( &
             & to_s(var1(i)), &
@@ -1367,7 +1367,7 @@ contains
 
     do j = 1, m
       do i = 1, n
-        if (trim(strip(var1(i, j))) /= trim(strip(var2(i, j)))) then
+        if (strip(var1(i, j)) /= strip(var2(i, j))) then
           if (.not. present(status)) then
             call failed_assert_action( &
               & to_s(var1(i, j)), &
