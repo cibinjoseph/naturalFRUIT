@@ -2464,7 +2464,6 @@ contains
 
   !------ 2d_logical ------
   subroutine assert_not_eq_2d_logical_(var1, var2, message, status)
-    integer :: i, j, n, m
     logical, intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
@@ -2547,7 +2546,6 @@ contains
 
   !------ 2d_string ------
   subroutine assert_not_eq_2d_string_(var1, var2, message, status)
-    integer :: i, j, n, m
     character(len=*), intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
@@ -2629,7 +2627,6 @@ contains
 
   !------ 2d_int ------
   subroutine assert_not_eq_2d_int_(var1, var2, message, status)
-    integer :: i, j, n, m
     integer, intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
@@ -2690,7 +2687,7 @@ contains
     logical, intent(out), optional :: status
     logical :: is_equal
 
-    call assert_equal(var1, var2, status=is_equal)
+    call assert_equal(var1, var2, delta, status=is_equal)
 
     if (is_equal) then
       if (.not. present(status)) then
@@ -2745,7 +2742,7 @@ contains
     logical, intent(out), optional :: status
     logical :: is_equal
 
-    call assert_equal(var1, var2, status=is_equal)
+    call assert_equal(var1, var2, delta, status=is_equal)
 
     if (is_equal) then
       if (.not. present(status)) then
@@ -2767,7 +2764,6 @@ contains
 
   !------ 2d_real ------
   subroutine assert_not_eq_2d_real_(var1, var2, message, status)
-    integer :: i, j, n, m
     real, intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
@@ -2795,14 +2791,13 @@ contains
 
   !------ 2d_real ------
   subroutine assert_not_eq_2d_real_in_range_(var1, var2, delta, message, status)
-    integer :: i, j, n, m
     real, intent(in), dimension(:, :) :: var1, var2
     real, intent(in) :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
     logical :: is_equal
 
-    call assert_equal(var1, var2, status=is_equal)
+    call assert_equal(var1, var2, delta, status=is_equal)
 
     if (is_equal) then
       if (.not. present(status)) then
@@ -2857,7 +2852,7 @@ contains
     logical, intent(out), optional :: status
     logical :: is_equal
 
-    call assert_equal(var1, var2, status=is_equal)
+    call assert_equal(var1, var2, delta, status=is_equal)
 
     if (is_equal) then
       if (.not. present(status)) then
@@ -2912,7 +2907,7 @@ contains
     logical, intent(out), optional :: status
     logical :: is_equal
 
-    call assert_equal(var1, var2, status=is_equal)
+    call assert_equal(var1, var2, delta, status=is_equal)
 
     if (is_equal) then
       if (.not. present(status)) then
@@ -2934,7 +2929,6 @@ contains
 
   !------ 2d_double ------
   subroutine assert_not_eq_2d_double_(var1, var2, message, status)
-    integer :: i, j, n, m
     real(dp), intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
@@ -2962,14 +2956,13 @@ contains
 
   !------ 2d_double ------
   subroutine assert_not_eq_2d_double_in_range_(var1, var2, delta, message, status)
-    integer :: i, j, n, m
     real(dp), intent(in), dimension(:, :) :: var1, var2
     real(dp), intent(in) :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
     logical :: is_equal
 
-    call assert_equal(var1, var2, status=is_equal)
+    call assert_equal(var1, var2, delta, status=is_equal)
 
     if (is_equal) then
       if (.not. present(status)) then
@@ -3024,7 +3017,7 @@ contains
     logical, intent(out), optional :: status
     logical :: is_equal
 
-    call assert_equal(var1, var2, status=is_equal)
+    call assert_equal(var1, var2, delta, status=is_equal)
 
     if (is_equal) then
       if (.not. present(status)) then
@@ -3079,7 +3072,7 @@ contains
     logical, intent(out), optional :: status
     logical :: is_equal
 
-    call assert_equal(var1, var2, status=is_equal)
+    call assert_equal(var1, var2, delta, status=is_equal)
 
     if (is_equal) then
       if (.not. present(status)) then
@@ -3101,7 +3094,6 @@ contains
 
   !------ 2d_complex_real_------
   subroutine assert_not_eq_2d_complex_real_(var1, var2, message, status)
-    integer :: i, j, n, m
     complex, intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
@@ -3129,14 +3121,13 @@ contains
 
   !------ 2d_complex_real_------
   subroutine assert_not_eq_2d_complex_real_in_range_(var1, var2, delta, message, status)
-    integer :: i, j, n, m
     complex, intent(in), dimension(:, :) :: var1, var2
     real(dp), intent(in) :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
     logical :: is_equal
 
-    call assert_equal(var1, var2, status=is_equal)
+    call assert_equal(var1, var2, delta, status=is_equal)
 
     if (is_equal) then
       if (.not. present(status)) then
@@ -3191,7 +3182,7 @@ contains
     logical, intent(out), optional :: status
     logical :: is_equal
 
-    call assert_equal(var1, var2, status=is_equal)
+    call assert_equal(var1, var2, delta, status=is_equal)
 
     if (is_equal) then
       if (.not. present(status)) then
@@ -3246,7 +3237,7 @@ contains
     logical, intent(out), optional :: status
     logical :: is_equal
 
-    call assert_equal(var1, var2, status=is_equal)
+    call assert_equal(var1, var2, delta, status=is_equal)
 
     if (is_equal) then
       if (.not. present(status)) then
@@ -3268,7 +3259,6 @@ contains
 
   !------ 2d_complex_double_------
   subroutine assert_not_eq_2d_complex_double_(var1, var2, message, status)
-    integer :: i, j, n, m
     complex(dp), intent(in), dimension(:, :) :: var1, var2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
@@ -3296,14 +3286,13 @@ contains
 
   !------ 2d_complex_double_------
   subroutine assert_not_eq_2d_complex_double_in_range_(var1, var2, delta, message, status)
-    integer :: i, j, n, m
     complex(dp), intent(in), dimension(:, :) :: var1, var2
     real(dp), intent(in) :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
     logical :: is_equal
 
-    call assert_equal(var1, var2, status=is_equal)
+    call assert_equal(var1, var2, delta, status=is_equal)
 
     if (is_equal) then
       if (.not. present(status)) then
