@@ -1172,7 +1172,7 @@ contains
       return
     endif
 
-    if (.not. present(status)) then 
+    if (.not. present(status)) then
       call add_success
     else
       status = .true.
@@ -1235,7 +1235,7 @@ contains
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(n)//' x '//to_s(m), &
-          & to_s(size(var2, 1))//' x '//to_s(size(var2,1)), &
+          & to_s(size(var2, 1))//' x '//to_s(size(var2, 1)), &
           & '2d arrays have different sizes, '//message, if_is=.true.)
       else
         status = .false.
@@ -1585,7 +1585,7 @@ contains
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(n), &
-          & to_s(size(var2, 1)), & 
+          & to_s(size(var2, 1)), &
           & '1d arrays have different sizes, '//message, if_is=.true.)
       else
         status = .false.
@@ -2240,8 +2240,8 @@ contains
     if (is_equal) then
       if (.not. present(status)) then
         call failed_assert_action( &
-        & to_s(var1(1, 1)), &
-        & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
+          & to_s(var1(1, 1)), &
+          & to_s(var2(1, 1)), '2d array has no difference, '//message, if_is=.false.)
       else
         status = .false.
       endif
@@ -2295,8 +2295,8 @@ contains
     if (is_equal) then
       if (.not. present(status)) then
         call failed_assert_action( &
-        & to_s(var1(1)), &
-        & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
+          & to_s(var1(1)), &
+          & to_s(var2(1)), '1d array has no difference, '//message, if_is=.false.)
       else
         status = .false.
       endif
