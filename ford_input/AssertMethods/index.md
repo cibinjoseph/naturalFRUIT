@@ -17,4 +17,6 @@ FRUIT provides several assert methods to check for and report failures. The foll
 </table>  
 </br>
 
-All the assert methods accept a `message` argument that, if specified, is used as the error message on failure. Additionally, the real and double assert methods also accept 1 and 2 dimensional arrays as inputs.
+@note
+All the assert methods accept two optional arguments `message` and `status`. `message`, if specified, is used as the error message on failure. `status` if present, supresses printing of success and failure messages, and the test case behaviour. The boolean variable provided as argument to `status` is returned `.true.` if the assert is successful and `.false.` if the assert fails. </br>
+Additionally, the real and double assert methods also accept 1 and 2 dimensional arrays as inputs.
