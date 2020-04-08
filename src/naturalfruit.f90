@@ -1500,7 +1500,7 @@ contains
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
-    if ((var1 < var2) .or. (var1 > var2)) then
+    if (var1 .ne. var2) then
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1), &
@@ -1565,7 +1565,7 @@ contains
     endif
 
     do i = 1, n
-      if ((var1(i) < var2(i)) .or. (var1(i) > var2(i))) then
+      if (var1(i) .ne. var2(i)) then
         if (.not. present(status)) then
           call failed_assert_action( &
             & to_s(var1(i)), &
@@ -1650,7 +1650,7 @@ contains
 
     do j = 1, m
       do i = 1, n
-        if ((var1(i, j) < var2(i, j)) .or. (var1(i, j) > var2(i, j))) then
+        if (var1(i, j) .ne. var2(i, j)) then
           if (.not. present(status)) then
             call failed_assert_action( &
               & to_s(var1(i, j)), &
@@ -1719,7 +1719,7 @@ contains
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
-    if ((var1 < var2) .or. (var1 > var2)) then
+    if (var1 .ne. var2) then
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1), &
@@ -1788,7 +1788,7 @@ contains
       else
         status = .false.
       endif
-      if ((var1(i) < var2(i)) .or. (var1(i) > var2(i))) then
+      if (var1(i) .ne. var2(i)) then
         if (.not. present(status)) then
           call failed_assert_action( &
             & to_s(var1(i)), &
@@ -1879,7 +1879,7 @@ contains
         status = .false.
       endif
       do i = 1, n
-        if ((var1(i, j) < var2(i, j)) .or. (var1(i, j) > var2(i, j))) then
+        if (var1(i, j) .ne. var2(i, j)) then
           if (.not. present(status)) then
             call failed_assert_action( &
               & to_s(var1(i, j)), &
@@ -1952,10 +1952,7 @@ contains
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
-    if ((real(var1) < real(var2)) .or. &
-      &(real(var1) > real(var2)) .or. &
-      &(aimag(var1) < aimag(var2)) .or. &
-      &(aimag(var1) > aimag(var2))) then
+    if (var1 .ne. var2) then
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1), &
@@ -2023,10 +2020,7 @@ contains
       else
         status = .false.
       endif
-      if ((real(var1(i)) < real(var2(i))) .or. &
-        &(real(var1(i)) > real(var2(i))) .or. &
-        &(aimag(var1(i)) < aimag(var2(i))) .or. &
-        &(aimag(var1(i)) > aimag(var2(i)))) then
+      if (var1(i) .ne. var2(i)) then
         if (.not. present(status)) then
           call failed_assert_action( &
             & to_s(var1(i)), &
@@ -2116,10 +2110,7 @@ contains
         status = .false.
       endif
       do i = 1, n
-        if ((real(var1(i, j)) < real(var2(i, j))) .or. &
-          &(real(var1(i, j)) > real(var2(i, j))) .or. &
-          &(aimag(var1(i, j)) < aimag(var2(i, j))) .or. &
-          &(aimag(var1(i, j)) > aimag(var2(i, j)))) then
+        if (var1(i, j) .ne. var2(i, j)) then
           if (.not. present(status)) then
             call failed_assert_action( &
               & to_s(var1(i, j)), &
@@ -2192,10 +2183,7 @@ contains
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
-    if ((real(var1) < real(var2)) .or. &
-      &(real(var1) > real(var2)) .or. &
-      &(aimag(var1) < aimag(var2)) .or. &
-      &(aimag(var1) > aimag(var2))) then
+    if (var1 .ne. var2) then
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1), &
@@ -2263,10 +2251,7 @@ contains
       else
         status = .false.
       endif
-      if ((real(var1(i)) < real(var2(i))) .or. &
-        &(real(var1(i)) > real(var2(i))) .or. &
-        &(aimag(var1(i)) < aimag(var2(i))) .or. &
-        &(aimag(var1(i)) > aimag(var2(i)))) then
+      if (var1(i) .ne. var2(i)) then
         if (.not. present(status)) then
           call failed_assert_action( &
             & to_s(var1(i)), &
@@ -2356,10 +2341,7 @@ contains
         status = .false.
       endif
       do i = 1, n
-        if ((real(var1(i, j)) < real(var2(i, j))) .or. &
-          &(real(var1(i, j)) > real(var2(i, j))) .or. &
-          &(aimag(var1(i, j)) < aimag(var2(i, j))) .or. &
-          &(aimag(var1(i, j)) > aimag(var2(i, j)))) then
+        if (var1(i, j) .ne. var2(i, j)) then
           if (.not. present(status)) then
             call failed_assert_action( &
               & to_s(var1(i, j)), &
