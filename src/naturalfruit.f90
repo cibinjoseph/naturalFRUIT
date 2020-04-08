@@ -20,7 +20,7 @@
 !      For example, fruit_initialize, and failed_assert_count.
 !
 
-module fruit
+module naturalfruit
   !! Summary: This module contains fruit procedures and variables
   !! This module contains the procedures and variables that the user may use
   !! for unit testing with fruit.
@@ -3392,4 +3392,4 @@ contains
     strip_length_ = trim(adjustl(value))
   end function strip_length_
 
-end module fruit
+end module naturalfruit

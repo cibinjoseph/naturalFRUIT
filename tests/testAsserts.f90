@@ -1,6 +1,6 @@
 program testAsserts
   !! A basic set of tests for assert methods
-  use fruit
+  use naturalfruit
   implicit none
 
   integer, parameter :: dp = kind(1.0d0)

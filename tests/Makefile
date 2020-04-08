@@ -1,5 +1,5 @@
 FC = ifort
-flags = -g -traceback
+flags = -g -traceback -warn all
 
 all: testAsserts.out
 	./testAsserts.out

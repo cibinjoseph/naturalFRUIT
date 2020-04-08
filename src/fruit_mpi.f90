@@ -2,7 +2,7 @@ module fruit_mpi
   !! display: none
   !!
   !! Documentation under construction
-  use fruit
+  use naturalfruit
   use mpi
   implicit none
   private
