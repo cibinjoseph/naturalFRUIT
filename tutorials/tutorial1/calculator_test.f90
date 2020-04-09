@@ -3,7 +3,7 @@
 ! Licensed under the 3-clause BSD license.
 
 module calculator_test
-  use fruit
+  use naturalfruit
   implicit none
 
 contains                          !fortran 95 limits subroutine name to 31 char.
