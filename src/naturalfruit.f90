@@ -99,7 +99,7 @@ module naturalfruit
   type(ty_stack), save :: stashed_suite
 
   public :: FRUIT_PREFIX_LEN_MAX
-  private :: strip, to_s
+  private :: to_s
 
   ! Assert subroutines
   public :: assert_equal, assert_not_equal
@@ -236,12 +236,6 @@ module naturalfruit
     !! to number of arguments.
     module procedure add_fail_
     module procedure add_fail_case_named_
-  end interface
-
-  interface strip
-    !! Remove leading and trailing spaces
-    module procedure strip_
-    module procedure strip_length_
   end interface
 
   interface to_s
@@ -403,7 +397,7 @@ contains
         exit
       endif
 
-      write (xml_work, '(a)', advance="no") strip(message_array(i))
+      write (xml_work, '(a)', advance="no") trim(adjustl(message_array(i)))
 
       if (i == message_index - 1) then
         continue
@@ -561,7 +555,7 @@ contains
       write (stdout, *) '  -- Failed assertion messages:'
 
       do i = 1, message_index - 1
-        write (stdout, "(A)") '   '//strip(message_array(i))
+        write (stdout, "(A)") '   '//trim(adjustl(message_array(i)))
       end do
 
       write (stdout, *) '  -- end of failed assertion messages.'
@@ -705,7 +699,7 @@ contains
     !! Return last message.
     character(len=MSG_LENGTH) :: get_last_message
     if (message_index > 1) then
-      get_last_message = strip(message_array(message_index - 1), MSG_LENGTH)
+      get_last_message = trim(adjustl(message_array(message_index - 1)))
     else
       get_last_message = ''
     end if
@@ -727,7 +721,7 @@ contains
     msgs(:) = ""
 
     do i = 1, message_index - 1
-      msgs(i) = strip(message_array(i))
+      msgs(i) = trim(adjustl(message_array(i)))
     enddo
   end subroutine get_message_array
 
@@ -741,7 +735,7 @@ contains
     do i = message_index_from, message_index - 1
       j = i - message_index_from + 1
       if (j > ubound(msgs, 1)) exit
-      msgs(j) = strip(message_array(i))
+      msgs(j) = trim(adjustl(message_array(i)))
     enddo
   end subroutine get_messages
 
@@ -799,14 +793,14 @@ contains
     !! category: testsuite subroutine
     !! Set name of case to *value*.
     character(*), intent(in) :: value
-    case_name = strip(value, MSG_LENGTH)
+    case_name = trim(adjustl(value))
   end subroutine set_case_name
 
   subroutine get_case_name(value)
     !! category: testsuite subroutine
     !! Get name of case to *value*.
     character(*), intent(out) :: value
-    value = strip(case_name)
+    value = trim(adjustl(case_name))
   end subroutine get_case_name
 
   subroutine make_error_msg_(var1, var2, if_is, message)
@@ -814,15 +808,15 @@ contains
     logical, intent(in)           :: if_is
     character(*), intent(in), optional :: message
 
-    msg = "["//strip(case_name)//"]: "
+    msg = '['//trim(adjustl(case_name))//']:'
     if (if_is) then
-      msg = trim(msg)//'Expected'
+      msg = trim(msg)//' Expected'
     else
-      msg = trim(msg)//'Expected Not'
+      msg = trim(msg)//' Expected Not'
     endif
-    msg = trim(msg)//" "//'['//strip(var1)//'], '
-    msg = trim(msg)//" "//'Got'
-    msg = trim(msg)//" "//'['//strip(var2)//']'
+    msg = trim(msg)//' ['//trim(adjustl(var1))//'],'
+    msg = trim(msg)//' Got'
+    msg = trim(msg)//' ['//trim(adjustl(var2))//']'
 
     if (present(message)) then
       msg = trim(msg)//'; User message: ['//trim(message)//']'
@@ -1151,7 +1145,7 @@ contains
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
-    if (strip(var1) /= strip(var2)) then
+    if (trim(adjustl(var1)) /= trim(adjustl(var2))) then
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1), &
@@ -1191,7 +1185,7 @@ contains
     endif
 
     do i = 1, n
-      if (strip(var1(i)) /= strip(var2(i))) then
+      if (trim(adjustl(var1(i))) /= trim(adjustl(var2(i)))) then
         if (.not. present(status)) then
           call failed_assert_action( &
             & to_s(var1(i)), &
@@ -1234,7 +1228,7 @@ contains
 
     do j = 1, m
       do i = 1, n
-        if (strip(var1(i, j)) /= strip(var2(i, j))) then
+        if (trim(adjustl(var1(i, j))) /= trim(adjustl(var2(i, j)))) then
           if (.not. present(status)) then
             call failed_assert_action( &
               & to_s(var1(i, j)), &
@@ -3242,21 +3236,5 @@ contains
     character(len=*), intent(in) :: value
     to_s_string_ = value
   end function to_s_string_
-
-  function strip_(value)
-    !! Remove leading and trailing spaces
-    character(len=500):: strip_
-    character(len=*), intent(in) :: value
-    strip_ = trim(adjustl(value))
-  end function strip_
-
-  function strip_length_(value, length)
-    !! Remove leading and trailing spaces
-    !! and return specified length
-    character(len=*), intent(in) :: value
-    integer, intent(in) :: length
-    character(len=length):: strip_length_
-    strip_length_ = trim(adjustl(value))
-  end function strip_length_
 
 end module naturalfruit
