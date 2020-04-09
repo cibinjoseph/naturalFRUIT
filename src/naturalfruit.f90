@@ -293,13 +293,18 @@ contains
     !$omp end critical (FRUIT_OMP_ALLOCATE_MESSAGE_ARRAY)
   end subroutine testsuite_initialize
 
-  subroutine testsuite_finalize
+  subroutine testsuite_finalize(exit_code)
     !! category: driver subroutine
-    !! Finalize FRUIT driver environment.
+    !! summary: Finalize FRUIT driver environment
+    !! Finalize FRUIT driver environment and optionally
+    !!  return no. of failed cases as an *exit_code*
+    !!  for exception handling
+    integer, intent(out), optional :: exit_code
     !$omp critical     (FRUIT_OMP_DEALLOCATE_MESSAGE_ARRAY)
     if (allocated(message_array)) then
       deallocate (message_array)
     endif
+    exit_code = failed_case_count
     !$omp end critical (FRUIT_OMP_DEALLOCATE_MESSAGE_ARRAY)
   end subroutine testsuite_finalize
 
