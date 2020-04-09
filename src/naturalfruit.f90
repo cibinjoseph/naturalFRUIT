@@ -105,7 +105,7 @@ module naturalfruit
 
   ! Common test case subroutines
   public :: run_test_case
-  public :: testsuite_initialize, testsuite_finalize
+  public :: testsuite_initialize,  testsuite_finalize
   public :: testsuite_summary, testsuite_summary_table
   public :: fruit_if_case_failed, failed_assert_action
   public :: get_total_count, get_failed_count
@@ -304,7 +304,7 @@ contains
     if (allocated(message_array)) then
       deallocate (message_array)
     endif
-    exit_code = failed_case_count
+    if (present(exit_code)) exit_code = failed_case_count
     !$omp end critical (FRUIT_OMP_DEALLOCATE_MESSAGE_ARRAY)
   end subroutine testsuite_finalize
 
