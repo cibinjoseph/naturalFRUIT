@@ -1144,26 +1144,44 @@ contains
   !--------------------------------------------------------------------------------
   ! all assertions
   !--------------------------------------------------------------------------------
-  subroutine assert_true(var1, message)
+  subroutine assert_true(var1, message, status)
     !! Test that *var1* is true.
     logical, intent(in) :: var1
     character(*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     if (var1 .eqv. .true.) then
-      call add_success
+      if (.not. present(status)) then
+        call add_success
+      else
+        status = .true.
+      endif
     else
-      call failed_assert_action(to_s(.true.), to_s(var1), message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action(to_s(.true.), to_s(var1), message, if_is=.true.)
+      else
+        status = .false.
+      endif
     end if
   end subroutine assert_true
 
-  subroutine assert_false_(var1, message)
+  subroutine assert_false_(var1, message, status)
     logical, intent(in) :: var1
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     if (var1 .eqv. .false.) then
-      call add_success
+      if (.not. present(status)) then
+        call add_success
+      else
+        status = .true.
+      endif
     else
-      call failed_assert_action(to_s(.true.), to_s(var1), message, if_is=.false.)
+      if (.not. present(status)) then
+        call failed_assert_action(to_s(.true.), to_s(var1), message, if_is=.false.)
+      else
+        status = .false.
+      endif
     endif
   end subroutine assert_false_
 
