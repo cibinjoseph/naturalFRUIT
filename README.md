@@ -7,13 +7,15 @@
 A purely Fortran based unit testing framework derived from the original [Fortran Unit Test Framework (FRUIT)](https://sourceforge.net/projects/fortranxunit/).
 
 ## Why the new project?
-1. FRUIT utilizes the Ruby programming language to aid auto-generation of code and making of reports easier. However, this seems to hinder users from adopting the testing framework due to the time spent setting up additional dependencies as well as having to learn a new programming language. naturalFRUIT maintains the Fortran modules necessary for testing without the Ruby dependencies.
-2. FRUIT documentation appears to be generally lacking for intermmediate to advanced users. This project will utilize auto-generated documentation using [FORD](https://github.com/Fortran-FOSS-Programmers/ford) in addition to tutorials on the GitHub Wiki.  
-3. FRUIT also appears to not be updated constantly. Hopefully, improvements to Fortran will be reflected in FRUIT through this repo through collaborative development.
+1. FRUIT utilized the Ruby programming language to aid auto-generation of code and making of reports easier. However, this seemed to hinder users from adopting the testing framework due to time spent setting up additional dependencies and having to learn a whole new programming language. naturalFRUIT maintains only Fortran modules necessary for testing without dependencies on other languages.</br></br>
+2. FRUIT documentation appeared to be generally lacking for intermediate to advanced uses. This project will utilize auto-generated documentation using [FORD](https://github.com/Fortran-FOSS-Programmers/ford).</br></br> 
+3. FRUIT also appeared to not be updated constantly. Hopefully, improvements to Fortran will be reflected in FRUIT through this repo through collaborative development.
+4. FRUIT, just like Fortran, did not contain exception handling. This meant it could not be used in testing using continous integration frameworks like Travis. naturalFruit gets over this to a certain extent and can be used with these frameworks.
 
 ## Documentation
-Documentation of naturalFRUIT is available [here](https://cibinjoseph.github.io/naturalFRUIT/page/index.html).   
-A list of subroutines for use while unit testing is available [here](https://cibinjoseph.github.io/naturalFRUIT/lists/procedures.html).
+Link to FORD generated [Documentation](https://cibinjoseph.github.io/naturalFRUIT/page/index.html).   
+For a quick glance at assert methods, visit [Documentation](https://cibinjoseph.github.io/naturalFRUIT/page/index.html) > [Assert methods](https://cibinjoseph.github.io/naturalFRUIT/page/AssertMethods/index.html).  
+The list of all subroutines available for use is provided in [Documentation](https://cibinjoseph.github.io/naturalFRUIT/page/index.html) > [Procedures](https://cibinjoseph.github.io/naturalFRUIT/lists/procedures.html).
 
 ## Usage
 This repo is under very active development and a lot of drastic changes are being made at the moment. These include removal of deprecated and redundant subroutines and functions. Until this disclaimer is removed, users are cautioned against using naturalFRUIT and advised to use the original FRUIT module.
