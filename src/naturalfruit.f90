@@ -63,7 +63,7 @@ module naturalfruit
   integer, private, save :: current_max = 50
 
   character(len=MSG_LENGTH), private, allocatable :: message_array(:)
-  character(len=MSG_LENGTH), private, save :: msg = '[unit name not set from set_name]: '
+  character(len=MSG_LENGTH), private, save :: msg = '[case name not set from set_name]: '
   character(len=MSG_LENGTH), private, save :: case_name = DEFAULT_CASE_NAME
 
   integer, private, save :: successful_case_count = 0
@@ -236,7 +236,7 @@ module naturalfruit
     !! add_fail invokes one of the following subroutines according
     !! to number of arguments.
     module procedure add_fail_
-    module procedure add_fail_unit_
+    module procedure add_fail_case_named_
   end interface
 
   interface run_test_case
@@ -621,15 +621,15 @@ contains
     call failed_assert_action('none', 'none', message, if_is=.true.)
   end subroutine add_fail_
 
-  subroutine add_fail_unit_(unitName, message)
+  subroutine add_fail_case_named_(caseName, message)
     !! category: driver subroutine
     !! summary: Print message to screen on assert failure and add to count.
     !! Print message to screen on assert failure and add to count.
-    character(*), intent(in) :: unitName
+    character(*), intent(in) :: caseName
     character(*), intent(in) :: message
 
-    call add_fail_("[in "//unitName//"(fail)]: "//message)
-  end subroutine add_fail_unit_
+    call add_fail_("[in "//caseName//"(fail)]: "//message)
+  end subroutine add_fail_case_named_
 
   subroutine is_all_successful(result)
     !! category: driver subroutine
@@ -808,14 +808,14 @@ contains
 
   subroutine set_case_name(value)
     !! category: driver subroutine
-    !! Set name of unit/case to *value*.
+    !! Set name of case to *value*.
     character(*), intent(in) :: value
     case_name = strip(value, MSG_LENGTH)
   end subroutine set_case_name
 
   subroutine get_case_name(value)
     !! category: driver subroutine
-    !! Get name of unit/case to *value*.
+    !! Get name of case to *value*.
     character(*), intent(out) :: value
     value = strip(case_name)
   end subroutine get_case_name
