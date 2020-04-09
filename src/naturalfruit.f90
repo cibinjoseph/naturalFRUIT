@@ -105,8 +105,8 @@ module naturalfruit
 
   ! Common test case subroutines
   public :: run_test_case
-  public :: fruit_initialize, fruit_finalize
-  public :: fruit_summary, fruit_summary_table
+  public :: testsuite_initialize, testsuite_finalize
+  public :: testsuite_summary, testsuite_summary_table
   public :: fruit_if_case_failed, failed_assert_action
   public :: get_total_count, get_failed_count
   public :: get_assert_and_case_count
@@ -125,8 +125,8 @@ module naturalfruit
   public :: get_message_index
 
   ! XML specific subroutines
-  public :: fruit_initialize_xml
-  public :: fruit_summary_xml
+  public :: testsuite_initialize_xml
+  public :: testsuite_summary_xml
   public :: case_passed_xml, case_failed_xml
   public :: get_xml_filename_work, set_xml_filename_work
 
@@ -263,7 +263,7 @@ module naturalfruit
 
 contains
 
-  subroutine fruit_initialize(rank)
+  subroutine testsuite_initialize(rank)
     !! category: driver subroutine
     !! Initialize FRUIT driver environment.
     integer, intent(in), optional :: rank
@@ -291,9 +291,9 @@ contains
       allocate (message_array(MSG_ARRAY_INCREMENT))
     end if
     !$omp end critical (FRUIT_OMP_ALLOCATE_MESSAGE_ARRAY)
-  end subroutine fruit_initialize
+  end subroutine testsuite_initialize
 
-  subroutine fruit_finalize
+  subroutine testsuite_finalize
     !! category: driver subroutine
     !! Finalize FRUIT driver environment.
     !$omp critical     (FRUIT_OMP_DEALLOCATE_MESSAGE_ARRAY)
@@ -301,9 +301,9 @@ contains
       deallocate (message_array)
     endif
     !$omp end critical (FRUIT_OMP_DEALLOCATE_MESSAGE_ARRAY)
-  end subroutine fruit_finalize
+  end subroutine testsuite_finalize
 
-  subroutine fruit_initialize_xml(rank)
+  subroutine testsuite_initialize_xml(rank)
     !! category: driver subroutine
     !! Initialize FRUIT driver environment for output to XML file
     integer, optional, intent(in) :: rank
@@ -343,7 +343,7 @@ contains
 
     open (xml_work, FILE=xml_filename_work, action="write", status='replace')
     close (xml_work)
-  end subroutine fruit_initialize_xml
+  end subroutine testsuite_initialize_xml
 
   function case_delta_t()
     character(len=STRLEN_T) :: case_delta_t
@@ -419,7 +419,7 @@ contains
     close (xml_work)
   end subroutine case_failed_xml
 
-  subroutine fruit_summary_xml
+  subroutine testsuite_summary_xml
     !! category: driver subroutine
     !! Summarize FRUIT test results in XML format to result.xml file.
     character(len=XML_LINE_LENGTH) :: whole_line
@@ -452,7 +452,7 @@ contains
     write (XML_OPEN, '("  </testsuite>")')
     write (XML_OPEN, '("</testsuites>")')
     close (XML_OPEN)
-  end subroutine fruit_summary_xml
+  end subroutine testsuite_summary_xml
 
   function int_to_str(i)
     integer, intent(in) :: i
@@ -548,7 +548,7 @@ contains
     call run_test_case_named_(tc, '_unnamed_')
   end subroutine run_test_case_
 
-  subroutine fruit_summary()
+  subroutine testsuite_summary()
     !! category: driver subroutine
     !! Summarize FRUIT test results to screen.
     integer :: i
@@ -579,15 +579,15 @@ contains
     end if
 
     if (successful_assert_count + failed_assert_count /= 0) then
-      call fruit_summary_table(&
+      call testsuite_summary_table(&
         & successful_assert_count, failed_assert_count, &
         & successful_case_count, failed_case_count &
         &)
     end if
     write (stdout, *) '  -- end of FRUIT summary'
-  end subroutine fruit_summary
+  end subroutine testsuite_summary
 
-  subroutine fruit_summary_table(&
+  subroutine testsuite_summary_table(&
       & succ_assert, fail_assert, &
       & succ_case, fail_case    &
       &)
@@ -606,7 +606,7 @@ contains
       succ_assert, '/', succ_assert + fail_assert, ' ]'
     write (stdout, *) 'Successful cases   / total cases   : [ ', succ_case, '/', &
       succ_case + fail_case, ' ]'
-  end subroutine fruit_summary_table
+  end subroutine testsuite_summary_table
 
   subroutine add_fail_(message)
     !! category: driver subroutine

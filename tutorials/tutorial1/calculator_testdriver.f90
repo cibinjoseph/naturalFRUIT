@@ -3,10 +3,10 @@
 ! Licensed under the 3-clause BSD license.
 
 program fruit_driver
-  use fruit
+  use naturalfruit
   use calculator_test
-  call fruit_initialize 
+  call testsuite_initialize 
   call test_calculator_should_produce_4_when_2_and_2_are_inputs
-  call fruit_summary
-  call fruit_finalize
+  call testsuite_summary
+  call testsuite_finalize
 end program fruit_driver

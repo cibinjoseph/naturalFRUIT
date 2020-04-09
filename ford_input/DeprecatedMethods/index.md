@@ -15,7 +15,12 @@ The following methods have been deprecated or replaced to maintain consistency a
 <tr><td>getTestSummary</td><td>[[fruit_summary]]</td></tr>
 <tr><td>getTotalCount</td><td>[[get_total_count]]</td></tr>
 <tr><td>isAllSuccessful</td><td>[[is_all_successful]]</td></tr>
-<tr><td>init_fruit</td><td>[[fruit_initialize]]</td></tr>
-<tr><td>initializeFruit</td><td>[[fruit_initialize]]</td></tr>
+<tr><td>init_fruit</td><td>[[testsuite_initialize]]</td></tr>
+<tr><td>initializeFruit</td><td>[[testsuite_initialize]]</td></tr>
+<tr><td>fruit_finalize</td><td>[[testsuite_finalize]]</td></tr>
+<tr><td>fruit_initialize</td><td>[[testsuite_initialize]]</td></tr>
+<tr><td>fruit_summary</td><td>[[testsuite_summary]]</td></tr>
+<tr><td>fruit_summary_table</td><td>[[testsuite_summary_table]]</td></tr>
+<tr><td>fruit_summary_xml</td><td>[[testsuite_summary_xml]]</td></tr>
 <tr><td>runTestCase</td><td>[[run_test_case]]</td></tr>
 </table>  
