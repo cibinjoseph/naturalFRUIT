@@ -825,7 +825,7 @@ contains
     logical, intent(in)           :: if_is
     character(*), intent(in), optional :: message
 
-    msg = '['//strip(case_name)//']: '
+    msg = '["//strip(case_name)//"]: '
     if (if_is) then
       msg = trim(msg)//'Expected'
     else
