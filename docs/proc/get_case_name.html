@@ -10,7 +10,7 @@
     <meta name="author" content="Cibin Joseph" >
     <link rel="icon" href="../favicon.png">
 
-    <title>set_xml_filename_work &ndash; naturalFRUIT</title>
+    <title>get_case_name &ndash; naturalFRUIT</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -106,8 +106,8 @@
     
   
   <div class="row">
-    <h1>set_xml_filename_work
-   <small>Interface</small>
+    <h1>get_case_name
+      <small>Subroutine</small>
     
     </h1>
     
@@ -126,7 +126,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="<p> 0.9% of total for procedures.</p>Including implementation: 7 statements,  2.2% of total for procedures.">3 statements</a>
+    title=" 0.8% of total for procedures.">4 statements</a>
      </li> 
      
      
@@ -143,7 +143,7 @@
      <li><a href='../module/naturalfruit.html'>naturalfruit</a></li>
     
   
-     <li class="active">set_xml_filename_work</li>
+     <li class="active">get_case_name</li>
   </ol>
 </div>
 </div>
@@ -158,7 +158,7 @@
   
   <div class="row">
     <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
-      
+    
 <div id="sidebar">
   
 <h3>Contents</h3>
@@ -183,17 +183,13 @@
 
 
 
+
 <div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#modprocs-0">Module Procedures</a></h3></div>
-  <div id="modprocs-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../interface/set_xml_filename_work.html#moduleprocedure-set_xml_filename_work_">set_xml_filename_work_</a>
-      
-    </div>
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/get_case_name.html#src">get_case_name</a>
   </div>
 </div>
-
 
 
 
@@ -202,14 +198,59 @@
     </div>
     
     <div class="col-md-9" id='text'>
-      <h2>public interface set_xml_filename_work</h2>
-   <p>Set filename of XML file. result.xml by default.</p>
-     
+    <h2>
+public subroutine get_case_name(value)
+    
+    
+   
+</h2>
+    
+  
+
+
+    
+    <p>Get name of case to <em>value</em>.</p>
+    
+
+    <h3>Arguments</h3>
+    
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-value%7E2"></span>character(len=*),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>value</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    
+    
+    
+    
      
     <br>
 
-     <section class="visible-xs visible-sm hidden-md">
-       
+    <section class="visible-xs visible-sm hidden-md">
+      
 <h3>Contents</h3>
  
 
@@ -232,89 +273,53 @@
 
 
 
+
 <div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#modprocs-1">Module Procedures</a></h3></div>
-  <div id="modprocs-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../interface/set_xml_filename_work.html#moduleprocedure-set_xml_filename_work_">set_xml_filename_work_</a>
-      
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/get_case_name.html#src">get_case_name</a>
+  </div>
+</div>
+
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+    
+    
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">get_case_name</span><span class="p">(</span><span class="k">value</span><span class="p">)</span>
+    <span class="c">!! category: driver subroutine</span>
+    <span class="c">!! Get name of case to *value*.</span>
+    <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="k">value</span>
+<span class="k">    value</span> <span class="o">=</span> <span class="n">strip</span><span class="p">(</span><span class="n">case_name</span><span class="p">)</span>
+  <span class="k">end subroutine </span><span class="n">get_case_name</span>
+</pre></div>
+
+    </section>
+    <br>
+    
+    
     </div>
   </div>
-</div>
-
-
-
-
-     </section>
-     <br class="visible-xs visible-sm hidden-md">
-     
-  
-
-  
-
-  
-   <h2>Module Procedures</h2>
-   
-    
-  <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-set_xml_filename_work_"></span><h3>
-private subroutine set_xml_filename_work_(string)
-    
-    
-   
-</h3></div>
-  <div class="panel-body">
-       
-    
-
-
-
-<p>Set filename of XML file. result.xml by default.</p>
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>string</strong></td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-  </div>
-  </div>
-
-   
-     
-
- </div>
-</div>
 
 
     <hr>    
@@ -328,7 +333,7 @@ private subroutine set_xml_filename_work_(string)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-04-09T10:23:09.633715 
+             on 2020-04-09T13:40:52.638248 
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> naturalFRUIT was developed by Cibin Joseph</p></div>

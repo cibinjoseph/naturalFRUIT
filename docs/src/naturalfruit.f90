@@ -15,8 +15,7 @@
 ! The methods used most are: assert_true, assert_equal
 !
 ! Coding convention:
-!   1) All methods must be exposed by interface.
-!   2) Variable and methods are lower case connected with underscores.
+!   1) Variable and methods are lower case connected with underscores.
 !      For example, fruit_initialize, and failed_assert_count.
 !
 
@@ -64,7 +63,7 @@ module naturalfruit
   integer, private, save :: current_max = 50
 
   character(len=MSG_LENGTH), private, allocatable :: message_array(:)
-  character(len=MSG_LENGTH), private, save :: msg = '[unit name not set from set_name]: '
+  character(len=MSG_LENGTH), private, save :: msg = '[case name not set from set_name]: '
   character(len=MSG_LENGTH), private, save :: case_name = DEFAULT_CASE_NAME
 
   integer, private, save :: successful_case_count = 0
@@ -116,7 +115,6 @@ module naturalfruit
   public :: fruit_if_case_failed, failed_assert_action
   public :: get_total_count, get_failed_count
   public :: get_assert_and_case_count
-  public :: get_unit_name, set_unit_name
   public :: get_case_name, set_case_name
   public :: add_success, add_fail
   public :: stash_test_suite, restore_test_suite
@@ -238,7 +236,7 @@ module naturalfruit
     !! add_fail invokes one of the following subroutines according
     !! to number of arguments.
     module procedure add_fail_
-    module procedure add_fail_unit_
+    module procedure add_fail_case_named_
   end interface
 
   interface run_test_case
@@ -249,162 +247,6 @@ module naturalfruit
     !! to number of arguments.
     module procedure run_test_case_
     module procedure run_test_case_named_
-  end interface
-
-  interface fruit_initialize_xml
-    !! category: driver subroutine
-    !! Initialize FRUIT driver environment for output to XML file
-    module procedure fruit_initialize_xml_
-  end interface
-
-  interface fruit_summary
-    !! category: driver subroutine
-    !! Summarize FRUIT test results to screen.
-    module procedure fruit_summary_
-  end interface
-
-  interface fruit_summary_xml
-    !! category: driver subroutine
-    !! Summarize FRUIT test results in XML format to result.xml file.
-    module procedure fruit_summary_xml_
-  end interface
-
-  interface case_passed_xml
-    !! category: driver subroutine
-    !! Write to XML file a passed case.
-    module procedure case_passed_xml_
-  end interface
-
-  interface case_failed_xml
-    !! category: driver subroutine
-    !! Write to XML file a failed case.
-    module procedure case_failed_xml_
-  end interface
-
-  interface override_stdout
-    !! category: driver subroutine
-    !! Override stdout to a user-specified file. Terminal by default.
-    module procedure override_stdout_
-  end interface
-
-  interface end_override_stdout
-    !! category: driver subroutine
-    !! Revert override of stdout to default. Terminal by default.
-    module procedure end_override_stdout_
-  end interface
-
-  interface override_xml_work
-    !! category: driver subroutine
-    !! Override XML file unit number to a user-specified number. 21 by default.
-    module procedure override_xml_work_
-  end interface
-
-  interface end_override_xml_work
-    !! category: driver subroutine
-    !! Revert override of XML file unit number to default. 21 by default.
-    module procedure end_override_xml_work_
-  end interface
-
-  interface get_xml_filename_work
-    !! category: driver subroutine
-    !! Get filename of XML file. result.xml by default.
-    module procedure get_xml_filename_work_
-  end interface
-
-  interface set_xml_filename_work
-    !! category: driver subroutine
-    !! Set filename of XML file. result.xml by default.
-    module procedure set_xml_filename_work_
-  end interface
-
-  interface get_message_index
-    !! category: driver subroutine
-    !! Get number of failed assertion messages.
-    module procedure get_message_index_
-  end interface
-
-  interface get_messages
-    !! category: driver subroutine
-    !! Get failed asssertion messages to *msgs*.
-    module procedure get_messages_
-  end interface
-
-  interface get_message_array
-    !! category: driver subroutine
-    !! Get failed asssertion messages to *msgs*.
-    module procedure get_message_array_
-  end interface
-
-  interface set_unit_name
-    !! category: driver subroutine
-    !! Set name of unit/case to *value*.
-    module procedure set_case_name_
-  end interface
-
-  interface set_case_name
-    !! category: driver subroutine
-    !! Set name of unit/case to *value*.
-    module procedure set_case_name_
-  end interface
-
-  interface get_unit_name
-    !! category: driver subroutine
-    !! Get name of unit/case to *value*.
-    module procedure get_case_name_
-  end interface
-
-  interface get_case_name
-    !! category: driver subroutine
-    !! Get name of unit/case to *value*.
-    module procedure get_case_name_
-  end interface
-
-  interface fruit_finalize
-    !! category: driver subroutine
-    !! Finalize FRUIT driver environment.
-    module procedure fruit_finalize_
-  end interface
-
-  interface set_prefix
-    !! category: driver subroutine
-    !! Set a common prefix for classname. Null by default.
-    module procedure set_prefix_
-  end interface
-
-  interface get_prefix
-    !! category: driver subroutine
-    !! Get a common prefix for classname. Null by default.
-    module procedure get_prefix_
-  end interface
-
-  interface get_assert_and_case_count
-    !! category: driver subroutine
-    !! Get statistics of cases and asserts.
-    module procedure get_assert_and_case_count_
-  end interface
-
-  interface fruit_summary_table
-    !! category: driver subroutine
-    !! Print statistics of cases and asserts in default format.
-    module procedure fruit_summary_table_
-  end interface
-
-  interface fruit_if_case_failed
-    !! category: driver subroutine
-    !! Return TRUE if any assert in current case has failed.
-    module procedure fruit_if_case_failed_
-  end interface
-
-  interface fruit_hide_dots
-    !! category: driver subroutine
-    !! Hide dots signifying test success on screen. Visible by default.
-    module procedure fruit_hide_dots_
-  end interface
-
-  interface fruit_show_dots
-    !! category: driver subroutine
-    !! Show dots signifying test success on screen. Visible by default.
-    module procedure fruit_show_dots_
   end interface
 
   interface strip
@@ -456,7 +298,7 @@ contains
     !$omp end critical (FRUIT_OMP_ALLOCATE_MESSAGE_ARRAY)
   end subroutine fruit_initialize
 
-  subroutine fruit_finalize_
+  subroutine fruit_finalize
     !! category: driver subroutine
     !! Finalize FRUIT driver environment.
     !$omp critical     (FRUIT_OMP_DEALLOCATE_MESSAGE_ARRAY)
@@ -464,11 +306,11 @@ contains
       deallocate (message_array)
     endif
     !$omp end critical (FRUIT_OMP_DEALLOCATE_MESSAGE_ARRAY)
-  end subroutine fruit_finalize_
+  end subroutine fruit_finalize
 
-  subroutine fruit_initialize_xml_(rank)
+  subroutine fruit_initialize_xml(rank)
     !! category: driver subroutine
-    !! Initialize XML file for FRUIT driver environment.
+    !! Initialize FRUIT driver environment for output to XML file
     integer, optional, intent(in) :: rank
     logical :: rank_zero_or_single
 
@@ -506,7 +348,7 @@ contains
 
     open (xml_work, FILE=xml_filename_work, action="write", status='replace')
     close (xml_work)
-  end subroutine fruit_initialize_xml_
+  end subroutine fruit_initialize_xml
 
   function case_delta_t()
     character(len=STRLEN_T) :: case_delta_t
@@ -527,7 +369,7 @@ contains
     case_delta_t = adjustl(case_delta_t)
   end function case_delta_t
 
-  subroutine case_passed_xml_(tc_name, classname)
+  subroutine case_passed_xml(tc_name, classname)
     !! category: driver subroutine
     !! Write to XML file a passed case.
     character(*), intent(in) :: tc_name
@@ -541,9 +383,9 @@ contains
       &  '("    <testcase name=""", a, """ classname=""", a, a, """ time=""", a, """/>")') &
       &  trim(tc_name), trim(prefix), trim(classname), trim(case_time)
     close (xml_work)
-  end subroutine case_passed_xml_
+  end subroutine case_passed_xml
 
-  subroutine case_failed_xml_(tc_name, classname)
+  subroutine case_failed_xml(tc_name, classname)
     !! category: driver subroutine
     !! Write to XML file a passed case.
     character(*), intent(in) :: tc_name
@@ -580,9 +422,9 @@ contains
     write (xml_work, &
       &  '("    </testcase>")')
     close (xml_work)
-  end subroutine case_failed_xml_
+  end subroutine case_failed_xml
 
-  subroutine fruit_summary_xml_
+  subroutine fruit_summary_xml
     !! category: driver subroutine
     !! Summarize FRUIT test results in XML format to result.xml file.
     character(len=XML_LINE_LENGTH) :: whole_line
@@ -615,7 +457,7 @@ contains
     write (XML_OPEN, '("  </testsuite>")')
     write (XML_OPEN, '("</testsuites>")')
     close (XML_OPEN)
-  end subroutine fruit_summary_xml_
+  end subroutine fruit_summary_xml
 
   function int_to_str(i)
     integer, intent(in) :: i
@@ -625,30 +467,32 @@ contains
     int_to_str = adjustl(int_to_str)
   end function int_to_str
 
-  logical function fruit_if_case_failed_()
+  logical function fruit_if_case_failed()
+    !! category: driver subroutine
+    !! Return TRUE if any assert in current case has failed.
     if (failed_assert_count == 0) then
-      fruit_if_case_failed_ = .false.
+      fruit_if_case_failed = .false.
       return
     endif
 
     if (case_passed) then
-      fruit_if_case_failed_ = .false.
+      fruit_if_case_failed = .false.
     else
-      fruit_if_case_failed_ = .true.
+      fruit_if_case_failed = .true.
     endif
-  end function fruit_if_case_failed_
+  end function fruit_if_case_failed
 
-  subroutine fruit_show_dots_
+  subroutine fruit_show_dots
     !! category: driver subroutine
-    !! Set if_show_dots variable to true.
+    !! Show dots signifying test success on screen. Visible by default.
     if_show_dots = .true.
-  end subroutine fruit_show_dots_
+  end subroutine fruit_show_dots
 
-  subroutine fruit_hide_dots_
+  subroutine fruit_hide_dots
     !! category: driver subroutine
-    !! Set if_show_dots variable to false.
+    !! Hide dots signifying test success on screen. Visible by default.
     if_show_dots = .false.
-  end subroutine fruit_hide_dots_
+  end subroutine fruit_hide_dots
 
   ! Run a named test case
   subroutine run_test_case_named_(tc, tc_name)
@@ -709,7 +553,7 @@ contains
     call run_test_case_named_(tc, '_unnamed_')
   end subroutine run_test_case_
 
-  subroutine fruit_summary_
+  subroutine fruit_summary()
     !! category: driver subroutine
     !! Summarize FRUIT test results to screen.
     integer :: i
@@ -740,15 +584,15 @@ contains
     end if
 
     if (successful_assert_count + failed_assert_count /= 0) then
-      call fruit_summary_table_(&
+      call fruit_summary_table(&
         & successful_assert_count, failed_assert_count, &
         & successful_case_count, failed_case_count &
         &)
     end if
     write (stdout, *) '  -- end of FRUIT summary'
-  end subroutine fruit_summary_
+  end subroutine fruit_summary
 
-  subroutine fruit_summary_table_(&
+  subroutine fruit_summary_table(&
       & succ_assert, fail_assert, &
       & succ_case, fail_case    &
       &)
@@ -767,7 +611,7 @@ contains
       succ_assert, '/', succ_assert + fail_assert, ' ]'
     write (stdout, *) 'Successful cases   / total cases   : [ ', succ_case, '/', &
       succ_case + fail_case, ' ]'
-  end subroutine fruit_summary_table_
+  end subroutine fruit_summary_table
 
   subroutine add_fail_(message)
     !! category: driver subroutine
@@ -777,15 +621,15 @@ contains
     call failed_assert_action('none', 'none', message, if_is=.true.)
   end subroutine add_fail_
 
-  subroutine add_fail_unit_(unitName, message)
+  subroutine add_fail_case_named_(caseName, message)
     !! category: driver subroutine
     !! summary: Print message to screen on assert failure and add to count.
     !! Print message to screen on assert failure and add to count.
-    character(*), intent(in) :: unitName
+    character(*), intent(in) :: caseName
     character(*), intent(in) :: message
 
-    call add_fail_("[in "//unitName//"(fail)]: "//message)
-  end subroutine add_fail_unit_
+    call add_fail_("[in "//caseName//"(fail)]: "//message)
+  end subroutine add_fail_case_named_
 
   subroutine is_all_successful(result)
     !! category: driver subroutine
@@ -853,19 +697,19 @@ contains
     end if
   end subroutine increase_message_stack_
 
-  subroutine get_xml_filename_work_(string)
+  subroutine get_xml_filename_work(string)
     !! category: driver subroutine
     !! Get filename of XML file. result.xml by default.
     character(len=*), intent(out) :: string
     string = trim(xml_filename_work)
-  end subroutine get_xml_filename_work_
+  end subroutine get_xml_filename_work
 
-  subroutine set_xml_filename_work_(string)
+  subroutine set_xml_filename_work(string)
     !! category: driver subroutine
     !! Set filename of XML file. result.xml by default.
     character(len=*), intent(in) :: string
     xml_filename_work = trim(string)
-  end subroutine set_xml_filename_work_
+  end subroutine set_xml_filename_work
 
   function get_last_message()
     !! category: driver subroutine
@@ -878,15 +722,15 @@ contains
     end if
   end function get_last_message
 
-  subroutine get_message_index_(index)
+  subroutine get_message_index(index)
     !! category: driver subroutine
     !! Get number of failed assertion messages.
     integer, intent(out) :: index
 
     index = message_index
-  end subroutine get_message_index_
+  end subroutine get_message_index
 
-  subroutine get_message_array_(msgs)
+  subroutine get_message_array(msgs)
     !! category: driver subroutine
     !! Get failed asssertion messages to *msgs*.
     character(len=*), intent(out) :: msgs(:)
@@ -896,9 +740,9 @@ contains
     do i = 1, message_index - 1
       msgs(i) = strip(message_array(i))
     enddo
-  end subroutine get_message_array_
+  end subroutine get_message_array
 
-  subroutine get_messages_(msgs)
+  subroutine get_messages(msgs)
     !! category: driver subroutine
     !! Get failed asssertion messages to *msgs*.
     character(len=*), intent(out) :: msgs(:)
@@ -910,7 +754,7 @@ contains
       if (j > ubound(msgs, 1)) exit
       msgs(j) = strip(message_array(i))
     enddo
-  end subroutine get_messages_
+  end subroutine get_messages
 
   subroutine get_total_count(count)
     !! category: driver subroutine
@@ -962,15 +806,19 @@ contains
     call failed_mark_
   end subroutine failed_assert_action
 
-  subroutine set_case_name_(value)
+  subroutine set_case_name(value)
+    !! category: driver subroutine
+    !! Set name of case to *value*.
     character(*), intent(in) :: value
     case_name = strip(value, MSG_LENGTH)
-  end subroutine set_case_name_
+  end subroutine set_case_name
 
-  subroutine get_case_name_(value)
+  subroutine get_case_name(value)
+    !! category: driver subroutine
+    !! Get name of case to *value*.
     character(*), intent(out) :: value
     value = strip(case_name)
-  end subroutine get_case_name_
+  end subroutine get_case_name
 
   subroutine make_error_msg_(var1, var2, if_is, message)
     character(*), intent(in) :: var1, var2
@@ -1006,22 +854,26 @@ contains
     is_case_passed = case_passed
   end function is_case_passed
 
-  subroutine override_stdout_(write_unit, filename)
+  subroutine override_stdout(write_unit, filename)
+    !! category: driver subroutine
+    !! Override stdout to a user-specified file. Terminal by default.
     integer, intent(in) ::    write_unit
     character(len=*), intent(in) :: filename
 
     stdout = write_unit
     open (stdout, file=filename, action="write", status="replace")
-  end subroutine override_stdout_
+  end subroutine override_stdout
 
-  subroutine override_xml_work_(new_unit, filename)
+  subroutine override_xml_work(new_unit, filename)
+    !! category: driver subroutine
+    !! Override XML file unit number to a user-specified number. 21 by default.
     integer, intent(in) ::    new_unit
     character(len=*), intent(in) :: filename
 
     xml_work = new_unit
     xml_filename_work = filename
     open (xml_work, file=filename, action="write", status="replace")
-  end subroutine override_xml_work_
+  end subroutine override_xml_work
 
   subroutine stash_test_suite
     !! category: driver subroutine
@@ -1094,18 +946,24 @@ contains
     if_show_dots = stashed_suite%if_show_dots
   end subroutine restore_test_suite
 
-  subroutine end_override_stdout_
+  subroutine end_override_stdout()
+    !! category: driver subroutine
+    !! Revert override of stdout to default. Terminal by default.
     close (stdout)
     stdout = STDOUT_DEFAULT
-  end subroutine end_override_stdout_
+  end subroutine end_override_stdout
 
-  subroutine end_override_xml_work_
+  subroutine end_override_xml_work()
+    !! category: driver subroutine
+    !! Revert override of XML file unit number to default. 21 by default.
     close (xml_work)
     xml_work = XML_WORK_DEFAULT
     xml_filename_work = XML_FN_WORK_DEF
-  end subroutine end_override_xml_work_
+  end subroutine end_override_xml_work
 
-  subroutine set_prefix_(str)
+  subroutine set_prefix(str)
+    !! category: driver subroutine
+    !! Set a common prefix for classname. Null by default.
     character(len=*), intent(in) :: str
     character(len=len_trim(str)) :: str2
 
@@ -1115,9 +973,11 @@ contains
     else
       prefix = str2(1:FRUIT_PREFIX_LEN_MAX)
     endif
-  end subroutine set_prefix_
+  end subroutine set_prefix
 
-  subroutine get_prefix_(str)
+  subroutine get_prefix(str)
+    !! category: driver subroutine
+    !! Get a common prefix for classname. Null by default.
     character(len=*), intent(out) :: str
 
     if (len(str) <= len(prefix)) then
@@ -1125,16 +985,18 @@ contains
     else
       str = prefix
     endif
-  end subroutine get_prefix_
+  end subroutine get_prefix
 
-  subroutine get_assert_and_case_count_(fail_assert, suc_assert, fail_case, suc_case)
+  subroutine get_assert_and_case_count(fail_assert, suc_assert, fail_case, suc_case)
+    !! category: driver subroutine
+    !! Get statistics of cases and asserts.
     integer, intent(out) :: fail_assert, suc_assert, fail_case, suc_case
 
     fail_assert = failed_assert_count
     suc_assert = successful_assert_count
     fail_case = failed_case_count
     suc_case = successful_case_count
-  end subroutine get_assert_and_case_count_
+  end subroutine get_assert_and_case_count
 
   !--------------------------------------------------------------------------------
   ! all assertions

@@ -10,7 +10,7 @@
     <meta name="author" content="Cibin Joseph" >
     <link rel="icon" href="../favicon.png">
 
-    <title>is_case_passed &ndash; naturalFRUIT</title>
+    <title>case_failed_xml &ndash; naturalFRUIT</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -106,8 +106,8 @@
     
   
   <div class="row">
-    <h1>is_case_passed
-      <small>Function</small>
+    <h1>case_failed_xml
+      <small>Subroutine</small>
     
     </h1>
     
@@ -126,7 +126,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 0.8% of total for procedures.">4 statements</a>
+    title=" 5.5% of total for procedures.">26 statements</a>
      </li> 
      
      
@@ -143,7 +143,7 @@
      <li><a href='../module/naturalfruit.html'>naturalfruit</a></li>
     
   
-     <li class="active">is_case_passed</li>
+     <li class="active">case_failed_xml</li>
   </ol>
 </div>
 </div>
@@ -187,7 +187,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/is_case_passed.html#src">is_case_passed</a>
+    <a class="list-group-item" href="../proc/case_failed_xml.html#src">case_failed_xml</a>
   </div>
 </div>
 
@@ -199,7 +199,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-public function is_case_passed()
+public subroutine case_failed_xml(tc_name, classname)
     
     
    
@@ -209,22 +209,54 @@ public function is_case_passed()
 
 
     
-    <p>Return true if all asserts are successful in case.</p>
+    <p>Write to XML file a passed case.</p>
     
 
     <h3>Arguments</h3>
     
-    <em>None</em>
-    <br>
-    
-    
-    
-    
-    
-    
-    
-   <h3>Return Value <small><span class="anchor" id="variable-is_case_passed"></span>logical
-  </small></h3>
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-tc_name%7E2"></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>tc_name</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-classname%7E2"></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>classname</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
     
     
     
@@ -260,7 +292,7 @@ public function is_case_passed()
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/is_case_passed.html#src">is_case_passed</a>
+    <a class="list-group-item" href="../proc/case_failed_xml.html#src">case_failed_xml</a>
   </div>
 </div>
 
@@ -289,12 +321,44 @@ public function is_case_passed()
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>  <span class="k">function </span><span class="n">is_case_passed</span><span class="p">()</span>
+    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">case_failed_xml</span><span class="p">(</span><span class="n">tc_name</span><span class="p">,</span> <span class="n">classname</span><span class="p">)</span>
     <span class="c">!! category: driver subroutine</span>
-    <span class="c">!! Return true if all asserts are successful in case.</span>
-    <span class="kt">logical</span><span class="kd">::</span> <span class="n">is_case_passed</span>
-    <span class="n">is_case_passed</span> <span class="o">=</span> <span class="n">case_passed</span>
-  <span class="k">end function </span><span class="n">is_case_passed</span>
+    <span class="c">!! Write to XML file a passed case.</span>
+    <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tc_name</span>
+    <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">classname</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
+    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">STRLEN_T</span><span class="p">)</span> <span class="kd">::</span> <span class="n">case_time</span>
+
+    <span class="n">case_time</span> <span class="o">=</span> <span class="n">case_delta_t</span><span class="p">()</span>
+
+    <span class="k">open</span> <span class="p">(</span><span class="n">xml_work</span><span class="p">,</span> <span class="k">FILE</span><span class="o">=</span><span class="n">xml_filename_work</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">)</span>
+    <span class="k">write</span> <span class="p">(</span><span class="n">xml_work</span><span class="p">,</span> <span class="p">&amp;</span>
+      <span class="p">&amp;</span>  <span class="s1">&#39;(&quot;    &lt;testcase name=&quot;&quot;&quot;, a, &quot;&quot;&quot; classname=&quot;&quot;&quot;, a, a, &quot;&quot;&quot; time=&quot;&quot;&quot;, a, &quot;&quot;&quot;&gt;&quot;)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
+      <span class="p">&amp;</span>  <span class="nb">trim</span><span class="p">(</span><span class="n">tc_name</span><span class="p">),</span> <span class="nb">trim</span><span class="p">(</span><span class="n">prefix</span><span class="p">),</span> <span class="nb">trim</span><span class="p">(</span><span class="n">classname</span><span class="p">),</span> <span class="nb">trim</span><span class="p">(</span><span class="n">case_time</span><span class="p">)</span>
+
+    <span class="k">write</span> <span class="p">(</span><span class="n">xml_work</span><span class="p">,</span> <span class="s1">&#39;(&quot;      &lt;failure type=&quot;&quot;failure&quot;&quot; message=&quot;&quot;&quot;)&#39;</span><span class="p">,</span> <span class="n">advance</span><span class="o">=</span><span class="s2">&quot;no&quot;</span><span class="p">)</span>
+
+    <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="n">message_index_from</span><span class="p">,</span> <span class="n">message_index</span> <span class="o">-</span> <span class="mi">1</span>
+      <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">message_index_from</span> <span class="o">+</span> <span class="mi">1</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">&gt;</span> <span class="n">MAX_NUM_FAILURES_IN_XML</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        write</span> <span class="p">(</span><span class="n">xml_work</span><span class="p">,</span> <span class="s1">&#39;(&quot;(omit the rest)&quot;)&#39;</span><span class="p">,</span> <span class="n">advance</span><span class="o">=</span><span class="s2">&quot;no&quot;</span><span class="p">)</span>
+        <span class="k">exit</span>
+<span class="k">      </span><span class="n">endif</span>
+
+      <span class="k">write</span> <span class="p">(</span><span class="n">xml_work</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">,</span> <span class="n">advance</span><span class="o">=</span><span class="s2">&quot;no&quot;</span><span class="p">)</span> <span class="n">strip</span><span class="p">(</span><span class="n">message_array</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">message_index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        continue</span>
+<span class="k">      else</span>
+<span class="k">        write</span> <span class="p">(</span><span class="n">xml_work</span><span class="p">,</span> <span class="s1">&#39;(&quot;&amp;#xA;&quot;)&#39;</span><span class="p">,</span> <span class="n">advance</span><span class="o">=</span><span class="s2">&quot;no&quot;</span><span class="p">)</span>
+      <span class="n">endif</span>
+    <span class="n">enddo</span>
+    <span class="k">write</span> <span class="p">(</span><span class="n">xml_work</span><span class="p">,</span> <span class="s1">&#39;(&quot;&quot;&quot;/&gt;&quot;)&#39;</span><span class="p">)</span>
+
+    <span class="k">write</span> <span class="p">(</span><span class="n">xml_work</span><span class="p">,</span> <span class="p">&amp;</span>
+      <span class="p">&amp;</span>  <span class="s1">&#39;(&quot;    &lt;/testcase&gt;&quot;)&#39;</span><span class="p">)</span>
+    <span class="k">close</span> <span class="p">(</span><span class="n">xml_work</span><span class="p">)</span>
+  <span class="k">end subroutine </span><span class="n">case_failed_xml</span>
 </pre></div>
 
     </section>
