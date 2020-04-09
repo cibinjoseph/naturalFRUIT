@@ -1,18 +1,44 @@
-! Copyright (c) 2005-2010, 2012-2013, Andrew Hang Chen and contributors,
-! All rights reserved.
-! Licensed under the 3-clause BSD license.
-
 module calculator_test
   use naturalfruit
   implicit none
+contains
 
-contains                          !fortran 95 limits subroutine name to 31 char.
-  subroutine test_calculator_should_produce_4_when_2_and_2_are_inputs
+  subroutine test_add()
     use calculator, only: add
-    integer:: result
+    integer:: outValue
 
-    call add (2,2,result)
-    call assert_equal(4, result)
-  end subroutine test_calculator_should_produce_4_when_2_and_2_are_inputs
+    ! Initialize this testcase
+    call testcase_initialize('test_add')
+
+    ! Check a set of arguments
+    call add(2,2, outValue)
+    call assert_equal(4, outValue)
+
+    ! Check another set of arguments
+    call add(0,6, outValue)
+    call assert_equal(0, outValue)
+
+    ! Finalize this testcase
+    call testcase_finalize()
+  end subroutine test_add
+
+  subroutine test_multiply()
+    use calculator, only: multiply
+    integer:: outValue
+
+    ! Initialize this testcase
+    call testcase_initialize('test_add')
+
+    ! Check a set of arguments
+    call multiply(23,2, outValue)
+    call assert_equal(46, outValue)
+
+    ! Check another set of arguments
+    call multiply(100,6, outValue)
+    call assert_equal(600, outValue)
+
+    ! Finalize this testcase
+    call testcase_finalize()
+  end subroutine test_multiply
 end module calculator_test
 

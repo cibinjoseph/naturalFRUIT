@@ -1,15 +1,21 @@
-! Copyright (c) 2005-2010, 2012-2013, Andrew Hang Chen and contributors,
-! All rights reserved.
-! Licensed under the 3-clause BSD license.
-
-program fruit_driver
+program calculator_testrunner
   use naturalfruit
   use calculator_test
   integer :: exit_code
 
-  call testsuite_initialize 
-  call test_calculator_should_produce_4_when_2_and_2_are_inputs
-  call testsuite_summary
+  ! Initialize the testsuite
+  call testsuite_initialize()
+
+  ! Run a testcase
+  call test_add()
+
+  ! Run a testcase
+  call test_multiply()
+
+  ! Print a summary of the test results
+  call testsuite_summary()
+
+  ! Wrap up the testsuite
   call testsuite_finalize(exit_code)
-  stop exit_code
-end program fruit_driver
+  call exit(exit_code)
+end program calculator_testrunner
