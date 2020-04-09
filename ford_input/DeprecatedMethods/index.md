@@ -22,5 +22,6 @@ The following methods have been deprecated or replaced to maintain consistency a
 <tr><td>fruit_summary</td><td>[[testsuite_summary]]</td></tr>
 <tr><td>fruit_summary_table</td><td>[[testsuite_summary_table]]</td></tr>
 <tr><td>fruit_summary_xml</td><td>[[testsuite_summary_xml]]</td></tr>
-<tr><td>runTestCase</td><td>[[run_test_case]]</td></tr>
+<tr><td>runTestCase</td><td>removed</td></tr>
+<tr><td>run_test_case</td><td>removed</td></tr>
 </table>  

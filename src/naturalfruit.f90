@@ -52,6 +52,7 @@ module naturalfruit
   !---------- save ----------
   integer, private, save :: successful_assert_count = 0
   integer, private, save :: failed_assert_count = 0
+  integer, private, save :: initial_failed_assert_count = 0
 
   integer, private, save :: message_index = 1
   integer, private, save :: message_index_from = 1
@@ -77,6 +78,7 @@ module naturalfruit
   type ty_stack
     !! display: none
     integer :: successful_assert_count, failed_assert_count
+    integer :: initial_failed_assert_count
 
     integer :: message_index
     integer :: message_index_from
@@ -103,9 +105,9 @@ module naturalfruit
   public :: assert_equal, assert_not_equal
   public :: assert_true, assert_false
 
-  ! Common test case subroutines
-  public :: run_test_case
+  ! Common testing subroutines
   public :: testsuite_initialize,  testsuite_finalize
+  public :: testcase_initialize, testcase_finalize
   public :: testsuite_summary, testsuite_summary_table
   public :: fruit_if_case_failed, failed_assert_action
   public :: get_total_count, get_failed_count
@@ -234,16 +236,6 @@ module naturalfruit
     module procedure add_fail_case_named_
   end interface
 
-  interface run_test_case
-    !! category: basket subroutine
-    !! summary: Run a specific test case.
-    !! Run a specific test case.<br/><br/>
-    !! run_test_case invokes one of the following subroutines according
-    !! to number of arguments.
-    module procedure run_test_case_
-    module procedure run_test_case_named_
-  end interface
-
   interface strip
     !! Remove leading and trailing spaces
     module procedure strip_
@@ -297,7 +289,7 @@ contains
     !! category: driver subroutine
     !! summary: Finalize FRUIT driver environment
     !! Finalize FRUIT driver environment and optionally
-    !!  return no. of failed cases as an *exit_code*
+    !!  return no. of failed cases as an *exit_code*.
     !!  for exception handling
     integer, intent(out), optional :: exit_code
     !$omp critical     (FRUIT_OMP_DEALLOCATE_MESSAGE_ARRAY)
@@ -494,22 +486,20 @@ contains
     if_show_dots = .false.
   end subroutine fruit_hide_dots
 
-  ! Run a named test case
-  subroutine run_test_case_named_(tc, tc_name)
-    !! category: basket subroutine
-    !! summary: Run a specific test case.
-    !! Run a specific test case.
-    interface
-      subroutine tc()
-      end subroutine
-    end interface
-    character(*), intent(in) :: tc_name
-    integer :: initial_failed_assert_count
+  subroutine testcase_initialize(tc_name)
+    !! category: testcase subroutine
+    !! summary: Initialize a testcase.
+    !! Initialize a test case.<br/><br/>
+    character(*), intent(in), optional :: tc_name
 
     initial_failed_assert_count = failed_assert_count
 
-    ! Set the name of the unit test
-    call set_case_name(tc_name)
+    ! Set the name of the test case
+    if (present(tc_name)) then
+      call set_case_name(tc_name)
+    else
+      call set_case_name('unnamed')
+    endif
 
     last_passed = .true.
     case_passed = .true.
@@ -518,13 +508,19 @@ contains
     call system_clock(case_time_from)
 
     !$OMP BARRIER
-
     ! "case_passed" is true here.
     ! "case_passed" becomes .false. at the first fail of assertion
-    call tc()
+  end subroutine testcase_initialize
+
+  subroutine testcase_finalize(exit_code)
+    !! category: testcase subroutine
+    !! summary: Finalize a testcase
+    !! Finalize a testcase and optionally 
+    !! return no. of failed asserts as an *exit_code*.
+    !! Initialize a test case.<br/><br/>
+    integer, intent(out), optional :: exit_code
 
     !$OMP BARRIER
-
     if (initial_failed_assert_count .eq. failed_assert_count) then
       ! If no additional assertions failed during the run of this test case
       ! then the test case was successful
@@ -534,24 +530,13 @@ contains
     end if
 
     testCaseIndex = testCaseIndex + 1
+    if (present(exit_code)) &
+      & exit_code = failed_assert_count - initial_failed_assert_count
 
     ! Reset the name of the unit test back to the default
     call set_case_name(DEFAULT_CASE_NAME)
 
-  end subroutine run_test_case_named_
-
-  ! Run an 'unnamed' test case
-  subroutine run_test_case_(tc)
-    !! category: basket subroutine
-    !! summary: Run a specific test case.
-    !! Run a specific test case.
-    interface
-      subroutine tc()
-      end subroutine
-    end interface
-
-    call run_test_case_named_(tc, '_unnamed_')
-  end subroutine run_test_case_
+  end subroutine testcase_finalize
 
   subroutine testsuite_summary()
     !! category: driver subroutine
