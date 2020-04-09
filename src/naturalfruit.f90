@@ -144,11 +144,6 @@ module naturalfruit
   public :: get_prefix, set_prefix
 
 
-  interface assert_false
-    !! Test that *var1* is false.
-    module procedure assert_false_
-  end interface
-
   interface assert_equal
     !! summary: Test that *var1* and *var2* are equal.
     !! Test that *var1* and *var2* are equal.
@@ -1165,7 +1160,8 @@ contains
     end if
   end subroutine assert_true
 
-  subroutine assert_false_(var1, message, status)
+  subroutine assert_false(var1, message, status)
+    !! Test that *var1* is false.
     logical, intent(in) :: var1
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
@@ -1183,7 +1179,7 @@ contains
         status = .false.
       endif
     endif
-  end subroutine assert_false_
+  end subroutine assert_false
 
   !====== begin of generated code ======
   !------ 0d_logical ------
