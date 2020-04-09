@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.com/cibinjoseph/naturalFRUIT.svg?branch=master)](https://travis-ci.com/github/cibinjoseph/naturalFRUIT)
+<br/>
+![naturalFRUIT](media/naturalFRUIT-logo.png)
+<br/>
+
 # naturalFRUIT
 A purely Fortran based unit testing framework derived from the original [Fortran Unit Test Framework (FRUIT)](https://sourceforge.net/projects/fortranxunit/).
 
