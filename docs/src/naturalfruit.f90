@@ -144,11 +144,6 @@ module naturalfruit
   public :: get_prefix, set_prefix
 
 
-  interface assert_false
-    !! Test that *var1* is false.
-    module procedure assert_false_
-  end interface
-
   interface assert_equal
     !! summary: Test that *var1* and *var2* are equal.
     !! Test that *var1* and *var2* are equal.
@@ -1144,28 +1139,47 @@ contains
   !--------------------------------------------------------------------------------
   ! all assertions
   !--------------------------------------------------------------------------------
-  subroutine assert_true(var1, message)
+  subroutine assert_true(var1, message, status)
     !! Test that *var1* is true.
     logical, intent(in) :: var1
     character(*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     if (var1 .eqv. .true.) then
-      call add_success
+      if (.not. present(status)) then
+        call add_success
+      else
+        status = .true.
+      endif
     else
-      call failed_assert_action(to_s(.true.), to_s(var1), message, if_is=.true.)
+      if (.not. present(status)) then
+        call failed_assert_action(to_s(.true.), to_s(var1), message, if_is=.true.)
+      else
+        status = .false.
+      endif
     end if
   end subroutine assert_true
 
-  subroutine assert_false_(var1, message)
+  subroutine assert_false(var1, message, status)
+    !! Test that *var1* is false.
     logical, intent(in) :: var1
     character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
 
     if (var1 .eqv. .false.) then
-      call add_success
+      if (.not. present(status)) then
+        call add_success
+      else
+        status = .true.
+      endif
     else
-      call failed_assert_action(to_s(.true.), to_s(var1), message, if_is=.false.)
+      if (.not. present(status)) then
+        call failed_assert_action(to_s(.true.), to_s(var1), message, if_is=.false.)
+      else
+        status = .false.
+      endif
     endif
-  end subroutine assert_false_
+  end subroutine assert_false
 
   !====== begin of generated code ======
   !------ 0d_logical ------

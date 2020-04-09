@@ -124,7 +124,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 3.1% of total for procedures.">9 statements</a>
+    title=" 5.7% of total for procedures.">18 statements</a>
      </li> 
      
      
@@ -197,7 +197,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-public subroutine assert_true(var1, message)
+public subroutine assert_true(var1, message, status)
     
     
    
@@ -249,6 +249,21 @@ public subroutine assert_true(var1, message)
   
   <td></td><td>::</td>
   <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-status"></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
   
 </tr>
 
@@ -422,15 +437,24 @@ public subroutine assert_true(var1, message)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">assert_true</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">assert_true</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
     <span class="c">!! Test that *var1* is true.</span>
     <span class="kt">logical</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">var1</span>
     <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">message</span>
+    <span class="kt">logical</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">status</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">var1</span> <span class="p">.</span><span class="n">eqv</span><span class="p">.</span> <span class="p">.</span><span class="n">true</span><span class="p">.)</span> <span class="k">then</span>
-<span class="k">      call </span><span class="n">add_success</span>
+<span class="k">      if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="nb">present</span><span class="p">(</span><span class="n">status</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">        call </span><span class="n">add_success</span>
+      <span class="k">else</span>
+<span class="k">        </span><span class="n">status</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+      <span class="n">endif</span>
     <span class="k">else</span>
-<span class="k">      call </span><span class="n">failed_assert_action</span><span class="p">(</span><span class="n">to_s</span><span class="p">(.</span><span class="n">true</span><span class="p">.),</span> <span class="n">to_s</span><span class="p">(</span><span class="n">var1</span><span class="p">),</span> <span class="n">message</span><span class="p">,</span> <span class="n">if_is</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span>
+<span class="k">      if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="nb">present</span><span class="p">(</span><span class="n">status</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">        call </span><span class="n">failed_assert_action</span><span class="p">(</span><span class="n">to_s</span><span class="p">(.</span><span class="n">true</span><span class="p">.),</span> <span class="n">to_s</span><span class="p">(</span><span class="n">var1</span><span class="p">),</span> <span class="n">message</span><span class="p">,</span> <span class="n">if_is</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span>
+      <span class="k">else</span>
+<span class="k">        </span><span class="n">status</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+      <span class="n">endif</span>
     <span class="k">end if</span>
 <span class="k">  end subroutine </span><span class="n">assert_true</span>
 </pre></div>
@@ -454,7 +478,7 @@ public subroutine assert_true(var1, message)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-04-09T01:22:50.524514 
+             on 2020-04-09T10:23:09.633715 
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> naturalFRUIT was developed by Cibin Joseph</p></div>

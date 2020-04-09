@@ -124,7 +124,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="93.6% of total for modules and submodules.">2434 statements</a>
+    title="93.6% of total for modules and submodules.">2449 statements</a>
      </li> 
      
      
@@ -185,8 +185,6 @@
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#inters-0">Interfaces</a></h3></div>
   <div id="inters-0" class="panel-collapse collapse">
     <div class="list-group">
-      
-      <a class="list-group-item" href="../module/naturalfruit.html#interface-assert_false">assert_false</a>
       
       <a class="list-group-item" href="../module/naturalfruit.html#interface-assert_equal">assert_equal</a>
       
@@ -295,6 +293,8 @@
       <a class="list-group-item" href="../module/naturalfruit.html#proc-restore_test_suite">restore_test_suite</a>
       
       <a class="list-group-item" href="../module/naturalfruit.html#proc-assert_true">assert_true</a>
+      
+      <a class="list-group-item" href="../module/naturalfruit.html#proc-assert_false">assert_false</a>
       
     </div>
   </div>
@@ -461,8 +461,6 @@
   <div id="inters-1" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../module/naturalfruit.html#interface-assert_false">assert_false</a>
-      
       <a class="list-group-item" href="../module/naturalfruit.html#interface-assert_equal">assert_equal</a>
       
       <a class="list-group-item" href="../module/naturalfruit.html#interface-assert_not_equal">assert_not_equal</a>
@@ -571,6 +569,8 @@
       
       <a class="list-group-item" href="../module/naturalfruit.html#proc-assert_true">assert_true</a>
       
+      <a class="list-group-item" href="../module/naturalfruit.html#proc-assert_false">assert_false</a>
+      
     </div>
   </div>
 </div>
@@ -629,89 +629,6 @@
     <section>
    <h2>Interfaces</h2>
    
-     
-<div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="interface-assert_false"></span><h3>public interface <a href='../interface/assert_false.html'>assert_false</a>
-    
-  </h3></div>
-  
-  <div class="panel-body">
-    
-    <p>Test that <em>var1</em> is false.</p>
-  </div>
-  
-  <ul class="list-group">
-  
-  
-  
-    <li class="list-group-item">
-    
-    
-    <h3>
-private subroutine assert_false_(var1, message)
-    
-    
-   
-</h3>
-    
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>logical,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>var1</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td></td><td>::</td>
-  <td><strong>message</strong></td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-    </li>
-  
-  
-  </ul>
-</div>
-
-    
      
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="interface-assert_equal"></span><h3>public interface <a href='../interface/assert_equal.html'>assert_equal</a>
@@ -9983,7 +9900,7 @@ public subroutine <a href='../proc/restore_test_suite.html'>restore_test_suite</
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assert_true"></span><h3>
-public subroutine <a href='../proc/assert_true.html'>assert_true</a>(var1, message)
+public subroutine <a href='../proc/assert_true.html'>assert_true</a>(var1, message, status)
     
     
    
@@ -10043,6 +9960,110 @@ public subroutine <a href='../proc/assert_true.html'>assert_true</a>(var1, messa
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-assert_false"></span><h3>
+public subroutine <a href='../proc/assert_false.html'>assert_false</a>(var1, message, status)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Test that <em>var1</em> is false.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>var1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -10074,7 +10095,7 @@ public subroutine <a href='../proc/assert_true.html'>assert_true</a>(var1, messa
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-04-09T01:22:50.524514 
+             on 2020-04-09T10:23:09.633715 
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> naturalFRUIT was developed by Cibin Joseph</p></div>
