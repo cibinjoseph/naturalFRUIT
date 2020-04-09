@@ -1,4 +1,5 @@
 project: naturalFRUIT
+version: 0.2
 project_dir: .
 src_dir: ./src
 output_dir: ./docs
@@ -13,7 +14,7 @@ email: cibinjoseph92@gmail.com
 fpp_extensions: fpp
 docmark: !
 display: public
-source: true
+source: false
 graph: true
 search: true
 print_creation_date: true

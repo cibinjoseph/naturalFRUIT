@@ -1,3 +1,3 @@
 #!/bin/bash
 rm -rf docs/src
-ford -p ford_input -r 0.1 ford_input.md
+ford -p ford_input ford_input.md
