@@ -140,6 +140,7 @@ module naturalfruit
 
 
   interface assert_equal
+    !! category: testcase subroutines
     !! summary: Test that *var1* and *var2* are equal.
     !! Test that *var1* and *var2* are equal.
     !! If the values do not compare equal, the test will fail.<br/><br/>
@@ -183,6 +184,7 @@ module naturalfruit
   end interface
 
   interface assert_not_equal
+    !! category: testcase subroutines
     !! summary: Test that *var1* and *var2* are not equal.
     !! Test that *var1* and *var2* are not equal.
     !! If the values do compare equal, the test will fail.<br/><br/>
@@ -227,7 +229,7 @@ module naturalfruit
   end interface
 
   interface add_fail
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! summary: Print message to screen on assert failure and add to count.
     !! Print message to screen on assert failure and add to count.<br/><br/>
     !! add_fail invokes one of the following subroutines according
@@ -256,7 +258,7 @@ module naturalfruit
 contains
 
   subroutine testsuite_initialize(rank)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Initialize FRUIT driver environment.
     integer, intent(in), optional :: rank
     logical :: if_write
@@ -286,7 +288,7 @@ contains
   end subroutine testsuite_initialize
 
   subroutine testsuite_finalize(exit_code)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! summary: Finalize FRUIT driver environment
     !! Finalize FRUIT driver environment and optionally
     !!  return no. of failed cases as an *exit_code*.
@@ -301,7 +303,7 @@ contains
   end subroutine testsuite_finalize
 
   subroutine testsuite_initialize_xml(rank)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Initialize FRUIT driver environment for output to XML file
     integer, optional, intent(in) :: rank
     logical :: rank_zero_or_single
@@ -362,7 +364,7 @@ contains
   end function case_delta_t
 
   subroutine case_passed_xml(tc_name, classname)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Write to XML file a passed case.
     character(*), intent(in) :: tc_name
     character(*), intent(in) :: classname
@@ -378,7 +380,7 @@ contains
   end subroutine case_passed_xml
 
   subroutine case_failed_xml(tc_name, classname)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Write to XML file a passed case.
     character(*), intent(in) :: tc_name
     character(*), intent(in) :: classname
@@ -417,7 +419,7 @@ contains
   end subroutine case_failed_xml
 
   subroutine testsuite_summary_xml
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Summarize FRUIT test results in XML format to result.xml file.
     character(len=XML_LINE_LENGTH) :: whole_line
     character(len=100) :: full_count
@@ -460,7 +462,7 @@ contains
   end function int_to_str
 
   logical function fruit_if_case_failed()
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Return TRUE if any assert in current case has failed.
     if (failed_assert_count == 0) then
       fruit_if_case_failed = .false.
@@ -475,13 +477,13 @@ contains
   end function fruit_if_case_failed
 
   subroutine fruit_show_dots
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Show dots signifying test success on screen. Visible by default.
     if_show_dots = .true.
   end subroutine fruit_show_dots
 
   subroutine fruit_hide_dots
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Hide dots signifying test success on screen. Visible by default.
     if_show_dots = .false.
   end subroutine fruit_hide_dots
@@ -539,7 +541,7 @@ contains
   end subroutine testcase_finalize
 
   subroutine testsuite_summary()
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Summarize FRUIT test results to screen.
     integer :: i
 
@@ -581,7 +583,7 @@ contains
       & succ_assert, fail_assert, &
       & succ_case, fail_case    &
       &)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Print statistics of cases and asserts in default format.
     integer, intent(in) :: succ_assert, fail_assert
     integer, intent(in) :: succ_case, fail_case
@@ -599,7 +601,7 @@ contains
   end subroutine testsuite_summary_table
 
   subroutine add_fail_(message)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! summary: Print message to screen on assert failure and add to count.
     !! Print message to screen on assert failure and add to count.
     character(*), intent(in), optional :: message
@@ -607,7 +609,7 @@ contains
   end subroutine add_fail_
 
   subroutine add_fail_case_named_(caseName, message)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! summary: Print message to screen on assert failure and add to count.
     !! Print message to screen on assert failure and add to count.
     character(*), intent(in) :: caseName
@@ -617,7 +619,7 @@ contains
   end subroutine add_fail_case_named_
 
   subroutine is_all_successful(result)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Return true to *result* if any assert has failed till now.
     logical, intent(out) :: result
     result = (failed_assert_count .eq. 0)
@@ -643,11 +645,13 @@ contains
   end subroutine output_mark_
 
   subroutine success_mark_
+    !! category: testsuite subroutine
     !! Print success mark
     call output_mark_('.')
   end subroutine success_mark_
 
   subroutine failed_mark_
+    !! category: testsuite subroutine
     !! Print failed mark
     call output_mark_('F')
   end subroutine failed_mark_
@@ -683,21 +687,21 @@ contains
   end subroutine increase_message_stack_
 
   subroutine get_xml_filename_work(string)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Get filename of XML file. result.xml by default.
     character(len=*), intent(out) :: string
     string = trim(xml_filename_work)
   end subroutine get_xml_filename_work
 
   subroutine set_xml_filename_work(string)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Set filename of XML file. result.xml by default.
     character(len=*), intent(in) :: string
     xml_filename_work = trim(string)
   end subroutine set_xml_filename_work
 
   function get_last_message()
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Return last message.
     character(len=MSG_LENGTH) :: get_last_message
     if (message_index > 1) then
@@ -708,7 +712,7 @@ contains
   end function get_last_message
 
   subroutine get_message_index(index)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Get number of failed assertion messages.
     integer, intent(out) :: index
 
@@ -716,7 +720,7 @@ contains
   end subroutine get_message_index
 
   subroutine get_message_array(msgs)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Get failed asssertion messages to *msgs*.
     character(len=*), intent(out) :: msgs(:)
     integer :: i
@@ -728,7 +732,7 @@ contains
   end subroutine get_message_array
 
   subroutine get_messages(msgs)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Get failed asssertion messages to *msgs*.
     character(len=*), intent(out) :: msgs(:)
     integer :: i, j
@@ -742,7 +746,7 @@ contains
   end subroutine get_messages
 
   subroutine get_total_count(count)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Get total number of asserts.
     integer, intent(out) :: count
 
@@ -750,14 +754,14 @@ contains
   end subroutine get_total_count
 
   subroutine get_failed_count(count)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Get number of assert failures.
     integer, intent(out) :: count
     count = failed_assert_count
   end subroutine get_failed_count
 
   subroutine add_success
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! summary: Print message to screen on assert success and add to count.
     !! Print message to screen on assert success and add to count.
     !$omp critical     (FRUIT_OMP_ADD_SUCCESS)
@@ -771,7 +775,7 @@ contains
   end subroutine add_success
 
   subroutine failed_assert_action(expected, got, message, if_is)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Print *message* to screen and take necessary actions for assert failure.
     character(*), intent(in) :: expected, got
     character(*), intent(in), optional :: message
@@ -792,14 +796,14 @@ contains
   end subroutine failed_assert_action
 
   subroutine set_case_name(value)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Set name of case to *value*.
     character(*), intent(in) :: value
     case_name = strip(value, MSG_LENGTH)
   end subroutine set_case_name
 
   subroutine get_case_name(value)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Get name of case to *value*.
     character(*), intent(out) :: value
     value = strip(case_name)
@@ -826,21 +830,21 @@ contains
   end subroutine make_error_msg_
 
   function is_last_passed()
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Return true if last assert is successful in case.
     logical:: is_last_passed
     is_last_passed = last_passed
   end function is_last_passed
 
   function is_case_passed()
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Return true if all asserts are successful in case.
     logical:: is_case_passed
     is_case_passed = case_passed
   end function is_case_passed
 
   subroutine override_stdout(write_unit, filename)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Override stdout to a user-specified file. Terminal by default.
     integer, intent(in) ::    write_unit
     character(len=*), intent(in) :: filename
@@ -850,7 +854,7 @@ contains
   end subroutine override_stdout
 
   subroutine override_xml_work(new_unit, filename)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Override XML file unit number to a user-specified number. 21 by default.
     integer, intent(in) ::    new_unit
     character(len=*), intent(in) :: filename
@@ -861,7 +865,7 @@ contains
   end subroutine override_xml_work
 
   subroutine stash_test_suite
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Stash results of test case for later use.
     stashed_suite%successful_assert_count = successful_assert_count
     successful_assert_count = 0
@@ -904,7 +908,7 @@ contains
   end subroutine stash_test_suite
 
   subroutine restore_test_suite
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Restore results of test case for use.
     successful_assert_count = stashed_suite%successful_assert_count
     failed_assert_count = stashed_suite%failed_assert_count
@@ -932,14 +936,14 @@ contains
   end subroutine restore_test_suite
 
   subroutine end_override_stdout()
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Revert override of stdout to default. Terminal by default.
     close (stdout)
     stdout = STDOUT_DEFAULT
   end subroutine end_override_stdout
 
   subroutine end_override_xml_work()
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Revert override of XML file unit number to default. 21 by default.
     close (xml_work)
     xml_work = XML_WORK_DEFAULT
@@ -947,7 +951,7 @@ contains
   end subroutine end_override_xml_work
 
   subroutine set_prefix(str)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Set a common prefix for classname. Null by default.
     character(len=*), intent(in) :: str
     character(len=len_trim(str)) :: str2
@@ -961,7 +965,7 @@ contains
   end subroutine set_prefix
 
   subroutine get_prefix(str)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Get a common prefix for classname. Null by default.
     character(len=*), intent(out) :: str
 
@@ -973,7 +977,7 @@ contains
   end subroutine get_prefix
 
   subroutine get_assert_and_case_count(fail_assert, suc_assert, fail_case, suc_case)
-    !! category: driver subroutine
+    !! category: testsuite subroutine
     !! Get statistics of cases and asserts.
     integer, intent(out) :: fail_assert, suc_assert, fail_case, suc_case
 
@@ -987,6 +991,7 @@ contains
   ! all assertions
   !--------------------------------------------------------------------------------
   subroutine assert_true(var1, message, status)
+    !! category: testcase subroutine
     !! Test that *var1* is true.
     logical, intent(in) :: var1
     character(*), intent(in), optional :: message
@@ -1008,6 +1013,7 @@ contains
   end subroutine assert_true
 
   subroutine assert_false(var1, message, status)
+    !! category: testcase subroutine
     !! Test that *var1* is false.
     logical, intent(in) :: var1
     character(len=*), intent(in), optional :: message
