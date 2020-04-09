@@ -1,22 +1,17 @@
-! Copyright (c) 2005-2010, 2012-2013, Andrew Hang Chen and contributors,
-! All rights reserved.
-! Licensed under the 3-clause BSD license.
-!------------------------
-! FORTRAN unit test utility (FRUIT)
+!----------------------------------------------------------
+! naturalFRUIT
+! VERSION: 0.2
+! LICENSE: BSD-3-Clause
 !
 ! Original author: Andrew H. Chen meihome@gmail.com
-! Adapted as naturalFRUIT by: Cibin Joseph cibinjoseph92@gmail.com
-!------------------------
+! Modified by: Cibin Joseph cibinjoseph92@gmail.com
+!----------------------------------------------------------
 !
+! This work is derived from FRUIT,
 ! Unit test framework for FORTRAN.  (FoRtran UnIT)
 !
-! This package is to perform unit test for FORTRAN subroutines
-!
+! This module is to perform unit testing for FORTRAN subroutines
 ! The methods used most are: assert_true, assert_equal
-!
-! Coding convention:
-!   1) Variable and methods are lower case connected with underscores.
-!      For example, fruit_initialize, and failed_assert_count.
 !
 
 module naturalfruit
