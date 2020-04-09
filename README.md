@@ -11,7 +11,7 @@ Documentation of naturalFRUIT is available [here](https://cibinjoseph.github.io/
 A list of subroutines for use while unit testing is available [here](https://cibinjoseph.github.io/naturalFRUIT/lists/procedures.html).
 
 ## Usage
-This repo is under very active development and a lot of drastic changes are being made at the moment. These include removal of depreciated and redundant subroutines and functions. Until this disclaimer is removed, users are cautioned against using naturalFRUIT and advised to use the original FRUIT module.
+This repo is under very active development and a lot of drastic changes are being made at the moment. These include removal of deprecated and redundant subroutines and functions. Until this disclaimer is removed, users are cautioned against using naturalFRUIT and advised to use the original FRUIT module.
 
 ## Contibution
 All contributions through pull requests are accepted.  
