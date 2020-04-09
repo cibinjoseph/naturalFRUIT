@@ -36,7 +36,7 @@ program testAsserts
   comp2(2, :) = comp1
   comp2(3, :) = comp1
 
-  compd0 = cmplx(1.0_dp, 2.0_dp)
+  compd0 = cmplx(1.0_dp, 2.0_dp, kind=dp)
   compd1 = (/compd0, compd0/)
   compd2(1, :) = compd1
   compd2(2, :) = compd1

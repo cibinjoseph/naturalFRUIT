@@ -1,5 +1,18 @@
-FC = ifort
-flags = -g -traceback -warn all
+# Makefile for running tests
+
+ifndef $(FC) 
+	FC = gfortran
+endif
+
+ifeq ($(FC), gfortran) 
+	flags = -fbacktrace -Wall
+endif
+
+ifeq ($(FC), ifort) 
+	flags = -traceback -warn all
+endif
+
+# -------------------------------------------------
 
 all: testAsserts.out
 	./testAsserts.out
