@@ -46,7 +46,7 @@ All Procedures &ndash; naturalFRUIT
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../index.html">naturalFRUIT <small>0.2</small></a>
+          <a class="navbar-brand" href="../index.html">naturalFRUIT <small>0.4</small></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -135,23 +135,11 @@ All Procedures &ndash; naturalFRUIT
 			 
 			   <tr><td><a href='../proc/failed_assert_action.html'>failed_assert_action</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Print <em>message</em> to screen and take necessary actions for assert failure.</p></td></tr>
 			 
-			   <tr><td><a href='../proc/fruit_finalize.html'>fruit_finalize</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Finalize FRUIT driver environment.</p></td></tr>
-			 
 			   <tr><td><a href='../proc/fruit_hide_dots.html'>fruit_hide_dots</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Hide dots signifying test success on screen. Visible by default.</p></td></tr>
 			 
 			   <tr><td><a href='../proc/fruit_if_case_failed.html'>fruit_if_case_failed</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Function</td><td><p>Return TRUE if any assert in current case has failed.</p></td></tr>
 			 
-			   <tr><td><a href='../proc/fruit_initialize.html'>fruit_initialize</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Initialize FRUIT driver environment.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/fruit_initialize_xml.html'>fruit_initialize_xml</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Initialize FRUIT driver environment for output to XML file</p></td></tr>
-			 
 			   <tr><td><a href='../proc/fruit_show_dots.html'>fruit_show_dots</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Show dots signifying test success on screen. Visible by default.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/fruit_summary.html'>fruit_summary</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Summarize FRUIT test results to screen.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/fruit_summary_table.html'>fruit_summary_table</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Print statistics of cases and asserts in default format.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/fruit_summary_xml.html'>fruit_summary_xml</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Summarize FRUIT test results in XML format to result.xml file.</p></td></tr>
 			 
 			   <tr><td><a href='../proc/get_assert_and_case_count.html'>get_assert_and_case_count</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Get statistics of cases and asserts.</p></td></tr>
 			 
@@ -185,8 +173,6 @@ All Procedures &ndash; naturalFRUIT
 			 
 			   <tr><td><a href='../proc/restore_test_suite.html'>restore_test_suite</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Restore results of test case for use.</p></td></tr>
 			 
-			   <tr><td><a href='../interface/run_test_case.html'>run_test_case</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Interface</td><td><p>Run a specific test case.</p><a href="../interface/run_test_case.html" class="pull-right"><emph>Read more&hellip;</emph></a></td></tr>
-			 
 			   <tr><td><a href='../proc/set_case_name.html'>set_case_name</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Set name of case to <em>value</em>.</p></td></tr>
 			 
 			   <tr><td><a href='../proc/set_prefix.html'>set_prefix</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Set a common prefix for classname. Null by default.</p></td></tr>
@@ -195,6 +181,22 @@ All Procedures &ndash; naturalFRUIT
 			 
 			   <tr><td><a href='../proc/stash_test_suite.html'>stash_test_suite</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Stash results of test case for later use.</p></td></tr>
 			 
+			   <tr><td><a href='../proc/testcase_finalize.html'>testcase_finalize</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Finalize a testcase</p><a href="../proc/testcase_finalize.html" class="pull-right"><emph>Read more&hellip;</emph></a></td></tr>
+			 
+			   <tr><td><a href='../proc/testcase_initialize.html'>testcase_initialize</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Initialize a testcase.</p><a href="../proc/testcase_initialize.html" class="pull-right"><emph>Read more&hellip;</emph></a></td></tr>
+			 
+			   <tr><td><a href='../proc/testsuite_finalize.html'>testsuite_finalize</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Finalize FRUIT driver environment</p><a href="../proc/testsuite_finalize.html" class="pull-right"><emph>Read more&hellip;</emph></a></td></tr>
+			 
+			   <tr><td><a href='../proc/testsuite_initialize.html'>testsuite_initialize</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Initialize FRUIT driver environment.</p></td></tr>
+			 
+			   <tr><td><a href='../proc/testsuite_initialize_xml.html'>testsuite_initialize_xml</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Initialize FRUIT driver environment for output to XML file</p></td></tr>
+			 
+			   <tr><td><a href='../proc/testsuite_summary.html'>testsuite_summary</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Summarize FRUIT test results to screen.</p></td></tr>
+			 
+			   <tr><td><a href='../proc/testsuite_summary_table.html'>testsuite_summary_table</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Print statistics of cases and asserts in default format.</p></td></tr>
+			 
+			   <tr><td><a href='../proc/testsuite_summary_xml.html'>testsuite_summary_xml</a></td><td><a href='../module/naturalfruit.html'>naturalfruit</a></td><td>Subroutine</td><td><p>Summarize FRUIT test results in XML format to result.xml file.</p></td></tr>
+			 
 			 </tbody></table>
              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
@@ -202,200 +204,191 @@ All Procedures &ndash; naturalFRUIT
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: call~~graph~~CallGraph Pages: 1 -->
-<svg id="callgraphCallGraph" width="302pt" height="1628pt"
- viewBox="0.00 0.00 302.00 1628.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg id="callgraphCallGraph" width="324pt" height="1628pt"
+ viewBox="0.00 0.00 324.00 1628.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="call~~graph~~CallGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 1624)">
 <title>call~~graph~~CallGraph</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-1624 298,-1624 298,4 -4,4"/>
-<!-- proc~set_prefix -->
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-1624 320,-1624 320,4 -4,4"/>
+<!-- proc~set_case_name -->
 <g id="call~~graph~~CallGraph_node1" class="node">
-<title>proc~set_prefix</title>
-<g id="a_call~~graph~~CallGraph_node1"><a xlink:href=".././proc/set_prefix.html" xlink:title="set_prefix">
-<polygon fill="#d9534f" stroke="#d9534f" points="103.5,-24 44.5,-24 44.5,0 103.5,0 103.5,-24"/>
-<text text-anchor="middle" x="74" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">set_prefix</text>
+<title>proc~set_case_name</title>
+<g id="a_call~~graph~~CallGraph_node1"><a xlink:href=".././proc/set_case_name.html" xlink:title="set_case_name">
+<polygon fill="#d9534f" stroke="#d9534f" points="294,-45 206,-45 206,-21 294,-21 294,-45"/>
+<text text-anchor="middle" x="250" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">set_case_name</text>
+</a>
+</g>
+</g>
+<!-- proc~restore_test_suite -->
+<g id="call~~graph~~CallGraph_node2" class="node">
+<title>proc~restore_test_suite</title>
+<g id="a_call~~graph~~CallGraph_node2"><a xlink:href=".././proc/restore_test_suite.html" xlink:title="restore_test_suite">
+<polygon fill="#d9534f" stroke="#d9534f" points="123,-108 25,-108 25,-84 123,-84 123,-108"/>
+<text text-anchor="middle" x="74" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">restore_test_suite</text>
+</a>
+</g>
+</g>
+<!-- proc~testsuite_finalize -->
+<g id="call~~graph~~CallGraph_node3" class="node">
+<title>proc~testsuite_finalize</title>
+<g id="a_call~~graph~~CallGraph_node3"><a xlink:href=".././proc/testsuite_finalize.html" xlink:title="testsuite_finalize">
+<polygon fill="#d9534f" stroke="#d9534f" points="119.5,-150 28.5,-150 28.5,-126 119.5,-126 119.5,-150"/>
+<text text-anchor="middle" x="74" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">testsuite_finalize</text>
+</a>
+</g>
+</g>
+<!-- proc~end_override_stdout -->
+<g id="call~~graph~~CallGraph_node4" class="node">
+<title>proc~end_override_stdout</title>
+<g id="a_call~~graph~~CallGraph_node4"><a xlink:href=".././proc/end_override_stdout.html" xlink:title="end_override_stdout">
+<polygon fill="#d9534f" stroke="#d9534f" points="129.5,-192 18.5,-192 18.5,-168 129.5,-168 129.5,-192"/>
+<text text-anchor="middle" x="74" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">end_override_stdout</text>
+</a>
+</g>
+</g>
+<!-- proc~assert_false -->
+<g id="call~~graph~~CallGraph_node5" class="node">
+<title>proc~assert_false</title>
+<g id="a_call~~graph~~CallGraph_node5"><a xlink:href=".././proc/assert_false.html" xlink:title="assert_false">
+<polygon fill="#d9534f" stroke="#d9534f" points="109,-276 39,-276 39,-252 109,-252 109,-276"/>
+<text text-anchor="middle" x="74" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">assert_false</text>
 </a>
 </g>
 </g>
 <!-- proc~add_success -->
-<g id="call~~graph~~CallGraph_node2" class="node">
+<g id="call~~graph~~CallGraph_node15" class="node">
 <title>proc~add_success</title>
-<g id="a_call~~graph~~CallGraph_node2"><a xlink:href=".././proc/add_success.html" xlink:title="add_success">
-<polygon fill="#d9534f" stroke="#d9534f" points="276.5,-87 201.5,-87 201.5,-63 276.5,-63 276.5,-87"/>
-<text text-anchor="middle" x="239" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">add_success</text>
+<g id="a_call~~graph~~CallGraph_node15"><a xlink:href=".././proc/add_success.html" xlink:title="add_success">
+<polygon fill="#d9534f" stroke="#d9534f" points="287.5,-255 212.5,-255 212.5,-231 287.5,-231 287.5,-255"/>
+<text text-anchor="middle" x="250" y="-240.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">add_success</text>
 </a>
 </g>
 </g>
-<!-- proc~fruit_summary -->
-<g id="call~~graph~~CallGraph_node3" class="node">
-<title>proc~fruit_summary</title>
-<g id="a_call~~graph~~CallGraph_node3"><a xlink:href=".././proc/fruit_summary.html" xlink:title="fruit_summary">
-<polygon fill="#d9534f" stroke="#d9534f" points="114.5,-150 33.5,-150 33.5,-126 114.5,-126 114.5,-150"/>
-<text text-anchor="middle" x="74" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">fruit_summary</text>
-</a>
-</g>
-</g>
-<!-- proc~fruit_summary_table -->
-<g id="call~~graph~~CallGraph_node29" class="node">
-<title>proc~fruit_summary_table</title>
-<g id="a_call~~graph~~CallGraph_node29"><a xlink:href=".././proc/fruit_summary_table.html" xlink:title="fruit_summary_table">
-<polygon fill="#d9534f" stroke="#d9534f" points="294,-150 184,-150 184,-126 294,-126 294,-150"/>
-<text text-anchor="middle" x="239" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">fruit_summary_table</text>
-</a>
-</g>
-</g>
-<!-- proc~fruit_summary&#45;&gt;proc~fruit_summary_table -->
+<!-- proc~assert_false&#45;&gt;proc~add_success -->
 <g id="call~~graph~~CallGraph_edge1" class="edge">
-<title>proc~fruit_summary&#45;&gt;proc~fruit_summary_table</title>
-<path fill="none" stroke="#000000" d="M114.7865,-138C132.5026,-138 153.7013,-138 173.5281,-138"/>
-<polygon fill="#000000" stroke="#000000" points="173.7455,-141.5001 183.7455,-138 173.7455,-134.5001 173.7455,-141.5001"/>
+<title>proc~assert_false&#45;&gt;proc~add_success</title>
+<path fill="none" stroke="#000000" d="M109.1932,-259.8008C135.9342,-256.6101 172.9988,-252.1876 202.3883,-248.6809"/>
+<polygon fill="#000000" stroke="#000000" points="202.9193,-252.1425 212.4342,-247.4823 202.0899,-245.1918 202.9193,-252.1425"/>
 </g>
-<!-- proc~get_message_index -->
-<g id="call~~graph~~CallGraph_node4" class="node">
-<title>proc~get_message_index</title>
-<g id="a_call~~graph~~CallGraph_node4"><a xlink:href=".././proc/get_message_index.html" xlink:title="get_message_index">
-<polygon fill="#d9534f" stroke="#d9534f" points="128.5,-192 19.5,-192 19.5,-168 128.5,-168 128.5,-192"/>
-<text text-anchor="middle" x="74" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_message_index</text>
-</a>
-</g>
-</g>
-<!-- proc~fruit_hide_dots -->
-<g id="call~~graph~~CallGraph_node5" class="node">
-<title>proc~fruit_hide_dots</title>
-<g id="a_call~~graph~~CallGraph_node5"><a xlink:href=".././proc/fruit_hide_dots.html" xlink:title="fruit_hide_dots">
-<polygon fill="#d9534f" stroke="#d9534f" points="115.5,-234 32.5,-234 32.5,-210 115.5,-210 115.5,-234"/>
-<text text-anchor="middle" x="74" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">fruit_hide_dots</text>
-</a>
-</g>
-</g>
-<!-- proc~get_prefix -->
+<!-- proc~end_override_xml_work -->
 <g id="call~~graph~~CallGraph_node6" class="node">
-<title>proc~get_prefix</title>
-<g id="a_call~~graph~~CallGraph_node6"><a xlink:href=".././proc/get_prefix.html" xlink:title="get_prefix">
-<polygon fill="#d9534f" stroke="#d9534f" points="104,-276 44,-276 44,-252 104,-252 104,-276"/>
-<text text-anchor="middle" x="74" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_prefix</text>
-</a>
-</g>
-</g>
-<!-- proc~fruit_finalize -->
-<g id="call~~graph~~CallGraph_node7" class="node">
-<title>proc~fruit_finalize</title>
-<g id="a_call~~graph~~CallGraph_node7"><a xlink:href=".././proc/fruit_finalize.html" xlink:title="fruit_finalize">
-<polygon fill="#d9534f" stroke="#d9534f" points="109,-318 39,-318 39,-294 109,-294 109,-318"/>
-<text text-anchor="middle" x="74" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">fruit_finalize</text>
+<title>proc~end_override_xml_work</title>
+<g id="a_call~~graph~~CallGraph_node6"><a xlink:href=".././proc/end_override_xml_work.html" xlink:title="end_override_xml_work">
+<polygon fill="#d9534f" stroke="#d9534f" points="137.5,-318 10.5,-318 10.5,-294 137.5,-294 137.5,-318"/>
+<text text-anchor="middle" x="74" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">end_override_xml_work</text>
 </a>
 </g>
 </g>
 <!-- proc~case_failed_xml -->
-<g id="call~~graph~~CallGraph_node8" class="node">
+<g id="call~~graph~~CallGraph_node7" class="node">
 <title>proc~case_failed_xml</title>
-<g id="a_call~~graph~~CallGraph_node8"><a xlink:href=".././proc/case_failed_xml.html" xlink:title="case_failed_xml">
+<g id="a_call~~graph~~CallGraph_node7"><a xlink:href=".././proc/case_failed_xml.html" xlink:title="case_failed_xml">
 <polygon fill="#d9534f" stroke="#d9534f" points="118.5,-360 29.5,-360 29.5,-336 118.5,-336 118.5,-360"/>
 <text text-anchor="middle" x="74" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">case_failed_xml</text>
 </a>
 </g>
 </g>
-<!-- proc~is_all_successful -->
-<g id="call~~graph~~CallGraph_node9" class="node">
-<title>proc~is_all_successful</title>
-<g id="a_call~~graph~~CallGraph_node9"><a xlink:href=".././proc/is_all_successful.html" xlink:title="is_all_successful">
-<polygon fill="#d9534f" stroke="#d9534f" points="120,-402 28,-402 28,-378 120,-378 120,-402"/>
-<text text-anchor="middle" x="74" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">is_all_successful</text>
+<!-- proc~testsuite_summary -->
+<g id="call~~graph~~CallGraph_node8" class="node">
+<title>proc~testsuite_summary</title>
+<g id="a_call~~graph~~CallGraph_node8"><a xlink:href=".././proc/testsuite_summary.html" xlink:title="testsuite_summary">
+<polygon fill="#d9534f" stroke="#d9534f" points="125.5,-402 22.5,-402 22.5,-378 125.5,-378 125.5,-402"/>
+<text text-anchor="middle" x="74" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">testsuite_summary</text>
 </a>
 </g>
 </g>
-<!-- proc~get_message_array -->
-<g id="call~~graph~~CallGraph_node10" class="node">
-<title>proc~get_message_array</title>
-<g id="a_call~~graph~~CallGraph_node10"><a xlink:href=".././proc/get_message_array.html" xlink:title="get_message_array">
-<polygon fill="#d9534f" stroke="#d9534f" points="128,-444 20,-444 20,-420 128,-420 128,-444"/>
-<text text-anchor="middle" x="74" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_message_array</text>
-</a>
-</g>
-</g>
-<!-- proc~failed_assert_action -->
-<g id="call~~graph~~CallGraph_node11" class="node">
-<title>proc~failed_assert_action</title>
-<g id="a_call~~graph~~CallGraph_node11"><a xlink:href=".././proc/failed_assert_action.html" xlink:title="failed_assert_action">
-<polygon fill="#d9534f" stroke="#d9534f" points="128,-486 20,-486 20,-462 128,-462 128,-486"/>
-<text text-anchor="middle" x="74" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">failed_assert_action</text>
-</a>
-</g>
-</g>
-<!-- proc~get_assert_and_case_count -->
-<g id="call~~graph~~CallGraph_node12" class="node">
-<title>proc~get_assert_and_case_count</title>
-<g id="a_call~~graph~~CallGraph_node12"><a xlink:href=".././proc/get_assert_and_case_count.html" xlink:title="get_assert_and_case_count">
-<polygon fill="#d9534f" stroke="#d9534f" points="148,-528 0,-528 0,-504 148,-504 148,-528"/>
-<text text-anchor="middle" x="74" y="-513.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_assert_and_case_count</text>
-</a>
-</g>
-</g>
-<!-- interface~add_fail -->
-<g id="call~~graph~~CallGraph_node13" class="node">
-<title>interface~add_fail</title>
-<g id="a_call~~graph~~CallGraph_node13"><a xlink:href=".././interface/add_fail.html" xlink:title="add_fail">
-<polygon fill="#a7506f" stroke="#a7506f" points="101,-570 47,-570 47,-546 101,-546 101,-570"/>
-<text text-anchor="middle" x="74" y="-555.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">add_fail</text>
-</a>
-</g>
-</g>
-<!-- interface~run_test_case -->
-<g id="call~~graph~~CallGraph_node14" class="node">
-<title>interface~run_test_case</title>
-<g id="a_call~~graph~~CallGraph_node14"><a xlink:href=".././interface/run_test_case.html" xlink:title="run_test_case">
-<polygon fill="#a7506f" stroke="#a7506f" points="114,-612 34,-612 34,-588 114,-588 114,-612"/>
-<text text-anchor="middle" x="74" y="-597.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">run_test_case</text>
-</a>
-</g>
-</g>
-<!-- proc~get_messages -->
-<g id="call~~graph~~CallGraph_node15" class="node">
-<title>proc~get_messages</title>
-<g id="a_call~~graph~~CallGraph_node15"><a xlink:href=".././proc/get_messages.html" xlink:title="get_messages">
-<polygon fill="#d9534f" stroke="#d9534f" points="115,-654 33,-654 33,-630 115,-630 115,-654"/>
-<text text-anchor="middle" x="74" y="-639.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_messages</text>
-</a>
-</g>
-</g>
-<!-- proc~fruit_summary_xml -->
+<!-- proc~testsuite_summary_table -->
 <g id="call~~graph~~CallGraph_node16" class="node">
-<title>proc~fruit_summary_xml</title>
-<g id="a_call~~graph~~CallGraph_node16"><a xlink:href=".././proc/fruit_summary_xml.html" xlink:title="fruit_summary_xml">
-<polygon fill="#d9534f" stroke="#d9534f" points="125.5,-696 22.5,-696 22.5,-672 125.5,-672 125.5,-696"/>
-<text text-anchor="middle" x="74" y="-681.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">fruit_summary_xml</text>
+<title>proc~testsuite_summary_table</title>
+<g id="a_call~~graph~~CallGraph_node16"><a xlink:href=".././proc/testsuite_summary_table.html" xlink:title="testsuite_summary_table">
+<polygon fill="#d9534f" stroke="#d9534f" points="316,-402 184,-402 184,-378 316,-378 316,-402"/>
+<text text-anchor="middle" x="250" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">testsuite_summary_table</text>
 </a>
 </g>
 </g>
-<!-- proc~assert_true -->
-<g id="call~~graph~~CallGraph_node17" class="node">
-<title>proc~assert_true</title>
-<g id="a_call~~graph~~CallGraph_node17"><a xlink:href=".././proc/assert_true.html" xlink:title="assert_true">
-<polygon fill="#d9534f" stroke="#d9534f" points="107.5,-108 40.5,-108 40.5,-84 107.5,-84 107.5,-108"/>
-<text text-anchor="middle" x="74" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">assert_true</text>
-</a>
-</g>
-</g>
-<!-- proc~assert_true&#45;&gt;proc~add_success -->
+<!-- proc~testsuite_summary&#45;&gt;proc~testsuite_summary_table -->
 <g id="call~~graph~~CallGraph_edge2" class="edge">
-<title>proc~assert_true&#45;&gt;proc~add_success</title>
-<path fill="none" stroke="#000000" d="M107.7884,-91.6997C131.8659,-88.6352 164.5676,-84.4732 191.3004,-81.0709"/>
-<polygon fill="#000000" stroke="#000000" points="191.7452,-84.5426 201.2233,-79.8079 190.8614,-77.5986 191.7452,-84.5426"/>
+<title>proc~testsuite_summary&#45;&gt;proc~testsuite_summary_table</title>
+<path fill="none" stroke="#000000" d="M125.8539,-390C140.7427,-390 157.3024,-390 173.35,-390"/>
+<polygon fill="#000000" stroke="#000000" points="173.7989,-393.5001 183.7989,-390 173.7989,-386.5001 173.7989,-393.5001"/>
 </g>
-<!-- interface~assert_not_equal -->
-<g id="call~~graph~~CallGraph_node18" class="node">
-<title>interface~assert_not_equal</title>
-<g id="a_call~~graph~~CallGraph_node18"><a xlink:href=".././interface/assert_not_equal.html" xlink:title="assert_not_equal">
-<polygon fill="#a7506f" stroke="#a7506f" points="121.5,-738 26.5,-738 26.5,-714 121.5,-714 121.5,-738"/>
-<text text-anchor="middle" x="74" y="-723.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">assert_not_equal</text>
+<!-- proc~get_failed_count -->
+<g id="call~~graph~~CallGraph_node9" class="node">
+<title>proc~get_failed_count</title>
+<g id="a_call~~graph~~CallGraph_node9"><a xlink:href=".././proc/get_failed_count.html" xlink:title="get_failed_count">
+<polygon fill="#d9534f" stroke="#d9534f" points="119.5,-444 28.5,-444 28.5,-420 119.5,-420 119.5,-444"/>
+<text text-anchor="middle" x="74" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_failed_count</text>
 </a>
 </g>
 </g>
-<!-- proc~fruit_initialize_xml -->
+<!-- proc~testsuite_summary_xml -->
+<g id="call~~graph~~CallGraph_node10" class="node">
+<title>proc~testsuite_summary_xml</title>
+<g id="a_call~~graph~~CallGraph_node10"><a xlink:href=".././proc/testsuite_summary_xml.html" xlink:title="testsuite_summary_xml">
+<polygon fill="#d9534f" stroke="#d9534f" points="136.5,-486 11.5,-486 11.5,-462 136.5,-462 136.5,-486"/>
+<text text-anchor="middle" x="74" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">testsuite_summary_xml</text>
+</a>
+</g>
+</g>
+<!-- proc~get_xml_filename_work -->
+<g id="call~~graph~~CallGraph_node11" class="node">
+<title>proc~get_xml_filename_work</title>
+<g id="a_call~~graph~~CallGraph_node11"><a xlink:href=".././proc/get_xml_filename_work.html" xlink:title="get_xml_filename_work">
+<polygon fill="#d9534f" stroke="#d9534f" points="136.5,-528 11.5,-528 11.5,-504 136.5,-504 136.5,-528"/>
+<text text-anchor="middle" x="74" y="-513.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_xml_filename_work</text>
+</a>
+</g>
+</g>
+<!-- proc~set_prefix -->
+<g id="call~~graph~~CallGraph_node12" class="node">
+<title>proc~set_prefix</title>
+<g id="a_call~~graph~~CallGraph_node12"><a xlink:href=".././proc/set_prefix.html" xlink:title="set_prefix">
+<polygon fill="#d9534f" stroke="#d9534f" points="103.5,-570 44.5,-570 44.5,-546 103.5,-546 103.5,-570"/>
+<text text-anchor="middle" x="74" y="-555.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">set_prefix</text>
+</a>
+</g>
+</g>
+<!-- proc~testsuite_initialize_xml -->
+<g id="call~~graph~~CallGraph_node13" class="node">
+<title>proc~testsuite_initialize_xml</title>
+<g id="a_call~~graph~~CallGraph_node13"><a xlink:href=".././proc/testsuite_initialize_xml.html" xlink:title="testsuite_initialize_xml">
+<polygon fill="#d9534f" stroke="#d9534f" points="133,-612 15,-612 15,-588 133,-588 133,-612"/>
+<text text-anchor="middle" x="74" y="-597.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">testsuite_initialize_xml</text>
+</a>
+</g>
+</g>
+<!-- proc~set_xml_filename_work -->
+<g id="call~~graph~~CallGraph_node14" class="node">
+<title>proc~set_xml_filename_work</title>
+<g id="a_call~~graph~~CallGraph_node14"><a xlink:href=".././proc/set_xml_filename_work.html" xlink:title="set_xml_filename_work">
+<polygon fill="#d9534f" stroke="#d9534f" points="136,-654 12,-654 12,-630 136,-630 136,-654"/>
+<text text-anchor="middle" x="74" y="-639.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">set_xml_filename_work</text>
+</a>
+</g>
+</g>
+<!-- proc~get_prefix -->
+<g id="call~~graph~~CallGraph_node17" class="node">
+<title>proc~get_prefix</title>
+<g id="a_call~~graph~~CallGraph_node17"><a xlink:href=".././proc/get_prefix.html" xlink:title="get_prefix">
+<polygon fill="#d9534f" stroke="#d9534f" points="104,-696 44,-696 44,-672 104,-672 104,-696"/>
+<text text-anchor="middle" x="74" y="-681.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_prefix</text>
+</a>
+</g>
+</g>
+<!-- proc~get_message_index -->
+<g id="call~~graph~~CallGraph_node18" class="node">
+<title>proc~get_message_index</title>
+<g id="a_call~~graph~~CallGraph_node18"><a xlink:href=".././proc/get_message_index.html" xlink:title="get_message_index">
+<polygon fill="#d9534f" stroke="#d9534f" points="128.5,-738 19.5,-738 19.5,-714 128.5,-714 128.5,-738"/>
+<text text-anchor="middle" x="74" y="-723.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_message_index</text>
+</a>
+</g>
+</g>
+<!-- proc~get_last_message -->
 <g id="call~~graph~~CallGraph_node19" class="node">
-<title>proc~fruit_initialize_xml</title>
-<g id="a_call~~graph~~CallGraph_node19"><a xlink:href=".././proc/fruit_initialize_xml.html" xlink:title="fruit_initialize_xml">
-<polygon fill="#d9534f" stroke="#d9534f" points="122.5,-780 25.5,-780 25.5,-756 122.5,-756 122.5,-780"/>
-<text text-anchor="middle" x="74" y="-765.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">fruit_initialize_xml</text>
+<title>proc~get_last_message</title>
+<g id="a_call~~graph~~CallGraph_node19"><a xlink:href=".././proc/get_last_message.html" xlink:title="get_last_message">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="124,-780 24,-780 24,-756 124,-756 124,-780"/>
+<text text-anchor="middle" x="74" y="-765.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_last_message</text>
 </a>
 </g>
 </g>
@@ -408,120 +401,135 @@ All Procedures &ndash; naturalFRUIT
 </a>
 </g>
 </g>
-<!-- proc~override_xml_work -->
+<!-- proc~get_assert_and_case_count -->
 <g id="call~~graph~~CallGraph_node21" class="node">
-<title>proc~override_xml_work</title>
-<g id="a_call~~graph~~CallGraph_node21"><a xlink:href=".././proc/override_xml_work.html" xlink:title="override_xml_work">
-<polygon fill="#d9534f" stroke="#d9534f" points="125.5,-864 22.5,-864 22.5,-840 125.5,-840 125.5,-864"/>
-<text text-anchor="middle" x="74" y="-849.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">override_xml_work</text>
+<title>proc~get_assert_and_case_count</title>
+<g id="a_call~~graph~~CallGraph_node21"><a xlink:href=".././proc/get_assert_and_case_count.html" xlink:title="get_assert_and_case_count">
+<polygon fill="#d9534f" stroke="#d9534f" points="148,-864 0,-864 0,-840 148,-840 148,-864"/>
+<text text-anchor="middle" x="74" y="-849.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_assert_and_case_count</text>
 </a>
 </g>
 </g>
-<!-- proc~get_case_name -->
+<!-- interface~add_fail -->
 <g id="call~~graph~~CallGraph_node22" class="node">
-<title>proc~get_case_name</title>
-<g id="a_call~~graph~~CallGraph_node22"><a xlink:href=".././proc/get_case_name.html" xlink:title="get_case_name">
-<polygon fill="#d9534f" stroke="#d9534f" points="118.5,-906 29.5,-906 29.5,-882 118.5,-882 118.5,-906"/>
-<text text-anchor="middle" x="74" y="-891.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_case_name</text>
-</a>
-</g>
-</g>
-<!-- interface~assert_equal -->
-<g id="call~~graph~~CallGraph_node23" class="node">
-<title>interface~assert_equal</title>
-<g id="a_call~~graph~~CallGraph_node23"><a xlink:href=".././interface/assert_equal.html" xlink:title="assert_equal">
-<polygon fill="#a7506f" stroke="#a7506f" points="111,-948 37,-948 37,-924 111,-924 111,-948"/>
-<text text-anchor="middle" x="74" y="-933.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">assert_equal</text>
+<title>interface~add_fail</title>
+<g id="a_call~~graph~~CallGraph_node22"><a xlink:href=".././interface/add_fail.html" xlink:title="add_fail">
+<polygon fill="#a7506f" stroke="#a7506f" points="101,-906 47,-906 47,-882 101,-882 101,-906"/>
+<text text-anchor="middle" x="74" y="-891.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">add_fail</text>
 </a>
 </g>
 </g>
 <!-- proc~is_last_passed -->
-<g id="call~~graph~~CallGraph_node24" class="node">
+<g id="call~~graph~~CallGraph_node23" class="node">
 <title>proc~is_last_passed</title>
-<g id="a_call~~graph~~CallGraph_node24"><a xlink:href=".././proc/is_last_passed.html" xlink:title="is_last_passed">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="115.5,-990 32.5,-990 32.5,-966 115.5,-966 115.5,-990"/>
-<text text-anchor="middle" x="74" y="-975.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">is_last_passed</text>
-</a>
-</g>
-</g>
-<!-- proc~set_case_name -->
-<g id="call~~graph~~CallGraph_node25" class="node">
-<title>proc~set_case_name</title>
-<g id="a_call~~graph~~CallGraph_node25"><a xlink:href=".././proc/set_case_name.html" xlink:title="set_case_name">
-<polygon fill="#d9534f" stroke="#d9534f" points="118,-1032 30,-1032 30,-1008 118,-1008 118,-1032"/>
-<text text-anchor="middle" x="74" y="-1017.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">set_case_name</text>
-</a>
-</g>
-</g>
-<!-- proc~get_failed_count -->
-<g id="call~~graph~~CallGraph_node26" class="node">
-<title>proc~get_failed_count</title>
-<g id="a_call~~graph~~CallGraph_node26"><a xlink:href=".././proc/get_failed_count.html" xlink:title="get_failed_count">
-<polygon fill="#d9534f" stroke="#d9534f" points="119.5,-1074 28.5,-1074 28.5,-1050 119.5,-1050 119.5,-1074"/>
-<text text-anchor="middle" x="74" y="-1059.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_failed_count</text>
+<g id="a_call~~graph~~CallGraph_node23"><a xlink:href=".././proc/is_last_passed.html" xlink:title="is_last_passed">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="115.5,-948 32.5,-948 32.5,-924 115.5,-924 115.5,-948"/>
+<text text-anchor="middle" x="74" y="-933.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">is_last_passed</text>
 </a>
 </g>
 </g>
 <!-- proc~case_passed_xml -->
-<g id="call~~graph~~CallGraph_node27" class="node">
+<g id="call~~graph~~CallGraph_node24" class="node">
 <title>proc~case_passed_xml</title>
-<g id="a_call~~graph~~CallGraph_node27"><a xlink:href=".././proc/case_passed_xml.html" xlink:title="case_passed_xml">
-<polygon fill="#d9534f" stroke="#d9534f" points="123,-1116 25,-1116 25,-1092 123,-1092 123,-1116"/>
-<text text-anchor="middle" x="74" y="-1101.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">case_passed_xml</text>
+<g id="a_call~~graph~~CallGraph_node24"><a xlink:href=".././proc/case_passed_xml.html" xlink:title="case_passed_xml">
+<polygon fill="#d9534f" stroke="#d9534f" points="123,-990 25,-990 25,-966 123,-966 123,-990"/>
+<text text-anchor="middle" x="74" y="-975.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">case_passed_xml</text>
 </a>
 </g>
 </g>
-<!-- proc~stash_test_suite -->
-<g id="call~~graph~~CallGraph_node28" class="node">
-<title>proc~stash_test_suite</title>
-<g id="a_call~~graph~~CallGraph_node28"><a xlink:href=".././proc/stash_test_suite.html" xlink:title="stash_test_suite">
-<polygon fill="#d9534f" stroke="#d9534f" points="119,-1158 29,-1158 29,-1134 119,-1134 119,-1158"/>
-<text text-anchor="middle" x="74" y="-1143.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">stash_test_suite</text>
-</a>
-</g>
-</g>
-<!-- proc~restore_test_suite -->
-<g id="call~~graph~~CallGraph_node30" class="node">
-<title>proc~restore_test_suite</title>
-<g id="a_call~~graph~~CallGraph_node30"><a xlink:href=".././proc/restore_test_suite.html" xlink:title="restore_test_suite">
-<polygon fill="#d9534f" stroke="#d9534f" points="123,-1200 25,-1200 25,-1176 123,-1176 123,-1200"/>
-<text text-anchor="middle" x="74" y="-1185.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">restore_test_suite</text>
+<!-- proc~get_message_array -->
+<g id="call~~graph~~CallGraph_node25" class="node">
+<title>proc~get_message_array</title>
+<g id="a_call~~graph~~CallGraph_node25"><a xlink:href=".././proc/get_message_array.html" xlink:title="get_message_array">
+<polygon fill="#d9534f" stroke="#d9534f" points="128,-1032 20,-1032 20,-1008 128,-1008 128,-1032"/>
+<text text-anchor="middle" x="74" y="-1017.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_message_array</text>
 </a>
 </g>
 </g>
 <!-- proc~fruit_if_case_failed -->
-<g id="call~~graph~~CallGraph_node31" class="node">
+<g id="call~~graph~~CallGraph_node26" class="node">
 <title>proc~fruit_if_case_failed</title>
-<g id="a_call~~graph~~CallGraph_node31"><a xlink:href=".././proc/fruit_if_case_failed.html" xlink:title="fruit_if_case_failed">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="125,-1242 23,-1242 23,-1218 125,-1218 125,-1242"/>
-<text text-anchor="middle" x="74" y="-1227.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">fruit_if_case_failed</text>
+<g id="a_call~~graph~~CallGraph_node26"><a xlink:href=".././proc/fruit_if_case_failed.html" xlink:title="fruit_if_case_failed">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="125,-1074 23,-1074 23,-1050 125,-1050 125,-1074"/>
+<text text-anchor="middle" x="74" y="-1059.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">fruit_if_case_failed</text>
 </a>
 </g>
 </g>
-<!-- proc~get_last_message -->
+<!-- proc~testsuite_initialize -->
+<g id="call~~graph~~CallGraph_node27" class="node">
+<title>proc~testsuite_initialize</title>
+<g id="a_call~~graph~~CallGraph_node27"><a xlink:href=".././proc/testsuite_initialize.html" xlink:title="testsuite_initialize">
+<polygon fill="#d9534f" stroke="#d9534f" points="122,-1116 26,-1116 26,-1092 122,-1092 122,-1116"/>
+<text text-anchor="middle" x="74" y="-1101.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">testsuite_initialize</text>
+</a>
+</g>
+</g>
+<!-- proc~failed_assert_action -->
+<g id="call~~graph~~CallGraph_node28" class="node">
+<title>proc~failed_assert_action</title>
+<g id="a_call~~graph~~CallGraph_node28"><a xlink:href=".././proc/failed_assert_action.html" xlink:title="failed_assert_action">
+<polygon fill="#d9534f" stroke="#d9534f" points="128,-1158 20,-1158 20,-1134 128,-1134 128,-1158"/>
+<text text-anchor="middle" x="74" y="-1143.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">failed_assert_action</text>
+</a>
+</g>
+</g>
+<!-- proc~assert_true -->
+<g id="call~~graph~~CallGraph_node29" class="node">
+<title>proc~assert_true</title>
+<g id="a_call~~graph~~CallGraph_node29"><a xlink:href=".././proc/assert_true.html" xlink:title="assert_true">
+<polygon fill="#d9534f" stroke="#d9534f" points="107.5,-234 40.5,-234 40.5,-210 107.5,-210 107.5,-234"/>
+<text text-anchor="middle" x="74" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">assert_true</text>
+</a>
+</g>
+</g>
+<!-- proc~assert_true&#45;&gt;proc~add_success -->
+<g id="call~~graph~~CallGraph_edge3" class="edge">
+<title>proc~assert_true&#45;&gt;proc~add_success</title>
+<path fill="none" stroke="#000000" d="M107.5185,-225.9994C134.2836,-229.1929 172.1342,-233.7092 202.0967,-237.2843"/>
+<polygon fill="#000000" stroke="#000000" points="201.9904,-240.7963 212.3347,-238.5058 202.8198,-233.8456 201.9904,-240.7963"/>
+</g>
+<!-- interface~assert_not_equal -->
+<g id="call~~graph~~CallGraph_node30" class="node">
+<title>interface~assert_not_equal</title>
+<g id="a_call~~graph~~CallGraph_node30"><a xlink:href=".././interface/assert_not_equal.html" xlink:title="assert_not_equal">
+<polygon fill="#a7506f" stroke="#a7506f" points="121.5,-1200 26.5,-1200 26.5,-1176 121.5,-1176 121.5,-1200"/>
+<text text-anchor="middle" x="74" y="-1185.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">assert_not_equal</text>
+</a>
+</g>
+</g>
+<!-- proc~get_case_name -->
+<g id="call~~graph~~CallGraph_node31" class="node">
+<title>proc~get_case_name</title>
+<g id="a_call~~graph~~CallGraph_node31"><a xlink:href=".././proc/get_case_name.html" xlink:title="get_case_name">
+<polygon fill="#d9534f" stroke="#d9534f" points="118.5,-1242 29.5,-1242 29.5,-1218 118.5,-1218 118.5,-1242"/>
+<text text-anchor="middle" x="74" y="-1227.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_case_name</text>
+</a>
+</g>
+</g>
+<!-- proc~is_all_successful -->
 <g id="call~~graph~~CallGraph_node32" class="node">
-<title>proc~get_last_message</title>
-<g id="a_call~~graph~~CallGraph_node32"><a xlink:href=".././proc/get_last_message.html" xlink:title="get_last_message">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="124,-1284 24,-1284 24,-1260 124,-1260 124,-1284"/>
-<text text-anchor="middle" x="74" y="-1269.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_last_message</text>
+<title>proc~is_all_successful</title>
+<g id="a_call~~graph~~CallGraph_node32"><a xlink:href=".././proc/is_all_successful.html" xlink:title="is_all_successful">
+<polygon fill="#d9534f" stroke="#d9534f" points="120,-1284 28,-1284 28,-1260 120,-1260 120,-1284"/>
+<text text-anchor="middle" x="74" y="-1269.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">is_all_successful</text>
 </a>
 </g>
 </g>
-<!-- proc~fruit_initialize -->
+<!-- proc~fruit_show_dots -->
 <g id="call~~graph~~CallGraph_node33" class="node">
-<title>proc~fruit_initialize</title>
-<g id="a_call~~graph~~CallGraph_node33"><a xlink:href=".././proc/fruit_initialize.html" xlink:title="fruit_initialize">
-<polygon fill="#d9534f" stroke="#d9534f" points="111,-1326 37,-1326 37,-1302 111,-1302 111,-1326"/>
-<text text-anchor="middle" x="74" y="-1311.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">fruit_initialize</text>
+<title>proc~fruit_show_dots</title>
+<g id="a_call~~graph~~CallGraph_node33"><a xlink:href=".././proc/fruit_show_dots.html" xlink:title="fruit_show_dots">
+<polygon fill="#d9534f" stroke="#d9534f" points="118,-1326 30,-1326 30,-1302 118,-1302 118,-1326"/>
+<text text-anchor="middle" x="74" y="-1311.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">fruit_show_dots</text>
 </a>
 </g>
 </g>
-<!-- proc~get_xml_filename_work -->
+<!-- proc~get_messages -->
 <g id="call~~graph~~CallGraph_node34" class="node">
-<title>proc~get_xml_filename_work</title>
-<g id="a_call~~graph~~CallGraph_node34"><a xlink:href=".././proc/get_xml_filename_work.html" xlink:title="get_xml_filename_work">
-<polygon fill="#d9534f" stroke="#d9534f" points="136.5,-1368 11.5,-1368 11.5,-1344 136.5,-1344 136.5,-1368"/>
-<text text-anchor="middle" x="74" y="-1353.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_xml_filename_work</text>
+<title>proc~get_messages</title>
+<g id="a_call~~graph~~CallGraph_node34"><a xlink:href=".././proc/get_messages.html" xlink:title="get_messages">
+<polygon fill="#d9534f" stroke="#d9534f" points="115,-1368 33,-1368 33,-1344 115,-1344 115,-1368"/>
+<text text-anchor="middle" x="74" y="-1353.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">get_messages</text>
 </a>
 </g>
 </g>
@@ -534,63 +542,78 @@ All Procedures &ndash; naturalFRUIT
 </a>
 </g>
 </g>
-<!-- proc~end_override_stdout -->
+<!-- interface~assert_equal -->
 <g id="call~~graph~~CallGraph_node36" class="node">
-<title>proc~end_override_stdout</title>
-<g id="a_call~~graph~~CallGraph_node36"><a xlink:href=".././proc/end_override_stdout.html" xlink:title="end_override_stdout">
-<polygon fill="#d9534f" stroke="#d9534f" points="129.5,-1452 18.5,-1452 18.5,-1428 129.5,-1428 129.5,-1452"/>
-<text text-anchor="middle" x="74" y="-1437.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">end_override_stdout</text>
+<title>interface~assert_equal</title>
+<g id="a_call~~graph~~CallGraph_node36"><a xlink:href=".././interface/assert_equal.html" xlink:title="assert_equal">
+<polygon fill="#a7506f" stroke="#a7506f" points="111,-1452 37,-1452 37,-1428 111,-1428 111,-1452"/>
+<text text-anchor="middle" x="74" y="-1437.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">assert_equal</text>
 </a>
 </g>
 </g>
-<!-- proc~fruit_show_dots -->
+<!-- proc~override_xml_work -->
 <g id="call~~graph~~CallGraph_node37" class="node">
-<title>proc~fruit_show_dots</title>
-<g id="a_call~~graph~~CallGraph_node37"><a xlink:href=".././proc/fruit_show_dots.html" xlink:title="fruit_show_dots">
-<polygon fill="#d9534f" stroke="#d9534f" points="118,-1494 30,-1494 30,-1470 118,-1470 118,-1494"/>
-<text text-anchor="middle" x="74" y="-1479.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">fruit_show_dots</text>
+<title>proc~override_xml_work</title>
+<g id="a_call~~graph~~CallGraph_node37"><a xlink:href=".././proc/override_xml_work.html" xlink:title="override_xml_work">
+<polygon fill="#d9534f" stroke="#d9534f" points="125.5,-1494 22.5,-1494 22.5,-1470 125.5,-1470 125.5,-1494"/>
+<text text-anchor="middle" x="74" y="-1479.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">override_xml_work</text>
 </a>
 </g>
 </g>
-<!-- proc~assert_false -->
+<!-- proc~fruit_hide_dots -->
 <g id="call~~graph~~CallGraph_node38" class="node">
-<title>proc~assert_false</title>
-<g id="a_call~~graph~~CallGraph_node38"><a xlink:href=".././proc/assert_false.html" xlink:title="assert_false">
-<polygon fill="#d9534f" stroke="#d9534f" points="109,-66 39,-66 39,-42 109,-42 109,-66"/>
-<text text-anchor="middle" x="74" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">assert_false</text>
+<title>proc~fruit_hide_dots</title>
+<g id="a_call~~graph~~CallGraph_node38"><a xlink:href=".././proc/fruit_hide_dots.html" xlink:title="fruit_hide_dots">
+<polygon fill="#d9534f" stroke="#d9534f" points="115.5,-1536 32.5,-1536 32.5,-1512 115.5,-1512 115.5,-1536"/>
+<text text-anchor="middle" x="74" y="-1521.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">fruit_hide_dots</text>
 </a>
 </g>
 </g>
-<!-- proc~assert_false&#45;&gt;proc~add_success -->
-<g id="call~~graph~~CallGraph_edge3" class="edge">
-<title>proc~assert_false&#45;&gt;proc~add_success</title>
-<path fill="none" stroke="#000000" d="M109.3966,-58.505C133.305,-61.5479 165.1503,-65.6009 191.2906,-68.9279"/>
-<polygon fill="#000000" stroke="#000000" points="191.0051,-72.4197 201.367,-70.2103 191.889,-65.4757 191.0051,-72.4197"/>
-</g>
-<!-- proc~end_override_xml_work -->
+<!-- proc~stash_test_suite -->
 <g id="call~~graph~~CallGraph_node39" class="node">
-<title>proc~end_override_xml_work</title>
-<g id="a_call~~graph~~CallGraph_node39"><a xlink:href=".././proc/end_override_xml_work.html" xlink:title="end_override_xml_work">
-<polygon fill="#d9534f" stroke="#d9534f" points="137.5,-1536 10.5,-1536 10.5,-1512 137.5,-1512 137.5,-1536"/>
-<text text-anchor="middle" x="74" y="-1521.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">end_override_xml_work</text>
+<title>proc~stash_test_suite</title>
+<g id="a_call~~graph~~CallGraph_node39"><a xlink:href=".././proc/stash_test_suite.html" xlink:title="stash_test_suite">
+<polygon fill="#d9534f" stroke="#d9534f" points="119,-1578 29,-1578 29,-1554 119,-1554 119,-1578"/>
+<text text-anchor="middle" x="74" y="-1563.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">stash_test_suite</text>
 </a>
 </g>
+</g>
+<!-- proc~testcase_initialize -->
+<g id="call~~graph~~CallGraph_node40" class="node">
+<title>proc~testcase_initialize</title>
+<g id="a_call~~graph~~CallGraph_node40"><a xlink:href=".././proc/testcase_initialize.html" xlink:title="testcase_initialize">
+<polygon fill="#d9534f" stroke="#d9534f" points="122,-66 26,-66 26,-42 122,-42 122,-66"/>
+<text text-anchor="middle" x="74" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">testcase_initialize</text>
+</a>
+</g>
+</g>
+<!-- proc~testcase_initialize&#45;&gt;proc~set_case_name -->
+<g id="call~~graph~~CallGraph_edge4" class="edge">
+<title>proc~testcase_initialize&#45;&gt;proc~set_case_name</title>
+<path fill="none" stroke="#000000" d="M122.0928,-48.2617C144.8779,-45.543 172.1916,-42.284 195.7175,-39.4769"/>
+<polygon fill="#000000" stroke="#000000" points="196.371,-42.9238 205.8859,-38.2636 195.5416,-35.9731 196.371,-42.9238"/>
+</g>
+<!-- proc~testcase_finalize -->
+<g id="call~~graph~~CallGraph_node41" class="node">
+<title>proc~testcase_finalize</title>
+<g id="a_call~~graph~~CallGraph_node41"><a xlink:href=".././proc/testcase_finalize.html" xlink:title="testcase_finalize">
+<polygon fill="#d9534f" stroke="#d9534f" points="119.5,-24 28.5,-24 28.5,0 119.5,0 119.5,-24"/>
+<text text-anchor="middle" x="74" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">testcase_finalize</text>
+</a>
+</g>
+</g>
+<!-- proc~testcase_finalize&#45;&gt;proc~set_case_name -->
+<g id="call~~graph~~CallGraph_edge5" class="edge">
+<title>proc~testcase_finalize&#45;&gt;proc~set_case_name</title>
+<path fill="none" stroke="#000000" d="M119.7825,-17.4627C143.0428,-20.2381 171.4604,-23.6288 195.8068,-26.5338"/>
+<polygon fill="#000000" stroke="#000000" points="195.6205,-30.0363 205.9647,-27.7458 196.4499,-23.0856 195.6205,-30.0363"/>
 </g>
 <!-- proc~is_case_passed -->
-<g id="call~~graph~~CallGraph_node40" class="node">
+<g id="call~~graph~~CallGraph_node42" class="node">
 <title>proc~is_case_passed</title>
-<g id="a_call~~graph~~CallGraph_node40"><a xlink:href=".././proc/is_case_passed.html" xlink:title="is_case_passed">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="118.5,-1578 29.5,-1578 29.5,-1554 118.5,-1554 118.5,-1578"/>
-<text text-anchor="middle" x="74" y="-1563.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">is_case_passed</text>
-</a>
-</g>
-</g>
-<!-- proc~set_xml_filename_work -->
-<g id="call~~graph~~CallGraph_node41" class="node">
-<title>proc~set_xml_filename_work</title>
-<g id="a_call~~graph~~CallGraph_node41"><a xlink:href=".././proc/set_xml_filename_work.html" xlink:title="set_xml_filename_work">
-<polygon fill="#d9534f" stroke="#d9534f" points="136,-1620 12,-1620 12,-1596 136,-1596 136,-1620"/>
-<text text-anchor="middle" x="74" y="-1605.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">set_xml_filename_work</text>
+<g id="a_call~~graph~~CallGraph_node42"><a xlink:href=".././proc/is_case_passed.html" xlink:title="is_case_passed">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="118.5,-1620 29.5,-1620 29.5,-1596 118.5,-1596 118.5,-1620"/>
+<text text-anchor="middle" x="74" y="-1605.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">is_case_passed</text>
 </a>
 </g>
 </g>
@@ -669,7 +692,7 @@ All Procedures &ndash; naturalFRUIT
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-04-09T19:02:00.193105 
+             on 2020-04-10T02:37:45.905030 
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> naturalFRUIT was developed by Cibin Joseph</p></div>
