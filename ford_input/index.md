@@ -24,7 +24,9 @@ naturalFRUIT was built with users of [JUnit](https://junit.org/) and python's [u
 - *test runner*</br>
   A test runner is the component which orchestrates the execution of tests and provides the outcome to the user. For naturalFRUIT, a separate Fortran program performs the duties of a test runner. This test runner program invokes testcases from the test suite module.</br></br>
 
-The following image illustrates the typical workflow for unit testing using naturalFRUIT.
+The following image illustrates the typical workflow and basic subroutines for unit testing using naturalFRUIT:</br></br>
+<img src="|media|/flowchart/flowchart.png"/></br></br>
+
 
 @warning
 Documentation, tutorials and source code are under active development. Use cautiously.
