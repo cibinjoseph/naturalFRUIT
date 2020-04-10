@@ -4,6 +4,7 @@ project_dir: .
 src_dir: ./src
 output_dir: ./docs
 media_dir: ./media    
+favicon: ./media/naturalFRUIT-favicon.png
 project_github: https://github.com/cibinjoseph/naturalFRUIT
 summary: ![naturalFruit](|media|/naturalFRUIT-logo.png)<br/><br/>
          A purely Fortran based unit testing framework for Fortran code
