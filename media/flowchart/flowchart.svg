@@ -18,8 +18,8 @@
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="flowchart.svg"
    inkscape:export-filename="/home/cibin/WorkInProgress/naturalFRUIT/media/flowchart/flowchart.png"
-   inkscape:export-xdpi="119.98966"
-   inkscape:export-ydpi="119.98966">
+   inkscape:export-xdpi="100.55"
+   inkscape:export-ydpi="100.55">
   <defs
      id="defs2">
     <marker
@@ -122,7 +122,8 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="background"
-     transform="translate(0,17.6)">
+     transform="translate(0,17.6)"
+     sodipodi:insensitive="true">
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -138,12 +139,14 @@
   <g
      inkscape:label="images"
      inkscape:groupmode="layer"
-     id="layer1" />
+     id="layer1"
+     sodipodi:insensitive="true" />
   <g
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="text"
-     transform="translate(0,17.6)">
+     transform="translate(0,17.6)"
+     sodipodi:insensitive="true">
     <g
        id="g8512"
        transform="matrix(0.28102557,0,0,0.28102557,128.62324,239.58542)">
