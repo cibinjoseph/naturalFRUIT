@@ -34,4 +34,4 @@ All the assert methods accept two optional arguments `message` and `status`.
 `status`, if present, supresses general test case behaviour like printing of success and failure messages, and the boolean variable provided to the `status` specifier returns `.true.` or `.false.` depending on assert sucess or failure. </br>
 @endnote
 
-Additionally, all assert subroutines that handle `int`, `real`, `real(dp)`, `complex`, and `complex(dp)` can also accept one and two dimensional arrays as input arguments. An element-wise check is performed in this case.
+Additionally, all assert subroutines that handle `int`, `real`, `real(dp)`, `complex`, and `complex(dp)` can also accept one and two dimensional arrays as input arguments. An element-wise check is performed in these cases.
