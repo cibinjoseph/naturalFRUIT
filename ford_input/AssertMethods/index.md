@@ -1,6 +1,6 @@
 title: Assert methods
 
-FRUIT provides several assert methods to check for and report failures. The following list contains variants of the most commonly used formats. Although only the `[[assert_equal]]` and `[[assert_true]]` methods are shown here, analogous formats exist for the `[[assert_not_equal]]` and `[[assert_false]]` methods.</br></br>
+naturalFRUIT provides several assert methods to check for and report failures. The following list contains variants of the most commonly used formats. Although only the `[[assert_equal]]` and `[[assert_true]]` methods are shown here, analogous formats exist for the `[[assert_not_equal]]` and `[[assert_false]]` methods.</br></br>
 
 #### 1. `[[assert_equal]]`
 <table style="width:100%", rules="rows">
