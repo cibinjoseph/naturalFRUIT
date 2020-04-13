@@ -590,8 +590,15 @@ contains
     write (stdout, *)
     write (stdout, *) 'Successful asserts / total asserts : [ ', &
       succ_assert, '/', succ_assert + fail_assert, ' ]'
-    write (stdout, *) 'Successful cases   / total cases   : [ ', succ_case, '/', &
-      succ_case + fail_case, ' ]'
+    if (succ_case + fail_case /= 0) then  ! No. of testcases are atleast one
+      write (stdout, *) &
+        & 'Successful cases   / total cases   : [ ', succ_case, '/', &
+        succ_case + fail_case, ' ]'
+    else  ! No of testcases are 0 due to testcase_initialize() not called
+      write (stdout, *) &
+        'Successful cases   / total cases   : [ ', min(1, succ_assert), '/', &
+        1, ' ]'
+    endif
   end subroutine testsuite_summary_table
 
   subroutine add_fail_(message)
