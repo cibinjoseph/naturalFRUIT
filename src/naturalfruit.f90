@@ -565,6 +565,11 @@ contains
     end if
 
     if (successful_assert_count + failed_assert_count /= 0) then
+      ! If testcase not intialized using testcase_intialize()
+      if (successful_case_count + failed_case_count == 0) then
+        failed_case_count = min(1, failed_assert_count)
+        if (failed_case_count == 0) successful_case_count = 1
+      endif
       call testsuite_summary_table(&
         & successful_assert_count, failed_assert_count, &
         & successful_case_count, failed_case_count &
@@ -590,15 +595,9 @@ contains
     write (stdout, *)
     write (stdout, *) 'Successful asserts / total asserts : [ ', &
       succ_assert, '/', succ_assert + fail_assert, ' ]'
-    if (succ_case + fail_case /= 0) then  ! No. of testcases are atleast one
-      write (stdout, *) &
-        & 'Successful cases   / total cases   : [ ', succ_case, '/', &
-        succ_case + fail_case, ' ]'
-    else  ! No of testcases are 0 due to testcase_initialize() not called
-      write (stdout, *) &
-        'Successful cases   / total cases   : [ ', min(1, succ_assert), '/', &
-        1, ' ]'
-    endif
+    write (stdout, *) &
+      & 'Successful cases   / total cases   : [ ', succ_case, '/', &
+      succ_case + fail_case, ' ]'
   end subroutine testsuite_summary_table
 
   subroutine add_fail_(message)
@@ -660,6 +659,13 @@ contains
   subroutine increase_message_stack_
     !! Increase message stack size
     character(len=MSG_LENGTH) :: msg_swap_holder(current_max)
+
+    ! If testsuite_initialize hasn't been called
+    !$omp critical (FRUIT_OMP_ALLOCATE_MESSAGE_ARRAY)
+    if (.not. allocated(message_array)) then
+      allocate (message_array(MSG_ARRAY_INCREMENT))
+    end if
+    !$omp end critical (FRUIT_OMP_ALLOCATE_MESSAGE_ARRAY)
 
     if (message_index > MAX_MSG_STACK_SIZE) then
       return
