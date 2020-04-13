@@ -16,9 +16,9 @@ fpp_extensions: fpp
 docmark: !
 display: public
 source: false
-graph: true
+graph: false
 search: true
-print_creation_date: true
+print_creation_date: false
 extra_filetypes:
 
 A purely Fortran based unit testing framework derived from the original [Fortran Unit Test Framework (FRUIT)](https://sourceforge.net/projects/fortranxunit/).<br/>
