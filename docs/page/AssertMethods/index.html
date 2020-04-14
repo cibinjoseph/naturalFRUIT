@@ -44,7 +44,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../../index.html">naturalFRUIT <small>0.4</small></a>
+          <a class="navbar-brand" href="../../index.html">naturalFRUIT <small>0.5</small></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -137,14 +137,14 @@
 <tr><td><code>assert_equal(logical a, logical b)</code></td><td><code>a == b</code></td><td><code>assert_eq_logical_</code></td></tr>
 <tr><td><code>assert_equal(string a, string b)</code></td><td><code>a == b</code></td><td><code>assert_eq_string_</code></td></tr>
 <tr><td><code>assert_equal(int a, int b)</code></td><td><code>a == b</code></td><td><code>assert_eq_int_</code></td></tr>
-<tr><td><code>assert_equal(real a, real b)</code></td><td><code>a == b</code></td><td><code>assert_eq_real_</code></td></tr>
-<tr><td><code>assert_equal(real a, real b, real tol)</code></td><td><code>abs(a-b) &lt; tol</code></td><td><code>assert_eq_real_in_range_</code></td></tr>
-<tr><td><code>assert_equal(real(dp) a, real(dp) b)</code></td><td><code>a == b</code></td><td><code>assert_eq_double_</code></td></tr>
-<tr><td><code>assert_equal(real(dp) a, real(dp) b, real(dp) tol)</code></td><td><code>abs(a-b) &lt; tol</code></td><td><code>assert_eq_double_in_range_</code></td></tr>
-<tr><td><code>assert_equal(complex a, complex b)</code></td><td><code>a == b</code></td><td><code>assert_eq_complex_</code></td></tr>
-<tr><td><code>assert_equal(complex a, complex b, tol)</code></td><td><code>abs(a-b) &lt; tol</code></td><td><code>assert_eq_complex_in_range_</code></td></tr>
-<tr><td><code>assert_equal(complex(dp) a, complex(dp) b)</code></td><td><code>a == b</code></td><td><code>assert_eq_complex_double_</code></td></tr>
-<tr><td><code>assert_equal(complex(dp) a, complex(dp) b, real(dp) tol)</code></td><td><code>abs(a-b) &lt; tol</code></td><td><code>assert_eq_complex_double_in_range_</code></td></tr>
+<tr><td><code>assert_equal(real a, real b)</code></td><td><code>abs(a-b) &lt; eps</code></td><td><code>assert_eq_real_</code></td></tr>
+<tr><td><code>assert_equal(real a, real b, real tol)</code></td><td><code>abs(a-b) &lt; tol</code></td><td><code>assert_eq_real_</code></td></tr>
+<tr><td><code>assert_equal(real(dp) a, real(dp) b)</code></td><td><code>abs(a-b) &lt; eps</code></td><td><code>assert_eq_double_</code></td></tr>
+<tr><td><code>assert_equal(real(dp) a, real(dp) b, real(dp) tol)</code></td><td><code>abs(a-b) &lt; tol</code></td><td><code>assert_eq_double_</code></td></tr>
+<tr><td><code>assert_equal(complex a, complex b)</code></td><td><code>abs(a-b) &lt; (eps,eps)</code></td><td><code>assert_eq_complex_</code></td></tr>
+<tr><td><code>assert_equal(complex a, complex b, tol)</code></td><td><code>abs(a-b) &lt; (tol,tol)</code></td><td><code>assert_eq_complex_</code></td></tr>
+<tr><td><code>assert_equal(complex(dp) a, complex(dp) b)</code></td><td><code>abs(a-b) &lt; (eps,eps)</code></td><td><code>assert_eq_complex_double_</code></td></tr>
+<tr><td><code>assert_equal(complex(dp) a, complex(dp) b, real(dp) tol)</code></td><td><code>abs(a-b) &lt; (tol,tol)</code></td><td><code>assert_eq_complex_double_</code></td></tr>
 </table><br>
 </br></p>
 <h4>2. <code><a href="../../proc/assert_true.html">assert_true</a></code></h4>
