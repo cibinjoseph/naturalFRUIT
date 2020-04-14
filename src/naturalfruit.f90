@@ -1067,7 +1067,7 @@ contains
       return
     endif
 
-    logical_array = (var1 == var2)
+    logical_array = (var1 .eqv. var2)
     if (all(logical_array)) then
       if (.not. present(status)) then
         call add_success
@@ -1112,7 +1112,7 @@ contains
       return
     endif
 
-    logical_array = (var1 == var2)
+    logical_array = (var1 .eqv. var2)
     if (all(logical_array)) then
       if (.not. present(status)) then
         call add_success

@@ -1,10 +1,10 @@
 # Makefile for running tests
 
-ifndef $(FC) 
-	FC = gfortran
+ifndef $(FC)
+	FC = gfortran-9
 endif
 
-ifeq ($(FC), gfortran) 
+ifeq ($(FC), gfortran-9)
 	flags = -fbacktrace -Wall
 endif
 
