@@ -140,6 +140,9 @@ module naturalfruit
   public :: fruit_hide_dots, fruit_show_dots
   public :: get_prefix, set_prefix
 
+  ! ! Uncomment the following if Fortran 2008
+  ! ! findloc() intrinsic function is unavailable
+  ! private :: findloc
 
   interface assert_equal
     !! category: testcase subroutines
@@ -203,7 +206,6 @@ module naturalfruit
     module procedure assert_not_eq_1d_complex_double_
     module procedure assert_not_eq_2d_complex_double_
     !====== end of generated inteface ======
-
   end interface
 
   interface add_fail
@@ -226,6 +228,15 @@ module naturalfruit
     module procedure to_s_double_complex_
     module procedure to_s_string_
   end interface
+
+  ! ! Uncomment the following if Fortran 2008
+  ! ! findloc() intrinsic function is unavailable
+  ! interface findloc
+  !   !! Returns location of first occurence
+  !   !! This is provided for use in older versions of compilers
+  !   module procedure findloc_1d_
+  !   module procedure findloc_2d_
+  ! end interface findloc
 
 contains
 
@@ -1047,9 +1058,11 @@ contains
   !------ 1d_logical ------
   subroutine assert_eq_1d_logical_(var1, var2, message, status)
     logical, intent(in), dimension(:) :: var1, var2
-    integer :: i, n
+    integer :: n
+    integer, dimension(1) :: indx
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
+    logical, dimension(size(var1, 1)) :: logical_array
 
     n = size(var1, 1)
 
@@ -1065,33 +1078,35 @@ contains
       return
     endif
 
-    do i = 1, n
-      if (var1(i) .neqv. var2(i)) then
-        if (.not. present(status)) then
-          call failed_assert_action( &
-            & to_s(var1(i)), &
-            & to_s(var2(i)), &
-            & '1d array has difference, '//message, if_is=.true.)
-        else
-          status = .false.
-        endif
-        return
+    logical_array = (var1 .eqv. var2)
+    if (all(logical_array)) then
+      if (.not. present(status)) then
+        call add_success
+      else
+        status = .true.
       endif
-    enddo
-
-    if (.not. present(status)) then
-      call add_success
     else
-      status = .true.
+      indx = findloc(logical_array, .false.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(indx(1))), &
+          & to_s(var2(indx(1))), &
+          & '1d array has difference, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
     endif
+
   end subroutine assert_eq_1d_logical_
 
   !------ 2d_logical ------
   subroutine assert_eq_2d_logical_(var1, var2, message, status)
     logical, intent(in), dimension(:, :) :: var1, var2
-    integer :: i, j, n, m
+    integer :: n, m
+    integer, dimension(2) :: indx
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
+    logical, dimension(size(var1, 1), size(var1, 2)) :: logical_array
 
     n = size(var1, 1)
     m = size(var1, 2)
@@ -1108,25 +1123,23 @@ contains
       return
     endif
 
-    do j = 1, m
-      do i = 1, n
-        if (var1(i, j) .neqv. var2(i, j)) then
-          if (.not. present(status)) then
-            call failed_assert_action( &
-              & to_s(var1(i, j)), &
-              & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
-          else
-            status = .false.
-          endif
-          return
-        endif
-      enddo
-    enddo
-
-    if (.not. present(status)) then
-      call add_success
+    logical_array = (var1 .eqv. var2)
+    if (all(logical_array)) then
+      if (.not. present(status)) then
+        call add_success
+      else
+        status = .true.
+      endif
     else
-      status = .true.
+      indx = findloc(logical_array, .false.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(indx(1), indx(2))), &
+          & to_s(var2(indx(1), indx(2))), &
+          & '2d array has difference, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
     endif
   end subroutine assert_eq_2d_logical_
 
@@ -1265,9 +1278,11 @@ contains
   !------ 1d_int ------
   subroutine assert_eq_1d_int_(var1, var2, message, status)
     integer, intent(in), dimension(:) :: var1, var2
-    integer :: i, n
+    integer :: n
+    integer, dimension(1) :: indx
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
+    logical, dimension(size(var1, 1)) :: logical_array
 
     n = size(var1, 1)
 
@@ -1283,32 +1298,34 @@ contains
       return
     endif
 
-    do i = 1, n
-      if (var1(i) /= var2(i)) then
-        if (.not. present(status)) then
-          call failed_assert_action( &
-            & to_s(var1(i)), &
-            & to_s(var2(i)), &
-            & '1d array has difference, '//message, if_is=.true.)
-        else
-          status = .false.
-        endif
-        return
+    logical_array = (var1 == var2)
+    if (all(logical_array)) then
+      if (.not. present(status)) then
+        call add_success
+      else
+        status = .true.
       endif
-    enddo
-    if (.not. present(status)) then
-      call add_success
     else
-      status = .true.
+      indx = findloc(logical_array, .false.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(indx(1))), &
+          & to_s(var2(indx(1))), &
+          & '1d array has difference, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
     endif
   end subroutine assert_eq_1d_int_
 
   !------ 2d_int ------
   subroutine assert_eq_2d_int_(var1, var2, message, status)
     integer, intent(in), dimension(:, :) :: var1, var2
-    integer :: i, j, n, m
+    integer :: n, m
+    integer, dimension(2) :: indx
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
+    logical, dimension(size(var1, 1), size(var1, 2)) :: logical_array
 
     n = size(var1, 1)
     m = size(var1, 2)
@@ -1325,24 +1342,23 @@ contains
       return
     endif
 
-    do j = 1, m
-      do i = 1, n
-        if (var1(i, j) /= var2(i, j)) then
-          if (.not. present(status)) then
-            call failed_assert_action( &
-              & to_s(var1(i, j)), &
-              & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
-          else
-            status = .false.
-          endif
-          return
-        endif
-      enddo
-    enddo
-    if (.not. present(status)) then
-      call add_success
+    logical_array = (var1 == var2)
+    if (all(logical_array)) then
+      if (.not. present(status)) then
+        call add_success
+      else
+        status = .true.
+      endif
     else
-      status = .true.
+      indx = findloc(logical_array, .false.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(indx(1), indx(2))), &
+          & to_s(var2(indx(1), indx(2))), &
+          & '2d array has difference, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
     endif
   end subroutine assert_eq_2d_int_
 
@@ -1381,7 +1397,9 @@ contains
     real, intent(in), optional :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
-    integer :: i, n
+    integer :: n
+    integer, dimension(1) :: indx
+    logical, dimension(size(var1, 1)) :: logical_array
     real :: tol
 
     n = size(var1, 1)
@@ -1401,34 +1419,36 @@ contains
     tol = eps
     if (present(delta)) tol = delta
 
-    do i = 1, n
-      if (abs(var1(i) - var2(i)) > tol) then
-        if (.not. present(status)) then
-          call failed_assert_action( &
-            & to_s(var1(i)), &
-            & to_s(var2(i)), &
-            & '1d array has difference, '//message, if_is=.true.)
-        else
-          status = .false.
-        endif
-        return
+    logical_array = (abs(var1 - var2) <= tol)
+    if (all(logical_array)) then
+      if (.not. present(status)) then
+        call add_success
+      else
+        status = .true.
       endif
-    enddo
-    if (.not. present(status)) then
-      call add_success
     else
-      status = .true.
+      indx = findloc(logical_array, .false.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(indx(1))), &
+          & to_s(var2(indx(1))), &
+          & '1d array has difference, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
     endif
   end subroutine assert_eq_1d_real_
 
   !------ 2d_real ------
   subroutine assert_eq_2d_real_(var1, var2, delta, message, status)
-    integer :: i, j, n, m
+    integer :: n, m
+    integer, dimension(2) :: indx
     real, intent(in), dimension(:, :) :: var1, var2
     real, intent(in), optional :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
     real :: tol
+    logical, dimension(size(var1, 1), size(var1, 2)) :: logical_array
 
     n = size(var1, 1)
     m = size(var1, 2)
@@ -1448,24 +1468,23 @@ contains
     tol = eps
     if (present(delta)) tol = delta
 
-    do j = 1, m
-      do i = 1, n
-        if (abs(var1(i, j) - var2(i, j)) > tol) then
-          if (.not. present(status)) then
-            call failed_assert_action( &
-              & to_s(var1(i, j)), &
-              & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
-          else
-            status = .false.
-          endif
-          return
-        endif
-      enddo
-    enddo
-    if (.not. present(status)) then
-      call add_success
+    logical_array = (abs(var1 - var2) <= tol)
+    if (all(logical_array)) then
+      if (.not. present(status)) then
+        call add_success
+      else
+        status = .true.
+      endif
     else
-      status = .true.
+      indx = findloc(logical_array, .false.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(indx(1), indx(2))), &
+          & to_s(var2(indx(1), indx(2))), &
+          & '2d array has difference, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
     endif
   end subroutine assert_eq_2d_real_
 
@@ -1500,11 +1519,13 @@ contains
 
   !------ 1d_double ------
   subroutine assert_eq_1d_double_(var1, var2, delta, message, status)
-    integer :: i, n
+    integer :: n
+    integer, dimension(1) :: indx
     real(dp), intent(in), dimension(:) :: var1, var2
     real(dp), intent(in), optional :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
+    logical, dimension(size(var1, 1)) :: logical_array
     real(dp) :: tol
 
     n = size(var1, 1)
@@ -1524,33 +1545,36 @@ contains
     tol = eps_dp
     if (present(delta)) tol = delta
 
-    do i = 1, n
-      if (abs(var1(i) - var2(i)) > tol) then
-        if (.not. present(status)) then
-          call failed_assert_action( &
-            & to_s(var1(i)), &
-            & to_s(var2(i)), &
-            & '1d array has difference, '//message, if_is=.true.)
-        else
-          status = .false.
-        endif
-        return
+    logical_array = (abs(var1 - var2) <= tol)
+    if (all(logical_array)) then
+      if (.not. present(status)) then
+        call add_success
+      else
+        status = .true.
       endif
-    enddo
-    if (.not. present(status)) then
-      call add_success
     else
-      status = .true.
+      indx = findloc(logical_array, .false.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(indx(1))), &
+          & to_s(var2(indx(1))), &
+          & '1d array has difference, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
     endif
+
   end subroutine assert_eq_1d_double_
 
   !------ 2d_double ------
   subroutine assert_eq_2d_double_(var1, var2, delta, message, status)
-    integer :: i, j, n, m
+    integer :: n, m
+    integer, dimension(2) :: indx
     real(dp), intent(in), dimension(:, :) :: var1, var2
     real(dp), intent(in), optional :: delta
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
+    logical, dimension(size(var1, 1), size(var1, 2)) :: logical_array
     real(dp) :: tol
 
     n = size(var1, 1)
@@ -1571,24 +1595,23 @@ contains
     tol = eps_dp
     if (present(delta)) tol = delta
 
-    do j = 1, m
-      do i = 1, n
-        if (abs(var1(i, j) - var2(i, j)) > tol) then
-          if (.not. present(status)) then
-            call failed_assert_action( &
-              & to_s(var1(i, j)), &
-              & to_s(var2(i, j)), '2d array has difference, '//message, if_is=.true.)
-          else
-            status = .false.
-          endif
-          return
-        endif
-      enddo
-    enddo
-    if (.not. present(status)) then
-      call add_success
+    logical_array = (abs(var1 - var2) <= tol)
+    if (all(logical_array)) then
+      if (.not. present(status)) then
+        call add_success
+      else
+        status = .true.
+      endif
     else
-      status = .true.
+      indx = findloc(logical_array, .false.)
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & to_s(var1(indx(1), indx(2))), &
+          & to_s(var2(indx(1), indx(2))), &
+          & '2d array has difference, '//message, if_is=.true.)
+      else
+        status = .false.
+      endif
     endif
   end subroutine assert_eq_2d_double_
 
@@ -2531,4 +2554,37 @@ contains
     to_s_string_ = value
   end function to_s_string_
 
+  ! ! Uncomment the following if Fortran 2008
+  ! ! findloc() intrinsic function is unavailable
+  ! function findloc_1d_(logical_array, value)
+  !   !! Returns location of value in logical_array
+  !   !! Provided for older compiler versions
+  !   logical, intent(in), dimension(:) :: logical_array
+  !   logical, intent(in) :: value
+  !   integer, dimension(1) :: findloc_1d_
+  !   integer :: i
+  !   do i = 1, size(logical_array, 1)
+  !     if (logical_array(i) .eqv. value) then
+  !       findloc_1d_ = (/i/)
+  !       return
+  !     endif
+  !   enddo
+  ! end function findloc_1d_
+
+  ! function findloc_2d_(logical_array, value)
+  !   !! Returns location of value in logical_array
+  !   !! Provided for older compiler versions
+  !   logical, intent(in), dimension(:, :) :: logical_array
+  !   logical, intent(in) :: value
+  !   integer, dimension(2) :: findloc_2d_
+  !   integer :: i, j
+  !   do j = 1, size(logical_array, 2)
+  !     do i = 1, size(logical_array, 1)
+  !       if (logical_array(i, j) .eqv. value) then
+  !         findloc_2d_= (/i, j/)
+  !         return
+  !       endif
+  !     enddo
+  !   enddo
+  ! end function findloc_2d_
 end module naturalfruit
