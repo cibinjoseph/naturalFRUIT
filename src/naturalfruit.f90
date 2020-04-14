@@ -22,6 +22,8 @@ module naturalfruit
   private
 
   integer, parameter :: dp = kind(1.0d0)  !! Double precision
+  real, parameter :: eps = epsilon(1.0)  !! Machine epsilon
+  real, parameter :: eps_dp = epsilon(1.0d0)  !! Machine epsilon
 
   integer, parameter :: STDOUT_DEFAULT = 6
   integer :: stdout = STDOUT_DEFAULT
@@ -1374,7 +1376,7 @@ contains
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
-    if (var1 .ne. var2) then
+    if (abs(var1 - var2) > eps) then
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1), &
@@ -1439,7 +1441,7 @@ contains
     endif
 
     do i = 1, n
-      if (var1(i) .ne. var2(i)) then
+      if (abs(var1(i) - var2(i)) > eps) then
         if (.not. present(status)) then
           call failed_assert_action( &
             & to_s(var1(i)), &
@@ -1524,7 +1526,7 @@ contains
 
     do j = 1, m
       do i = 1, n
-        if (var1(i, j) .ne. var2(i, j)) then
+        if (abs(var1(i, j) - var2(i, j)) > eps) then
           if (.not. present(status)) then
             call failed_assert_action( &
               & to_s(var1(i, j)), &
@@ -1593,7 +1595,7 @@ contains
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
-    if (var1 .ne. var2) then
+    if (abs(var1 - var2) > eps_dp) then
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1), &
@@ -1662,7 +1664,7 @@ contains
       else
         status = .false.
       endif
-      if (var1(i) .ne. var2(i)) then
+      if (abs(var1(i) - var2(i)) > eps_dp) then
         if (.not. present(status)) then
           call failed_assert_action( &
             & to_s(var1(i)), &
@@ -1753,7 +1755,7 @@ contains
         status = .false.
       endif
       do i = 1, n
-        if (var1(i, j) .ne. var2(i, j)) then
+        if (abs(var1(i, j) - var2(i, j)) > eps_dp) then
           if (.not. present(status)) then
             call failed_assert_action( &
               & to_s(var1(i, j)), &
@@ -1826,7 +1828,7 @@ contains
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
-    if (var1 .ne. var2) then
+    if (abs(real(var1-var2)) > eps .or. abs(aimag(var1-var2)) > eps) then
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1), &
@@ -1894,7 +1896,8 @@ contains
       else
         status = .false.
       endif
-      if (var1(i) .ne. var2(i)) then
+      if (abs(real(var1(i) - var2(i))) > eps .or. &
+        abs(aimag(var1(i) - var2(i))) > eps) then
         if (.not. present(status)) then
           call failed_assert_action( &
             & to_s(var1(i)), &
@@ -1984,7 +1987,8 @@ contains
         status = .false.
       endif
       do i = 1, n
-        if (var1(i, j) .ne. var2(i, j)) then
+        if (abs(real(var1(i, j) - var2(i, j))) > eps .or. &
+          abs(aimag(var1(i, j) - var2(i, j))) > eps ) then
           if (.not. present(status)) then
             call failed_assert_action( &
               & to_s(var1(i, j)), &
@@ -2057,7 +2061,8 @@ contains
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
-    if (var1 .ne. var2) then
+    if (abs(real(var1 - var2, kind=dp)) > eps_dp .or. &
+      abs(dimag(var1 - var2)) > eps_dp) then
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1), &
@@ -2125,7 +2130,8 @@ contains
       else
         status = .false.
       endif
-      if (var1(i) .ne. var2(i)) then
+      if (abs(real(var1(i) - var2(i), kind=dp)) > eps_dp .or. &
+        abs(dimag(var1(i) - var2(i))) > eps_dp) then
         if (.not. present(status)) then
           call failed_assert_action( &
             & to_s(var1(i)), &
@@ -2215,7 +2221,8 @@ contains
         status = .false.
       endif
       do i = 1, n
-        if (var1(i, j) .ne. var2(i, j)) then
+        if (abs(real(var1(i, j) - var2(i, j), kind=dp)) > eps .or. &
+          abs(dimag(var1(i, j) - var2(i, j))) > eps) then
           if (.not. present(status)) then
             call failed_assert_action( &
               & to_s(var1(i, j)), &
