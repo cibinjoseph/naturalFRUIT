@@ -140,6 +140,9 @@ module naturalfruit
   public :: fruit_hide_dots, fruit_show_dots
   public :: get_prefix, set_prefix
 
+  ! ! Uncomment the following if Fortran 2008
+  ! ! findloc() intrinsic function is unavailable
+  ! private :: findloc
 
   interface assert_equal
     !! category: testcase subroutines
@@ -203,7 +206,6 @@ module naturalfruit
     module procedure assert_not_eq_1d_complex_double_
     module procedure assert_not_eq_2d_complex_double_
     !====== end of generated inteface ======
-
   end interface
 
   interface add_fail
@@ -226,6 +228,15 @@ module naturalfruit
     module procedure to_s_double_complex_
     module procedure to_s_string_
   end interface
+
+  ! ! Uncomment the following if Fortran 2008
+  ! ! findloc() intrinsic function is unavailable
+  ! interface findloc
+  !   !! Returns location of first occurence
+  !   !! This is provided for use in older versions of compilers
+  !   module procedure findloc_1d_
+  !   module procedure findloc_2d_
+  ! end interface findloc
 
 contains
 
@@ -2543,4 +2554,37 @@ contains
     to_s_string_ = value
   end function to_s_string_
 
+  ! ! Uncomment the following if Fortran 2008
+  ! ! findloc() intrinsic function is unavailable
+  ! function findloc_1d_(logical_array, value)
+  !   !! Returns location of value in logical_array
+  !   !! Provided for older compiler versions
+  !   logical, intent(in), dimension(:) :: logical_array
+  !   logical, intent(in) :: value
+  !   integer, dimension(1) :: findloc_1d_
+  !   integer :: i
+  !   do i = 1, size(logical_array, 1)
+  !     if (logical_array(i) .eqv. value) then
+  !       findloc_1d_ = (/i/)
+  !       return
+  !     endif
+  !   enddo
+  ! end function findloc_1d_
+
+  ! function findloc_2d_(logical_array, value)
+  !   !! Returns location of value in logical_array
+  !   !! Provided for older compiler versions
+  !   logical, intent(in), dimension(:, :) :: logical_array
+  !   logical, intent(in) :: value
+  !   integer, dimension(2) :: findloc_2d_
+  !   integer :: i, j
+  !   do j = 1, size(logical_array, 2)
+  !     do i = 1, size(logical_array, 1)
+  !       if (logical_array(i, j) .eqv. value) then
+  !         findloc_2d_= (/i, j/)
+  !         return
+  !       endif
+  !     enddo
+  !   enddo
+  ! end function findloc_2d_
 end module naturalfruit

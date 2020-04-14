@@ -20,6 +20,10 @@ The list of all subroutines available for use is provided in [Documentation](htt
 ## Usage
 This repo is under very active development and a lot of drastic changes are being made at the moment. These include removal of deprecated and redundant subroutines and functions. Until this disclaimer is removed, users are cautioned against using naturalFRUIT and advised to use the original FRUIT module.
 
+## Requirements
+The naturalfruit module contains the `findloc()` intrinsic function that was introduced in Fortran 2008. This requires `gfortran-9` or `ifort-17+` for compiling.
+If these compilers aren't available, a primitive implementation of the `findloc()` function, useful to this specific module, is provided as commented code and may be used with older versions that support Fortran 90.
+
 ## Contibution
 All contributions through pull requests are accepted.  
 
