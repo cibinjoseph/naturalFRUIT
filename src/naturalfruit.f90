@@ -1525,10 +1525,6 @@ contains
     if (present(delta)) tol = delta
 
     do i = 1, n
-      if (.not. present(status)) then
-      else
-        status = .false.
-      endif
       if (abs(var1(i) - var2(i)) > tol) then
         if (.not. present(status)) then
           call failed_assert_action( &
@@ -1576,10 +1572,6 @@ contains
     if (present(delta)) tol = delta
 
     do j = 1, m
-      if (.not. present(status)) then
-      else
-        status = .false.
-      endif
       do i = 1, n
         if (abs(var1(i, j) - var2(i, j)) > tol) then
           if (.not. present(status)) then
@@ -1655,10 +1647,6 @@ contains
     if (present(delta)) tol = delta
 
     do i = 1, n
-      if (.not. present(status)) then
-      else
-        status = .false.
-      endif
       if (abs(real(var1(i) - var2(i))) > tol .or. &
         abs(aimag(var1(i) - var2(i))) > tol) then
         if (.not. present(status)) then
@@ -1706,10 +1694,6 @@ contains
     if (present(delta)) tol = delta
 
     do j = 1, m
-      if (.not. present(status)) then
-      else
-        status = .false.
-      endif
       do i = 1, n
         if (abs(real(var1(i, j) - var2(i, j))) > tol .or. &
           abs(aimag(var1(i, j) - var2(i, j))) > tol ) then
@@ -1787,10 +1771,6 @@ contains
     if (present(delta)) tol = delta
 
     do i = 1, n
-      if (.not. present(status)) then
-      else
-        status = .false.
-      endif
       if (abs(real(var1(i) - var2(i), kind=dp)) > tol .or. &
         abs(dimag(var1(i) - var2(i))) > tol) then
         if (.not. present(status)) then
@@ -1838,10 +1818,6 @@ contains
     if (present(delta)) tol = delta
 
     do j = 1, m
-      if (.not. present(status)) then
-      else
-        status = .false.
-      endif
       do i = 1, n
         if (abs(real(var1(i, j) - var2(i, j), kind=dp)) > tol .or. &
           abs(dimag(var1(i, j) - var2(i, j))) > tol) then
