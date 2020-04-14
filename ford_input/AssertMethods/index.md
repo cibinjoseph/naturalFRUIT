@@ -9,14 +9,14 @@ naturalFRUIT provides several assert methods to check for and report failures. T
 <tr><td>`assert_equal(logical a, logical b)`</td><td>`a == b`</td><td>`assert_eq_logical_`</td></tr>
 <tr><td>`assert_equal(string a, string b)`</td><td>`a == b`</td><td>`assert_eq_string_`</td></tr>
 <tr><td>`assert_equal(int a, int b)`</td><td>`a == b`</td><td>`assert_eq_int_`</td></tr>
-<tr><td>`assert_equal(real a, real b)`</td><td>`a == b`</td><td>`assert_eq_real_`</td></tr>
-<tr><td>`assert_equal(real a, real b, real tol)`</td><td>`abs(a-b) < tol`</td><td>`assert_eq_real_in_range_`</td></tr>
-<tr><td>`assert_equal(real(dp) a, real(dp) b)`</td><td>`a == b`</td><td>`assert_eq_double_`</td></tr>
-<tr><td>`assert_equal(real(dp) a, real(dp) b, real(dp) tol)`</td><td>`abs(a-b) < tol`</td><td>`assert_eq_double_in_range_`</td></tr>
-<tr><td>`assert_equal(complex a, complex b)`</td><td>`a == b`</td><td>`assert_eq_complex_`</td></tr>
-<tr><td>`assert_equal(complex a, complex b, tol)`</td><td>`abs(a-b) < tol`</td><td>`assert_eq_complex_in_range_`</td></tr>
-<tr><td>`assert_equal(complex(dp) a, complex(dp) b)`</td><td>`a == b`</td><td>`assert_eq_complex_double_`</td></tr>
-<tr><td>`assert_equal(complex(dp) a, complex(dp) b, real(dp) tol)`</td><td>`abs(a-b) < tol`</td><td>`assert_eq_complex_double_in_range_`</td></tr>
+<tr><td>`assert_equal(real a, real b)`</td><td>`abs(a-b) < eps`</td><td>`assert_eq_real_`</td></tr>
+<tr><td>`assert_equal(real a, real b, real tol)`</td><td>`abs(a-b) < tol`</td><td>`assert_eq_real_`</td></tr>
+<tr><td>`assert_equal(real(dp) a, real(dp) b)`</td><td>`abs(a-b) < eps`</td><td>`assert_eq_double_`</td></tr>
+<tr><td>`assert_equal(real(dp) a, real(dp) b, real(dp) tol)`</td><td>`abs(a-b) < tol`</td><td>`assert_eq_double_`</td></tr>
+<tr><td>`assert_equal(complex a, complex b)`</td><td>`abs(a-b) < (eps,eps)`</td><td>`assert_eq_complex_`</td></tr>
+<tr><td>`assert_equal(complex a, complex b, tol)`</td><td>`abs(a-b) < (tol,tol)`</td><td>`assert_eq_complex_`</td></tr>
+<tr><td>`assert_equal(complex(dp) a, complex(dp) b)`</td><td>`abs(a-b) < (eps,eps)`</td><td>`assert_eq_complex_double_`</td></tr>
+<tr><td>`assert_equal(complex(dp) a, complex(dp) b, real(dp) tol)`</td><td>`abs(a-b) < (tol,tol)`</td><td>`assert_eq_complex_double_`</td></tr>
 </table>  
 </br>
 
