@@ -1,8 +1,9 @@
 language: bash
 
 before_install:
-  - sudo apt-get update
-  - sudo apt-get -y install gfortran
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  - sudo apt-get -q update
+  - sudo apt-get -y install gfortran-9
 
 script:
   - cd tests; make clean && make
