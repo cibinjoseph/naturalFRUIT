@@ -2580,6 +2580,6 @@ contains
         endif
       enddo
     enddo
-    findfalse_1d_ = (/0, 0/)
+    findfalse_2d_ = (/0, 0/)
   end function findfalse_2d_
 end module naturalfruit
