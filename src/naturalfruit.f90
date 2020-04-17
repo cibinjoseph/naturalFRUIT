@@ -2564,6 +2564,7 @@ contains
         return
       endif
     enddo
+    findfalse_1d_ = (/0/)
   end function findfalse_1d_
 
   function findfalse_2d_(logical_array)
@@ -2579,5 +2580,6 @@ contains
         endif
       enddo
     enddo
+    findfalse_1d_ = (/0, 0/)
   end function findfalse_2d_
 end module naturalfruit
