@@ -140,9 +140,11 @@ module naturalfruit
   public :: fruit_hide_dots, fruit_show_dots
   public :: get_prefix, set_prefix
 
-  ! ! Uncomment the following if Fortran 2008
-  ! ! findloc() intrinsic function is unavailable
-  ! private :: findloc
+  private :: findfalse
+  ! findloc() intrinsic introduced in Fortran 2008
+  ! may be used in place of findfalse.
+  ! However, untill gfortran-9 is well adopted by users,
+  ! findfalse can be used for ease of setup
 
   interface assert_equal
     !! category: testcase subroutines
@@ -229,14 +231,11 @@ module naturalfruit
     module procedure to_s_string_
   end interface
 
-  ! ! Uncomment the following if Fortran 2008
-  ! ! findloc() intrinsic function is unavailable
-  ! interface findloc
-  !   !! Returns location of first occurence
-  !   !! This is provided for use in older versions of compilers
-  !   module procedure findloc_1d_
-  !   module procedure findloc_2d_
-  ! end interface findloc
+  interface findfalse
+    !! Returns location of first occurence of false value
+    module procedure findfalse_1d_
+    module procedure findfalse_2d_
+  end interface findfalse
 
 contains
 
@@ -1086,7 +1085,7 @@ contains
         status = .true.
       endif
     else
-      indx = findloc(logical_array, .false.)
+      indx = findfalse(logical_array)
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1(indx(1))), &
@@ -1131,7 +1130,7 @@ contains
         status = .true.
       endif
     else
-      indx = findloc(logical_array, .false.)
+      indx = findfalse(logical_array)
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1(indx(1), indx(2))), &
@@ -1306,7 +1305,7 @@ contains
         status = .true.
       endif
     else
-      indx = findloc(logical_array, .false.)
+      indx = findfalse(logical_array)
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1(indx(1))), &
@@ -1350,7 +1349,7 @@ contains
         status = .true.
       endif
     else
-      indx = findloc(logical_array, .false.)
+      indx = findfalse(logical_array)
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1(indx(1), indx(2))), &
@@ -1427,7 +1426,7 @@ contains
         status = .true.
       endif
     else
-      indx = findloc(logical_array, .false.)
+      indx = findfalse(logical_array)
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1(indx(1))), &
@@ -1476,7 +1475,7 @@ contains
         status = .true.
       endif
     else
-      indx = findloc(logical_array, .false.)
+      indx = findfalse(logical_array)
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1(indx(1), indx(2))), &
@@ -1553,7 +1552,7 @@ contains
         status = .true.
       endif
     else
-      indx = findloc(logical_array, .false.)
+      indx = findfalse(logical_array)
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1(indx(1))), &
@@ -1603,7 +1602,7 @@ contains
         status = .true.
       endif
     else
-      indx = findloc(logical_array, .false.)
+      indx = findfalse(logical_array)
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1(indx(1), indx(2))), &
@@ -2554,37 +2553,33 @@ contains
     to_s_string_ = value
   end function to_s_string_
 
-  ! ! Uncomment the following if Fortran 2008
-  ! ! findloc() intrinsic function is unavailable
-  ! function findloc_1d_(logical_array, value)
-  !   !! Returns location of value in logical_array
-  !   !! Provided for older compiler versions
-  !   logical, intent(in), dimension(:) :: logical_array
-  !   logical, intent(in) :: value
-  !   integer, dimension(1) :: findloc_1d_
-  !   integer :: i
-  !   do i = 1, size(logical_array, 1)
-  !     if (logical_array(i) .eqv. value) then
-  !       findloc_1d_ = (/i/)
-  !       return
-  !     endif
-  !   enddo
-  ! end function findloc_1d_
+  function findfalse_1d_(logical_array)
+    !! Returns first occurence of .false. in logical_array
+    logical, intent(in), dimension(:) :: logical_array
+    integer, dimension(1) :: findfalse_1d_
+    integer :: i
+    do i = 1, size(logical_array, 1)
+      if (logical_array(i) .eqv. .false.) then
+        findfalse_1d_ = (/i/)
+        return
+      endif
+    enddo
+    findfalse_1d_ = (/0/)
+  end function findfalse_1d_
 
-  ! function findloc_2d_(logical_array, value)
-  !   !! Returns location of value in logical_array
-  !   !! Provided for older compiler versions
-  !   logical, intent(in), dimension(:, :) :: logical_array
-  !   logical, intent(in) :: value
-  !   integer, dimension(2) :: findloc_2d_
-  !   integer :: i, j
-  !   do j = 1, size(logical_array, 2)
-  !     do i = 1, size(logical_array, 1)
-  !       if (logical_array(i, j) .eqv. value) then
-  !         findloc_2d_= (/i, j/)
-  !         return
-  !       endif
-  !     enddo
-  !   enddo
-  ! end function findloc_2d_
+  function findfalse_2d_(logical_array)
+    !! Returns first occurence of .false. in logical_array
+    logical, intent(in), dimension(:, :) :: logical_array
+    integer, dimension(2) :: findfalse_2d_
+    integer :: i, j
+    do j = 1, size(logical_array, 2)
+      do i = 1, size(logical_array, 1)
+        if (logical_array(i, j) .eqv. .false.) then
+          findfalse_2d_= (/i, j/)
+          return
+        endif
+      enddo
+    enddo
+    findfalse_1d_ = (/0, 0/)
+  end function findfalse_2d_
 end module naturalfruit
