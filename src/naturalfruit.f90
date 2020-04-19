@@ -1149,7 +1149,7 @@ contains
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
-    if (trim(adjustl(var1)) /= trim(adjustl(var2))) then
+    if (adjustl(var1) /= adjustl(var2)) then
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1), &
@@ -1189,7 +1189,7 @@ contains
     endif
 
     do i = 1, n
-      if (trim(adjustl(var1(i))) /= trim(adjustl(var2(i)))) then
+      if (adjustl(var1(i)) /= adjustl(var2(i))) then
         if (.not. present(status)) then
           call failed_assert_action( &
             & to_s(var1(i)), &
@@ -1232,7 +1232,7 @@ contains
 
     do j = 1, m
       do i = 1, n
-        if (trim(adjustl(var1(i, j))) /= trim(adjustl(var2(i, j)))) then
+        if (adjustl(var1(i, j)) /= adjustl(var2(i, j))) then
           if (.not. present(status)) then
             call failed_assert_action( &
               & to_s(var1(i, j)), &
