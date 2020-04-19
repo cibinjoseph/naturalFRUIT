@@ -1,6 +1,6 @@
 title: Assert methods
 
-naturalFRUIT provides several assert methods to check for and report failures. The following list contains variants of the most commonly used formats. Although only the `[[assert_equal]]` and `[[assert_true]]` methods are shown here, analogous formats exist for the `[[assert_not_equal]]` and `[[assert_false]]` methods.</br></br>
+naturalFRUIT provides several assert methods to check for and report failures. The following list contains variants of the most commonly used formats. Although only the `[[assert_equal]]`, `[[assert_true]]` and `[[assert_identical]]` methods are described here, analogous formats exist for the `[[assert_not_equal]]`, `[[assert_false]]` and `[[assert_not_identical]]` methods.</br></br>
 
 #### 1. `[[assert_equal]]`
 <table style="width:100%", rules="rows">
@@ -25,6 +25,14 @@ naturalFRUIT provides several assert methods to check for and report failures. T
 <tr><th>Syntax</th> <th>Returns true if</th> <th>Underlying subroutine</th></tr>
 <tr><td></td><td></td><td></td></tr>
 <tr><td>`assert_true(logical a)`</td><td>`a == .true.`</td><td>`assert_true`</td></tr>
+</table>  
+</br>
+
+#### 3. `[[assert_identical]]`
+<table style="width:100%", rules="rows">
+<tr><th>Syntax</th> <th>Returns true if</th> <th>Underlying subroutine</th></tr>
+<tr><td></td><td></td><td></td></tr>
+<tr><td>`assert_identical(string filename1, string filename2)`</td><td>`contents are same`</td><td>`assert_identical`</td></tr>
 </table>  
 </br>
 
