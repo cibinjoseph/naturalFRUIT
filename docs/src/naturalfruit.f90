@@ -106,6 +106,7 @@ module naturalfruit
   ! Assert subroutines
   public :: assert_equal, assert_not_equal
   public :: assert_true, assert_false
+  public :: assert_identical, assert_not_identical
 
   ! Common testing subroutines
   public :: testsuite_initialize,  testsuite_finalize
@@ -1148,7 +1149,7 @@ contains
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
 
-    if (trim(adjustl(var1)) /= trim(adjustl(var2))) then
+    if (adjustl(var1) /= adjustl(var2)) then
       if (.not. present(status)) then
         call failed_assert_action( &
           & to_s(var1), &
@@ -1188,7 +1189,7 @@ contains
     endif
 
     do i = 1, n
-      if (trim(adjustl(var1(i))) /= trim(adjustl(var2(i)))) then
+      if (adjustl(var1(i)) /= adjustl(var2(i))) then
         if (.not. present(status)) then
           call failed_assert_action( &
             & to_s(var1(i)), &
@@ -1231,7 +1232,7 @@ contains
 
     do j = 1, m
       do i = 1, n
-        if (trim(adjustl(var1(i, j))) /= trim(adjustl(var2(i, j)))) then
+        if (adjustl(var1(i, j)) /= adjustl(var2(i, j))) then
           if (.not. present(status)) then
             call failed_assert_action( &
               & to_s(var1(i, j)), &
@@ -2489,6 +2490,140 @@ contains
     endif
   end subroutine assert_not_eq_2d_complex_double_
 
+  subroutine assert_identical(filename1, filename2, message, status)
+    !! category: testcase subroutine
+    !! Compare two files and return true if identical
+    character(len=*), intent(in) :: filename1, filename2
+    character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
+    integer :: size1, size2, iostatVal
+    character(:), allocatable :: contents1, contents2
+    logical :: file_exists, is_equal
+
+    ! Check file existence filename1
+    inquire(file=filename1, exist=file_exists)
+    if (.not. file_exists) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & filename1, 'none', &
+          & 'File does not exist, '// message, if_is=.false.)
+      else
+        status = .false.
+      endif
+      return
+    endif
+
+    ! Check file existence filename2
+    inquire(file=filename2, exist=file_exists)
+    if (.not. file_exists) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & filename2, 'none', &
+          & 'File does not exist, '// message, if_is=.true.)
+      else
+        status = .false.
+      endif
+      return
+    endif
+
+    open(unit=10, file=filename1, action="read", &
+      & form="unformatted", access="stream", iostat=iostatVal)
+    if (iostatVal .ne. 0) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & filename1, 'none', &
+          'File appears empty or does not exist, '// message, if_is=.true.)
+      else
+        status = .false.
+      endif
+      return
+    endif
+    inquire(unit=10, size=size1)
+
+    open(unit=11, file=filename2, action="read", &
+      & form="unformatted", access="stream", iostat=iostatVal)
+    if (iostatVal .ne. 0) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & filename2, 'none', &
+          'File appears empty or does not exist, '// message, if_is=.true.)
+      else
+        status = .false.
+      endif
+      return
+    endif
+    inquire(unit=11, size=size2)
+
+    ! Check sizes
+    call assert_equal(size1, size2, status=is_equal)
+    if (.not. is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & filename1, filename2, &
+          & 'Files do not match, '// message, if_is=.true.)
+      else
+        status= .false.
+      endif
+      close(10)
+      close(11)
+      return
+    else
+      allocate(character(size1) :: contents1)
+      read(10) contents1
+      close(10)
+
+      allocate(character(size2) :: contents2)
+      read(11) contents2
+      close(11)
+    endif
+
+    ! Check contents
+    call assert_equal(contents1, contents2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call add_success()
+      else
+        status =.true.
+      endif
+    else
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & filename1, filename2, &
+          & 'Files do not match, ' // message, if_is=.true.)
+      else
+        status = .false.
+      endif
+    endif
+  end subroutine assert_identical
+
+  subroutine assert_not_identical(filename1, filename2, message, status)
+    !! category: testcase subroutine
+    !! Compare two files and return true if not identical
+    character(len=*), intent(in) :: filename1, filename2
+    character(len=*), intent(in), optional :: message
+    logical, intent(out), optional :: status
+    logical :: is_equal
+
+    call assert_identical(filename1, filename2, status=is_equal)
+
+    if (is_equal) then
+      if (.not. present(status)) then
+        call add_success()
+      else
+        status =.true.
+      endif
+    else
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & filename1, filename2, &
+          & 'Files do match, ' // message, if_is=.false.)
+      else
+        status = .false.
+      endif
+    endif
+  end subroutine assert_not_identical
+
   !====== end of generated code ======
 
   function to_s_int_(value)
@@ -2501,7 +2636,7 @@ contains
     to_s_int_ = adjustl(trim(result))
   end function to_s_int_
 
-  function to_s_real_(value)
+    function to_s_real_(value)
     !! Convert real to string
     character(len=500):: to_s_real_
     real, intent(in) :: value

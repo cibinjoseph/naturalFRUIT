@@ -124,7 +124,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="91.7% of total for modules and submodules.">1846 statements</a>
+    title="92.1% of total for modules and submodules.">1945 statements</a>
      </li> 
      
      
@@ -294,6 +294,10 @@
       
       <a class="list-group-item" href="../module/naturalfruit.html#proc-assert_false">assert_false</a>
       
+      <a class="list-group-item" href="../module/naturalfruit.html#proc-assert_identical">assert_identical</a>
+      
+      <a class="list-group-item" href="../module/naturalfruit.html#proc-assert_not_identical">assert_not_identical</a>
+      
     </div>
   </div>
 </div>
@@ -461,6 +465,10 @@
       <a class="list-group-item" href="../module/naturalfruit.html#proc-assert_true">assert_true</a>
       
       <a class="list-group-item" href="../module/naturalfruit.html#proc-assert_false">assert_false</a>
+      
+      <a class="list-group-item" href="../module/naturalfruit.html#proc-assert_identical">assert_identical</a>
+      
+      <a class="list-group-item" href="../module/naturalfruit.html#proc-assert_not_identical">assert_not_identical</a>
       
     </div>
   </div>
@@ -7546,6 +7554,234 @@ public subroutine <a href='../proc/assert_false.html'>assert_false</a>(var1, mes
   
   <td></td><td>::</td>
   <td><strong>var1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-assert_identical"></span><h3>
+public subroutine <a href='../proc/assert_identical.html'>assert_identical</a>(filename1, filename2, message, status)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+  <dl class="dl-horizontal">
+    
+    
+    
+    
+    
+    <dt>Category</dt><dd>testcase subroutine</dd>
+    
+  </dl>
+
+
+
+<p>Compare two files and return true if identical</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>filename1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>filename2</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-assert_not_identical"></span><h3>
+public subroutine <a href='../proc/assert_not_identical.html'>assert_not_identical</a>(filename1, filename2, message, status)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+  <dl class="dl-horizontal">
+    
+    
+    
+    
+    
+    <dt>Category</dt><dd>testcase subroutine</dd>
+    
+  </dl>
+
+
+
+<p>Compare two files and return true if not identical</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>filename1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>filename2</strong></td><td></td>
   
 </tr>
 

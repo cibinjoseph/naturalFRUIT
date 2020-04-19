@@ -10,7 +10,7 @@
     <meta name="author" content="Cibin Joseph" >
     <link rel="icon" href="../favicon.png">
 
-    <title>end_override_stdout &ndash; naturalFRUIT</title>
+    <title>assert_identical &ndash; naturalFRUIT</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -106,7 +106,7 @@
     
   
   <div class="row">
-    <h1>end_override_stdout
+    <h1>assert_identical
       <small>Subroutine</small>
     
     </h1>
@@ -120,13 +120,13 @@
      
      
     
-    <li><i class="fa fa-folder-open"></i> testsuite subroutine</li>
+    <li><i class="fa fa-folder-open"></i> testcase subroutine</li>
     
     
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 0.7% of total for procedures.">4 statements</a>
+    title="13.5% of total for procedures.">78 statements</a>
      </li> 
      
      
@@ -143,7 +143,7 @@
      <li><a href='../module/naturalfruit.html'>naturalfruit</a></li>
     
   
-     <li class="active">end_override_stdout</li>
+     <li class="active">assert_identical</li>
   </ol>
 </div>
 </div>
@@ -193,7 +193,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-public subroutine end_override_stdout()
+public subroutine assert_identical(filename1, filename2, message, status)
     
     
    
@@ -203,13 +203,84 @@ public subroutine end_override_stdout()
 
 
     
-    <p>Revert override of stdout to default. Terminal by default.</p>
+    <p>Compare two files and return true if identical</p>
     
 
     <h3>Arguments</h3>
     
-    <em>None</em>
-    <br>
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-filename1"></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>filename1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-filename2"></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>filename2</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-message%7E4"></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>message</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-status%7E3"></span>logical,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>status</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
     
     
     

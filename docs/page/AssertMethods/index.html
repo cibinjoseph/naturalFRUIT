@@ -129,7 +129,7 @@
   
   <div class="row">
     <div class="col-md-9 col-md-push-3" id='text'>
-      <p>naturalFRUIT provides several assert methods to check for and report failures. The following list contains variants of the most commonly used formats. Although only the <code><a href="../../interface/assert_equal.html">assert_equal</a></code> and <code><a href="../../proc/assert_true.html">assert_true</a></code> methods are shown here, analogous formats exist for the <code><a href="../../interface/assert_not_equal.html">assert_not_equal</a></code> and <code><a href="../../proc/assert_false.html">assert_false</a></code> methods.</br></br></p>
+      <p>naturalFRUIT provides several assert methods to check for and report failures. The following list contains variants of the most commonly used formats. Although only the <code><a href="../../interface/assert_equal.html">assert_equal</a></code>, <code><a href="../../proc/assert_true.html">assert_true</a></code> and <code><a href="../../proc/assert_identical.html">assert_identical</a></code> methods are described here, analogous formats exist for the <code><a href="../../interface/assert_not_equal.html">assert_not_equal</a></code>, <code><a href="../../proc/assert_false.html">assert_false</a></code> and <code><a href="../../proc/assert_not_identical.html">assert_not_identical</a></code> methods.</br></br></p>
 <h4>1. <code><a href="../../interface/assert_equal.html">assert_equal</a></code></h4>
 <p><table style="width:100%", rules="rows">
 <tr><th>Syntax</th> <th>Returns true if</th> <th>Underlying subroutine</th></tr>
@@ -152,6 +152,13 @@
 <tr><th>Syntax</th> <th>Returns true if</th> <th>Underlying subroutine</th></tr>
 <tr><td></td><td></td><td></td></tr>
 <tr><td><code>assert_true(logical a)</code></td><td><code>a == .true.</code></td><td><code>assert_true</code></td></tr>
+</table><br>
+</br></p>
+<h4>3. <code><a href="../../proc/assert_identical.html">assert_identical</a></code></h4>
+<p><table style="width:100%", rules="rows">
+<tr><th>Syntax</th> <th>Returns true if</th> <th>Underlying subroutine</th></tr>
+<tr><td></td><td></td><td></td></tr>
+<tr><td><code>assert_identical(string filename1, string filename2)</code></td><td><code>contents are same</code></td><td><code>assert_identical</code></td></tr>
 </table><br>
 </br></p>
 <p></p><div class="alert alert-info" role="alert"><h4>Note</h4><p>All the assert methods accept two optional arguments <code>message</code> and <code>status</code>.<br>
