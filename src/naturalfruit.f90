@@ -2496,7 +2496,7 @@ contains
     character(len=*), intent(in) :: filename1, filename2
     character(len=*), intent(in), optional :: message
     logical, intent(out), optional :: status
-    integer :: size1, size2
+    integer :: size1, size2, iostatVal
     character(:), allocatable :: contents1, contents2
     logical :: file_exists, is_equal
 
@@ -2527,19 +2527,57 @@ contains
     endif
 
     open(unit=10, file=filename1, action="read", &
-      & form="unformatted", access="stream")
+      & form="unformatted", access="stream", iostat=iostatVal)
+    if (iostatVal .ne. 0) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & filename1, 'none', &
+          'File appears empty or does not exist, '// message, if_is=.true.)
+      else
+        status = .false.
+      endif
+      return
+    endif
     inquire(unit=10, size=size1)
-    allocate(character(size1) :: contents1)
-    read(10) contents1
-    close(10)
 
-    open(unit=10, file=filename2, action="read", &
-      & form="unformatted", access="stream")
-    inquire(unit=10, size=size2)
-    allocate(character(size2) :: contents2)
-    read(10) contents2
-    close(10)
+    open(unit=11, file=filename2, action="read", &
+      & form="unformatted", access="stream", iostat=iostatVal)
+    if (iostatVal .ne. 0) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & filename2, 'none', &
+          'File appears empty or does not exist, '// message, if_is=.true.)
+      else
+        status = .false.
+      endif
+      return
+    endif
+    inquire(unit=11, size=size2)
 
+    ! Check sizes
+    call assert_equal(size1, size2, status=is_equal)
+    if (.not. is_equal) then
+      if (.not. present(status)) then
+        call failed_assert_action( &
+          & filename1, filename2, &
+          & 'Files do not match, '// message, if_is=.true.)
+      else
+        status= .false.
+      endif
+      close(10)
+      close(11)
+      return
+    else
+      allocate(character(size1) :: contents1)
+      read(10) contents1
+      close(10)
+
+      allocate(character(size2) :: contents2)
+      read(11) contents2
+      close(11)
+    endif
+
+    ! Check contents
     call assert_equal(contents1, contents2, status=is_equal)
 
     if (is_equal) then
