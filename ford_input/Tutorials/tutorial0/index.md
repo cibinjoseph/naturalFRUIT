@@ -29,6 +29,12 @@ program matmul_test
 end program matmul_test
 ```
 </br>
+Ensure the module `naturalfruit.f90` is available for use and available for linking. Our example program may then be compiled and executed using:
+```
+$ gfortran -c naturalfruit.f90
+$ gfortran matmul_test.f90 naturalfruit.o
+$ ./a.out
+```
 Executing this program will print a `.F` to the screen. The `.` indicates a successful assert while the `F` a failed assert. This is a concise indication common to other testing frameworks too. </br>
 For a clearer outline of the results, we leverage nauralFRUIT's [[testsuite_summary]] method. We shall also supply [[assert_equal]] an optional `message` argument to print out a message in case of a failed assert. This would allow us to better identify the failed assert.
 Making these changes in the program, </br>
