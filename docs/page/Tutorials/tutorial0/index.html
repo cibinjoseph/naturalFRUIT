@@ -161,7 +161,14 @@ Let's also deliberately add a wrong case that results in a failed assert stateme
 
 
 <p></br>
-Executing this program will print a <code>.F</code> to the screen. The <code>.</code> indicates a successful assert while the <code>F</code> a failed assert. This is a concise indication common to other testing frameworks too. </br>
+Ensure the module <code>naturalfruit.f90</code> is available for use and available for linking. Our example program may then be compiled and executed using:</p>
+<div class="codehilite"><pre><span></span><code>$ gfortran -c naturalfruit.f90
+$ gfortran matmul_test.f90 naturalfruit.o
+$ ./a.out
+</code></pre></div>
+
+
+<p>Executing this program will print a <code>.F</code> to the screen. The <code>.</code> indicates a successful assert while the <code>F</code> a failed assert. This is a concise indication common to other testing frameworks too. </br>
 For a clearer outline of the results, we leverage nauralFRUIT's <a href="../../../proc/testsuite_summary.html">testsuite_summary</a> method. We shall also supply <a href="../../../interface/assert_equal.html">assert_equal</a> an optional <code>message</code> argument to print out a message in case of a failed assert. This would allow us to better identify the failed assert.
 Making these changes in the program, </br></p>
 <div class="codehilite"><pre><span></span><code><span class="k">program </span><span class="n">matmul_test</span>
