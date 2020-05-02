@@ -20,10 +20,14 @@ gfortran main.f90 naturalFruit.o    # Link and use!
 ```
 
 ## Usage
-**A word of warning**: This repo is under very active development and a lot of drastic changes are being made at the moment. These include removal of deprecated and redundant subroutines and functions. Until this disclaimer is removed, users are cautioned against using naturalFRUIT and advised to use the original FRUIT module.
+**A word of warning**: This repo is under very active development and a lot of drastic changes are being made at the moment. These include removal of deprecated and redundant subroutines and functions. Until this disclaimer is removed, users are cautioned against using naturalFRUIT and advised to use the original FRUIT module.</br></br>
+
+The following image illustrates the typical workflow and subroutines for unit testing using naturalFRUIT:  
+
+![flowchart](media/flowchart/flowchart.png)
 
 ## Documentation
-Link to FORD generated [Documentation](https://cibinjoseph.github.io/naturalFRUIT/page/index.html).   
+Read the FORD generated [Documentation](https://cibinjoseph.github.io/naturalFRUIT/page/index.html).   
 | Quick links |  
 | ------------------ |
 | [Assert methods](https://cibinjoseph.github.io/naturalFRUIT/page/AssertMethods/index.html) |
