@@ -24,4 +24,3 @@ extra_filetypes:
 A purely Fortran based unit testing framework derived from the original [Fortran Unit Test Framework (FRUIT)](https://sourceforge.net/projects/fortranxunit/).<br/>
 The term *natural* in naturalFRUIT, signifies a framework unadultered by programming languages other than Fortran.<br/><br/>
 Documentation available [here](https://cibinjoseph.github.io/naturalFRUIT/page/index.html).
-For a list of test subroutines visit the [**Procedures**](https://cibinjoseph.github.io/naturalFRUIT/lists/procedures.html) page.

@@ -7,29 +7,48 @@
 A purely Fortran based unit testing framework derived from the original [Fortran Unit Test Framework (FRUIT)](https://sourceforge.net/projects/fortranxunit/).
 
 ## Why the new project?
-1. FRUIT utilized the Ruby programming language to aid auto-generation of code and making of reports easier. However, this seemed to hinder users from adopting the testing framework due to time spent setting up additional dependencies and having to learn a whole new programming language. naturalFRUIT maintains only Fortran modules necessary for testing without dependencies on other languages.</br></br>
-2. FRUIT documentation appeared to be generally lacking for intermediate to advanced uses. This project will utilize auto-generated documentation using [FORD](https://github.com/Fortran-FOSS-Programmers/ford).</br></br> 
-3. FRUIT also appeared to not be updated constantly. Hopefully, improvements to Fortran will be reflected in FRUIT through this repo through collaborative development.
+1. Similar projects like FRUIT and pFUnit utilize preprocessors written in other programming languages like Ruby to aid auto-generation of code and reporting easier. However, the time required to set up and learn a whole another language seems to hinder users from adopting the testing framework. naturalFRUIT follows the [KISS principle](https://en.wikipedia.org/wiki/KISS_principle) and maintains only Fortran libraries necessary for testing with minimal to no dependencies on other programming languages.
+2. FRUIT documentation appeared to be generally lacking for intermediate to advanced uses. This project utilizes auto-generated documentation using [FORD](https://github.com/Fortran-FOSS-Programmers/ford).
+3. FRUIT also appeared to not be updated constantly. A collaborative open-source based framework, hopefully improves this and reflects improvements to Fortran.
 4. FRUIT, just like Fortran, did not contain exception handling. This meant it could not be used in testing using continous integration frameworks like Travis. naturalFruit gets over this to a certain extent and can be used with these frameworks.
+
+## Installation
+naturalFruit expects to be compiled and used along side your Fortran libraries without explicit installation. The following straightforward commands should get you going.
+```bash
+gfortran -c naturalFruit.f90        # Compile naturalFruit
+gfortran main.f90 naturalFruit.o    # Link and use!
+```
+
+## Usage
+**A word of warning**: This repo is under very active development and a lot of drastic changes are being made at the moment. These include removal of deprecated and redundant subroutines and functions. Until this disclaimer is removed, users are cautioned against using naturalFRUIT and advised to use the original FRUIT module.
 
 ## Documentation
 Link to FORD generated [Documentation](https://cibinjoseph.github.io/naturalFRUIT/page/index.html).   
-For a quick glance at assert methods, visit [Documentation](https://cibinjoseph.github.io/naturalFRUIT/page/index.html) > [Assert methods](https://cibinjoseph.github.io/naturalFRUIT/page/AssertMethods/index.html).  
-The list of all subroutines available for use is provided in [Documentation](https://cibinjoseph.github.io/naturalFRUIT/page/index.html) > [Procedures](https://cibinjoseph.github.io/naturalFRUIT/lists/procedures.html).
-
-## Usage
-This repo is under very active development and a lot of drastic changes are being made at the moment. These include removal of deprecated and redundant subroutines and functions. Until this disclaimer is removed, users are cautioned against using naturalFRUIT and advised to use the original FRUIT module.
+| Quick links |  
+| ------------------ |
+| [Assert methods](https://cibinjoseph.github.io/naturalFRUIT/page/AssertMethods/index.html) |
+| [Tutorials](https://cibinjoseph.github.io/naturalFRUIT/page/Tutorials/index.html) |
+| [All Procedures](https://cibinjoseph.github.io/naturalFRUIT/lists/procedures.html) |
 
 ## Requirements
 naturalFRUIT has been tested to work with gfortran and ifort for all versions of Fortran 90 and above.
 
-## Contibution
-All contributions through pull requests are accepted.  
+## Contributing
+All contributions are to be made to the `dev` branch through pull requests. The `master` branch is kept aside for releases.
 
 ### Creating documentation
 For adding new documentation,
-1. Fork this repo.
-2. FORD parses comments with the marks *!!* in the source code and the folder *ford_input/* for creating documentation. Make the necessary changes.
-4. Run `make docum` in the topmost directory of the repo to use FORD to autocreate the documentation webpages.
-5. Commit all changes.
-6. Send a pull request.
+    1. Fork this repo.
+    2. FORD parses comments with the marks *!!* in the source code and the folder *ford_input/* for creating documentation. Make the necessary changes.
+                                                                                                4. Run the bash script `createDocs.sh` in the topmost directory of the repo to make FORD autocreate the documentation webpages.
+                                                                                                5. Commit all changes.
+                                                                                                6. Send a pull request.
+
+## License
+[BSD-3-Clause](LICENSE)
+
+## Author
+[Cibin Joseph](https://github.com/cibinjoseph)
+
+## Acknowledgements
+The author of [FRUIT](https://sourceforge.net/projects/fortranxunit/), Andrew H. Chen and all contributors to it are gratefullly acknowledged.
