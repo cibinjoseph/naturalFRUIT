@@ -1,8 +1,11 @@
 title: Documentation
 
 # naturalFRUIT
-</br>
-(If you are already familiar with the basic concepts of testing, you might want to skip to the list of [assert methods](https://cibinjoseph.github.io/naturalFRUIT/page/AssertMethods/index.html) or to the list of [all available procedures](https://cibinjoseph.github.io/naturalFRUIT/lists/procedures.html).)</br></br>
+@note
+If you are already familiar with the basic concepts of testing, you might want to skip to the list of   
+1. [Assert methods](https://cibinjoseph.github.io/naturalFRUIT/page/AssertMethods/index.html) or   
+2. [Procedures](https://cibinjoseph.github.io/naturalFRUIT/lists/procedures.html)
+@endnote
 
 naturalFRUIT is a unit testing framework for Fortran programs adapted from [Fortran Unit Test Framework (FRUIT)](https://sourceforge.net/projects/fortranxunit) with a goal to be independant of other programming languages.</br>
 Due to the lack of [reflection](https://en.wikipedia.org/wiki/Reflection_(computer_programming)) and [exception handling](https://en.wikipedia.org/wiki/Exception_handling) in Fortran, unit test frameworks tend to rely on other languages like Ruby to ensure flexibility and elegance. naturalFRUIT compromises this elegance for ease of use, quick set-up and learning without losing flexibility.</br></br>
