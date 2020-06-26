@@ -1,11 +1,14 @@
+---
 project: naturalFRUIT
 version: 0.7
 project_dir: .
+tutorial_dir: ./tutorials
 src_dir: ./src
 output_dir: ./docs
 media_dir: ./media    
 favicon: ./media/naturalFRUIT-favicon.png
 project_github: https://github.com/cibinjoseph/naturalFRUIT
+project_download: https://github.com/cibinjoseph/naturalfruit/blob/master/src/naturalfruit.f90
 summary: ![naturalFruit](|media|/naturalFRUIT-logo.png)<br/><br/>
          A purely Fortran based unit testing framework for Fortran code
 author: Cibin Joseph
@@ -20,7 +23,8 @@ graph: false
 search: true
 print_creation_date: false
 extra_filetypes:
+---
 
 A purely Fortran based unit testing framework derived from the original [Fortran Unit Test Framework (FRUIT)](https://sourceforge.net/projects/fortranxunit/).<br/>
 The term *natural* in naturalFRUIT, signifies a framework unadultered by programming languages other than Fortran.<br/><br/>
-Documentation available [here](https://cibinjoseph.github.io/naturalFRUIT/page/index.html).
+Documentation and tutorials available [here](https://cibinjoseph.github.io/naturalFRUIT/page/index.html).
