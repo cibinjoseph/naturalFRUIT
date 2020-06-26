@@ -7,8 +7,12 @@ name: zipSource
 on:
   push:
     branches: [ master ]
+    tags:
+      - 'v*' # Push using v1.0 or similar to trigger build
   pull_request:
     branches: [ master ]
+    tags:
+      - 'v*' # Push using v1.0 or similar to trigger build
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
