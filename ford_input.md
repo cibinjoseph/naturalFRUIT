@@ -2,7 +2,6 @@
 project: naturalFRUIT
 version: 0.7
 project_dir: .
-tutorial_dir: ./tutorials
 src_dir: ./src
 output_dir: ./docs
 media_dir: ./media    
