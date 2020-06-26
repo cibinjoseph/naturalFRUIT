@@ -1,0 +1,33 @@
+# This is a basic workflow to help you get started with Actions
+
+name: zipSource
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "zipsrc"
+  zipsrc:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: |
+        mkdir -p src-zip
+        cp -r ./tutorials src-zip/
+        cp -r ./src src-zip/
+    - uses: montudor/action-zip@v0.1.0
+      with:
+        args: zip -qq -r ./src-zip/naturalFRUIT.zip ./src-zip
+    - run: rm -Rf ./src-zip/src ./src-zip/tutorials
+    - uses: actions/upload-artifact@v2
+      with:
+        path: ./src-zip/naturalFRUIT.zip
+    - run: rm -Rf ./src-zip
