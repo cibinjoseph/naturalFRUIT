@@ -7,7 +7,7 @@ output_dir: ./docs
 media_dir: ./media    
 favicon: ./media/naturalFRUIT-favicon.png
 project_github: https://github.com/cibinjoseph/naturalFRUIT
-project_download: https://github.com/cibinjoseph/naturalfruit/blob/master/src/naturalfruit.f90
+project_download: https://github.com/cibinjoseph/naturalFRUIT/releases/download/refs%2Fheads%2Fmaster/naturalFRUIT.zip
 summary: ![naturalFruit](|media|/naturalFRUIT-logo.png)<br/><br/>
          A purely Fortran based unit testing framework for Fortran code
 author: Cibin Joseph
