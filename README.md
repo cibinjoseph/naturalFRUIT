@@ -39,7 +39,7 @@ naturalFRUIT has been tested to work with gfortran and ifort for all versions of
 
 ## Contributing
 All contributions are to be made to the `dev` branch through pull requests. The `master` branch is kept aside for releases.
-During release, the master branch is tagged with 'vX.X.X' and pushed to remote.
+During release, the master branch is tagged with 'vX.X.X' and pushed to remote using `git push origin vX.X.X`.
 
 ### Creating documentation
 For adding new documentation,  
