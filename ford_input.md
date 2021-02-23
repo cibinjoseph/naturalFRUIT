@@ -1,6 +1,6 @@
 ---
 project: naturalFRUIT
-version: 0.7
+version: 0.7.4
 project_dir: .
 src_dir: ./src
 output_dir: ./docs
