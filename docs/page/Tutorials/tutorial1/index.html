@@ -132,8 +132,86 @@
   <div class="row">
     <div class="col-md-9 col-md-push-3" id='text'>
       <h2>Using a module to organize testcases</h2>
-<p></p><div class="alert alert-info" role="alert"><h4>Note</h4><p>Documentation under construction
-</p></div>
+<p>For complex programs, placing your test cases in a seperate module allows better management and utilization of data between test cases.<br>
+Let's take the following simple calculator module that simulates the integer add and multiply operators and perform unit tests on the defined functions.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">module </span><span class="n">calculator</span>
+  <span class="k">implicit none</span>
+<span class="k">contains</span>
+
+<span class="k">  subroutine </span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+  <span class="c">!! A subroutine to add two integers</span>
+    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
+    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span> <span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">output</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+  <span class="k">end subroutine </span><span class="n">add</span>
+
+  <span class="k">subroutine </span><span class="n">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+  <span class="c">!! A subroutine to multiply two integers</span>
+    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
+    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">output</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+  <span class="k">end subroutine </span><span class="n">multiply</span>
+
+<span class="k">end module </span><span class="n">calculator</span>
+</code></pre></div>
+
+
+<p>We create the following <em>test</em> <em>module</em> that performs unit tests on each of the functions defined in the source module. Let's call it <code>calculator_test.f90</code>.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">module </span><span class="n">calculator_test</span>
+  <span class="k">use </span><span class="n">naturalfruit</span>
+  <span class="k">implicit none</span>
+<span class="k">contains</span>
+
+<span class="k">  subroutine </span><span class="n">add_test</span><span class="p">()</span>
+    <span class="k">use </span><span class="n">calculator</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">add</span>
+    <span class="kt">integer</span><span class="kd">::</span> <span class="k">result</span>
+
+<span class="k">    call </span><span class="n">testcase_initialize</span><span class="p">(</span><span class="s1">&#39;add_test&#39;</span><span class="p">)</span>
+    <span class="k">call </span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="k">result</span><span class="p">)</span>            <span class="c">! &lt;--- Call function to be tested</span>
+    <span class="k">call </span><span class="n">assert_equals</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="k">result</span><span class="p">)</span>    <span class="c">! &lt;--- A sample assert that returns true</span>
+    <span class="k">call </span><span class="n">assert_equals</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="k">result</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>  <span class="c">! &lt;--- A sample assert that returns false</span>
+    <span class="k">call </span><span class="n">testcase_finalize</span><span class="p">()</span>
+
+  <span class="k">end subroutine </span><span class="n">add_test</span>
+
+  <span class="k">subroutine </span><span class="n">multiply_test</span><span class="p">()</span>
+    <span class="k">use </span><span class="n">calculator</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">multiply</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="k">result</span>
+
+<span class="k">    call </span><span class="n">testcase_initialize</span><span class="p">(</span><span class="s1">&#39;multiply_test&#39;</span><span class="p">)</span>
+    <span class="k">call </span><span class="n">multiply</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="k">result</span><span class="p">)</span>                          <span class="c">! &lt;--- Call function to be tested</span>
+    <span class="k">call </span><span class="n">assert_equals</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="k">result</span><span class="p">,</span> <span class="s1">&#39;Multiply failed&#39;</span><span class="p">)</span>    <span class="c">! &lt;--- A sample assert that returns true</span>
+    <span class="k">call </span><span class="n">assert_equals</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="k">result</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Multiply failed&#39;</span><span class="p">)</span>  <span class="c">! &lt;--- A sample assert that returns false</span>
+    <span class="k">call </span><span class="n">testcase_finalize</span><span class="p">()</span>
+
+  <span class="k">end subroutine </span><span class="n">multiply_test</span>
+
+<span class="k">end module </span><span class="n">calculator_test</span>
+</code></pre></div>
+
+
+<p>We've now created two subroutines that test the <code>add</code> and <code>multiply</code> functions from the module <code>calculator</code>. Note that each test subroutine starts with a <code>testcase_initialize</code> and ends with a <code>testcase_finalize</code> subroutine call. These are required for bookkeeping and proper initialization of internal variables.</p>
+<p>To run these test cases, we create a <em>test</em> <em>runner</em> program. The test runner decides which test cases to run, in what order and acts as the frontend to interacting with the test cases helping provide result summaries of all test cases executed. Let us name our test runner <code>calculator_testrunner.f90</code>.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">program </span><span class="n">calculator_testrunner</span>
+  <span class="k">use </span><span class="n">naturalfruit</span>
+  <span class="k">use </span><span class="n">calculator_test</span>
+  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">exit_code</span>
+
+  <span class="k">call </span><span class="n">testsuite_initialize</span><span class="p">()</span>
+
+  <span class="k">call </span><span class="n">add_test</span><span class="p">()</span>
+  <span class="k">call </span><span class="n">multiply_test</span><span class="p">()</span>
+
+  <span class="k">call </span><span class="n">testsuite_summary</span><span class="p">()</span>
+  <span class="k">call </span><span class="n">testsuite_finalize</span><span class="p">(</span><span class="n">exit_code</span><span class="p">)</span>
+  <span class="k">call exit</span><span class="p">(</span><span class="n">exit_code</span><span class="p">)</span>
+
+<span class="k">end program </span><span class="n">calculator_testrunner</span>
+</code></pre></div>
+
+
+<p>Notice how the  <em>initialize</em>-<em>test</em>-<em>finalize</em> workflow is used here just like in the test module.<br>
+The subroutine names in the testrunner program start with the word 'testsuite' similar to how those in the test cases start with 'testcase'. Multiple such testsuites may be containd within a single testrunner program. This form of testing will be demonstrated in the next tutorial.</p>
 <p></br>
 <center>
 <a href="../tutorial0/index.html">Prev Tutorial</a>
@@ -171,13 +249,13 @@
             
             <ul class="nav nav-stacked nav-pills">
               
-            <li role="presentation">
-            <a href='../../../page/Tutorials/tutorial0/index.html'>Tutorial 0</a>
+            <li role="presentation" class="disabled">
+            <a href='../../../page/Tutorials/tutorial1/index.html'>Tutorial 1</a>
             
             </li>
             
-            <li role="presentation" class="disabled">
-            <a href='../../../page/Tutorials/tutorial1/index.html'>Tutorial 1</a>
+            <li role="presentation">
+            <a href='../../../page/Tutorials/tutorial2/index.html'>Tutorial 2</a>
             
             </li>
             
@@ -196,7 +274,7 @@
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2020 
+        <div class="col-xs-6 col-md-4"><p>&copy; 2021 
                                           </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
