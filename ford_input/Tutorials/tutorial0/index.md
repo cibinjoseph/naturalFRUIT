@@ -86,7 +86,7 @@ Successful rate:    50.00%
    -- end of FRUIT summary
 
 ```
-Although naturalFRUIT is currently working with set defaults, it requires to be properly initialized to prevent unexpected beahviour. For this, we shall utilize the `testsuite_initialize` and the `testsuite_finalize` statements. We will also provide an optional integer argument `exit_code` to `testsuite_finalize` to obtain an exit code for our test program. This will indicate whether program as a whole was successfully executed and be helpful when integrating with other frameworks including those with continuous integration testing capabilities.
+Although naturalFRUIT is currently working with set defaults, it requires to be properly initialized to prevent unexpected beahviour. For this, we shall utilize the `testsuite_initialize` and the `testsuite_finalize` statements. We will also provide an optional integer argument `exit_code` to `testsuite_finalize` to obtain an exit code for our test program. This will indicate whether the program as a whole was successfully executed and is helpful when integrating with other frameworks including those with continuous integration testing capabilities. The `exit_code` returned from `testsuite_finalize` is the number of failed test cases.
 
 ```Fortran
 program matmul_test

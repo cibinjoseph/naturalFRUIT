@@ -41,12 +41,13 @@ naturalFRUIT has been tested to work with gfortran and ifort for all versions of
 All contributions are to be made to the `dev` branch through pull requests. The `master` branch is kept aside for releases.
 
 ### Creating documentation
-For adding new documentation,
-    1. Fork this repo.
-    2. FORD parses comments with the marks *!!* in the source code and the folder *ford_input/* for creating documentation. Make the necessary changes.
-                                                                                                4. Run the bash script `createDocs.sh` in the topmost directory of the repo to make FORD autocreate the documentation webpages.
-                                                                                                5. Commit all changes.
-                                                                                                6. Send a pull request.
+For adding new documentation,  
+1. Fork this repo.  
+2. FORD parses comments with the marks *!!* in the source code and contents of the folder *ford_input/* for creating documentation. 
+3. Make the necessary changes.  
+4. Run the bash script `createDocs.sh` in the topmost directory of the repo to make FORD autocreate the documentation webpages.  
+5. Commit all changes.  
+6. Send a pull request.  
 
 ## License
 [BSD-3-Clause](LICENSE)

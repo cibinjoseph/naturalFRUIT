@@ -6,7 +6,6 @@ contains
     !! A subroutine to add two integers
     integer, intent (in) :: a, b
     integer, intent (out) :: output
-
     output = a + b
   end subroutine add
 
@@ -14,7 +13,7 @@ contains
     !! A subroutine to multiply two integers
     integer, intent (in) :: a, b
     integer, intent (out) :: output
-
     output = a * b
   end subroutine multiply
+
 end module calculator
