@@ -30,7 +30,7 @@ end program matmul_test
 ```
 </br>
 Ensure the module `naturalfruit.f90` is available for use and available for linking. Our example program may then be compiled and executed using:
-```
+```Bash
 $ gfortran -c naturalfruit.f90
 $ gfortran matmul_test.f90 naturalfruit.o
 $ ./a.out
@@ -122,4 +122,5 @@ end program matmul_test
 We have now realized the bare minimum to perform unit testing with naturalFRUIT. </br>
 This program may be easily extended to testing  other data types like `real` and `real*8` too. </br>
 However, for maintaining a testsuite with a large number of complex testcases, we cannot rely only on a simple testrunner program like the above. A better organization of things is essential. Continue to the next tutorial to find how this may be achieved.</br></br>
+
 <center>[Next Tutorial](../tutorial1/index.html)</center>
