@@ -6,11 +6,6 @@ name: zipSource
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
-    tags:
-      - 'v*' # Push using v1.0 or similar to trigger build
-  pull_request:
-    branches: [ master ]
     tags:
       - 'v*' # Push using v1.0 or similar to trigger build
 
